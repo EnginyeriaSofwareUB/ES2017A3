@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum Movement{
+public enum PlayerState{
     IDDLE,
     RIGHT,
     LEFT,
@@ -14,23 +14,24 @@ public enum Movement{
 public class PlayerController : MonoBehaviour
 {
 
-    public int limiteRecorrido;
+    public float limiteRecorrido;
 
-    public int pasos;
+    public float recorrido;
 
-    public Movement currentPlayerState;
+    public static PlayerState currentPlayerState;
 
-    public Vector3 initialPosition;
+    public float lastX;
 
     bool GamePlaying = true; // esto luego sera un enum por cada estado del juego (pantalla inicial, pausa, jugando, final etc) que se extraera del controlador general del juego
 
+    public GameObject player;
+    
     // Use this for initialization
     void Start()
     {
-        initialPosition = transform.position;
-        currentPlayerState = Movement.IDDLE;
-        pasos = 0;
-        limiteRecorrido = 20;
+        currentPlayerState = PlayerState.IDDLE;
+        recorrido = 0;
+        limiteRecorrido = 20f;
     }
 
     // Update is called once per frame
@@ -42,6 +43,9 @@ public class PlayerController : MonoBehaviour
             //Realizar el movimiento con su animacion y cambio de posicion o el ataque
             //Llamar a la funcion de MovimientoController
             //Despues de realizar el movimiento o ataque, se debe actualizar initialPosition y el estado del personaje a iddle
+            player.SendMessage("Move");
+            if (currentPlayerState == PlayerState.RIGHT || currentPlayerState == PlayerState.LEFT) recorrido += Math.Abs(player.transform.position.x - lastX);
+            else if (currentPlayerState == PlayerState.ATTACK) recorrido = 0;
         }
 
     }
@@ -57,7 +61,7 @@ public class PlayerController : MonoBehaviour
 
         if (jump)
         {
-            currentPlayerState = Movement.JUMP;
+            currentPlayerState = PlayerState.JUMP;
             doAction = true;
         }
         else if(right || left)
@@ -66,7 +70,7 @@ public class PlayerController : MonoBehaviour
         }
         /*else if (shoot)
         {
-            currentPlayerState = Movement.ATTACK;
+            currentPlayerState = PlayerState.ATTACK;
             doAction = true;
         }*/
 
@@ -75,13 +79,14 @@ public class PlayerController : MonoBehaviour
 
     bool checkTravel(bool right)
     {
-        float recorrido = Vector3.Magnitude(transform.position - initialPosition) * Time.deltaTime;
         if (recorrido < limiteRecorrido)
         {
+            lastX = player.transform.position.x;
             print("Recorrido:" + recorrido);
-            currentPlayerState = right ? Movement.RIGHT : Movement.LEFT;
+            currentPlayerState = right ? PlayerState.RIGHT : PlayerState.LEFT;
             return true;
         }
+        recorrido = limiteRecorrido;
         return false;
     }
 
