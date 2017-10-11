@@ -5,6 +5,8 @@ public class EndGameCondition : MonoBehaviour {
     private int turnCounter;
     private int maxTurns;
 
+	private StateHolder stateHolder;
+
     public int MaxTurns
     {
         set
@@ -22,15 +24,20 @@ public class EndGameCondition : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
     {
+		while (!this.stateHolder) {
+			this.stateHolder = (StateHolder)FindObjectOfType (typeof(StateHolder));
+		}
         Debug.Log("EndGameCondition :: Start called");
         this.turnCounter = 0;
         this.MaxTurns = 4;
 	}
-	
+
 	// Update is called once per frame
 	void Update ()
     {
-		
+		if(this.stateHolder.isPlaying () && this.IsWinCondition ()){
+			this.CloseGame ();
+		}
 	}
 
     // Si arribem al maxim de turns s'acaba el joc
