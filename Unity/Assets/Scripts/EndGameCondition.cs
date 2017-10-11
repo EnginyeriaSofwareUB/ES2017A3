@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 public class EndGameCondition : MonoBehaviour {
 
@@ -24,9 +25,7 @@ public class EndGameCondition : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
     {
-		while (!this.stateHolder) {
-			this.stateHolder = (StateHolder)FindObjectOfType (typeof(StateHolder));
-		}
+		this.stateHolder = gameObject.GetComponent<StateHolder> ();
         Debug.Log("EndGameCondition :: Start called");
         this.turnCounter = 0;
         this.MaxTurns = 4;
