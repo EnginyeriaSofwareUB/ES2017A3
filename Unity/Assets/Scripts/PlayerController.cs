@@ -83,6 +83,7 @@ public class PlayerController : MonoBehaviour
         {
             lastX = player.transform.position.x;
             print("Recorrido:" + recorrido);
+            print("Right:" + right);
             currentPlayerState = right ? PlayerState.RIGHT : PlayerState.LEFT;
             return true;
         }
