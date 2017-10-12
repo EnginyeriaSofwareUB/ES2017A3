@@ -13,13 +13,14 @@ public class ModuloTotem : MonoBehaviour {
 
     protected int ataque;
     protected int defensa;
-
     protected TotemType getTipoTotem;
-
+    private Transform meshTotem;
     public TotemType getTypeOfTotem()
     {
         return getTipoTotem;
     }
+
+   
 
     // Use this for initialization
     void Start () {
@@ -41,5 +42,9 @@ public class ModuloTotem : MonoBehaviour {
         return defensa;
     }
 
-
+    public Transform MeshTotem
+    {
+        get { return this.meshTotem; }
+        set { this.meshTotem = value; }
+    }
 }

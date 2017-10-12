@@ -3,21 +3,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Totem : MonoBehaviour
+public  class Totem : MonoBehaviour
 {
 
-    private int ataqueTotal { get; set; }
-    private int defensaTotal { get; set; }
+    [SerializeField]  private int ataqueTotal { get; set; }
+    [SerializeField]  private int defensaTotal { get; set; }
+    [SerializeField] private List <ModuloTotem> modulos;
+    [SerializeField] private GameObject gameObjectTotem;
 
-    private List <ModuloTotem> modulos;
 
-    protected GameObject gameObjectTotem { get; set; }
 
     public Totem(int ataque, int defensa)
     {
         this.ataqueTotal = ataque;
         this.defensaTotal = defensa;
     }
+
+
+
 
     public Totem()
     {
@@ -78,7 +81,29 @@ public abstract class Totem : MonoBehaviour
                 modulos.Add(new ModuloTotemGorila());
                 break;
         }
-        ModuloTotem lastModuleAdded = modulos[modulos.Count-1];
+
+        ModuloTotem lastModuleAdded = modulos[modulos.Count - 1];
+
+        // En caso que sea el primer módulo que se añade
+        if (modulos.Count < 2)
+        {
+            lastModuleAdded.MeshTotem.position = this.transform.position;
+            // Subimos la posición del totem para apilarlo
+            lastModuleAdded.MeshTotem.transform.parent = this.transform;
+        }
+        else
+        {
+            ModuloTotem moduloAnterior = modulos[modulos.Count - 2];
+
+            lastModuleAdded.MeshTotem.position = moduloAnterior.MeshTotem.transform.position;
+            // Subimos la posición del totem para apilarlo
+           lastModuleAdded.MeshTotem.position = lastModuleAdded.MeshTotem.position+ moduloAnterior.MeshTotem.transform.up*0.7f;
+           lastModuleAdded.MeshTotem.transform.parent = gameObjectTotem.transform;
+        }
+
+
+
+
         this.ataqueTotal += lastModuleAdded.getAtaque(); //Sumamos el ataque que nos ha aportado el modulo añadido al totem
         this.defensaTotal += lastModuleAdded.getDefensa(); //Sumamos la defensa del modulo añadido al totem
     }
@@ -109,6 +134,10 @@ public abstract class Totem : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        AddModule(TotemType.TOTEM_BASE);
+        AddModule(TotemType.TOTEM_AGUILA);
+       AddModule(TotemType.TOTEM_GORILA);
+
 
     }
 

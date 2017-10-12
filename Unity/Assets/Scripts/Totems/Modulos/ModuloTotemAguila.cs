@@ -9,6 +9,10 @@ public class ModuloTotemAguila : ModuloTotem
         this.ataque = 10;
         this.defensa = 20;
         this.getTipoTotem = TotemType.TOTEM_AGUILA;
+
+        GameObject instance = Instantiate(Resources.Load("TotemFalcon", typeof(GameObject))) as GameObject;
+        this.MeshTotem = instance.transform;
+     
     }
 
     // Use this for initialization
