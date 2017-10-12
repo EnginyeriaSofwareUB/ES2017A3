@@ -1,12 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class EndGameCondition : MonoBehaviour {
+public class EndGameCondition {
 
     private int turnCounter;
     private int maxTurns;
 
 	private StateHolder stateHolder;
+
 
     public int MaxTurns
     {
@@ -21,23 +22,32 @@ public class EndGameCondition : MonoBehaviour {
         }
     }
 
-
-	// Use this for initialization
-	void Start ()
+    public EndGameCondition()
     {
-		this.stateHolder = gameObject.GetComponent<StateHolder> ();
+        this.stateHolder = StateHolder.Instance;
         Debug.Log("EndGameCondition :: Start called");
         this.turnCounter = 0;
         this.MaxTurns = 4;
-	}
+    }
+
+
+	// Use this for initialization
+	/*void Start ()
+    {
+        this.stateHolder = gameObject.GetComponent<StateHolder> ();
+        print("EndGame");
+        Debug.Log("EndGameCondition :: Start called");
+        this.turnCounter = 0;
+        this.MaxTurns = 4;
+	}*/
 
 	// Update is called once per frame
-	void Update ()
+	/*void Update ()
     {
 		if(this.stateHolder.isPlaying () && this.IsWinCondition ()){
 			this.CloseGame ();
 		}
-	}
+	}*/
 
     // Si arribem al maxim de turns s'acaba el joc
      public bool IsWinCondition()

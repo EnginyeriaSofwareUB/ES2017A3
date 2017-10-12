@@ -3,12 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public  class Totem : MonoBehaviour
+public class Totem : MonoBehaviour
 {
 
-    [SerializeField]  private int ataqueTotal { get; set; }
-    [SerializeField]  private int defensaTotal { get; set; }
-    [SerializeField] private List <ModuloTotem> modulos;
+    [SerializeField] private int ataqueTotal { get; set; }
+    [SerializeField] private int defensaTotal { get; set; }
+    [SerializeField] private List<ModuloTotem> modulos;
     [SerializeField] private GameObject gameObjectTotem;
 
 
@@ -55,7 +55,7 @@ public  class Totem : MonoBehaviour
 
     private void DeleteModule(TotemType totem)
     {
-  
+
         int position = searchModule(totem);
         try
         {
@@ -97,8 +97,8 @@ public  class Totem : MonoBehaviour
 
             lastModuleAdded.MeshTotem.position = moduloAnterior.MeshTotem.transform.position;
             // Subimos la posición del totem para apilarlo
-           lastModuleAdded.MeshTotem.position = lastModuleAdded.MeshTotem.position+ moduloAnterior.MeshTotem.transform.up*0.7f;
-           lastModuleAdded.MeshTotem.transform.parent = gameObjectTotem.transform;
+            lastModuleAdded.MeshTotem.position = lastModuleAdded.MeshTotem.position + moduloAnterior.MeshTotem.transform.up * 0.7f;
+            lastModuleAdded.MeshTotem.transform.parent = gameObjectTotem.transform;
         }
 
 
@@ -110,7 +110,7 @@ public  class Totem : MonoBehaviour
 
     private int searchModule(TotemType type)
     {
-        int position =0;
+        int position = 0;
         bool trobat = false;
         while (position < modulos.Count && !trobat)
         {
@@ -121,7 +121,7 @@ public  class Totem : MonoBehaviour
             else
             {
                 position += 1;
-            }       
+            }
         }
 
         if (trobat)
@@ -134,9 +134,10 @@ public  class Totem : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        Debug.Log("Totem :: Start called");
         AddModule(TotemType.TOTEM_BASE);
         AddModule(TotemType.TOTEM_AGUILA);
-       AddModule(TotemType.TOTEM_GORILA);
+        AddModule(TotemType.TOTEM_GORILA);
 
 
     }
