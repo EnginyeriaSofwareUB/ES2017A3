@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
-public class StateHolder : MonoBehaviour {
+public class StateHolder {
 
 	private const int PLAYING = 0;
 	private const int PAUSE = 1;
@@ -10,8 +11,24 @@ public class StateHolder : MonoBehaviour {
 
 	public int state;
 
-	// Use this for initialization
-	void Start () {
+    private static StateHolder stateHolder;
+
+    private StateHolder() { this.state = 2; }
+
+    public static StateHolder Instance
+    {
+        get
+        {
+            if (stateHolder == null)
+            {
+                stateHolder = new StateHolder();
+            }
+            return stateHolder;
+        }
+    }
+
+    // Use this for initialization
+    void Start () {
 		this.state = 2;
 	}
 

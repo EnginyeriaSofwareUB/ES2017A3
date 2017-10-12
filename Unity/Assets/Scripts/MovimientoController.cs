@@ -2,7 +2,7 @@
 using UnityEngine;
 
 
-public class MovimientoController : MonoBehaviour
+public class MovimientoController
 {
     enum ESTADO_SALTO
     {
@@ -38,27 +38,26 @@ public class MovimientoController : MonoBehaviour
     // Estado actual del salto
     private ESTADO_SALTO estadoSalto = ESTADO_SALTO.EN_TIERRA;
 
-    void Move()
+    public void Move(Totem totem)
     {
-        PlayerState move = PlayerController.currentPlayerState;
+        CurrentTotemState move = PlayerController.currentTotemState;
         Vector3 direction;
         switch (move)
         {
-            case PlayerState.RIGHT:
+            case CurrentTotemState.RIGHT:
                 direction = Vector3.right;
                 break;
-            case PlayerState.LEFT:
+            case CurrentTotemState.LEFT:
                 direction = Vector3.left;
                 break;
-            case PlayerState.JUMP:
+            case CurrentTotemState.JUMP:
                 direction = Vector3.up;
                 break;
             default:
                 direction = new Vector3(1, 1, 1);
                 break;
         }
-
-        transform.Translate(direction * velocidadMovimiento * Time.deltaTime);
+        totem.transform.Translate(direction * velocidadMovimiento * Time.deltaTime);
     }
 
 

@@ -20,7 +20,7 @@ public class ModuloTotemBase : ModuloTotem
 
     public void Awake()
     {
-    
+
     }
     /*public ModuloTotemBase(float ataque, float defensa) : base(ataque, defensa)
    {
@@ -35,7 +35,7 @@ public class ModuloTotemBase : ModuloTotem
         // Creo un collider para hacer colisiones
         //CircleCollider2D circleCollider2d = this.meshTotem.AddComponent(typeof(CircleCollider2D)) as CircleCollider2D;
         // Roto 180 grados el mesh
-       // this.meshTotem.transform.Rotate(new Vector3(0, 180, 0));
+        // this.meshTotem.transform.Rotate(new Vector3(0, 180, 0));
     }
 
     // Update is called once per frame
