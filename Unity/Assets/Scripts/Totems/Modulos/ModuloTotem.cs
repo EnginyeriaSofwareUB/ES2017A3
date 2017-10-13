@@ -9,8 +9,7 @@ public enum TotemType
     TOTEM_AGUILA
 };
 
-public class ModuloTotem : MonoBehaviour
-{
+public class ModuloTotem : MonoBehaviour {
 
     protected int ataque;
     protected int defensa;
@@ -21,19 +20,17 @@ public class ModuloTotem : MonoBehaviour
         return getTipoTotem;
     }
 
-
+   
 
     // Use this for initialization
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
+    void Start () {
+		
+	}
+	
+	// Update is called once per frame
+	void Update () {
+		
+	}
 
     public int getAtaque()
     {

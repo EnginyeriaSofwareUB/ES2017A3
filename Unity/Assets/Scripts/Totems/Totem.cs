@@ -6,25 +6,24 @@ using UnityEngine;
 public class Totem : MonoBehaviour
 {
 
-    [SerializeField] private int ataqueTotal { get; set; }
-    [SerializeField] private int defensaTotal { get; set; }
-    [SerializeField] private List<ModuloTotem> modulos;
-    [SerializeField] private GameObject gameObjectTotem;
+    [SerializeField]  private int ataqueTotal { get; set; }
+    [SerializeField]  private int defensaTotal { get; set; }
+    [SerializeField] private List <ModuloTotem> modulos;
 
-
+    //Manejador del movimiento del jugador
+    private MovimientoController movimiento;
 
     public Totem(int ataque, int defensa)
     {
         this.ataqueTotal = ataque;
         this.defensaTotal = defensa;
+
     }
 
-
-
+ 
 
     public Totem()
     {
-        modulos = new List<ModuloTotem>();
     }
 
     public void CreateTotem()
@@ -55,7 +54,7 @@ public class Totem : MonoBehaviour
 
     private void DeleteModule(TotemType totem)
     {
-
+  
         int position = searchModule(totem);
         try
         {
@@ -97,8 +96,8 @@ public class Totem : MonoBehaviour
 
             lastModuleAdded.MeshTotem.position = moduloAnterior.MeshTotem.transform.position;
             // Subimos la posición del totem para apilarlo
-            lastModuleAdded.MeshTotem.position = lastModuleAdded.MeshTotem.position + moduloAnterior.MeshTotem.transform.up * 0.7f;
-            lastModuleAdded.MeshTotem.transform.parent = gameObjectTotem.transform;
+           lastModuleAdded.MeshTotem.position = lastModuleAdded.MeshTotem.position+ moduloAnterior.MeshTotem.transform.up*0.7f;
+           lastModuleAdded.MeshTotem.transform.parent = this.transform;
         }
 
 
@@ -110,7 +109,7 @@ public class Totem : MonoBehaviour
 
     private int searchModule(TotemType type)
     {
-        int position = 0;
+        int position =0;
         bool trobat = false;
         while (position < modulos.Count && !trobat)
         {
@@ -121,7 +120,7 @@ public class Totem : MonoBehaviour
             else
             {
                 position += 1;
-            }
+            }       
         }
 
         if (trobat)
@@ -134,17 +133,33 @@ public class Totem : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        Debug.Log("Totem :: Start called");
         AddModule(TotemType.TOTEM_BASE);
         AddModule(TotemType.TOTEM_AGUILA);
-        AddModule(TotemType.TOTEM_GORILA);
-
-
+       AddModule(TotemType.TOTEM_GORILA);
+        this.movimiento = GetComponent<MovimientoController>();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
 
+    }
+
+
+
+    public void desabilitarControlMovimiento()
+    {
+        this.movimiento.PuedeMoverse = false;
+    }
+
+
+    public void activarControlMovimiento()
+    {
+        this.movimiento.PuedeMoverse = true;
+    }
+    public bool excedeLimiteDistancia()
+    {
+        return this.movimiento.isLimitePasos();
     }
 }
