@@ -2,7 +2,7 @@
 using UnityEngine;
 
 
-public class MovimientoController
+public class MovimientoController : MonoBehaviour
 {
     enum ESTADO_SALTO
     {
@@ -11,23 +11,22 @@ public class MovimientoController
         CAYENDO
     }
     // Velocidad de desplazamiento del jugador
-    public float velocidadMovimiento = 5f;
+    [SerializeField] private float velocidadMovimiento = 10f;
 
     // Velocidad de desplazamiento del jugador en el aire
-    public float velocidadEnAire = 8f;
+    [SerializeField] private float velocidadEnAire = 10f;
 
     // Velocidad de desaceleración
-    public float velocidadDesaceleracion = 2f;
+    [SerializeField] private float velocidadDesaceleracion = 2f;
 
     // Tiempo máximo de salto
-    public float tiempoSaltoMaximo = 0.5f;
+    [SerializeField] private float tiempoSaltoMaximo = 0.5f;
 
     // Tiempo actual de salto
-    private float tiempoSaltoActual = 0f;
+    [SerializeField] private float tiempoSaltoActual = 0f;
 
     // Fuerza de salto
-    public float fuerzaSalto = 15f;
-
+    [SerializeField] private float fuerzaSalto = 15f;
 
     // Variable booleana que indica si el jugador está colisionando con el terreno
     private bool isColisionTerreno;
@@ -38,29 +37,102 @@ public class MovimientoController
     // Estado actual del salto
     private ESTADO_SALTO estadoSalto = ESTADO_SALTO.EN_TIERRA;
 
-    public void Move(Totem totem)
+    private Rigidbody2D rigidbody2d;
+
+    [SerializeField] private Vector2 posicionAnterior;
+    [SerializeField] private float distanciaRecorrida = 0;
+    [SerializeField] private float distanciaLimite = 20f;
+
+    [SerializeField]  private bool puedeMoverse=false;
+
+    public bool PuedeMoverse
     {
-        CurrentTotemState move = PlayerController.currentTotemState;
-        Vector3 direction;
-        switch (move)
+        get
         {
-            case CurrentTotemState.RIGHT:
-                direction = Vector3.right;
-                break;
-            case CurrentTotemState.LEFT:
-                direction = Vector3.left;
-                break;
-            case CurrentTotemState.JUMP:
-                direction = Vector3.up;
-                break;
-            default:
-                direction = new Vector3(1, 1, 1);
-                break;
+            return puedeMoverse;
         }
-        totem.transform.Translate(direction * velocidadMovimiento * Time.deltaTime);
+
+        set
+        {
+            this.distanciaRecorrida = 0;
+            puedeMoverse = value;
+        }
     }
 
+    void Awake()
+    {
+        rigidbody2d = GetComponent<Rigidbody2D>();
+        posicionAnterior = this.transform.position;
+    }
 
+    void FixedUpdate()
+    {
+        bool isPulsadoSalto = Input.GetKey(KeyCode.Space) == true;
+           
+        float horizontal = Input.GetAxis("Horizontal");
+
+
+        if (puedeMoverse)
+        {
+
+            if (isColisionTerreno)
+            {
+                estadoSalto = ESTADO_SALTO.EN_TIERRA;
+            }
+
+            else if (estadoSalto != ESTADO_SALTO.SALTANDO)
+            {
+                estadoSalto = ESTADO_SALTO.CAYENDO;
+            }
+
+
+
+            if (isColisionTerreno)
+            {
+                rigidbody2d.AddForce(new Vector2(horizontal * velocidadMovimiento, 0));
+            }
+            else
+            {
+                rigidbody2d.AddForce(new Vector2(horizontal * velocidadEnAire, 0));
+            }
+
+
+            // Control de la desaceleración del jugador.
+            // Comprobamos que esté colisionando con el terreno antes de desacelerar
+            if (isColisionTerreno && Mathf.Approximately(horizontal, 0))
+            {
+                rigidbody2d.AddForce(new Vector2(rigidbody2d.velocity.x * -velocidadDesaceleracion, 0));
+            }
+
+
+            if (isPulsadoSalto)
+            {
+                if ((estadoSalto == ESTADO_SALTO.EN_TIERRA || estadoSalto == ESTADO_SALTO.SALTANDO) && tiempoSaltoActual < tiempoSaltoMaximo)
+                {
+                    estadoSalto = ESTADO_SALTO.SALTANDO;
+                    rigidbody2d.AddForce(new Vector2(0, fuerzaSalto));
+                    tiempoSaltoActual += Time.deltaTime;
+                }
+            }
+            else if (estadoSalto == ESTADO_SALTO.EN_TIERRA)
+            {
+                tiempoSaltoActual = 0;
+            }
+
+
+            if (estadoSalto == ESTADO_SALTO.SALTANDO && (tiempoSaltoActual >= tiempoSaltoMaximo || !isPulsadoSalto))
+            {
+                estadoSalto = ESTADO_SALTO.CAYENDO;
+            }
+
+        }
+        distanciaRecorrida += Vector2.Distance(transform.position, posicionAnterior);
+            posicionAnterior = transform.position;
+        
+
+    }
+
+    
     protected void OnCollisionEnter2D(Collision2D other)
     {
         isColisionTerreno = true;
@@ -70,5 +142,8 @@ public class MovimientoController
     {
         isColisionTerreno = false;
     }
-
+    public bool isLimitePasos()
+    {
+        return distanciaRecorrida > distanciaLimite;
+    }
 }

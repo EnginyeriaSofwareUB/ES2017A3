@@ -1,80 +1,77 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 
-public class StateHolder {
+public class StateHolder : MonoBehaviour
+{
+    public enum ESTADO_JUEGO{
+        PLAYING,PAUSE,INVENTARY,MENU
+    }
 
-	private const int PLAYING = 0;
-	private const int PAUSE = 1;
-	private const int MENU = 2;
+    //private const int PLAYING = 0;
+    //private const int PAUSE = 1;
+   // private const int MENU = 2;
 
-	public int state;
+    private ESTADO_JUEGO state;
 
-    private static StateHolder stateHolder;
-
-    private StateHolder() { this.state = 2; }
-
-    public static StateHolder Instance
+    // Use this for initialization
+    void Start()
     {
-        get
+        this.state = ESTADO_JUEGO.PLAYING;
+    }
+
+    public bool isPlaying()
+    {
+        return this.state == ESTADO_JUEGO.PLAYING;
+    }
+
+    public bool isPause()
+    {
+        return this.state == ESTADO_JUEGO.PAUSE;
+    }
+
+    public bool isMenu()
+    {
+        return this.state == ESTADO_JUEGO.MENU;
+    }
+
+    public bool setPlaying()
+    {
+        switch (this.state)
         {
-            if (stateHolder == null)
-            {
-                stateHolder = new StateHolder();
-            }
-            return stateHolder;
+            case (ESTADO_JUEGO.PLAYING):
+            case (ESTADO_JUEGO.MENU):
+            case (ESTADO_JUEGO.PAUSE):
+                this.state = ESTADO_JUEGO.PLAYING;
+                return true;
+            default:
+                return false;
         }
     }
 
-    // Use this for initialization
-    void Start () {
-		this.state = 2;
-	}
+    public bool setMenu()
+    {
+        switch (this.state)
+        {
+            case (ESTADO_JUEGO.MENU):
+            case (ESTADO_JUEGO.PAUSE):
+                this.state = ESTADO_JUEGO.MENU;
+                return true;
+            default:
+                return false;
+        }
+    }
 
-	public bool isPlaying() {
-		return this.state == PLAYING;
-	}
-
-	public bool isPause() {
-		return this.state == PAUSE;
-	}
-
-	public bool isMenu() {
-		return this.state == MENU;
-	}
-
-	public bool setPlaying() {
-		switch (this.state) {
-		case(PLAYING):
-		case(MENU):
-		case(PAUSE):
-			this.state = PLAYING;
-			return true;
-		default:
-			return false;
-		}
-	}
-
-	public bool setMenu(){
-		switch (this.state) {
-		case(MENU):
-		case(PAUSE):
-			this.state = MENU;
-			return true;
-		default:
-			return false;
-		}
-	}
-
-	public bool setPause(){
-		switch (this.state) {
-		case(PAUSE):
-		case(PLAYING):
-			this.state = PAUSE;
-			return true;
-		default:
-			return false;
-		}
-	}
+    public bool setPause()
+    {
+        switch (this.state)
+        {
+            case (ESTADO_JUEGO.PAUSE):
+            case ESTADO_JUEGO.PLAYING:
+                this.state = ESTADO_JUEGO.PAUSE;
+                return true;
+            default:
+                return false;
+        }
+    }
 }
