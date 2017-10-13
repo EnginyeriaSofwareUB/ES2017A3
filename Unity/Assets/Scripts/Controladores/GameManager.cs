@@ -43,7 +43,6 @@ public class GameManager : MonoBehaviour
         condicionFinJuego = GetComponent<EndGameCondition>();
 
         txtTurnoJugador.text = "Turno: " + turnoJugador.ToString();
-        txtNumeroRonda.text = "Ronda: " + condicionFinJuego.TurnCounter;
 
     }
 
@@ -84,6 +83,8 @@ public class GameManager : MonoBehaviour
         // Finalmente,  actualizo el estado
         this.estadoPartida = PARTIDA_STATE.TURNO_RONDA;
         this.turnoJugador = TURNO_JUGADOR.PRIMER_JUGADOR;
+        txtNumeroRonda.text = "Ronda: " + condicionFinJuego.TurnCounter;
+
     }
 
 
