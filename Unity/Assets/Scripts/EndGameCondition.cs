@@ -1,13 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class EndGameCondition {
+public class EndGameCondition : MonoBehaviour
+{
 
-    private int turnCounter;
-    private int maxTurns;
+    [SerializeField] private int turnCounter;
+    [SerializeField] private int maxTurns;
 
-	private StateHolder stateHolder;
-
+    private StateHolder stateHolder;
 
     public int MaxTurns
     {
@@ -22,40 +22,45 @@ public class EndGameCondition {
         }
     }
 
-    public EndGameCondition()
+    public int TurnCounter
     {
-        this.stateHolder = StateHolder.Instance;
-        Debug.Log("EndGameCondition :: Start called");
-        this.turnCounter = 0;
-        this.MaxTurns = 4;
+        get
+        {
+            return turnCounter;
+        }
+
+        set
+        {
+            turnCounter = value;
+        }
     }
 
 
-	// Use this for initialization
-	/*void Start ()
+    // Use this for initialization
+    void Start()
     {
-        this.stateHolder = gameObject.GetComponent<StateHolder> ();
-        print("EndGame");
+        this.stateHolder = new StateHolder();
         Debug.Log("EndGameCondition :: Start called");
-        this.turnCounter = 0;
+        this.turnCounter = 1;
         this.MaxTurns = 4;
-	}*/
+    }
 
-	// Update is called once per frame
-	/*void Update ()
+    // Update is called once per frame
+    void Update()
     {
-		if(this.stateHolder.isPlaying () && this.IsWinCondition ()){
-			this.CloseGame ();
-		}
-	}*/
+        if (this.stateHolder.isPlaying() && this.IsWinCondition())
+        {
+          this.CloseGame();
+       }
+    }
 
     // Si arribem al maxim de turns s'acaba el joc
-     public bool IsWinCondition()
-     {
+    public bool IsWinCondition()
+    {
         bool isWin = this.turnCounter >= this.MaxTurns;
-        Debug.Log("EndGameCondition :: IsWinCondition called :: returns " + isWin.ToString() + ".");
+        //Debug.Log("EndGameCondition :: IsWinCondition called :: returns " + isWin.ToString() + ".");
         return isWin;
-     }
+    }
 
     public void IncreaseTurnCounter()
     {
@@ -67,6 +72,7 @@ public class EndGameCondition {
     public void CloseGame()
     {
         Debug.Log("EndGameCondition :: CloseGame called :: closing the game.");
+        
         Application.Quit();
     }
 

@@ -79,7 +79,7 @@ public class PlayerController: MonoBehaviour
             }
             else
             {
-                movementController.Move(GetCurrentTotem());
+               // movementController.Move(GetCurrentTotem());
                 if (currentTotemState == CurrentTotemState.RIGHT || currentTotemState == CurrentTotemState.LEFT) currentTotemTravel += Math.Abs(GetCurrentTotem().transform.position.x - lastX);
             }
             currentTotemState = CurrentTotemState.IDDLE;

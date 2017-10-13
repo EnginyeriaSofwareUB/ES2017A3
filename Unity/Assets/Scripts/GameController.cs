@@ -14,7 +14,7 @@ public class GameController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         Debug.Log("GameController :: Start called");
-        stateHolder = StateHolder.Instance;
+       // stateHolder = StateHolder.Instance;
         stateHolder.setPlaying();
         gameCondition = new EndGameCondition();
         createPlayers();
