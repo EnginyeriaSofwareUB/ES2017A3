@@ -38,6 +38,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4833163306272960}
   - component: {fileID: 23561088345227240}
+  - component: {fileID: 114994968122255946}
+  - component: {fileID: 114862441401320170}
+  - component: {fileID: 114829362698523780}
   m_Layer: 0
   m_Name: TotemBase
   m_TagString: Untagged
@@ -157,3 +160,38 @@ MeshCollider:
   m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: 7f807fda3f23a487d99b96313f22ec65, type: 3}
+--- !u!114 &114829362698523780
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1313269101455176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3005236c9af7dcc478a567c2f1ad2e2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114862441401320170
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1313269101455176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24b09953b6062a446a015a28ac51371e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MovementSpeed: 0
+  JumpForce: 0
+--- !u!114 &114994968122255946
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1313269101455176}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8397f1001a563c7409b7e7eda0b2749f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
