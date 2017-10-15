@@ -33,8 +33,6 @@ namespace Assets.Scripts.Player
         {
             if (Input.GetMouseButtonDown(0))
             {
-                float x = Input.mousePosition.x;
-                float y = Input.mousePosition.y;
                 WeaponLogic.Shoot();
             }
         }
