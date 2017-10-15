@@ -326,6 +326,8 @@ GameObject:
   - component: {fileID: 927636069}
   - component: {fileID: 927636068}
   - component: {fileID: 927636072}
+  - component: {fileID: 927636074}
+  - component: {fileID: 927636073}
   m_Layer: 0
   m_Name: TotemPrimerJugador
   m_TagString: Untagged
@@ -414,6 +416,30 @@ MonoBehaviour:
   distanciaRecorrida: 0
   distanciaLimite: 20
   puedeMoverse: 0
+--- !u!114 &927636073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 927636067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3005236c9af7dcc478a567c2f1ad2e2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &927636074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 927636067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24b09953b6062a446a015a28ac51371e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MovementSpeed: 0
+  JumpForce: 0
 --- !u!1 &1078858944
 GameObject:
   m_ObjectHideFlags: 0
@@ -1234,6 +1260,8 @@ GameObject:
   - component: {fileID: 2039498829}
   - component: {fileID: 2039498828}
   - component: {fileID: 2039498827}
+  - component: {fileID: 2039498833}
+  - component: {fileID: 2039498832}
   m_Layer: 0
   m_Name: TotemSegundoJugador
   m_TagString: Untagged
@@ -1322,6 +1350,30 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2039498832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2039498826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3005236c9af7dcc478a567c2f1ad2e2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2039498833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2039498826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24b09953b6062a446a015a28ac51371e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MovementSpeed: 0
+  JumpForce: 0
 --- !u!1 &2128043751
 GameObject:
   m_ObjectHideFlags: 0

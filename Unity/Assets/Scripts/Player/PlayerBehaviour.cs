@@ -10,24 +10,31 @@ namespace Assets.Scripts.Player
         public float JumpForce;
 
         private WeaponLogic WeaponLogic { get; set; }
+        private MovimientoController mov { get; set; }
 
         void Start ()
         {
             this.WeaponLogic = GetComponent<WeaponLogic>();
+            this.mov = GetComponent<MovimientoController>();
         }
 
         private void Update()
         {
-            MovePlayer();
-            WeaponDirection();
-            WeaponForce();
-            Shoot();
+            if (this.mov.PuedeMoverse)
+            {
+                //MovePlayer();
+                WeaponDirection();
+                //WeaponForce();
+                Shoot();
+            }
         }
 
         private void Shoot()
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetMouseButtonDown(0))
             {
+                float x = Input.mousePosition.x;
+                float y = Input.mousePosition.y;
                 WeaponLogic.Shoot();
             }
         }
