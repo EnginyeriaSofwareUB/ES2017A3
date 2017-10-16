@@ -8,7 +8,7 @@ public class MenuButtons : MonoBehaviour {
     //public GameController gameController;
 
 	public void StartGame(){
-		SceneManager.LoadScene ("Game");
+		SceneManager.LoadScene ("JuegoScene");
 	}
 
 	public void QuitGame(){
