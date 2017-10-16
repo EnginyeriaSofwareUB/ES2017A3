@@ -32,7 +32,7 @@ namespace Assets.Scripts.Weapon
 
         public void Shoot()
         {
-            var weapon = CreateWeapon("Bomb", ShotStartingPoint);
+            var weapon = CreateWeapon("Armas/Bomba", ShotStartingPoint);
 
             SetWeaponVelocity(weapon, ShootingVelocity);
         }
