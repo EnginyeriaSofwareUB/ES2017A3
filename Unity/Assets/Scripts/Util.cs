@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using UnityEditor;
+﻿
 using UnityEngine;
 
 namespace Assets
@@ -32,7 +28,8 @@ namespace Assets
 
         public static UnityEngine.Object LoadWeapon(string name)
         {
-            return AssetDatabase.LoadAssetAtPath("Assets/Resources/Weapons/" + name + ".prefab", typeof(GameObject));
+            return Resources.Load(name) as GameObject;
+            //return AssetDatabase.LoadAssetAtPath("Assets/Resources/Weapons/" + name + ".prefab", typeof(GameObject));
         }
 
         public static void StopScene()
