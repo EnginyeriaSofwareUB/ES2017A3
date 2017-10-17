@@ -37,11 +37,9 @@ namespace Assets.Scripts.Weapon
             SetWeaponVelocity(weapon, ShootingVelocity);
         }
 
-        public void ChangeDirection(Direction direction)
+        public void ChangeDirection(float angle)
         {
-            this.ShootingAngle = Direction.Up == direction
-                ? this.ShootingAngle + 1 >= 360 ? 0 : this.ShootingAngle + 1
-                : this.ShootingAngle - 1 <= 0 ? 359 : this.ShootingAngle - 1;
+            this.ShootingAngle = angle;
 
             CalculateVelocity();
         }

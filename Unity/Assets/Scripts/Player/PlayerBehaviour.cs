@@ -11,11 +11,15 @@ namespace Assets.Scripts.Player
 
         private WeaponLogic WeaponLogic { get; set; }
         private MovimientoController mov { get; set; }
-
-        void Start ()
+        private Vector3 startMousePosition;
+        private float shootingAngle;
+        private LineRenderer lineaRenderizar;
+        void Start()
         {
+            
             this.WeaponLogic = GetComponent<WeaponLogic>();
             this.mov = GetComponent<MovimientoController>();
+            lineaRenderizar = GetComponent<LineRenderer>();
         }
 
         private void Update()
@@ -23,16 +27,40 @@ namespace Assets.Scripts.Player
             if (this.mov.PuedeMoverse)
             {
                 //MovePlayer();
-                WeaponDirection();
-                //WeaponForce();
+                //WeaponDirection();
+                WeaponForce();
                 Shoot();
             }
         }
 
+      
         private void Shoot()
         {
+
             if (Input.GetMouseButtonDown(0))
             {
+                startMousePosition = Input.mousePosition;
+
+            }
+
+            if (Input.GetMouseButton(0))
+            {
+                Vector3 mouseDelta = Input.mousePosition - startMousePosition;
+                if (mouseDelta.sqrMagnitude < 0.1f)
+                {
+                    shootingAngle = getAngle(startMousePosition);// don't do tiny rotations.
+                }
+                else
+                {
+                    shootingAngle = getAngle(mouseDelta);
+                }
+
+                WeaponLogic.ChangeDirection(shootingAngle);
+            }
+
+            if (Input.GetMouseButtonUp(0))
+            {
+                WeaponLogic.ChangeDirection(shootingAngle);
                 WeaponLogic.Shoot();
             }
         }
@@ -42,7 +70,7 @@ namespace Assets.Scripts.Player
             if (Math.Abs(Input.GetAxis("Vertical")) > 0)
             {
                 var direction = Input.GetAxis("Vertical") > 0 ? Direction.Up : Direction.Down;
-                WeaponLogic.ChangeDirection(direction);
+                WeaponLogic.ChangeDirection(shootingAngle);
             }
         }
 
@@ -60,6 +88,16 @@ namespace Assets.Scripts.Player
             transform.position += new Vector3(Input.GetAxis("Horizontal") * Time.deltaTime * MovementSpeed, 0, 0);
         }
 
+
+        private float getAngle(Vector3 position)
+        {
+            position.z = (transform.position.z - Camera.main.transform.position.z);
+            position = Camera.main.ScreenToWorldPoint(position);
+            position = position - transform.position;
+            float angle = Mathf.Atan2(position.y, position.x) * Mathf.Rad2Deg;
+            if (angle < 0) angle += 360;
+            return angle;
+        }
         
     }
 }
