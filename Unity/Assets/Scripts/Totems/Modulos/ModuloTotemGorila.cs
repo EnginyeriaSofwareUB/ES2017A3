@@ -12,7 +12,7 @@ public class ModuloTotemGorila : ModuloTotem
 
         GameObject instance = Instantiate(Resources.Load("TotemGorilla", typeof(GameObject))) as GameObject;
         this.MeshTotem = instance.transform;
-
+        CircleCollider2D sc = instance.AddComponent<CircleCollider2D>() as CircleCollider2D;
     }
 
     // Use this for initialization

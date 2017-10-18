@@ -13,8 +13,8 @@ public class ModuloTotemBase : ModuloTotem
 
         GameObject instance = Instantiate(Resources.Load("TotemBase", typeof(GameObject))) as GameObject;
 
-
         this.MeshTotem = instance.transform;
+        CircleCollider2D sc = instance.AddComponent<CircleCollider2D>() as CircleCollider2D;
 
     }
 

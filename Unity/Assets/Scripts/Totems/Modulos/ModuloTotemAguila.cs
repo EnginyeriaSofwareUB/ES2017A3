@@ -12,7 +12,8 @@ public class ModuloTotemAguila : ModuloTotem
 
         GameObject instance = Instantiate(Resources.Load("TotemFalcon", typeof(GameObject))) as GameObject;
         this.MeshTotem = instance.transform;
-     
+        CircleCollider2D sc = instance.AddComponent<CircleCollider2D>() as CircleCollider2D;
+
     }
 
     // Use this for initialization
