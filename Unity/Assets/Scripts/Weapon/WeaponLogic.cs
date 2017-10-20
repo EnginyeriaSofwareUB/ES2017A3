@@ -71,7 +71,13 @@ namespace Assets.Scripts.Weapon
             weapon.tag = "Arma";
             // Añadimos una capa que será la misma que el totem. 
             // Utilizando las capas de colisión evitaremos que una bala disparada por el propio jugador le afecten
-            weapon.layer = totem.gameObject.layer;
+
+            if (totem.gameObject.layer== Global.Capas.totemsPrimerJugador)
+                weapon.layer = Global.Capas.balaPrimerJugador;
+            else if (totem.gameObject.layer == Global.Capas.totemsSegundoJugador)
+                weapon.layer = Global.Capas.balaSegundoJugador;
+
+
             return weapon;
         }
 
