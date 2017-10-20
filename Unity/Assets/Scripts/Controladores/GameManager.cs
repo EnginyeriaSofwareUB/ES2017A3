@@ -14,12 +14,13 @@ public class GameManager : MonoBehaviour
 
     // Componente de GameManager que indica cuando se acaba la partida
     private EndGameCondition condicionFinJuego;
-    // Totem actual del jugador
+    // Totem actual del jugadorIsWinCondition
     private Totem totemActual;
 
     public Text txtNumeroRonda;
     public Text txtTurnoJugador;
 
+    private int ronda;
     
     private enum TURNO_JUGADOR { PRIMER_JUGADOR, SEGUNDO_JUGADOR }
     
@@ -27,6 +28,7 @@ public class GameManager : MonoBehaviour
 
     private TURNO_JUGADOR turnoJugador;
     private PARTIDA_STATE estadoPartida;
+    public GameObject boxGenerator;
 
 
     private void Awake()
@@ -43,6 +45,8 @@ public class GameManager : MonoBehaviour
         condicionFinJuego = GetComponent<EndGameCondition>();
 
         txtTurnoJugador.text = "Turno: " + turnoJugador.ToString();
+
+        ronda = 0;
 
     }
 
@@ -83,7 +87,8 @@ public class GameManager : MonoBehaviour
         // Finalmente,  actualizo el estado
         this.estadoPartida = PARTIDA_STATE.TURNO_RONDA;
         this.turnoJugador = TURNO_JUGADOR.PRIMER_JUGADOR;
-        txtNumeroRonda.text = "Ronda: " + condicionFinJuego.TurnCounter;
+        ronda += 1;
+        txtNumeroRonda.text = "Ronda: " + ronda;
 
     }
 
@@ -102,13 +107,15 @@ public class GameManager : MonoBehaviour
         else
             intercambiarTurno();
 
-
+        condicionFinJuego.IncreaseTurnCounter();
+        if (BoxTurn() && !condicionFinJuego.IsWinCondition()) ThrowBox();
     }
 
     private void handleFinalRonda()
     {
-        condicionFinJuego.IncreaseTurnCounter();
-        txtNumeroRonda.text = "Ronda: " + condicionFinJuego.TurnCounter;
+        //Si han pasado X turnos (box turn) y no ha sucedido la condición de final, lanzamos la caja a la escena
+
+        txtNumeroRonda.text = "Ronda: " + ronda;
 
         estadoPartida = PARTIDA_STATE.INICIO_RONDA;
         Debug.Log("Fin de la ronda");
@@ -123,7 +130,7 @@ public class GameManager : MonoBehaviour
     {
         // Desactivo el movimiento del totem del jugador
         this.totemActual.desabilitarControlMovimiento();
-        this.condicionFinJuego.IncreaseTurnCounter();
+        //this.condicionFinJuego.IncreaseTurnCounter();
 
         // Intercambio el turno del jugador
         turnoJugador = turnoJugador == TURNO_JUGADOR.PRIMER_JUGADOR ? TURNO_JUGADOR.SEGUNDO_JUGADOR : TURNO_JUGADOR.PRIMER_JUGADOR;
@@ -142,6 +149,7 @@ public class GameManager : MonoBehaviour
 
         // Muestro el turno del jugador
         txtTurnoJugador.text = "Turno: " + turnoJugador.ToString();
+       
 
     }
 
@@ -181,6 +189,22 @@ public class GameManager : MonoBehaviour
         {
             value.desabilitarControlMovimiento();
         }
+    }
+
+    private int GetNumBoxTurn()
+    {
+        return boxGenerator.GetComponent<BoxGeneratorController>().boxTurn;
+    }
+
+    private bool BoxTurn()
+    {
+        return (condicionFinJuego.TurnCounter-1) % GetNumBoxTurn() == 0;
+    }
+
+    private void ThrowBox()
+    {
+        Debug.Log("ThrowBox");
+        boxGenerator.GetComponent<BoxGeneratorController>().SendMessage("AddBox");
     }
 
 }

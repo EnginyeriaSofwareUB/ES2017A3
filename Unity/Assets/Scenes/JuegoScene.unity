@@ -204,6 +204,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a725d09a77c03684fb9fff04ecaef906, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  vida: 10
   modulos: []
 --- !u!4 &347560754
 Transform:
@@ -217,6 +218,48 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &542596755
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 542596757}
+  - component: {fileID: 542596756}
+  m_Layer: 0
+  m_Name: BoxGenerator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &542596756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 542596755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c47cdacfddbd7ac4495f9bdff0a31c9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  box: {fileID: 1710663367676626, guid: 17ea3dc5de7ee19409e23c54463c2527, type: 2}
+  boxTurn: 2
+--- !u!4 &542596757
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 542596755}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3, y: 7, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &623531072
 GameObject:
@@ -307,6 +350,7 @@ MonoBehaviour:
   - {fileID: 347560753}
   txtNumeroRonda: {fileID: 1685479151}
   txtTurnoJugador: {fileID: 1281570149}
+  boxGenerator: {fileID: 542596755}
 --- !u!4 &775856175
 Transform:
   m_ObjectHideFlags: 0
@@ -530,6 +574,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a725d09a77c03684fb9fff04ecaef906, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  vida: 10
   modulos: []
 --- !u!4 &927636071
 Transform:
@@ -1523,6 +1568,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a725d09a77c03684fb9fff04ecaef906, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  vida: 10
   modulos: []
 --- !u!4 &2039498831
 Transform:
