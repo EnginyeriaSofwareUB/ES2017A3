@@ -8,6 +8,8 @@ public class Totem : MonoBehaviour
 
     [SerializeField] private int ataqueTotal { get; set; }
     [SerializeField] private int defensaTotal { get; set; }
+    [SerializeField] private float vida=10f;
+
     [SerializeField] private List<GameObject> modulos;
 
     //Manejador del movimiento del jugador
@@ -157,10 +159,16 @@ public class Totem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
     }
 
 
+    private void LateUpdate()
+    {
+        if (this.vida < 1)
+        {
+            Destroy(this.gameObject);
+        }
+    }
 
     public void desabilitarControlMovimiento()
     {
