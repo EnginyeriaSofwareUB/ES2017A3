@@ -103,7 +103,7 @@ public class Totem : MonoBehaviour
         {
             lastModuleAdded.transform.position = this.transform.position;
             // Subimos la posición del totem para apilarlo
-            lastModuleAdded.transform.transform.parent = this.transform;
+            lastModuleAdded.transform.parent = this.transform;
         }
         else
         {
@@ -112,7 +112,7 @@ public class Totem : MonoBehaviour
             lastModuleAdded.transform.position = moduloAnterior.transform.position;
             // Subimos la posición del totem para apilarlo
             lastModuleAdded.transform.position = lastModuleAdded.transform.position + moduloAnterior.transform.up * 0.7f;
-            lastModuleAdded.transform.transform.parent = this.transform;
+            lastModuleAdded.transform.parent = this.transform;
         }
 
 
