@@ -11,6 +11,9 @@ namespace Assets.Scripts.Weapon
     {
         private PlayerBehaviour Player { get; set; }
 
+        // Variable que tiene toda la estructura Totem
+        private Totem totem;
+
         private float ShootingAngle = 45;
         private float ShootingPower = 100;
 
@@ -20,6 +23,7 @@ namespace Assets.Scripts.Weapon
         void Start()
         {
             this.Player = GetComponent<PlayerBehaviour>();
+            this.totem = GetComponent<Totem>();
             CalculateVelocity();
         }
 
@@ -63,7 +67,11 @@ namespace Assets.Scripts.Weapon
         private GameObject CreateWeapon(string weaponID, Vector3 position)
         {
             var weapon = Instantiate(Util.LoadWeapon(weaponID), position, Quaternion.identity) as GameObject;
-            weapon.GetComponent<BombLogic>().Player = this.gameObject;
+            // Asignamos el tag de Arma a la bala
+            weapon.tag = "Arma";
+            // Añadimos una capa que será la misma que el totem. 
+            // Utilizando las capas de colisión evitaremos que una bala disparada por el propio jugador le afecten
+            weapon.layer = totem.gameObject.layer;
             return weapon;
         }
 
