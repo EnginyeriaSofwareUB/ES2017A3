@@ -123,7 +123,7 @@ GameObject:
   - component: {fileID: 347560749}
   m_Layer: 8
   m_Name: TotemPrimerJugador (2)
-  m_TagString: Player
+  m_TagString: FirstPlayer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -217,7 +217,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &542596755
 GameObject:
@@ -313,7 +313,7 @@ Transform:
   m_LocalScale: {x: -0.022572517, y: 12.248297, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &775856173
 GameObject:
@@ -344,11 +344,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 838d257bacbf7af4aa116aa021d8bc0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  listaTotemsContrincante:
-  - {fileID: 2039498830}
-  listaTotemsJugador:
-  - {fileID: 927636070}
-  - {fileID: 347560753}
   txtNumeroRonda: {fileID: 1685479151}
   txtTurnoJugador: {fileID: 1281570149}
   boxGenerator: {fileID: 542596755}
@@ -363,7 +358,7 @@ Transform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &775856176
 MonoBehaviour:
@@ -551,7 +546,7 @@ GameObject:
   - component: {fileID: 927636073}
   m_Layer: 8
   m_Name: TotemPrimerJugador
-  m_TagString: Player
+  m_TagString: FirstPlayer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -600,7 +595,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &927636072
 MonoBehaviour:
@@ -2163,7 +2158,7 @@ Transform:
   m_LocalScale: {x: -0.022572517, y: 12.248297, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2039498826
 GameObject:
@@ -2180,7 +2175,7 @@ GameObject:
   - component: {fileID: 2039498832}
   m_Layer: 9
   m_Name: TotemSegundoJugador
-  m_TagString: Untagged
+  m_TagString: SecondPlayer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2250,7 +2245,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2039498832
 MonoBehaviour:
@@ -2365,7 +2360,7 @@ RectTransform:
   - {fileID: 1281570148}
   - {fileID: 870597200}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2463,7 +2458,7 @@ RectTransform:
   - {fileID: 1960959022}
   - {fileID: 1209322768}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
