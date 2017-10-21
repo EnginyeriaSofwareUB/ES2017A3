@@ -10,15 +10,15 @@ public class ModuloTotemAguila : ModuloTotem
         this.defensa = 20;
         this.getTipoTotem = TotemType.TOTEM_AGUILA;
 
-        GameObject instance = Instantiate(Resources.Load("TotemFalcon", typeof(GameObject))) as GameObject;
-        this.MeshTotem = instance.transform;
-     
+
+
+
     }
 
     // Use this for initialization
     void Start () {
-		
-	}
+        this.gameObject.AddComponent<CircleCollider2D>();
+    }
 	
 	// Update is called once per frame
 	void Update () {

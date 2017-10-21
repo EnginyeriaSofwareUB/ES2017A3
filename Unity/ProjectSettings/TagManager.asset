@@ -3,7 +3,10 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Arma
+  - Weapon
+  - BoxGenerator
   layers:
   - Default
   - TransparentFX
@@ -13,10 +16,10 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
+  - totemsPrimerJugador
+  - totemsSegundoJugador
+  - balaPrimerJugador
+  - balaSegundoJugador
   - 
   - 
   - 
