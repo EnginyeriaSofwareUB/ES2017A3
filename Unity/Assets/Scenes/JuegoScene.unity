@@ -127,7 +127,7 @@ GameObject:
   - component: {fileID: 347560749}
   m_Layer: 8
   m_Name: TotemPrimerJugador (2)
-  m_TagString: Player
+  m_TagString: FirstPlayer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -348,11 +348,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 838d257bacbf7af4aa116aa021d8bc0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  listaTotemsContrincante:
-  - {fileID: 2039498830}
-  listaTotemsJugador:
-  - {fileID: 927636070}
-  - {fileID: 347560753}
   txtNumeroRonda: {fileID: 1685479151}
   txtTurnoJugador: {fileID: 1281570149}
   boxGenerator: {fileID: 542596755}
@@ -541,7 +536,7 @@ GameObject:
   - component: {fileID: 927636073}
   m_Layer: 8
   m_Name: TotemPrimerJugador
-  m_TagString: Player
+  m_TagString: FirstPlayer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2174,7 +2169,7 @@ GameObject:
   - component: {fileID: 2039498832}
   m_Layer: 9
   m_Name: TotemSegundoJugador
-  m_TagString: Untagged
+  m_TagString: SecondPlayer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

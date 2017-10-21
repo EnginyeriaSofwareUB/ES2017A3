@@ -8,9 +8,9 @@ public class GameManager : MonoBehaviour
 
 
     // Lista de totems del contrincante. Se pueden asignar desde el editor de unity
-    [SerializeField] private List<Totem> listaTotemsContrincante;
+    private PriorityQueue<Totem> listaTotemsContrincante;
     // Lista de totems del jugador. Se pueden asignar desde el editor de unity
-    [SerializeField] private List<Totem> listaTotemsJugador;
+    private PriorityQueue<Totem> listaTotemsJugador;
 
     // Componente de GameManager que indica cuando se acaba la partida
     private EndGameCondition condicionFinJuego;
@@ -39,6 +39,8 @@ public class GameManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        initPlayers();
+
         estadoPartida = PARTIDA_STATE.INICIO_RONDA;
         turnoJugador = TURNO_JUGADOR.PRIMER_JUGADOR;
 
@@ -80,7 +82,7 @@ public class GameManager : MonoBehaviour
 
 
         // Por defecto, a cada inicio de ronda empezará el primer jugador con el movimiento activado
-        this.totemActual = this.listaTotemsJugador[0];
+        this.totemActual = this.listaTotemsJugador.Poll();
         this.totemActual.activarControlMovimiento();
 
 
@@ -138,11 +140,11 @@ public class GameManager : MonoBehaviour
         switch (turnoJugador)
         {
             case TURNO_JUGADOR.PRIMER_JUGADOR:
-                totemActual = this.listaTotemsJugador[0];
+                totemActual = this.listaTotemsJugador.Poll();
                 totemActual.activarControlMovimiento();
                 break;
             case TURNO_JUGADOR.SEGUNDO_JUGADOR:
-                totemActual = this.listaTotemsContrincante[0];
+                totemActual = this.listaTotemsContrincante.Poll();
                 totemActual.activarControlMovimiento();
                 break;
         }
@@ -205,6 +207,24 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("ThrowBox");
         boxGenerator.GetComponent<BoxGeneratorController>().SendMessage("AddBox");
+    }
+
+    private void initPlayers()
+    {
+        listaTotemsJugador = new PriorityQueue<Totem>();
+        listaTotemsContrincante = new PriorityQueue<Totem>();
+        Object[] allFirstPlayerTotems = GameObject.FindGameObjectsWithTag("FirstPlayer");
+        Object[] allSecondPlayerTotems = GameObject.FindGameObjectsWithTag("SecondPlayer");
+
+        foreach(GameObject firstPlayerTotem in allFirstPlayerTotems)
+        {
+            listaTotemsJugador.Add(firstPlayerTotem.GetComponent<Totem>());
+        }
+
+        foreach (GameObject secondPlayerTotem in allSecondPlayerTotems)
+        {
+            listaTotemsContrincante.Add(secondPlayerTotem.GetComponent<Totem>());
+        }
     }
 
 }
