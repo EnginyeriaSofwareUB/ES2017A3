@@ -164,11 +164,20 @@ public class Totem : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (this.vida < 1)
-        {
-            Destroy(this.gameObject);
-        }
+		kill ();
     }
+
+	private void kill(){
+		if (this.vida < 1)
+		{
+			Destroy(this.gameObject);
+		}
+	}
+
+	public void suicide(){
+		this.movimiento.endMovement ();
+		this.vida = 0;
+	}
 
     public void desabilitarControlMovimiento()
     {
