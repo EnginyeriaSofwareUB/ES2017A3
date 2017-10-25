@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class StateHolder : MonoBehaviour
 {
-    public enum ESTADO_JUEGO{
+    private enum ESTADO_JUEGO{
         PLAYING,PAUSE,INVENTARY,MENU
     }
 
