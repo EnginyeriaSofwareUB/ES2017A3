@@ -121,5 +121,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a725d09a77c03684fb9fff04ecaef906, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  vida: 10
   modulos: []
-  gameObjectTotem: {fileID: 1789364387970670}

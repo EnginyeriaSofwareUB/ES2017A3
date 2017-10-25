@@ -9,6 +9,7 @@ TagManager:
   - BoxGenerator
   - FirstPlayer
   - SecondPlayer
+  - TerrainObject
   layers:
   - Default
   - TransparentFX

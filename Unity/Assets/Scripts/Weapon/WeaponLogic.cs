@@ -36,7 +36,7 @@ namespace Assets.Scripts.Weapon
 
         public void Shoot()
         {
-            var weapon = CreateWeapon("Armas/Bomba", ShotStartingPoint);
+            var weapon = CreateWeapon("Weapons/Bomb", ShotStartingPoint);
 
             SetWeaponVelocity(weapon, ShootingVelocity);
         }
@@ -68,7 +68,7 @@ namespace Assets.Scripts.Weapon
         {
             var weapon = Instantiate(Util.LoadWeapon(weaponID), position, Quaternion.identity) as GameObject;
             // Asignamos el tag de Arma a la bala
-            weapon.tag = "Arma";
+            weapon.tag = "Weapon";
             // Añadimos una capa que será la misma que el totem. 
             // Utilizando las capas de colisión evitaremos que una bala disparada por el propio jugador le afecten
 
