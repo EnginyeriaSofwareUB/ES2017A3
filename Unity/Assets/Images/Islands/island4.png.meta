@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 868861ece91ee48e497c10af9e2f6243
-timeCreated: 1508856225
+guid: df486344bb4ce43cda088d1463637c22
+timeCreated: 1508856952
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName: {}
@@ -47,7 +47,7 @@ TextureImporter:
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
   alphaUsage: 1
-  alphaIsTransparency: 0
+  alphaIsTransparency: 1
   spriteTessellationDetail: -1
   textureType: 8
   textureShape: 1
@@ -58,11 +58,7 @@ TextureImporter:
   - buildTarget: DefaultTexturePlatform
     maxTextureSize: 8192
     textureFormat: -1
-<<<<<<< HEAD:Unity/Assets/Resources/Images/Islands/island2.png.meta
-    textureCompression: 0
-=======
     textureCompression: 2
->>>>>>> origin/develop:Unity/Assets/Images/Islands/island2.png.meta
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -70,11 +66,7 @@ TextureImporter:
   - buildTarget: Standalone
     maxTextureSize: 8192
     textureFormat: -1
-<<<<<<< HEAD:Unity/Assets/Resources/Images/Islands/island2.png.meta
-    textureCompression: 0
-=======
     textureCompression: 2
->>>>>>> origin/develop:Unity/Assets/Images/Islands/island2.png.meta
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0

@@ -18,6 +18,11 @@ namespace Assets.Scripts.Player
             this.WeaponLogic = GetComponent<WeaponLogic>();
             this.mov = GetComponent<MovimientoController>();
 			this.stateHolder = GameObject.FindGameObjectWithTag ("GameController").GetComponent<StateHolder>();
+<<<<<<< HEAD
+=======
+
+			//Debug.Log("PlayerBehaviour :: stateHolder =  " + stateHolder.is + ".");
+>>>>>>> origin/develop
         }
 
         private void Update()
