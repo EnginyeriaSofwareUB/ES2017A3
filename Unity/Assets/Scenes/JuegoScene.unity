@@ -1515,6 +1515,7 @@ GameObject:
   - component: {fileID: 775856174}
   - component: {fileID: 775856176}
   - component: {fileID: 775856177}
+  - component: {fileID: 775856178}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: GameController
