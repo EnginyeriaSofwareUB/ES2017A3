@@ -327,6 +327,7 @@ GameObject:
   - component: {fileID: 775856174}
   - component: {fileID: 775856176}
   - component: {fileID: 775856177}
+  - component: {fileID: 775856178}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: GameController
@@ -386,6 +387,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseCanvas: {fileID: 2133437626}
+--- !u!114 &775856178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 775856173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bca1077fb83d6240befba72d28b5165, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &839769342
 GameObject:
   m_ObjectHideFlags: 0

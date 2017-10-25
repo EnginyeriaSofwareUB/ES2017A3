@@ -12,10 +12,16 @@ namespace Assets.Scripts.Player
         private WeaponLogic WeaponLogic { get; set; }
         private MovimientoController mov { get; set; }
 
+		private StateHolder stateHolder;
+
+
         void Start ()
         {
             this.WeaponLogic = GetComponent<WeaponLogic>();
             this.mov = GetComponent<MovimientoController>();
+			this.stateHolder = GameObject.FindGameObjectWithTag ("GameController").GetComponent<StateHolder>();
+
+			//Debug.Log("PlayerBehaviour :: stateHolder =  " + stateHolder.is + ".");
         }
 
         private void Update()
@@ -31,7 +37,7 @@ namespace Assets.Scripts.Player
 
         private void Shoot()
         {
-            if (Input.GetMouseButtonDown(0))
+			if (Input.GetMouseButtonDown(0) && stateHolder.isPlaying())
             {
                 WeaponLogic.Shoot();
             }
