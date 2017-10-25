@@ -26,7 +26,7 @@ namespace Assets.Scripts.Environment
 
         protected bool UpdateExplosion()
         {
-            if ((!this._handlingExplosion && this._explosionInitialized) || transform.position.y < -10)
+            if (!this._handlingExplosion && this._explosionInitialized)
             {
                 HandleExplosion();
                 return true;
@@ -44,8 +44,8 @@ namespace Assets.Scripts.Environment
         {
             this._handlingExplosion = true;
 
-            //CreateExplosionPoints();
-            //GetExplodedTerrainObjects();
+            CreateExplosionPoints();
+            GetExplodedTerrainObjects();
             InitiateTerrainUpdate();
         }
 
@@ -73,10 +73,11 @@ namespace Assets.Scripts.Environment
         {
             var tempList = new List<GameObject>();
             Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, this.ExplosionRadius);
-            foreach (var obj in hitColliders)
-                if(obj.CompareTag("TerrainObject"))
-                    tempList.Add(obj.gameObject);
-
+			foreach (var obj in hitColliders)
+				if (obj.CompareTag ("TerrainObject")) {
+					Debug.LogError("I'm a TerrainObject");
+					tempList.Add (obj.gameObject);
+				}
             this.TerrainObjects = tempList;
         }
 

@@ -11,6 +11,7 @@ namespace Assets.Scripts.Environment
 
         public void UpdateTerrain(List<CirclePoint> explosionPoints)
         {
+			Debug.LogError ("I'm in Update Terrain");
             SetTerrainSize(explosionPoints);
         }
 
@@ -28,17 +29,21 @@ namespace Assets.Scripts.Environment
 
                 if (newScale > minimalNoise)
                 {
-                    var newPosition = transform.position.y - (transform.localScale.y / 2) + newScale / 2;
-                    transform.localScale = new Vector3(transform.localScale.x, newScale, transform.localScale.z);
-                    transform.position = new Vector3(transform.position.x, newPosition, transform.position.z);
+					Debug.LogError ("I'm in IF newScale");
+					//Destroy (this.gameObject);
+					transform.position = new Vector3 (5, 5, 5);
+                    //var newPosition = transform.position.y - (transform.localScale.y / 2) + newScale / 2;
+                    //transform.localScale = new Vector3(transform.localScale.x, newScale, transform.localScale.z);
+                    //transform.position = new Vector3(transform.position.x, newPosition, transform.position.z);
                 }
                 else
                     Destroy(this.gameObject);
             }
             
 
-            if (!isEmptyAbove && closestPointAboveTopPoint.Vector3.y - closestPointAbove.Vector3.y > minimalNoise)
-                GameObject.FindGameObjectWithTag("Terrain").GetComponent<TerrainGenerator>().GenerateSpecificTerrainObject(closestPointAbove.Vector3, closestPointAboveTopPoint.Vector3);
+			//if (!isEmptyAbove && closestPointAboveTopPoint.Vector3.y - closestPointAbove.Vector3.y > minimalNoise) {
+			//	GameObject.FindGameObjectWithTag ("Terrain").GetComponent<TerrainGenerator> ().GenerateSpecificTerrainObject (closestPointAbove.Vector3, closestPointAboveTopPoint.Vector3);
+			//}
 
             if (!isEmptyBelow)
                 Destroy(this.gameObject);

@@ -775,9 +775,10 @@ GameObject:
   - component: {fileID: 1078858946}
   - component: {fileID: 1078858945}
   - component: {fileID: 1078858947}
+  - component: {fileID: 1078858948}
   m_Layer: 0
   m_Name: island3
-  m_TagString: Untagged
+  m_TagString: TerrainObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1059,6 +1060,17 @@ PolygonCollider2D:
       - {x: 4.62, y: 3.525}
       - {x: 4.64, y: 3.425}
       - {x: 4.66, y: 3.265}
+--- !u!114 &1078858948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1078858944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fd9118b9d190ba469d3589df13fc1ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1108251924
 GameObject:
   m_ObjectHideFlags: 0
@@ -1502,9 +1514,10 @@ GameObject:
   - component: {fileID: 1366958384}
   - component: {fileID: 1366958383}
   - component: {fileID: 1366958385}
+  - component: {fileID: 1366958386}
   m_Layer: 0
   m_Name: island4
-  m_TagString: Untagged
+  m_TagString: TerrainObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1751,7 +1764,7 @@ PolygonCollider2D:
       - {x: 2, y: 0.59}
       - {x: 2.14, y: 0.5}
       - {x: 2.47, y: 0.42}
-      - {x: 2.73, y: 0.35}
+      - {x: 2.6885457, y: 0.3085454}
       - {x: 2.88, y: 0.27}
       - {x: 3, y: 0.21}
       - {x: 3.18, y: 0.14}
@@ -1769,6 +1782,17 @@ PolygonCollider2D:
       - {x: 5.24, y: -0.58}
       - {x: 5.37, y: -0.71}
       - {x: 5.41, y: -0.77}
+--- !u!114 &1366958386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1366958382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fd9118b9d190ba469d3589df13fc1ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1401458147
 GameObject:
   m_ObjectHideFlags: 0
