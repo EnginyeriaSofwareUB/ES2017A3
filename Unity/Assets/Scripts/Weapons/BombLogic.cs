@@ -35,8 +35,6 @@ namespace Assets.Scripts.Weapons
 				t.DestroyGround (destructionCircle);
 				Destroy (this.gameObject);
 			}
-                
-            //this.StartExplosion();
         }
     }
 }

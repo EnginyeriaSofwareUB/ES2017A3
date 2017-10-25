@@ -9,15 +9,10 @@ public class Terrain2 : MonoBehaviour {
 	private int widthPixel, heightPixel;
 	private Color transp; 
 
-	// Start() de GroundController
 	void Start(){
 		sr = GetComponent<SpriteRenderer>(); 
-		// sr : variavel global de GroundController, ref para o SpriteRenderer de Ground
-		Texture2D tex = (Texture2D) Resources.Load("island4");
-		// Resources.Load("nome_do_arquivo") carrega um arquivo localizado
-		// em Assets/Resources
+		Texture2D tex = (Texture2D) Resources.Load("Images/Islands/island4");
 		Texture2D tex_clone = (Texture2D) Instantiate(tex);
-		// Criamos uma Texture2D clone de tex para nao alterarmos a imagem original 
 		sr.sprite = Sprite.Create(tex_clone, 
 			new Rect(0f, 0f, tex_clone.width, tex_clone.height),
 			new Vector2(0.5f, 0.5f), 100f);
@@ -39,14 +34,9 @@ public class Terrain2 : MonoBehaviour {
 	}
 
 	public void DestroyGround( CircleCollider2D cc ){
-		Debug.Log ("chamou DestroyGround");
-
-		Debug.LogError (cc.bounds.size);
 
 		V2int c = World2Pixel(cc.bounds.center.x, cc.bounds.center.y);
-		// c => centro do circulo de destruiçao em pixels
 		int r = Mathf.RoundToInt(cc.bounds.size.x*widthPixel/widthWorld);
-		// r => raio do circulo de destruiçao em 
 
 		int x, y, px, nx, py, ny, d;
 
