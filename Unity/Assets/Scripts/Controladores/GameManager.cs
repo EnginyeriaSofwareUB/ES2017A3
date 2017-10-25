@@ -30,6 +30,9 @@ public class GameManager : MonoBehaviour
     private PARTIDA_STATE estadoPartida;
     public GameObject boxGenerator;
 
+	private StateHolder stateHolder;
+
+
 
     private void Awake()
     {
@@ -39,8 +42,8 @@ public class GameManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        initPlayers();
-
+		this.stateHolder = GetComponent<StateHolder>();
+		initPlayers();
         estadoPartida = PARTIDA_STATE.INICIO_RONDA;
         turnoJugador = TURNO_JUGADOR.PRIMER_JUGADOR;
 

@@ -39,7 +39,7 @@ public class EndGameCondition : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        this.stateHolder = new StateHolder();
+		this.stateHolder = GetComponent<StateHolder>();
         Debug.Log("EndGameCondition :: Start called");
         this.turnCounter = 1;
         this.MaxTurns = 4;
