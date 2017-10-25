@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6141394}
   - component: {fileID: 5002288}
   - component: {fileID: 11402244}
+  - component: {fileID: 58956115295402472}
   m_Layer: 0
   m_Name: Bomba
   m_TagString: Weapon
@@ -131,6 +132,7 @@ MonoBehaviour:
   ExplosionPoints: []
   TerrainObjects: []
   ExplosionRadius: 1.5
+  destructionCircle: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -154,3 +156,18 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 131904}
   m_IsPrefabParent: 1
+--- !u!58 &58956115295402472
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 131904}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 1
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 1.5

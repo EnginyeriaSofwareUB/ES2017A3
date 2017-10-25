@@ -5,9 +5,12 @@ namespace Assets.Scripts.Weapons
 {
     public class BombLogic : ExplosionBehavior {
 
+		public CircleCollider2D destructionCircle;
+
         public GameObject Player { get; set; }
 
         void Start () {
+			this.destructionCircle = GetComponent<CircleCollider2D> ();
         }
 	
         void Update ()
@@ -25,8 +28,15 @@ namespace Assets.Scripts.Weapons
                 Physics2D.IgnoreCollision(GetComponent<BoxCollider2D>(), collision.collider);
                 return;
             }
+
+			if (collision.collider.tag == "TerrainObject") 
+			{
+				Terrain2 t = collision.gameObject.GetComponent<Terrain2>();
+				t.DestroyGround (destructionCircle);
+				Destroy (this.gameObject);
+			}
                 
-            this.StartExplosion();
+            //this.StartExplosion();
         }
     }
 }
