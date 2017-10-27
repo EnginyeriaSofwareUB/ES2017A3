@@ -5,17 +5,19 @@ using UnityEngine.SceneManagement;
 
 public class PauseController : MonoBehaviour {
 
-	public Transform pauseCanvas; 
+	public Transform pauseCanvas;
+	public Transform endGameCanvas; 
 	private StateHolder stateHolder;
 
 
 	void Start() {
 		this.stateHolder = GetComponent<StateHolder>();
+		pauseCanvas.gameObject.SetActive (false);
 	}
 
 
 	void Update () {
-		if(Input.GetKeyDown(KeyCode.Escape)){
+		if(Input.GetKeyDown(KeyCode.Escape) && !endGameCanvas.gameObject.activeInHierarchy){
 
 			if (pauseCanvas.gameObject.activeInHierarchy) {
 				closePopup ();
