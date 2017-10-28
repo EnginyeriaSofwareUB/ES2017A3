@@ -32,8 +32,6 @@ public class GameManager : MonoBehaviour
 
 	private StateHolder stateHolder;
 
-
-
     private void Awake()
     {
 
