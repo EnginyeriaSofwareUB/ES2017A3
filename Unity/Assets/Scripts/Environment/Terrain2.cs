@@ -11,7 +11,7 @@ public class Terrain2 : MonoBehaviour {
 
 	void Start(){
 		sr = GetComponent<SpriteRenderer>(); 
-		Texture2D tex = (Texture2D) Resources.Load("Images/Islands/island4");
+		Texture2D tex = (Texture2D) Resources.Load("Images/Islands/" + this.name);
 		Texture2D tex_clone = (Texture2D) Instantiate(tex);
 		sr.sprite = Sprite.Create(tex_clone, 
 			new Rect(0f, 0f, tex_clone.width, tex_clone.height),
