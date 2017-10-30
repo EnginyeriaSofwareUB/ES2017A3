@@ -8,18 +8,19 @@ public class GameManager : MonoBehaviour
 
 
     // Lista de totems del contrincante. Se pueden asignar desde el editor de unity
-    [SerializeField] private List<Totem> listaTotemsContrincante;
+    private PriorityQueue<Totem> listaTotemsContrincante;
     // Lista de totems del jugador. Se pueden asignar desde el editor de unity
-    [SerializeField] private List<Totem> listaTotemsJugador;
+    private PriorityQueue<Totem> listaTotemsJugador;
 
     // Componente de GameManager que indica cuando se acaba la partida
     private EndGameCondition condicionFinJuego;
-    // Totem actual del jugador
+    // Totem actual del jugadorIsWinCondition
     private Totem totemActual;
 
     public Text txtNumeroRonda;
     public Text txtTurnoJugador;
 
+    private int ronda;
     
     private enum TURNO_JUGADOR { PRIMER_JUGADOR, SEGUNDO_JUGADOR }
     
@@ -27,7 +28,9 @@ public class GameManager : MonoBehaviour
 
     private TURNO_JUGADOR turnoJugador;
     private PARTIDA_STATE estadoPartida;
+    public GameObject boxGenerator;
 
+	private StateHolder stateHolder;
 
     private void Awake()
     {
@@ -37,12 +40,16 @@ public class GameManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+		this.stateHolder = GetComponent<StateHolder>();
+		initPlayers();
         estadoPartida = PARTIDA_STATE.INICIO_RONDA;
         turnoJugador = TURNO_JUGADOR.PRIMER_JUGADOR;
 
         condicionFinJuego = GetComponent<EndGameCondition>();
 
         txtTurnoJugador.text = "Turno: " + turnoJugador.ToString();
+
+        ronda = 0;
 
     }
 
@@ -76,14 +83,15 @@ public class GameManager : MonoBehaviour
 
 
         // Por defecto, a cada inicio de ronda empezará el primer jugador con el movimiento activado
-        this.totemActual = this.listaTotemsJugador[0];
+        this.totemActual = this.listaTotemsJugador.Poll();
         this.totemActual.activarControlMovimiento();
 
 
         // Finalmente,  actualizo el estado
         this.estadoPartida = PARTIDA_STATE.TURNO_RONDA;
         this.turnoJugador = TURNO_JUGADOR.PRIMER_JUGADOR;
-        txtNumeroRonda.text = "Ronda: " + condicionFinJuego.TurnCounter;
+        ronda += 1;
+        txtNumeroRonda.text = "Ronda: " + ronda;
 
     }
 
@@ -102,13 +110,15 @@ public class GameManager : MonoBehaviour
         else
             intercambiarTurno();
 
-
+        condicionFinJuego.IncreaseTurnCounter();
+        if (BoxTurn() && !condicionFinJuego.IsWinCondition()) ThrowBox();
     }
 
     private void handleFinalRonda()
     {
-        condicionFinJuego.IncreaseTurnCounter();
-        txtNumeroRonda.text = "Ronda: " + condicionFinJuego.TurnCounter;
+        //Si han pasado X turnos (box turn) y no ha sucedido la condición de final, lanzamos la caja a la escena
+
+        txtNumeroRonda.text = "Ronda: " + ronda;
 
         estadoPartida = PARTIDA_STATE.INICIO_RONDA;
         Debug.Log("Fin de la ronda");
@@ -123,7 +133,7 @@ public class GameManager : MonoBehaviour
     {
         // Desactivo el movimiento del totem del jugador
         this.totemActual.desabilitarControlMovimiento();
-        this.condicionFinJuego.IncreaseTurnCounter();
+        //this.condicionFinJuego.IncreaseTurnCounter();
 
         // Intercambio el turno del jugador
         turnoJugador = turnoJugador == TURNO_JUGADOR.PRIMER_JUGADOR ? TURNO_JUGADOR.SEGUNDO_JUGADOR : TURNO_JUGADOR.PRIMER_JUGADOR;
@@ -131,17 +141,18 @@ public class GameManager : MonoBehaviour
         switch (turnoJugador)
         {
             case TURNO_JUGADOR.PRIMER_JUGADOR:
-                totemActual = this.listaTotemsJugador[0];
+                totemActual = this.listaTotemsJugador.Poll();
                 totemActual.activarControlMovimiento();
                 break;
             case TURNO_JUGADOR.SEGUNDO_JUGADOR:
-                totemActual = this.listaTotemsContrincante[0];
+                totemActual = this.listaTotemsContrincante.Poll();
                 totemActual.activarControlMovimiento();
                 break;
         }
 
         // Muestro el turno del jugador
         txtTurnoJugador.text = "Turno: " + turnoJugador.ToString();
+       
 
     }
 
@@ -180,6 +191,40 @@ public class GameManager : MonoBehaviour
         foreach (Totem value in listaTotemsContrincante)
         {
             value.desabilitarControlMovimiento();
+        }
+    }
+
+    private int GetNumBoxTurn()
+    {
+        return boxGenerator.GetComponent<BoxGeneratorController>().boxTurn;
+    }
+
+    private bool BoxTurn()
+    {
+        return (condicionFinJuego.TurnCounter-1) % GetNumBoxTurn() == 0;
+    }
+
+    private void ThrowBox()
+    {
+        Debug.Log("ThrowBox");
+        boxGenerator.GetComponent<BoxGeneratorController>().SendMessage("AddBox");
+    }
+
+    private void initPlayers()
+    {
+        listaTotemsJugador = new PriorityQueue<Totem>();
+        listaTotemsContrincante = new PriorityQueue<Totem>();
+        Object[] allFirstPlayerTotems = GameObject.FindGameObjectsWithTag("FirstPlayer");
+        Object[] allSecondPlayerTotems = GameObject.FindGameObjectsWithTag("SecondPlayer");
+
+        foreach(GameObject firstPlayerTotem in allFirstPlayerTotems)
+        {
+            listaTotemsJugador.Add(firstPlayerTotem.GetComponent<Totem>());
+        }
+
+        foreach (GameObject secondPlayerTotem in allSecondPlayerTotems)
+        {
+            listaTotemsContrincante.Add(secondPlayerTotem.GetComponent<Totem>());
         }
     }
 

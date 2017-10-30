@@ -6,23 +6,24 @@ namespace Assets.Scripts.Player
 {
     public class PlayerBehaviour : MonoBehaviour
     {
-        public float MovementSpeed;
-        public float JumpForce;
 
         private WeaponLogic WeaponLogic { get; set; }
         private MovimientoController mov { get; set; }
+
+		private StateHolder stateHolder;
+
 
         void Start ()
         {
             this.WeaponLogic = GetComponent<WeaponLogic>();
             this.mov = GetComponent<MovimientoController>();
+			this.stateHolder = GameObject.FindGameObjectWithTag ("GameController").GetComponent<StateHolder>();
         }
 
         private void Update()
         {
             if (this.mov.PuedeMoverse)
             {
-                //MovePlayer();
                 WeaponDirection();
                 //WeaponForce();
                 Shoot();
@@ -31,7 +32,7 @@ namespace Assets.Scripts.Player
 
         private void Shoot()
         {
-            if (Input.GetMouseButtonDown(0))
+			if (Input.GetMouseButtonDown(0) && stateHolder.isPlaying())
             {
                 WeaponLogic.Shoot();
             }
@@ -55,11 +56,5 @@ namespace Assets.Scripts.Player
             }
         }
 
-        private void MovePlayer()
-        {
-            transform.position += new Vector3(Input.GetAxis("Horizontal") * Time.deltaTime * MovementSpeed, 0, 0);
-        }
-
-        
     }
 }

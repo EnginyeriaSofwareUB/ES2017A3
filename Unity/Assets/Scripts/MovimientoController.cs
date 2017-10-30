@@ -146,4 +146,8 @@ public class MovimientoController : MonoBehaviour
     {
         return distanciaRecorrida > distanciaLimite;
     }
+
+	public void endMovement(){
+		this.distanciaRecorrida = distanciaLimite + 1;
+	}
 }

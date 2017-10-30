@@ -9,6 +9,8 @@ public class EndGameCondition : MonoBehaviour
 
     private StateHolder stateHolder;
 
+	public Canvas canvasEndGame; 
+
     public int MaxTurns
     {
         set
@@ -39,7 +41,7 @@ public class EndGameCondition : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        this.stateHolder = new StateHolder();
+		this.stateHolder = GetComponent<StateHolder>();
         Debug.Log("EndGameCondition :: Start called");
         this.turnCounter = 1;
         this.MaxTurns = 4;
@@ -50,7 +52,7 @@ public class EndGameCondition : MonoBehaviour
     {
         if (this.stateHolder.isPlaying() && this.IsWinCondition())
         {
-          this.CloseGame();
+			canvasEndGame.gameObject.SetActive (true);
        }
     }
 
@@ -58,7 +60,7 @@ public class EndGameCondition : MonoBehaviour
     public bool IsWinCondition()
     {
         bool isWin = this.turnCounter >= this.MaxTurns;
-        //Debug.Log("EndGameCondition :: IsWinCondition called :: returns " + isWin.ToString() + ".");
+        Debug.Log("EndGameCondition :: IsWinCondition called :: returns " + isWin.ToString() + ".");
         return isWin;
     }
 
