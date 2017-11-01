@@ -60,7 +60,7 @@ public class EndGameCondition : MonoBehaviour
     public bool IsWinCondition()
     {
         bool isWin = this.turnCounter >= this.MaxTurns;
-        Debug.Log("EndGameCondition :: IsWinCondition called :: returns " + isWin.ToString() + ".");
+        //Debug.Log("EndGameCondition :: IsWinCondition called :: returns " + isWin.ToString() + ".");
         return isWin;
     }
 
