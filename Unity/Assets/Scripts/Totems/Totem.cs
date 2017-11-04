@@ -15,6 +15,8 @@ public class Totem : MonoBehaviour
     //Manejador del movimiento del jugador
     private MovimientoController movimiento;
 
+    private GameObject gameManager;
+
     public Totem(int ataque, int defensa)
     {
         this.ataqueTotal = ataque;
@@ -153,6 +155,7 @@ public class Totem : MonoBehaviour
         AddModule(TotemType.TOTEM_AGUILA);
         AddModule(TotemType.TOTEM_GORILA);
         this.movimiento = GetComponent<MovimientoController>();
+        this.gameManager = GameObject.FindGameObjectWithTag("GameController");
 
     }
 
@@ -170,8 +173,8 @@ public class Totem : MonoBehaviour
 	private void kill(){
 		if (this.vida < 1)
 		{
-			Destroy(this.gameObject);
-		}
+            gameManager.SendMessage("RemoveTotem", this);
+        }
 	}
 
 	public void suicide(){

@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     // Componente de GameManager que indica cuando se acaba la partida
     private EndGameCondition condicionFinJuego;
     // Totem actual del jugadorIsWinCondition
-    private Totem totemActual;
+    public Totem totemActual;
 
     private int turnCounter;
 
@@ -244,6 +244,19 @@ public class GameManager : MonoBehaviour
                 return false;
         }
         return listToCheck.isEmpty();
+    }
+
+    public void RemoveTotem(Totem totem)
+    {
+        if (totem.tag == "FirstPlayer")
+        {
+            listaTotemsJugador.Remove(totem);
+        }
+        else
+        {
+            listaTotemsContrincante.Remove(totem);
+        }
+        Destroy(totem.gameObject);
     }
 
 }
