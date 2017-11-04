@@ -27,5 +27,10 @@ public class PriorityQueue<T>: List<T> {
 
         //Lo retornamos
         return obj;
+        
+    }
+
+    public bool isEmpty(){
+        return this.Count == 0;
     }
 }

@@ -5,8 +5,6 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-
-
     // Lista de totems del contrincante. Se pueden asignar desde el editor de unity
     private PriorityQueue<Totem> listaTotemsContrincante;
     // Lista de totems del jugador. Se pueden asignar desde el editor de unity
@@ -17,6 +15,8 @@ public class GameManager : MonoBehaviour
     // Totem actual del jugadorIsWinCondition
     private Totem totemActual;
 
+    private int turnCounter;
+
     public Text txtNumeroRonda;
     public Text txtTurnoJugador;
 
@@ -25,6 +25,8 @@ public class GameManager : MonoBehaviour
     private enum TURNO_JUGADOR { PRIMER_JUGADOR, SEGUNDO_JUGADOR }
     
     private enum PARTIDA_STATE { INICIO_RONDA, TURNO_RONDA, FIN_RONDA }
+
+    public enum LISTA_TOTEMS { LISTA_JUGADOR, LISTA_CONTRICANTE }
 
     private TURNO_JUGADOR turnoJugador;
     private PARTIDA_STATE estadoPartida;
@@ -50,6 +52,8 @@ public class GameManager : MonoBehaviour
         txtTurnoJugador.text = "Turno: " + turnoJugador.ToString();
 
         ronda = 0;
+
+        turnCounter = 1;
 
     }
 
@@ -109,8 +113,7 @@ public class GameManager : MonoBehaviour
             estadoPartida = PARTIDA_STATE.FIN_RONDA;
         else
             intercambiarTurno();
-
-        condicionFinJuego.IncreaseTurnCounter();
+        turnCounter += 1;
         if (BoxTurn() && !condicionFinJuego.IsWinCondition()) ThrowBox();
     }
 
@@ -201,7 +204,7 @@ public class GameManager : MonoBehaviour
 
     private bool BoxTurn()
     {
-        return (condicionFinJuego.TurnCounter-1) % GetNumBoxTurn() == 0;
+        return (turnCounter-1) % GetNumBoxTurn() == 0;
     }
 
     private void ThrowBox()
@@ -226,6 +229,21 @@ public class GameManager : MonoBehaviour
         {
             listaTotemsContrincante.Add(secondPlayerTotem.GetComponent<Totem>());
         }
+    }
+
+    public bool isEmptyList(LISTA_TOTEMS lista){
+        PriorityQueue<Totem> listToCheck;
+        switch(lista){
+            case(LISTA_TOTEMS.LISTA_JUGADOR):
+                listToCheck = listaTotemsJugador;
+                break;
+            case(LISTA_TOTEMS.LISTA_CONTRICANTE):
+                listToCheck = listaTotemsContrincante;
+                break;
+            default:
+                return false;
+        }
+        return listToCheck.isEmpty();
     }
 
 }
