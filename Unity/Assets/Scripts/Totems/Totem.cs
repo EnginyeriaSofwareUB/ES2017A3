@@ -80,18 +80,21 @@ public class Totem : MonoBehaviour
                 instance.AddComponent<ModuloTotemBase>();
                 // Agregamos la misma layer y así evitamos las colisiones
                 instance.layer = GetComponent<Totem>().gameObject.layer;
+                instance.tag = GetComponent<Totem>().gameObject.tag + "Module";
                 modulos.Add(instance);
                 break;
             case TotemType.TOTEM_AGUILA:
                 instance = Instantiate(Resources.Load("TotemFalcon", typeof(GameObject))) as GameObject;
                 instance.AddComponent<ModuloTotemAguila>();
                 instance.layer = GetComponent<Totem>().gameObject.layer;
+                instance.tag = GetComponent<Totem>().gameObject.tag + "Module";
                 modulos.Add(instance);
                 break;
             case TotemType.TOTEM_GORILA:
                 instance = Instantiate(Resources.Load("TotemGorilla", typeof(GameObject))) as GameObject;
                 instance.AddComponent<ModuloTotemGorila>();
                 instance.layer = GetComponent<Totem>().gameObject.layer;
+                instance.tag = GetComponent<Totem>().gameObject.tag + "Module";
                 modulos.Add(instance);
                 break;
         }
@@ -118,10 +121,6 @@ public class Totem : MonoBehaviour
             lastModuleAdded.transform.position = lastModuleAdded.transform.position + moduloAnterior.transform.up * 0.7f;
             lastModuleAdded.transform.parent = this.transform;
         }
-
-
-
-
 
     }
 
@@ -210,6 +209,10 @@ public class Totem : MonoBehaviour
         }
     }
 
-
+    public void DecreaseVida(float decrease)
+    {
+        this.vida -= decrease;
+        kill();
+    }
 
 }
