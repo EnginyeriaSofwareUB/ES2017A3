@@ -16,13 +16,13 @@ public class EndGameScreenController : MonoBehaviour {
 	void Start() {
 		//this.stateHolder = GetComponent<StateHolder>();
 		this.gameManager = GetComponent<GameManager>();
-		fillWinnerText ();
 		endGameCanvas.gameObject.SetActive (false);
 	}
 
 
-
-	private void fillWinnerText(){
+	public void fillWinnerText(){
+		Debug.Log("EndGameScreenController :: lista jugador empty = "+gameManager.isEmptyList (GameManager.LISTA_TOTEMS.LISTA_JUGADOR));
+		Debug.Log("EndGameScreenController :: lista contrinc empty = "+gameManager.isEmptyList (GameManager.LISTA_TOTEMS.LISTA_CONTRICANTE));
 		if (gameManager.isEmptyList (GameManager.LISTA_TOTEMS.LISTA_JUGADOR)) {
 			winnerTxt.text = "Player 2 wins!";
 		} else {

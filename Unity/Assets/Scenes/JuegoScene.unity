@@ -1857,6 +1857,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvasEndGame: {fileID: 1308023593}
+  egsc: {fileID: 775856179}
 --- !u!114 &775856177
 MonoBehaviour:
   m_ObjectHideFlags: 0
