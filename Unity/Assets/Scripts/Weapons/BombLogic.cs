@@ -9,11 +9,8 @@ namespace Assets.Scripts.Weapons
 
         public GameObject Player { get; set; }
 
-        private Totem totem;
-
         void Start () {
 			this.destructionCircle = GetComponent<CircleCollider2D> ();
-            this.totem = GetComponent<Totem>();
         }
 	
         void Update ()
@@ -38,12 +35,20 @@ namespace Assets.Scripts.Weapons
 				t.DestroyGround (destructionCircle);
 				Destroy (this.gameObject);
 			}
-            //&& !collision.collider.tag.Equals(this.Player.tag + "Module")
-            Debug.LogError(this.totem.tag);
-            if (collision.collider.tag.Contains("PlayerModule"))
+            string tag = collision.collider.tag;
+            if (tag.Contains("PlayerModule"))
             {
-                Totem t = collision.gameObject.GetComponent<Totem>();
-                t.DecreaseVida(100);
+                int id = collision.collider.gameObject.GetInstanceID();
+                GameObject[] totems = GameObject.FindGameObjectsWithTag(tag.Replace("Module", ""));
+                foreach (GameObject g in totems)
+                {
+                    Totem totem = g.GetComponent<Totem>();
+                    foreach (GameObject mod in totem.Modulos)
+                    {
+                        if (mod.GetInstanceID() == id)
+                            totem.DecreaseVida(100);
+                    }
+                }
                 Destroy(this.gameObject);
             }
         }

@@ -11,6 +11,8 @@ TagManager:
   - SecondPlayer
   - TerrainObject
   - Platform
+  - FirstPlayerModule
+  - SecondPlayerModule
   layers:
   - Default
   - TransparentFX
