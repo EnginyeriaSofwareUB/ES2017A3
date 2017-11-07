@@ -7,8 +7,12 @@ public class GameManager : MonoBehaviour
 {
     // Lista de totems del contrincante. Se pueden asignar desde el editor de unity
     private PriorityQueue<Totem> listaTotemsContrincante;
+	//Diccionario con los nombres de los totems del contrincante y valor 1 si esta vivo, 0 si muere
+	private Dictionary<string, int> listaNombreTotemsContrincante;
     // Lista de totems del jugador. Se pueden asignar desde el editor de unity
     private PriorityQueue<Totem> listaTotemsJugador;
+	//Diccionario con los nombres de los totems del jugador y valor 1 si esta vivo, 0 si muere
+	private Dictionary<string, int> listaNombreTotemsJugador;
 
     // Componente de GameManager que indica cuando se acaba la partida
     private EndGameCondition condicionFinJuego;
@@ -217,17 +221,21 @@ public class GameManager : MonoBehaviour
     {
         listaTotemsJugador = new PriorityQueue<Totem>();
         listaTotemsContrincante = new PriorityQueue<Totem>();
+		listaNombreTotemsJugador = new Dictionary<string, int>();
+		listaNombreTotemsContrincante = new Dictionary<string, int>();
         Object[] allFirstPlayerTotems = GameObject.FindGameObjectsWithTag("FirstPlayer");
         Object[] allSecondPlayerTotems = GameObject.FindGameObjectsWithTag("SecondPlayer");
 
         foreach(GameObject firstPlayerTotem in allFirstPlayerTotems)
         {
             listaTotemsJugador.Add(firstPlayerTotem.GetComponent<Totem>());
+			listaNombreTotemsJugador.Add (firstPlayerTotem.GetComponent<Totem> ().name, 1);
         }
 
         foreach (GameObject secondPlayerTotem in allSecondPlayerTotems)
         {
             listaTotemsContrincante.Add(secondPlayerTotem.GetComponent<Totem>());
+			listaNombreTotemsContrincante.Add (secondPlayerTotem.GetComponent<Totem> ().name, 1);
         }
     }
 
@@ -251,12 +259,30 @@ public class GameManager : MonoBehaviour
         if (totem.tag == "FirstPlayer")
         {
             listaTotemsJugador.Remove(totem);
+			listaNombreTotemsJugador [totem.name] = 0;
         }
         else
         {
             listaTotemsContrincante.Remove(totem);
+			listaNombreTotemsContrincante [totem.name] = 0;
+
         }
         Destroy(totem.gameObject);
     }
+
+
+	public Dictionary<string, int> getListNombreTotems(LISTA_TOTEMS lista)
+	{
+		switch(lista) {
+			case(LISTA_TOTEMS.LISTA_JUGADOR):
+				 return listaNombreTotemsJugador;
+				break;
+			case(LISTA_TOTEMS.LISTA_CONTRICANTE):
+				return listaNombreTotemsContrincante;
+				break;
+			default:
+				return null;
+		}
+	}
 
 }

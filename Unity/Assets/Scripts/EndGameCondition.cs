@@ -9,6 +9,9 @@ public class EndGameCondition : MonoBehaviour
 
 	public Canvas canvasEndGame; 
 
+	public EndGameScreenController egsc;
+
+
 
     // Use this for initialization
     void Start()
@@ -24,7 +27,8 @@ public class EndGameCondition : MonoBehaviour
         if (this.stateHolder.isPlaying() && this.IsWinCondition())
         {
             this.stateHolder.setMenu();
-			canvasEndGame.gameObject.SetActive (true);
+			showEndGameScreen ();
+
        }
     }
 
@@ -43,5 +47,13 @@ public class EndGameCondition : MonoBehaviour
         
         Application.Quit();
     }
+
+	// Funció que mostra la pantalla de fi de joc quan aquest finalitza
+	private void showEndGameScreen()
+	{
+		canvasEndGame.gameObject.SetActive (true);
+		egsc.fillWinnerText();
+		egsc.fillTotemsText ();
+	}
 
 }
