@@ -53,6 +53,7 @@ public class EndGameCondition : MonoBehaviour
 	{
 		canvasEndGame.gameObject.SetActive (true);
 		egsc.fillWinnerText();
+		egsc.fillTotemsText ();
 	}
 
 }

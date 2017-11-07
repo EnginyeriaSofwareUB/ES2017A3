@@ -11,6 +11,8 @@ public class EndGameScreenController : MonoBehaviour {
 	//private StateHolder stateHolder;
 	private GameManager gameManager;
 	public Text winnerTxt;
+	public Text totemsP1Txt;
+	public Text totemsP2Txt;
 
 
 	void Start() {
@@ -21,8 +23,8 @@ public class EndGameScreenController : MonoBehaviour {
 
 
 	public void fillWinnerText(){
-		Debug.Log("EndGameScreenController :: lista jugador empty = "+gameManager.isEmptyList (GameManager.LISTA_TOTEMS.LISTA_JUGADOR));
-		Debug.Log("EndGameScreenController :: lista contrinc empty = "+gameManager.isEmptyList (GameManager.LISTA_TOTEMS.LISTA_CONTRICANTE));
+		//Debug.Log("EndGameScreenController :: lista jugador empty = "+gameManager.isEmptyList (GameManager.LISTA_TOTEMS.LISTA_JUGADOR));
+		//Debug.Log("EndGameScreenController :: lista contrinc empty = "+gameManager.isEmptyList (GameManager.LISTA_TOTEMS.LISTA_CONTRICANTE));
 		if (gameManager.isEmptyList (GameManager.LISTA_TOTEMS.LISTA_JUGADOR)) {
 			winnerTxt.text = "Player 2 wins!";
 		} else {
@@ -30,8 +32,32 @@ public class EndGameScreenController : MonoBehaviour {
 		}
 	}
 
+	public void fillTotemsText(){
+		Dictionary<string, int> totemsP1 = gameManager.getListNombreTotems (GameManager.LISTA_TOTEMS.LISTA_JUGADOR);
+		Dictionary<string, int> totemsP2 = gameManager.getListNombreTotems (GameManager.LISTA_TOTEMS.LISTA_CONTRICANTE);
+
+		totemsP1Txt.text = "Player 1:\n";
+		totemsP2Txt.text = "Player 2:\n";
+
+		foreach (KeyValuePair<string, int> entry in totemsP1) {
+			if (entry.Value == 0) { //Muerto: pinta rojo
+				totemsP1Txt.text += "<color=#fcb5ab>"+entry.Key+"</color>\n"; 
+			} else { // Vivo: pinta verde
+				totemsP1Txt.text += "<color=#adffb8>"+entry.Key+"</color>\n"; 
+			}
 
 
+		}
+
+		foreach (KeyValuePair<string, int> entry in totemsP2) {
+			if (entry.Value == 0) { //Muerto: pinta rojo
+				totemsP2Txt.text += "<color=#fcb5ab>"+entry.Key+"</color>\n"; 
+			} else { // Vivo: pinta verde
+				totemsP2Txt.text += "<color=#adffb8>"+entry.Key+"</color>\n"; 
+			}		}
+
+	}
+		
 
 
 	// BUTTON LISTENERS
