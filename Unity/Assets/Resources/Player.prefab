@@ -54,5 +54,5 @@ MonoBehaviour:
   maxTravel: 0
   currentTotemTravel: 0
   lastX: 0
-  totem: {fileID: 1173639097636882, guid: f391b495cde70294bb66c1b043166ff8, type: 2}
   MAX_TOTEMS: 1
+  movementController: {fileID: 0}

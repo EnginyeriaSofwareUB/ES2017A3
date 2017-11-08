@@ -3,7 +3,16 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Arma
+  - Weapon
+  - BoxGenerator
+  - FirstPlayer
+  - SecondPlayer
+  - TerrainObject
+  - Platform
+  - FirstPlayerModule
+  - SecondPlayerModule
   layers:
   - Default
   - TransparentFX
@@ -13,10 +22,10 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
+  - totemsPrimerJugador
+  - totemsSegundoJugador
+  - balaPrimerJugador
+  - balaSegundoJugador
   - 
   - 
   - 
@@ -40,4 +49,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: layerTitulo
+    uniqueID: 762975143
     locked: 0

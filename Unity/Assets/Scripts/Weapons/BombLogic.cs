@@ -5,9 +5,12 @@ namespace Assets.Scripts.Weapons
 {
     public class BombLogic : ExplosionBehavior {
 
+		public CircleCollider2D destructionCircle;
+
         public GameObject Player { get; set; }
 
         void Start () {
+			this.destructionCircle = GetComponent<CircleCollider2D> ();
         }
 	
         void Update ()
@@ -25,8 +28,29 @@ namespace Assets.Scripts.Weapons
                 Physics2D.IgnoreCollision(GetComponent<BoxCollider2D>(), collision.collider);
                 return;
             }
-                
-            this.StartExplosion();
+
+			if (collision.collider.tag == "TerrainObject") 
+			{
+				Terrain2 t = collision.gameObject.GetComponent<Terrain2>();
+				t.DestroyGround (destructionCircle);
+				Destroy (this.gameObject);
+			}
+            string tag = collision.collider.tag;
+            if (tag.Contains("PlayerModule"))
+            {
+                int id = collision.collider.gameObject.GetInstanceID();
+                GameObject[] totems = GameObject.FindGameObjectsWithTag(tag.Replace("Module", ""));
+                foreach (GameObject g in totems)
+                {
+                    Totem totem = g.GetComponent<Totem>();
+                    foreach (GameObject mod in totem.Modulos)
+                    {
+                        if (mod.GetInstanceID() == id)
+                            totem.DecreaseVida(100);
+                    }
+                }
+                Destroy(this.gameObject);
+            }
         }
     }
 }

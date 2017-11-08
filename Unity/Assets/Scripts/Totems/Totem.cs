@@ -6,12 +6,16 @@ using UnityEngine;
 public class Totem : MonoBehaviour
 {
 
-    [SerializeField]  private int ataqueTotal { get; set; }
-    [SerializeField]  private int defensaTotal { get; set; }
-    [SerializeField] private List <ModuloTotem> modulos;
+    [SerializeField] private int ataqueTotal { get; set; }
+    [SerializeField] private int defensaTotal { get; set; }
+    [SerializeField] private float vida=10f;
+
+    [SerializeField] private List<GameObject> modulos;
 
     //Manejador del movimiento del jugador
     private MovimientoController movimiento;
+
+    private GameObject gameManager;
 
     public Totem(int ataque, int defensa)
     {
@@ -68,59 +72,72 @@ public class Totem : MonoBehaviour
 
     private void AddModule(TotemType totem)
     {
+        GameObject instance;
         switch (totem)
         {
             case TotemType.TOTEM_BASE:
-                modulos.Add(new ModuloTotemBase());
+                instance = Instantiate(Resources.Load("TotemBase", typeof(GameObject))) as GameObject;
+                instance.AddComponent<ModuloTotemBase>();
+                // Agregamos la misma layer y así evitamos las colisiones
+                instance.layer = GetComponent<Totem>().gameObject.layer;
+                instance.tag = GetComponent<Totem>().gameObject.tag + "Module";
+                modulos.Add(instance);
                 break;
             case TotemType.TOTEM_AGUILA:
-                modulos.Add(new ModuloTotemAguila());
+                instance = Instantiate(Resources.Load("TotemFalcon", typeof(GameObject))) as GameObject;
+                instance.AddComponent<ModuloTotemAguila>();
+                instance.layer = GetComponent<Totem>().gameObject.layer;
+                instance.tag = GetComponent<Totem>().gameObject.tag + "Module";
+                modulos.Add(instance);
                 break;
             case TotemType.TOTEM_GORILA:
-                modulos.Add(new ModuloTotemGorila());
+                instance = Instantiate(Resources.Load("TotemGorilla", typeof(GameObject))) as GameObject;
+                instance.AddComponent<ModuloTotemGorila>();
+                instance.layer = GetComponent<Totem>().gameObject.layer;
+                instance.tag = GetComponent<Totem>().gameObject.tag + "Module";
+                modulos.Add(instance);
                 break;
         }
 
-        ModuloTotem lastModuleAdded = modulos[modulos.Count - 1];
+        GameObject lastModuleAdded = modulos[modulos.Count - 1];
+
+        // Sumamos los parámetros de los módulos al totem
+        this.ataqueTotal += lastModuleAdded.GetComponent<ModuloTotem>().getAtaque();
+        this.defensaTotal += lastModuleAdded.GetComponent<ModuloTotem>().getDefensa();
 
         // En caso que sea el primer módulo que se añade
         if (modulos.Count < 2)
         {
-            lastModuleAdded.MeshTotem.position = this.transform.position;
+            lastModuleAdded.transform.position = this.transform.position;
             // Subimos la posición del totem para apilarlo
-            lastModuleAdded.MeshTotem.transform.parent = this.transform;
+            lastModuleAdded.transform.parent = this.transform;
         }
         else
         {
-            ModuloTotem moduloAnterior = modulos[modulos.Count - 2];
+            GameObject moduloAnterior = modulos[modulos.Count - 2];
 
-            lastModuleAdded.MeshTotem.position = moduloAnterior.MeshTotem.transform.position;
+            lastModuleAdded.transform.position = moduloAnterior.transform.position;
             // Subimos la posición del totem para apilarlo
-           lastModuleAdded.MeshTotem.position = lastModuleAdded.MeshTotem.position+ moduloAnterior.MeshTotem.transform.up*0.7f;
-           lastModuleAdded.MeshTotem.transform.parent = this.transform;
+            lastModuleAdded.transform.position = lastModuleAdded.transform.position + moduloAnterior.transform.up * 0.7f;
+            lastModuleAdded.transform.parent = this.transform;
         }
 
-
-
-
-        this.ataqueTotal += lastModuleAdded.getAtaque(); //Sumamos el ataque que nos ha aportado el modulo añadido al totem
-        this.defensaTotal += lastModuleAdded.getDefensa(); //Sumamos la defensa del modulo añadido al totem
     }
 
     private int searchModule(TotemType type)
     {
-        int position =0;
+        int position = 0;
         bool trobat = false;
         while (position < modulos.Count && !trobat)
         {
-            if (modulos[position].getTypeOfTotem() == type)
+            if (modulos[position].GetComponent<ModuloTotem>().getTypeOfTotem() == type)
             {
                 trobat = true;
             }
             else
             {
                 position += 1;
-            }       
+            }
         }
 
         if (trobat)
@@ -135,18 +152,34 @@ public class Totem : MonoBehaviour
     {
         AddModule(TotemType.TOTEM_BASE);
         AddModule(TotemType.TOTEM_AGUILA);
-       AddModule(TotemType.TOTEM_GORILA);
+        AddModule(TotemType.TOTEM_GORILA);
         this.movimiento = GetComponent<MovimientoController>();
-        
+        this.gameManager = GameObject.FindGameObjectWithTag("GameController");
+
     }
 
     // Update is called once per frame
     void Update()
     {
-
     }
 
 
+    private void LateUpdate()
+    {
+		kill ();
+    }
+
+	private void kill(){
+		if (this.vida < 1)
+		{
+            gameManager.SendMessage("RemoveTotem", this);
+        }
+	}
+
+	public void suicide(){
+		this.movimiento.endMovement ();
+		this.vida = 0;
+	}
 
     public void desabilitarControlMovimiento()
     {
@@ -162,4 +195,24 @@ public class Totem : MonoBehaviour
     {
         return this.movimiento.isLimitePasos();
     }
+
+    public List<GameObject> Modulos
+    {
+        get
+        {
+            return modulos;
+        }
+
+        set
+        {
+            modulos = value;
+        }
+    }
+
+    public void DecreaseVida(float decrease)
+    {
+        this.vida -= decrease;
+        kill();
+    }
+
 }
