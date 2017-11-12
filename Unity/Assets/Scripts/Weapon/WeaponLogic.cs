@@ -41,14 +41,17 @@ namespace Assets.Scripts.Weapon
             SetWeaponVelocity(weapon, ShootingVelocity);
         }
 
-        public void ChangeDirection(Direction direction)
+        public void ChangeDirection(float angle)
         {
-            this.ShootingAngle = Direction.Up == direction
-                ? this.ShootingAngle + 1 >= 360 ? 0 : this.ShootingAngle + 1
-                : this.ShootingAngle - 1 <= 0 ? 359 : this.ShootingAngle - 1;
+            this.ShootingAngle = angle;
 
             CalculateVelocity();
         }
+
+		public void setPower(float power) {
+			this.ShootingPower = power;
+			CalculateVelocity ();
+		}
 
         public void ChangePower(Direction direction)
         {
@@ -83,9 +86,9 @@ namespace Assets.Scripts.Weapon
 
         private void CalculateVelocity()
         {
-            var radian = (Mathf.PI / 180) * this.ShootingAngle;
+            var radian = this.ShootingAngle;
             var velocity = new Vector3((float)Math.Cos(radian), (float)Math.Sin(radian));
-            this.ShootingVelocity = new Vector3(velocity.x * ((this.ShootingPower*4)/10), velocity.y * (this.ShootingPower*2/10));
+            this.ShootingVelocity = new Vector3(velocity.x * ((this.ShootingPower*4)/10), velocity.y * (this.ShootingPower*4/10));
         }
 
         private Vector3 CalculateFirePoint(Vector3 velocity)
