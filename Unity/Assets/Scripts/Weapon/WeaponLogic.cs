@@ -48,6 +48,11 @@ namespace Assets.Scripts.Weapon
             CalculateVelocity();
         }
 
+		public void setPower(float power) {
+			this.ShootingPower = power;
+			CalculateVelocity ();
+		}
+
         public void ChangePower(Direction direction)
         {
             this.ShootingPower = Direction.Up == direction

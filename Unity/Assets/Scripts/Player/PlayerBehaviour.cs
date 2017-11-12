@@ -43,23 +43,46 @@ namespace Assets.Scripts.Player
 
         private void initLine()
         {
-            lineaRenderizar = (new GameObject("flecha")).AddComponent<LineRenderer>();
+			GameObject flecha = new GameObject ("flecha");
+            lineaRenderizar = flecha.AddComponent<LineRenderer>();
             lineaRenderizar.startWidth=0.1f;
             lineaRenderizar.endWidth = 0.1f;
             lineaRenderizar.material.color = Color.grey;
             //lineaRenderizar.sortingLayerName = "arrowLine";
             lineaRenderizar.sortingOrder = 0;
+
+
+			lineaRenderizar.widthCurve = new AnimationCurve(
+				new Keyframe(0, 0.4f)
+				, new Keyframe(0.9f, 0.4f) // neck of arrow
+				, new Keyframe(0.91f, 1f)  // max width of arrow head
+				, new Keyframe(1, 0f));  // tip of arrow
+			
         }
 
         private void drawLine()
         {
             lineaRenderizar.gameObject.SetActive(true);
             lineaRenderizar.positionCount = 2;
-            lineaRenderizar.SetPosition(0, transform.position);
+           // lineaRenderizar.SetPosition(0, transform.position);
             startMousePosition = Input.mousePosition;
             startMousePosition.z = (transform.position.z - Camera.main.transform.position.z);
             startMousePosition = Camera.main.ScreenToWorldPoint(startMousePosition);
-            lineaRenderizar.SetPosition(1, startMousePosition);
+            //lineaRenderizar.SetPosition(1, startMousePosition);
+
+			lineaRenderizar.SetPositions(new Vector3[] {
+				transform.position
+				, Vector3.Lerp(transform.position, startMousePosition, 0.9f)
+				, Vector3.Lerp(transform.position, startMousePosition, 0.91f)
+				, startMousePosition });
+
+			float distanceX = Mathf.Abs (lineaRenderizar.GetPosition (1).x - lineaRenderizar.GetPosition (0).x);
+			float distanceY = Mathf.Abs (lineaRenderizar.GetPosition (1).y - lineaRenderizar.GetPosition (0).y);
+
+
+			float potenceDistance = Mathf.Sqrt(Mathf.Pow(distanceX, 2)  +Mathf.Pow(distanceY, 2));
+
+			WeaponLogic.setPower (potenceDistance * 10 + 1);
         }
 
         private void deleteLine()
