@@ -46,7 +46,7 @@ namespace Assets.Scripts.Weapons
                     foreach (GameObject mod in totem.Modulos)
                     {
                         if (mod.GetInstanceID() == id)
-                            totem.DecreaseVida(100);
+                            totem.DecreaseVida(2);
                     }
                 }
                 Destroy(this.gameObject);

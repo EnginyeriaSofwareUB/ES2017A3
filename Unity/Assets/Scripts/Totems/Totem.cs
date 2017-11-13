@@ -215,4 +215,8 @@ public class Totem : MonoBehaviour
         kill();
     }
 
+	public float getVida() {
+		return this.vida;
+	}
+
 }
