@@ -36,7 +36,7 @@ namespace Assets.Scripts.Weapons
 				Destroy (this.gameObject);
 			}
             string tag = collision.collider.tag;
-            if (tag.Contains("PlayerModule"))
+            if (tag.Contains("Player"))
             {
                 int id = collision.collider.gameObject.GetInstanceID();
                 GameObject[] totems = GameObject.FindGameObjectsWithTag(tag.Replace("Module", ""));
