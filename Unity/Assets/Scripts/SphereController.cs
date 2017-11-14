@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BoxController : MonoBehaviour {
+public class SphereController : MonoBehaviour {
 
-    public GameObject esphere;
 	// Use this for initialization
 	void Start () {
 		
@@ -17,11 +16,10 @@ public class BoxController : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "Weapon")
+        if (collision.gameObject.tag.Contains("Player"))
         {
             Destroy(gameObject);
-            //Alliberar objecte o trampa
-            Instantiate(esphere,transform.position,Quaternion.identity);
+            //Donem objecte al player
         }
     }
 }
