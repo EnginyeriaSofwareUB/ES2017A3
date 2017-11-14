@@ -21,5 +21,11 @@ public class BoxController : MonoBehaviour {
             Destroy(gameObject);
             //Alliberar objecte o trampa
         }
+
+        if (collision.gameObject.tag.Contains("Player"))
+        {
+            Destroy(gameObject);
+            //Alliberar objecte o trampa
+        }
     }
 }
