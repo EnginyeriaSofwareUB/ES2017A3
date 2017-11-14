@@ -89,6 +89,7 @@ namespace Assets.Scripts.Player
         {
             lineaRenderizar.positionCount = 0;
         }
+
         private void Shoot()
         {
 

@@ -8,7 +8,8 @@ public class Totem : MonoBehaviour
 
     [SerializeField] private int ataqueTotal { get; set; }
     [SerializeField] private int defensaTotal { get; set; }
-    [SerializeField] private float vida=10f;
+    [SerializeField] private float maxHealth=10f;
+    [SerializeField] private float currentHealth;
 
     [SerializeField] private List<GameObject> modulos;
 
@@ -155,6 +156,7 @@ public class Totem : MonoBehaviour
         AddModule(TotemType.TOTEM_GORILA);
         this.movimiento = GetComponent<MovimientoController>();
         this.gameManager = GameObject.FindGameObjectWithTag("GameController");
+        this.currentHealth = this.maxHealth;
 
     }
 
@@ -170,15 +172,16 @@ public class Totem : MonoBehaviour
     }
 
 	private void kill(){
-		if (this.vida < 1)
+		if (this.currentHealth < 1)
 		{
             gameManager.SendMessage("RemoveTotem", this);
+            this.currentHealth = 0;
         }
 	}
 
 	public void suicide(){
 		this.movimiento.endMovement ();
-		this.vida = 0;
+        this.currentHealth = 0;
 	}
 
     public void desabilitarControlMovimiento()
@@ -211,12 +214,17 @@ public class Totem : MonoBehaviour
 
     public void DecreaseVida(float decrease)
     {
-        this.vida -= decrease;
+        this.currentHealth -= decrease;
         kill();
     }
 
-	public float getVida() {
-		return this.vida;
+    public float getCurrentHealth()
+    {
+        return this.currentHealth;
+    }
+
+	public float getMaxHealth() {
+		return this.maxHealth;
 	}
 
 }

@@ -6,6 +6,7 @@ namespace Assets.Scripts.Weapons
     public class BombLogic : ExplosionBehavior {
 
 		public CircleCollider2D destructionCircle;
+        public float damage = 1;
 
         public GameObject Player { get; set; }
 
@@ -46,7 +47,7 @@ namespace Assets.Scripts.Weapons
                     foreach (GameObject mod in totem.Modulos)
                     {
                         if (mod.GetInstanceID() == id)
-                            totem.DecreaseVida(2);
+                            totem.DecreaseVida(damage);
                     }
                 }
                 Destroy(this.gameObject);
