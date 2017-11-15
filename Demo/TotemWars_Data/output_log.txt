@@ -19,282 +19,29 @@ Platform assembly: C:\Users\Alejandro\Desktop\15-11-2017\ES2017A3\Demo\TotemWars
 Loading C:\Users\Alejandro\Desktop\15-11-2017\ES2017A3\Demo\TotemWars_Data\Managed\UnityEngine.Timeline.dll into Unity Child Domain
 Platform assembly: C:\Users\Alejandro\Desktop\15-11-2017\ES2017A3\Demo\TotemWars_Data\Managed\System.dll (this message is harmless)
 Platform assembly: C:\Users\Alejandro\Desktop\15-11-2017\ES2017A3\Demo\TotemWars_Data\Managed\System.Core.dll (this message is harmless)
-- Completed reload, in  0.027 seconds
+- Completed reload, in  0.361 seconds
 <RI> Initializing input.
 <RI> Input initialized.
 <RI> Initialized touch support.
-UnloadTime: 1.233815 ms
+UnloadTime: 1.385086 ms
 Setting up 4 worker threads for Enlighten.
-  Thread -> id: 1e84 -> priority: 1 
-  Thread -> id: 45d8 -> priority: 1 
-  Thread -> id: 45cc -> priority: 1 
-  Thread -> id: 44f8 -> priority: 1 
+  Thread -> id: 48c8 -> priority: 1 
+  Thread -> id: 4b28 -> priority: 1 
+  Thread -> id: 31b0 -> priority: 1 
+  Thread -> id: 4430 -> priority: 1 
 Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 5.035216 ms
+UnloadTime: 5.077161 ms
 
 Unloading 13 unused Assets to reduce memory usage. Loaded Objects now: 718.
-Total: 0.322621 ms (FindLiveObjects: 0.029450 ms CreateObjectMapping: 0.021418 ms MarkObjects: 0.230698 ms  DeleteObjects: 0.040606 ms)
+Total: 0.387324 ms (FindLiveObjects: 0.042391 ms CreateObjectMapping: 0.020972 ms MarkObjects: 0.278445 ms  DeleteObjects: 0.044176 ms)
 
 EndGameCondition :: Start called
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-Intercambio turno
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-Intercambio turno
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-ThrowBox
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-Fin de la ronda
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-Intercambio turno
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-Intercambio turno
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-Fin de la ronda
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-ArgumentOutOfRangeException: Argument is out of range.
-Parameter name: index
-  at System.Collections.Generic.List`1[Totem].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
-  at PriorityQueue`1[Totem].Poll () [0x00000] in <filename unknown>:0 
-  at GameManager.handleInicioRonda () [0x00000] in <filename unknown>:0 
-  at GameManager.LateUpdate () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentOutOfRangeException: Argument is out of range.
-Parameter name: index
-  at System.Collections.Generic.List`1[Totem].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
-  at PriorityQueue`1[Totem].Poll () [0x00000] in <filename unknown>:0 
-  at GameManager.handleInicioRonda () [0x00000] in <filename unknown>:0 
-  at GameManager.LateUpdate () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentOutOfRangeException: Argument is out of range.
-Parameter name: index
-  at System.Collections.Generic.List`1[Totem].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
-  at PriorityQueue`1[Totem].Poll () [0x00000] in <filename unknown>:0 
-  at GameManager.handleInicioRonda () [0x00000] in <filename unknown>:0 
-  at GameManager.LateUpdate () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentOutOfRangeException: Argument is out of range.
-Parameter name: index
-  at System.Collections.Generic.List`1[Totem].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
-  at PriorityQueue`1[Totem].Poll () [0x00000] in <filename unknown>:0 
-  at GameManager.handleInicioRonda () [0x00000] in <filename unknown>:0 
-  at GameManager.LateUpdate () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentOutOfRangeException: Argument is out of range.
-Parameter name: index
-  at System.Collections.Generic.List`1[Totem].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
-  at PriorityQueue`1[Totem].Poll () [0x00000] in <filename unknown>:0 
-  at GameManager.handleInicioRonda () [0x00000] in <filename unknown>:0 
-  at GameManager.LateUpdate () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentOutOfRangeException: Argument is out of range.
-Parameter name: index
-  at System.Collections.Generic.List`1[Totem].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
-  at PriorityQueue`1[Totem].Poll () [0x00000] in <filename unknown>:0 
-  at GameManager.handleInicioRonda () [0x00000] in <filename unknown>:0 
-  at GameManager.LateUpdate () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentOutOfRangeException: Argument is out of range.
-Parameter name: index
-  at System.Collections.Generic.List`1[Totem].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
-  at PriorityQueue`1[Totem].Poll () [0x00000] in <filename unknown>:0 
-  at GameManager.handleInicioRonda () [0x00000] in <filename unknown>:0 
-  at GameManager.LateUpdate () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentOutOfRangeException: Argument is out of range.
-Parameter name: index
-  at System.Collections.Generic.List`1[Totem].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
-  at PriorityQueue`1[Totem].Poll () [0x00000] in <filename unknown>:0 
-  at GameManager.handleInicioRonda () [0x00000] in <filename unknown>:0 
-  at GameManager.LateUpdate () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentOutOfRangeException: Argument is out of range.
-Parameter name: index
-  at System.Collections.Generic.List`1[Totem].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
-  at PriorityQueue`1[Totem].Poll () [0x00000] in <filename unknown>:0 
-  at GameManager.handleInicioRonda () [0x00000] in <filename unknown>:0 
-  at GameManager.LateUpdate () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentOutOfRangeException: Argument is out of range.
-Parameter name: index
-  at System.Collections.Generic.List`1[Totem].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
-  at PriorityQueue`1[Totem].Poll () [0x00000] in <filename unknown>:0 
-  at GameManager.handleInicioRonda () [0x00000] in <filename unknown>:0 
-  at GameManager.LateUpdate () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentOutOfRangeException: Argument is out of range.
-Parameter name: index
-  at System.Collections.Generic.List`1[Totem].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
-  at PriorityQueue`1[Totem].Poll () [0x00000] in <filename unknown>:0 
-  at GameManager.handleInicioRonda () [0x00000] in <filename unknown>:0 
-  at GameManager.LateUpdate () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentOutOfRangeException: Argument is out of range.
-Parameter name: index
-  at System.Collections.Generic.List`1[Totem].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
-  at PriorityQueue`1[Totem].Poll () [0x00000] in <filename unknown>:0 
-  at GameManager.handleInicioRonda () [0x00000] in <filename unknown>:0 
-  at GameManager.LateUpdate () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentOutOfRangeException: Argument is out of range.
-Parameter name: index
-  at System.Collections.Generic.List`1[Totem].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
-  at PriorityQueue`1[Totem].Poll () [0x00000] in <filename unknown>:0 
-  at GameManager.handleInicioRonda () [0x00000] in <filename unknown>:0 
-  at GameManager.LateUpdate () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentOutOfRangeException: Argument is out of range.
-Parameter name: index
-  at System.Collections.Generic.List`1[Totem].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
-  at PriorityQueue`1[Totem].Poll () [0x00000] in <filename unknown>:0 
-  at GameManager.handleInicioRonda () [0x00000] in <filename unknown>:0 
-  at GameManager.LateUpdate () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentOutOfRangeException: Argument is out of range.
-Parameter name: index
-  at System.Collections.Generic.List`1[Totem].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
-  at PriorityQueue`1[Totem].Poll () [0x00000] in <filename unknown>:0 
-  at GameManager.handleInicioRonda () [0x00000] in <filename unknown>:0 
-  at GameManager.LateUpdate () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentOutOfRangeException: Argument is out of range.
-Parameter name: index
-  at System.Collections.Generic.List`1[Totem].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
-  at PriorityQueue`1[Totem].Poll () [0x00000] in <filename unknown>:0 
-  at GameManager.handleInicioRonda () [0x00000] in <filename unknown>:0 
-  at GameManager.LateUpdate () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentOutOfRangeException: Argument is out of range.
-Parameter name: index
-  at System.Collections.Generic.List`1[Totem].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
-  at PriorityQueue`1[Totem].Poll () [0x00000] in <filename unknown>:0 
-  at GameManager.handleInicioRonda () [0x00000] in <filename unknown>:0 
-  at GameManager.LateUpdate () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentOutOfRangeException: Argument is out of range.
-Parameter name: index
-  at System.Collections.Generic.List`1[Totem].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
-  at PriorityQueue`1[Totem].Poll () [0x00000] in <filename unknown>:0 
-  at GameManager.handleInicioRonda () [0x00000] in <filename unknown>:0 
-  at GameManager.LateUpdate () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentOutOfRangeException: Argument is out of range.
-Parameter name: index
-  at System.Collections.Generic.List`1[Totem].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
-  at PriorityQueue`1[Totem].Poll () [0x00000] in <filename unknown>:0 
-  at GameManager.handleInicioRonda () [0x00000] in <filename unknown>:0 
-  at GameManager.LateUpdate () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentOutOfRangeException: Argument is out of range.
-Parameter name: index
-  at System.Collections.Generic.List`1[Totem].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
-  at PriorityQueue`1[Totem].Poll () [0x00000] in <filename unknown>:0 
-  at GameManager.handleInicioRonda () [0x00000] in <filename unknown>:0 
-  at GameManager.LateUpdate () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentOutOfRangeException: Argument is out of range.
-Parameter name: index
-  at System.Collections.Generic.List`1[Totem].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
-  at PriorityQueue`1[Totem].Poll () [0x00000] in <filename unknown>:0 
-  at GameManager.handleInicioRonda () [0x00000] in <filename unknown>:0 
-  at GameManager.LateUpdate () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentOutOfRangeException: Argument is out of range.
-Parameter name: index
-  at System.Collections.Generic.List`1[Totem].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
-  at PriorityQueue`1[Totem].Poll () [0x00000] in <filename unknown>:0 
-  at GameManager.handleInicioRonda () [0x00000] in <filename unknown>:0 
-  at GameManager.LateUpdate () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentOutOfRangeException: Argument is out of range.
-Parameter name: index
-  at System.Collections.Generic.List`1[Totem].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
-  at PriorityQueue`1[Totem].Poll () [0x00000] in <filename unknown>:0 
-  at GameManager.handleInicioRonda () [0x00000] in <filename unknown>:0 
-  at GameManager.LateUpdate () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentOutOfRangeException: Argument is out of range.
-Parameter name: index
-  at System.Collections.Generic.List`1[Totem].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
-  at PriorityQueue`1[Totem].Poll () [0x00000] in <filename unknown>:0 
-  at GameManager.handleInicioRonda () [0x00000] in <filename unknown>:0 
-  at GameManager.LateUpdate () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ArgumentOutOfRangeException: Argument is out of range.
-Parameter name: index
-  at System.Collections.Generic.List`1[Totem].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
-  at PriorityQueue`1[Totem].Poll () [0x00000] in <filename unknown>:0 
-  at GameManager.handleInicioRonda () [0x00000] in <filename unknown>:0 
-  at GameManager.LateUpdate () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
 Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 9.708096 ms
+UnloadTime: 31.078760 ms
 
 Unloading 135 unused Assets to reduce memory usage. Loaded Objects now: 331.
-Total: 0.518068 ms (FindLiveObjects: 0.036590 ms CreateObjectMapping: 0.016956 ms MarkObjects: 0.145023 ms  DeleteObjects: 0.318159 ms)
+Total: 0.519853 ms (FindLiveObjects: 0.061579 ms CreateObjectMapping: 0.014725 ms MarkObjects: 0.131636 ms  DeleteObjects: 0.311465 ms)
 
