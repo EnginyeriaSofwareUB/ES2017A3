@@ -2498,7 +2498,7 @@ GameObject:
   - component: {fileID: 894934419}
   - component: {fileID: 894934418}
   - component: {fileID: 894934417}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: TotemSegundoJugador (1)
   m_TagString: SecondPlayer
   m_Icon: {fileID: 0}

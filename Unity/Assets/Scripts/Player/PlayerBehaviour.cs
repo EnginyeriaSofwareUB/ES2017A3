@@ -154,10 +154,10 @@ namespace Assets.Scripts.Player
             position.z = (transform.position.z - Camera.main.transform.position.z);
             position = Camera.main.ScreenToWorldPoint(position);
             position = position - transform.position;
-            print ("mouse"+position);
-            print("personaje"+transform.position);
+            //print ("mouse"+position);
+            //print("personaje"+transform.position);
             float angle = Mathf.Atan2(position.y,position.x) ;
-            print (angle*Mathf.Rad2Deg);
+            //print (angle*Mathf.Rad2Deg);
             return angle;
         }
     }
