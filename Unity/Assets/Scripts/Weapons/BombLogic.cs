@@ -6,6 +6,7 @@ namespace Assets.Scripts.Weapons
     public class BombLogic : ExplosionBehavior {
 
 		public CircleCollider2D destructionCircle;
+        public float damage = 1;
 
         public GameObject Player { get; set; }
 
@@ -35,6 +36,22 @@ namespace Assets.Scripts.Weapons
 				t.DestroyGround (destructionCircle);
 				Destroy (this.gameObject);
 			}
+            string tag = collision.collider.tag;
+            if (tag.Contains("Player"))
+            {
+                int id = collision.collider.gameObject.GetInstanceID();
+                GameObject[] totems = GameObject.FindGameObjectsWithTag(tag.Replace("Module", ""));
+                foreach (GameObject g in totems)
+                {
+                    Totem totem = g.GetComponent<Totem>();
+                    foreach (GameObject mod in totem.Modulos)
+                    {
+                        if (mod.GetInstanceID() == id)
+                            totem.DecreaseVida(damage);
+                    }
+                }
+                Destroy(this.gameObject);
+            }
         }
     }
 }

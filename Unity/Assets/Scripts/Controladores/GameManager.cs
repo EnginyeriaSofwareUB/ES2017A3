@@ -5,17 +5,21 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-
-
     // Lista de totems del contrincante. Se pueden asignar desde el editor de unity
     private PriorityQueue<Totem> listaTotemsContrincante;
+	//Diccionario con los nombres de los totems del contrincante y valor 1 si esta vivo, 0 si muere
+	private Dictionary<string, int> listaNombreTotemsContrincante;
     // Lista de totems del jugador. Se pueden asignar desde el editor de unity
     private PriorityQueue<Totem> listaTotemsJugador;
+	//Diccionario con los nombres de los totems del jugador y valor 1 si esta vivo, 0 si muere
+	private Dictionary<string, int> listaNombreTotemsJugador;
 
     // Componente de GameManager que indica cuando se acaba la partida
     private EndGameCondition condicionFinJuego;
     // Totem actual del jugadorIsWinCondition
-    private Totem totemActual;
+    public Totem totemActual;
+
+    private int turnCounter;
 
     public Text txtNumeroRonda;
     public Text txtTurnoJugador;
@@ -25,6 +29,8 @@ public class GameManager : MonoBehaviour
     private enum TURNO_JUGADOR { PRIMER_JUGADOR, SEGUNDO_JUGADOR }
     
     private enum PARTIDA_STATE { INICIO_RONDA, TURNO_RONDA, FIN_RONDA }
+
+    public enum LISTA_TOTEMS { LISTA_JUGADOR, LISTA_CONTRICANTE }
 
     private TURNO_JUGADOR turnoJugador;
     private PARTIDA_STATE estadoPartida;
@@ -47,9 +53,11 @@ public class GameManager : MonoBehaviour
 
         condicionFinJuego = GetComponent<EndGameCondition>();
 
-        txtTurnoJugador.text = "Turno: " + turnoJugador.ToString();
+        //txtTurnoJugador.text = "Turno: " + turnoJugador.ToString();
 
         ronda = 0;
+
+        turnCounter = 1;
 
     }
 
@@ -57,6 +65,17 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
+        if(turnoJugador== TURNO_JUGADOR.PRIMER_JUGADOR)
+        {
+            txtTurnoJugador.text = "Es tu turno";
+            txtTurnoJugador.color = new Color(0f, 1f, 0f);
+        }
+        else
+        {
+            txtTurnoJugador.text = "Turno del contrincante";
+            txtTurnoJugador.color = new Color(1f, 0f, 0f);
+
+        }
         switch (estadoPartida)
         {
             case PARTIDA_STATE.INICIO_RONDA:
@@ -109,8 +128,7 @@ public class GameManager : MonoBehaviour
             estadoPartida = PARTIDA_STATE.FIN_RONDA;
         else
             intercambiarTurno();
-
-        condicionFinJuego.IncreaseTurnCounter();
+        turnCounter += 1;
         if (BoxTurn() && !condicionFinJuego.IsWinCondition()) ThrowBox();
     }
 
@@ -151,7 +169,7 @@ public class GameManager : MonoBehaviour
         }
 
         // Muestro el turno del jugador
-        txtTurnoJugador.text = "Turno: " + turnoJugador.ToString();
+        //txtTurnoJugador.text = "Turno: " + turnoJugador.ToString();
        
 
     }
@@ -201,7 +219,7 @@ public class GameManager : MonoBehaviour
 
     private bool BoxTurn()
     {
-        return (condicionFinJuego.TurnCounter-1) % GetNumBoxTurn() == 0;
+        return (turnCounter-1) % GetNumBoxTurn() == 0;
     }
 
     private void ThrowBox()
@@ -214,18 +232,68 @@ public class GameManager : MonoBehaviour
     {
         listaTotemsJugador = new PriorityQueue<Totem>();
         listaTotemsContrincante = new PriorityQueue<Totem>();
+		listaNombreTotemsJugador = new Dictionary<string, int>();
+		listaNombreTotemsContrincante = new Dictionary<string, int>();
         Object[] allFirstPlayerTotems = GameObject.FindGameObjectsWithTag("FirstPlayer");
         Object[] allSecondPlayerTotems = GameObject.FindGameObjectsWithTag("SecondPlayer");
 
         foreach(GameObject firstPlayerTotem in allFirstPlayerTotems)
         {
             listaTotemsJugador.Add(firstPlayerTotem.GetComponent<Totem>());
+			listaNombreTotemsJugador.Add (firstPlayerTotem.GetComponent<Totem> ().name, 1);
         }
 
         foreach (GameObject secondPlayerTotem in allSecondPlayerTotems)
         {
             listaTotemsContrincante.Add(secondPlayerTotem.GetComponent<Totem>());
+			listaNombreTotemsContrincante.Add (secondPlayerTotem.GetComponent<Totem> ().name, 1);
         }
     }
+
+    public bool isEmptyList(LISTA_TOTEMS lista){
+        PriorityQueue<Totem> listToCheck;
+        switch(lista){
+            case(LISTA_TOTEMS.LISTA_JUGADOR):
+                listToCheck = listaTotemsJugador;
+                break;
+            case(LISTA_TOTEMS.LISTA_CONTRICANTE):
+                listToCheck = listaTotemsContrincante;
+                break;
+            default:
+                return false;
+        }
+        return listToCheck.isEmpty();
+    }
+
+    public void RemoveTotem(Totem totem)
+    {
+        if (totem.tag == "FirstPlayer")
+        {
+            listaTotemsJugador.Remove(totem);
+			listaNombreTotemsJugador [totem.name] = 0;
+        }
+        else
+        {
+            listaTotemsContrincante.Remove(totem);
+			listaNombreTotemsContrincante [totem.name] = 0;
+
+        }
+        Destroy(totem.gameObject);
+    }
+
+
+	public Dictionary<string, int> getListNombreTotems(LISTA_TOTEMS lista)
+	{
+		switch(lista) {
+			case(LISTA_TOTEMS.LISTA_JUGADOR):
+				 return listaNombreTotemsJugador;
+				break;
+			case(LISTA_TOTEMS.LISTA_CONTRICANTE):
+				return listaNombreTotemsContrincante;
+				break;
+			default:
+				return null;
+		}
+	}
 
 }

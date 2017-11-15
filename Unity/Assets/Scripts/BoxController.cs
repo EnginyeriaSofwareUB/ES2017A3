@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BoxController : MonoBehaviour {
 
+    public GameObject esphere;
 	// Use this for initialization
 	void Start () {
 		
@@ -20,6 +21,7 @@ public class BoxController : MonoBehaviour {
         {
             Destroy(gameObject);
             //Alliberar objecte o trampa
+            Instantiate(esphere,transform.position,Quaternion.identity);
         }
     }
 }

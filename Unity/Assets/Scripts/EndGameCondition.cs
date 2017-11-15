@@ -3,48 +3,22 @@ using System.Collections;
 
 public class EndGameCondition : MonoBehaviour
 {
-
-    [SerializeField] private int turnCounter;
-    [SerializeField] private int maxTurns;
-
     private StateHolder stateHolder;
+
+    private GameManager gameManager;
 
 	public Canvas canvasEndGame; 
 
-    public int MaxTurns
-    {
-        set
-        {
-            this.maxTurns = value;
-        }
+	public EndGameScreenController egsc;
 
-        get
-        {
-            return this.maxTurns;
-        }
-    }
-
-    public int TurnCounter
-    {
-        get
-        {
-            return turnCounter;
-        }
-
-        set
-        {
-            turnCounter = value;
-        }
-    }
 
 
     // Use this for initialization
     void Start()
     {
 		this.stateHolder = GetComponent<StateHolder>();
+        this.gameManager = GetComponent<GameManager>();
         Debug.Log("EndGameCondition :: Start called");
-        this.turnCounter = 1;
-        this.MaxTurns = 4;
     }
 
     // Update is called once per frame
@@ -52,22 +26,18 @@ public class EndGameCondition : MonoBehaviour
     {
         if (this.stateHolder.isPlaying() && this.IsWinCondition())
         {
-			canvasEndGame.gameObject.SetActive (true);
+            this.stateHolder.setMenu();
+			showEndGameScreen ();
+
        }
     }
 
     // Si arribem al maxim de turns s'acaba el joc
     public bool IsWinCondition()
     {
-        bool isWin = this.turnCounter >= this.MaxTurns;
-        Debug.Log("EndGameCondition :: IsWinCondition called :: returns " + isWin.ToString() + ".");
+        bool isWin = gameManager.isEmptyList(GameManager.LISTA_TOTEMS.LISTA_JUGADOR) || gameManager.isEmptyList(GameManager.LISTA_TOTEMS.LISTA_CONTRICANTE);
+        //Debug.Log("EndGameCondition :: IsWinCondition called :: returns " + isWin.ToString() + ".");
         return isWin;
-    }
-
-    public void IncreaseTurnCounter()
-    {
-        this.turnCounter += 1;
-        Debug.Log("EndGameCondition :: IncreaseTurnCounter called :: turnCounter = " + turnCounter.ToString() + ".");
     }
 
     // Funció que tanca el joc quan es crida
@@ -77,5 +47,13 @@ public class EndGameCondition : MonoBehaviour
         
         Application.Quit();
     }
+
+	// Funció que mostra la pantalla de fi de joc quan aquest finalitza
+	private void showEndGameScreen()
+	{
+		canvasEndGame.gameObject.SetActive (true);
+		egsc.fillWinnerText();
+		egsc.fillTotemsText ();
+	}
 
 }

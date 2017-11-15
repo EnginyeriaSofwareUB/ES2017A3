@@ -8,12 +8,15 @@ public class Totem : MonoBehaviour
 
     [SerializeField] private int ataqueTotal { get; set; }
     [SerializeField] private int defensaTotal { get; set; }
-    [SerializeField] private float vida=10f;
+    [SerializeField] private float maxHealth=10f;
+    [SerializeField] private float currentHealth;
 
     [SerializeField] private List<GameObject> modulos;
 
     //Manejador del movimiento del jugador
     private MovimientoController movimiento;
+
+    private GameObject gameManager;
 
     public Totem(int ataque, int defensa)
     {
@@ -78,18 +81,21 @@ public class Totem : MonoBehaviour
                 instance.AddComponent<ModuloTotemBase>();
                 // Agregamos la misma layer y así evitamos las colisiones
                 instance.layer = GetComponent<Totem>().gameObject.layer;
+                instance.tag = GetComponent<Totem>().gameObject.tag + "Module";
                 modulos.Add(instance);
                 break;
             case TotemType.TOTEM_AGUILA:
                 instance = Instantiate(Resources.Load("TotemFalcon", typeof(GameObject))) as GameObject;
                 instance.AddComponent<ModuloTotemAguila>();
                 instance.layer = GetComponent<Totem>().gameObject.layer;
+                instance.tag = GetComponent<Totem>().gameObject.tag + "Module";
                 modulos.Add(instance);
                 break;
             case TotemType.TOTEM_GORILA:
                 instance = Instantiate(Resources.Load("TotemGorilla", typeof(GameObject))) as GameObject;
                 instance.AddComponent<ModuloTotemGorila>();
                 instance.layer = GetComponent<Totem>().gameObject.layer;
+                instance.tag = GetComponent<Totem>().gameObject.tag + "Module";
                 modulos.Add(instance);
                 break;
         }
@@ -116,10 +122,6 @@ public class Totem : MonoBehaviour
             lastModuleAdded.transform.position = lastModuleAdded.transform.position + moduloAnterior.transform.up * 0.7f;
             lastModuleAdded.transform.parent = this.transform;
         }
-
-
-
-
 
     }
 
@@ -153,6 +155,8 @@ public class Totem : MonoBehaviour
         AddModule(TotemType.TOTEM_AGUILA);
         AddModule(TotemType.TOTEM_GORILA);
         this.movimiento = GetComponent<MovimientoController>();
+        this.gameManager = GameObject.FindGameObjectWithTag("GameController");
+        this.currentHealth = this.maxHealth;
 
     }
 
@@ -168,15 +172,16 @@ public class Totem : MonoBehaviour
     }
 
 	private void kill(){
-		if (this.vida < 1)
+		if (this.currentHealth < 1)
 		{
-			Destroy(this.gameObject);
-		}
+            gameManager.SendMessage("RemoveTotem", this);
+            this.currentHealth = 0;
+        }
 	}
 
 	public void suicide(){
 		this.movimiento.endMovement ();
-		this.vida = 0;
+        this.currentHealth = 0;
 	}
 
     public void desabilitarControlMovimiento()
@@ -207,6 +212,19 @@ public class Totem : MonoBehaviour
         }
     }
 
+    public void DecreaseVida(float decrease)
+    {
+        this.currentHealth -= decrease;
+        kill();
+    }
 
+    public float getCurrentHealth()
+    {
+        return this.currentHealth;
+    }
+
+	public float getMaxHealth() {
+		return this.maxHealth;
+	}
 
 }

@@ -11,6 +11,8 @@ TagManager:
   - SecondPlayer
   - TerrainObject
   - Platform
+  - FirstPlayerModule
+  - SecondPlayerModule
   layers:
   - Default
   - TransparentFX
@@ -24,7 +26,7 @@ TagManager:
   - totemsSegundoJugador
   - balaPrimerJugador
   - balaSegundoJugador
-  - 
+  - HealthBar
   - 
   - 
   - 
@@ -47,4 +49,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: layerTitulo
+    uniqueID: 762975143
     locked: 0
