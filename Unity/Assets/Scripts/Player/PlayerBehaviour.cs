@@ -1,6 +1,7 @@
 ﻿using System;
 using Assets.Scripts.Weapon;
 using UnityEngine;
+using Assets.Scripts.Environment;
 
 namespace Assets.Scripts.Player
 {
@@ -14,7 +15,7 @@ namespace Assets.Scripts.Player
         private LineRenderer lineaRenderizar;
         private WeaponLogic WeaponLogic { get; set; }
         private MovimientoController mov { get; set; }
-
+        private Totem totemController;
         private StateHolder stateHolder;
 
         void Start()
@@ -22,6 +23,7 @@ namespace Assets.Scripts.Player
             
             this.WeaponLogic = GetComponent<WeaponLogic>();
             this.mov = GetComponent<MovimientoController>();
+            this.totemController = GetComponent<Totem>();
             initLine();
             this.stateHolder = GameObject.FindGameObjectWithTag("GameController").GetComponent<StateHolder>();
         }
@@ -47,7 +49,11 @@ namespace Assets.Scripts.Player
             lineaRenderizar = flecha.AddComponent<LineRenderer>();
             lineaRenderizar.startWidth=0.1f;
             lineaRenderizar.endWidth = 0.1f;
-            lineaRenderizar.material.color = Color.grey;
+            lineaRenderizar.material = new Material(Shader.Find("Sprites/Default"));
+
+ 
+            setGradienteLinea(lineaRenderizar);
+         
             //lineaRenderizar.sortingLayerName = "arrowLine";
             lineaRenderizar.sortingOrder = 0;
 
@@ -59,7 +65,27 @@ namespace Assets.Scripts.Player
 				, new Keyframe(1, 0f));  // tip of arrow
 			
         }
-
+        private void setGradienteLinea(LineRenderer line)
+        {
+            float alpha = 1.0f;
+            Gradient gradient = new Gradient();
+            if (this.gameObject.layer == Global.Capas.totemsPrimerJugador)
+            {
+                gradient.SetKeys(
+                new GradientColorKey[] { new GradientColorKey(Color.green, 0.0f), new GradientColorKey(Color.red, 1.0f) },
+                new GradientAlphaKey[] { new GradientAlphaKey(alpha, 0.0f), new GradientAlphaKey(alpha, 1.0f) }
+                );
+            }
+            else
+            {
+                gradient.SetKeys(
+              new GradientColorKey[] { new GradientColorKey(Color.blue, 0.0f), new GradientColorKey(Color.red, 1.0f) },
+              new GradientAlphaKey[] { new GradientAlphaKey(alpha, 0.0f), new GradientAlphaKey(alpha, 1.0f) }
+              );
+            }
+            
+            line.colorGradient = gradient;
+        }
         private void drawLine()
         {
             lineaRenderizar.gameObject.SetActive(true);
