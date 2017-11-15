@@ -53,7 +53,7 @@ public class GameManager : MonoBehaviour
 
         condicionFinJuego = GetComponent<EndGameCondition>();
 
-        txtTurnoJugador.text = "Turno: " + turnoJugador.ToString();
+        //txtTurnoJugador.text = "Turno: " + turnoJugador.ToString();
 
         ronda = 0;
 
@@ -65,6 +65,17 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
+        if(turnoJugador== TURNO_JUGADOR.PRIMER_JUGADOR)
+        {
+            txtTurnoJugador.text = "Es tu turno";
+            txtTurnoJugador.color = new Color(0f, 1f, 0f);
+        }
+        else
+        {
+            txtTurnoJugador.text = "Turno del contrincante";
+            txtTurnoJugador.color = new Color(1f, 0f, 0f);
+
+        }
         switch (estadoPartida)
         {
             case PARTIDA_STATE.INICIO_RONDA:
@@ -158,7 +169,7 @@ public class GameManager : MonoBehaviour
         }
 
         // Muestro el turno del jugador
-        txtTurnoJugador.text = "Turno: " + turnoJugador.ToString();
+        //txtTurnoJugador.text = "Turno: " + turnoJugador.ToString();
        
 
     }
