@@ -18,7 +18,6 @@ abstract public class Item : MonoBehaviour {
 
     protected int uses;
     protected int useCounter;
-    private bool isTaken;
 
     // Use this for initialization
     virtual protected void Start () {
@@ -26,7 +25,6 @@ abstract public class Item : MonoBehaviour {
 		this.isUsed = false;
 		this.holder = null;
 		this.useCounter = 0;
-        this.isTaken = false;
 		this.setCanBeEquipedWithOthers();
 		this.setItemUses();
 		this.setItemType();
@@ -40,7 +38,7 @@ abstract public class Item : MonoBehaviour {
 	}
 
 	protected void RemoveItem(){
-		Destroy(this);
+		this.holder = null;
 	}
 
 	abstract public void applyEffect();
@@ -85,12 +83,7 @@ abstract public class Item : MonoBehaviour {
 
     public bool IsTaken()
     {
-        return isTaken;
-    }
-
-    public void SetTaken(bool isTaken)
-    {
-        this.isTaken = isTaken;
+        return this.holder!=null;
     }
 
 }
