@@ -2,29 +2,31 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum ItemType
+{
+    Atac, Curació, Defensa, Moviment
+}
 abstract public class Item : MonoBehaviour {
 
-	public enum ItemType {
-		Atac, Curació, Defensa, Moviment
-	}
-
-	private bool isActive;
-	private bool isUsed;
+    protected bool isActive;
+	protected bool isUsed;
 	protected bool canBeEquipedWithOthers;
 
 	protected ItemType type;
 
 	private Totem holder;
 
-	protected int uses;
-	private int useCounter;
+    protected int uses;
+    protected int useCounter;
+    private bool isTaken;
 
-	// Use this for initialization
-	virtual protected void Start () {
+    // Use this for initialization
+    virtual protected void Start () {
 		this.isActive = false;
 		this.isUsed = false;
 		this.holder = null;
 		this.useCounter = 0;
+        this.isTaken = false;
 		this.setCanBeEquipedWithOthers();
 		this.setItemUses();
 		this.setItemType();
@@ -37,7 +39,7 @@ abstract public class Item : MonoBehaviour {
 		}
 	}
 
-	private void RemoveItem(){
+	protected void RemoveItem(){
 		Destroy(this);
 	}
 
@@ -80,4 +82,15 @@ abstract public class Item : MonoBehaviour {
 			return false;
 		}
 	}
+
+    public bool IsTaken()
+    {
+        return isTaken;
+    }
+
+    public void SetTaken(bool isTaken)
+    {
+        this.isTaken = isTaken;
+    }
+
 }

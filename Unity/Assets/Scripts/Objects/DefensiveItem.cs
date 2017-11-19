@@ -1,6 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
+public enum DefensiveItemType
+{
+    Escut, EscutDoble, Iglú, ÀngelGuarda
+}
 
 public abstract class DefensiveItem : Item {
 
@@ -15,4 +21,12 @@ public abstract class DefensiveItem : Item {
 	override protected void setItemType(){
 		this.type = ItemType.Defensa;
 	}
+
+    override protected void Update()
+    {
+        if (this.isUsed || !this.isActive)
+        {
+            this.RemoveItem();
+        }
+    }
 }
