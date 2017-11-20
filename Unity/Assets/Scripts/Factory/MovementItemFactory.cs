@@ -29,7 +29,6 @@ public class MovementItemFactory {
             }
 
         }
-        movementItem.SetTaken(true);
         return movementItem;
     }
 
