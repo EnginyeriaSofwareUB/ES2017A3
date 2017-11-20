@@ -29,7 +29,6 @@ public class AttackItemFactory  {
             }
 
         }
-        attackItem.SetTaken(true);
         return attackItem;
     }
 

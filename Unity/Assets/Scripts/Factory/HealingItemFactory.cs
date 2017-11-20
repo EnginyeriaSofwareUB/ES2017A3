@@ -29,7 +29,6 @@ public class HealingItemFactory {
             }
 
         }
-        healingItem.SetTaken(true);
         return healingItem;
     }
 

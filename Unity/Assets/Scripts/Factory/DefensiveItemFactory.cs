@@ -29,7 +29,6 @@ public class DefensiveItemFactory {
             }
 
         }
-        defensiveItem.SetTaken(true);
         return defensiveItem;
     }
 
