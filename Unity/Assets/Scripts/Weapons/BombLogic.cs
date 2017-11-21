@@ -24,18 +24,18 @@ namespace Assets.Scripts.Weapons
 
         void OnCollisionEnter2D(Collision2D collision)
         {
-            /*if (collision.transform.gameObject == this.Player)
+            if (collision.transform.gameObject == this.Player)
             {
                 Physics2D.IgnoreCollision(GetComponent<BoxCollider2D>(), collision.collider);
-                return;
-            }*/
+            }
 
             string tag = collision.collider.tag;
-            if (tag == "TerrainObject") 
-			{
-                Terrain2 t = collision.gameObject.GetComponent<Terrain2>();
-				t.DestroyGround (destructionCircle);
-			}
+            if (tag == "TerrainObject")
+            {
+                Physics2D.IgnoreCollision(GetComponent<BoxCollider2D>(), collision.collider);
+                //Terrain2 t = collision.gameObject.GetComponent<Terrain2>();
+                //t.DestroyGround (destructionCircle);
+            }
             else if (tag.Contains("Player"))
             {
                 int id = collision.collider.gameObject.GetInstanceID();
