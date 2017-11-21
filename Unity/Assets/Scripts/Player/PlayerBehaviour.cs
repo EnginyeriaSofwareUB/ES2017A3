@@ -45,8 +45,10 @@ namespace Assets.Scripts.Player
 
         private void initLine()
         {
-			GameObject flecha = new GameObject ("flecha");
-            lineaRenderizar = flecha.AddComponent<LineRenderer>();
+            GameObject arrow = (GameObject) Instantiate(Resources.Load("Arrow",typeof (GameObject)),transform);
+            arrow.transform.SetParent(transform);
+            		
+            lineaRenderizar = arrow.GetComponent<LineRenderer>();
             lineaRenderizar.startWidth=0.1f;
             lineaRenderizar.endWidth = 0.1f;
             lineaRenderizar.material = new Material(Shader.Find("Sprites/Default"));

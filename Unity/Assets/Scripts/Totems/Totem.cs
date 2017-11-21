@@ -165,10 +165,15 @@ public class Totem : MonoBehaviour
     {
     }
 
-
     private void LateUpdate()
     {
 		kill ();
+    }
+
+    private void deleteLineRenderer()
+    {
+        GameObject drawnLine = transform.Find("Arrow").gameObject;
+        Destroy(drawnLine);
     }
 
 	private void kill(){
@@ -176,12 +181,14 @@ public class Totem : MonoBehaviour
 		{
             gameManager.SendMessage("RemoveTotem", this);
             this.currentHealth = 0;
+            deleteLineRenderer();
         }
 	}
 
 	public void suicide(){
 		this.movimiento.endMovement ();
         this.currentHealth = 0;
+        deleteLineRenderer();
 	}
 
     public void desabilitarControlMovimiento()
