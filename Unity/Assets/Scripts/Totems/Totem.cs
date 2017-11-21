@@ -163,12 +163,7 @@ public class Totem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            this.DecreaseVida(5);
-        }
     }
-
 
     private void LateUpdate()
     {
