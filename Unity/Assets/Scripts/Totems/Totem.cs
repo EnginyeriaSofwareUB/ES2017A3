@@ -163,6 +163,10 @@ public class Totem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            this.DecreaseVida(5);
+        }
     }
 
 
@@ -171,17 +175,25 @@ public class Totem : MonoBehaviour
 		kill ();
     }
 
+    private void deleteLineRenderer()
+    {
+        GameObject drawnLine = transform.Find("Arrow").gameObject;
+        Destroy(drawnLine);
+    }
+
 	private void kill(){
 		if (this.currentHealth < 1)
 		{
             gameManager.SendMessage("RemoveTotem", this);
             this.currentHealth = 0;
+            deleteLineRenderer();
         }
 	}
 
 	public void suicide(){
 		this.movimiento.endMovement ();
         this.currentHealth = 0;
+        deleteLineRenderer();
 	}
 
     public void desabilitarControlMovimiento()
