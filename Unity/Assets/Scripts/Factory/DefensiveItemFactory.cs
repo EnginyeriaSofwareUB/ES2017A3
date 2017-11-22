@@ -1,24 +1,68 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class DefensiveItemFactory {
 
-    DefensiveItem [] defensiveItems;
+	Dictionary <DefensiveItemType,DefensiveItem> defensiveItems;
+	private int numCharacters;
 
-    public DefensiveItemFactory(int numItems)
+    public DefensiveItemFactory(int numCharacters)
     {
-        defensiveItems = new DefensiveItem[numItems];
+		this.numCharacters = numCharacters;
+		CreateDefensiveItems ();
     }
 
-    public DefensiveItem getItem()
+	public void CreateDefensiveItems(){
+		Array defensiveTypeItems = Enum.GetValues (typeof(DefensiveItemType));
+		defensiveItems = new Dictionary<DefensiveItemType,DefensiveItem> ();
+
+		foreach (DefensiveItemType dType in defensiveTypeItems) {
+			for (int i = 0; i < numCharacters; i++) {
+				switch (dType) {
+					case DefensiveItemType.Escut:
+						defensiveItems.Add(dType, new Escut (dType));
+						break;
+					case DefensiveItemType.EscutDoble:
+						defensiveItems.Add(dType, new EscutDoble (dType));
+						break;
+					case DefensiveItemType.Iglú:
+						defensiveItems.Add(dType, new Iglu (dType));
+						break;
+					case DefensiveItemType.ÀngelGuarda:
+						defensiveItems.Add(dType, new AngelGuarda (dType));
+						break;
+				}
+			}
+		}
+	}
+
+	public DefensiveItem GetIglu(){
+		return GetItem (DefensiveItemType.Iglú);
+	}
+
+	public DefensiveItem GetEscut(){
+		return GetItem (DefensiveItemType.Escut);
+	}
+
+	public DefensiveItem GetEscutDoble(){
+		return GetItem (DefensiveItemType.EscutDoble);
+	}
+
+	public DefensiveItem GetAngelGuarda(){
+		return GetItem (DefensiveItemType.ÀngelGuarda);
+	}
+
+	public DefensiveItem GetItem(DefensiveItemType defensiveItemType)
     {
         bool trobat = false;
         DefensiveItem defensiveItem = null;
+
         int i = 0;
-        while(!trobat && i < defensiveItems.Length)
+		while(!trobat && i < defensiveItems[DefensiveItemType].Count)
         {
-            defensiveItem = defensiveItems[i];
+			defensiveItem = defensiveItems[DefensiveItemType][i];
             if (!defensiveItem.IsTaken())
             {
                 trobat = true;
@@ -31,14 +75,4 @@ public class DefensiveItemFactory {
         }
         return defensiveItem;
     }
-
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }

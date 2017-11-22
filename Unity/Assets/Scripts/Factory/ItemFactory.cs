@@ -9,12 +9,15 @@ public class ItemFactory {
     AttackItemFactory attackFactory;
     MovementItemFactory movementFactory;
 
-    public ItemFactory(int numItems)
+	private int numCharacters;
+
+    public ItemFactory(int numCharacters)
     {
-        InitDefensiveItemFactory(numItems);
-        InitAttackItemFactory(numItems);
-        InitHealingItemFactory(numItems);
-        InitMovementItemFactory(numItems);
+		this.numCharacters = numCharacters;
+        InitDefensiveItemFactory();
+        InitAttackItemFactory();
+        InitHealingItemFactory();
+        InitMovementItemFactory();
     }
 
     public HealingItem getHealingItem()
@@ -38,42 +41,42 @@ public class ItemFactory {
     }
 
     // Use this for initialization
-    public void InitDefensiveItemFactory(int numItems)
+    public void InitDefensiveItemFactory()
     {
-        InitItemFactory(ItemType.Defensa, numItems);
+        InitItemFactory(ItemType.Defensa);
     }
 
-    public void InitAttackItemFactory(int numItems)
+    public void InitAttackItemFactory()
     {
-        InitItemFactory(ItemType.Atac, numItems);
+        InitItemFactory(ItemType.Atac);
     }
 
-    public void InitHealingItemFactory(int numItems)
+    public void InitHealingItemFactory()
     {
-        InitItemFactory(ItemType.Curació, numItems);
+        InitItemFactory(ItemType.Curació);
     }
 
-    public void InitMovementItemFactory(int numItems)
+    public void InitMovementItemFactory()
     {
-        InitItemFactory(ItemType.Moviment, numItems);
+        InitItemFactory(ItemType.Moviment);
     }
 
 
-    private void InitItemFactory(ItemType item, int numItems)
+    private void InitItemFactory(ItemType item)
     {
         switch (item)
         {
             case ItemType.Curació:
-                healingFactory = new HealingItemFactory(numItems);
+			healingFactory = new HealingItemFactory(numCharacters);
                 break;
             case ItemType.Atac:
-                attackFactory = new AttackItemFactory(numItems);
+			attackFactory = new AttackItemFactory(numCharacters);
                 break;
             case ItemType.Defensa:
-                defensiveFactory = new DefensiveItemFactory(numItems);
+			defensiveFactory = new DefensiveItemFactory(numCharacters);
                 break;
             case ItemType.Moviment:
-                movementFactory = new MovementItemFactory(numItems);
+			movementFactory = new MovementItemFactory(numCharacters);
                 break;
             default:
                 break;

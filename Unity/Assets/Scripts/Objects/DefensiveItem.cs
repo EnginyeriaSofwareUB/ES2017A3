@@ -16,29 +16,7 @@ public abstract class DefensiveItem : Item {
 	protected int defense;
 	protected int roundCounter;
 	protected int maxRound;
-	private DefensiveItemType defensiveType;
-
-	public DefensiveItem(DefensiveItemType itemType){
-		this.defensiveType = itemType;
-		switch (itemType) {
-			case DefensiveItemType.Escut:
-				this.maxRound = 3;
-				setItemUses (2);
-				break;
-			case DefensiveItemType.EscutDoble:
-				this.maxRound = 2;
-				setItemUses (2);
-				break;
-			case DefensiveItemType.Iglú:
-				this.maxRound = 1;
-				setItemUses (2);
-				break;
-			case DefensiveItemType.ÀngelGuarda:
-				this.maxRound = 5;
-				setItemUses (1);
-				break;
-		}
-	}
+	protected DefensiveItemType defensiveType;
 
 	override protected void Start () {
 		base.Start();
@@ -73,10 +51,14 @@ public abstract class DefensiveItem : Item {
 		this.uses = uses;
 	}
 
-	public DefensiveItemType getTypeOfDefensiveItem(){
-		return defensiveType;
-	}
+	public DefensiveItemType getDefensiveItemType(){
+		if (defensiveType != null) {
+			return defensiveType;
+		}
+		return null;
 
+	}
+		
 	/// <summary>
 	/// Al actualizar miramos si el objeto ha llegado a su máximo de rondas o a su máximo de usos
 	/// </summary>
