@@ -231,27 +231,46 @@ public class GameManager : MonoBehaviour
         boxGenerator.GetComponent<BoxGeneratorController>().SendMessage("AddBox");
     }
 
-    private void initPlayers()
-    {
-        listaTotemsJugador = new PriorityQueue<Totem>();
-        listaTotemsContrincante = new PriorityQueue<Totem>();
+	private void initPlayers()
+	{
+		int countRed = 0;
+		int countBlue = 0;
+
+		listaTotemsJugador = new PriorityQueue<Totem>();
+		listaTotemsContrincante = new PriorityQueue<Totem>();
 		listaNombreTotemsJugador = new Dictionary<string, int>();
 		listaNombreTotemsContrincante = new Dictionary<string, int>();
-        Object[] allFirstPlayerTotems = GameObject.FindGameObjectsWithTag("FirstPlayer");
-        Object[] allSecondPlayerTotems = GameObject.FindGameObjectsWithTag("SecondPlayer");
+		Object[] allFirstPlayerTotems = GameObject.FindGameObjectsWithTag("FirstPlayer");
+		Object[] allSecondPlayerTotems = GameObject.FindGameObjectsWithTag("SecondPlayer");
 
-        foreach(GameObject firstPlayerTotem in allFirstPlayerTotems)
-        {
-            listaTotemsJugador.Add(firstPlayerTotem.GetComponent<Totem>());
-			listaNombreTotemsJugador.Add (firstPlayerTotem.GetComponent<Totem> ().name, 1);
-        }
+		foreach(GameObject firstPlayerTotem in allFirstPlayerTotems)
+		{
+			if (countRed < TeamsData.PlayersRed) 
+			{
+				//firstPlayerTotem.GetComponent<Totem> ().AddAguilaTotem ();
+				listaTotemsJugador.Add (firstPlayerTotem.GetComponent<Totem> ());
+				listaNombreTotemsJugador.Add (firstPlayerTotem.GetComponent<Totem> ().name, 1);
+			} else {
+				firstPlayerTotem.gameObject.SetActive (false);
+			}
 
-        foreach (GameObject secondPlayerTotem in allSecondPlayerTotems)
-        {
-            listaTotemsContrincante.Add(secondPlayerTotem.GetComponent<Totem>());
-			listaNombreTotemsContrincante.Add (secondPlayerTotem.GetComponent<Totem> ().name, 1);
-        }
-    }
+			countRed++;
+
+		}
+
+		foreach (GameObject secondPlayerTotem in allSecondPlayerTotems)
+		{
+			if (countBlue < TeamsData.PlayersBlue) {
+				listaTotemsContrincante.Add (secondPlayerTotem.GetComponent<Totem> ());
+				listaNombreTotemsContrincante.Add (secondPlayerTotem.GetComponent<Totem> ().name, 1);
+			} else {
+				secondPlayerTotem.gameObject.SetActive (false);
+			}
+
+			countBlue++;
+
+		}
+	}
 
     private void initItems()
     {

@@ -1,7 +1,7 @@
 ﻿
 public static class TeamsData
 {
-	private static int playersRed = 1, playersBlue = 1;
+	private static int playersRed = 2, playersBlue = 2;
 
 	public static int PlayersRed 
 	{
