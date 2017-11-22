@@ -225,6 +225,12 @@ public class Totem : MonoBehaviour
         kill();
     }
 
+    public void aumentarVida(float cantidad)
+    {
+        this.currentHealth += cantidad;
+        Debug.Log("Aumento la vida en " + cantidad);
+    }
+
     public float getCurrentHealth()
     {
         return this.currentHealth;
