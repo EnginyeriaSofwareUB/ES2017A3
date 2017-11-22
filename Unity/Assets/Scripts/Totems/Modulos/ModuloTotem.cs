@@ -6,7 +6,9 @@ public enum TotemType
 {
     TOTEM_GORILA,
     TOTEM_BASE,
-    TOTEM_AGUILA
+    TOTEM_AGUILA,
+	TOTEM_TORTUGA,
+	TOTEM_ELEFANTE
 };
 
 public class ModuloTotem : MonoBehaviour {
