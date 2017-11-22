@@ -9,13 +9,11 @@ public class CustomizeTotem : MonoBehaviour {
 	public GameObject totem1P1, totem2P1, totem3P1, totem4P1, totem5P1;
 	public GameObject totem1P2, totem2P2, totem3P2, totem4P2, totem5P2;
 	public GameObject currentTotem;
-	//private int contModulos;
 
 
 	void Start() {
+		initModules ();
 		totemCanvas.gameObject.SetActive (false);
-		//contModulos = 0;
-
 	}
 		
 	void Update(){
@@ -128,6 +126,9 @@ public class CustomizeTotem : MonoBehaviour {
 			saveModuleToData (3);
 
 		}
+		for(int i = 0; i<4; i++){
+			Debug.Log (TeamsData.ModulesTotem1P1[i]+"susususuus");
+		}
 	}
 
 	public void buttonTortugaOnClick()
@@ -159,7 +160,6 @@ public class CustomizeTotem : MonoBehaviour {
 	}
 
 	public void cancel(){
-		//currentTotem.GetComponent<ContModules>().initModules();
 		currentTotem.GetComponent<ContModules>().initContModules();
 		closePopup ();
 		TeamsData.CurrentTotem = 0;
@@ -170,21 +170,32 @@ public class CustomizeTotem : MonoBehaviour {
 	private void saveModuleToData(int modul){
 		//modul: 1 aguila 2 gorila 3 elefante 4 tortuga
 		int cont = currentTotem.GetComponent<ContModules> ().getContModules ()-1;
+		int[] totemModules;
 		switch (TeamsData.CurrentTotem) 
 		{
 		case 1: //player1 totem1
-			/*int[] totemModules = TeamsData.ModulesTotem1P1;
-			totemModules [cont] = totem;*/
-			TeamsData.ModulesTotem1P1 [cont] = modul;
+			totemModules = TeamsData.ModulesTotem1P1;
+			totemModules [cont] = modul;
+			TeamsData.ModulesTotem1P1 = totemModules;
+			//TeamsData.ModulesTotem1P1 [cont] = modul;
 			break;
 		case 2: //p1t2
-			TeamsData.ModulesTotem2P1 [cont] = modul;			
+			totemModules = TeamsData.ModulesTotem2P1;
+			totemModules [cont] = modul;
+			TeamsData.ModulesTotem2P1 = totemModules;
+			//TeamsData.ModulesTotem2P1 [cont] = modul;			
 			break;
 		case 3: //p1t3
-			TeamsData.ModulesTotem3P1 [cont] = modul;
+			totemModules = TeamsData.ModulesTotem3P1;
+			totemModules [cont] = modul;
+			TeamsData.ModulesTotem3P1 = totemModules;
+			//TeamsData.ModulesTotem3P1 [cont] = modul;
 			break;
 		case 4: //p1t4
-			TeamsData.ModulesTotem4P1 [cont] = modul;
+			totemModules = TeamsData.ModulesTotem4P1;
+			totemModules [cont] = modul;
+			TeamsData.ModulesTotem4P1 = totemModules;
+			//TeamsData.ModulesTotem4P1 [cont] = modul;
 			break;
 		case 5: //p2t1
 			TeamsData.ModulesTotem1P2 [cont] = modul;
@@ -206,5 +217,19 @@ public class CustomizeTotem : MonoBehaviour {
 			break;
 	}
 
+	}
+
+
+	private void initModules(){
+		TeamsData.ModulesTotem1P1 = new int[] { 0, 0, 0, 0 };
+		TeamsData.ModulesTotem2P1 = new int[] { 0, 0, 0, 0 };
+		TeamsData.ModulesTotem3P1 = new int[] { 0, 0, 0, 0 };
+		TeamsData.ModulesTotem4P1 = new int[] { 0, 0, 0, 0 };
+		TeamsData.ModulesTotem5P1 = new int[] { 0, 0, 0, 0 };
+		TeamsData.ModulesTotem1P2 = new int[] { 0, 0, 0, 0 };
+		TeamsData.ModulesTotem2P2 = new int[] { 0, 0, 0, 0 };
+		TeamsData.ModulesTotem3P2 = new int[] { 0, 0, 0, 0 };
+		TeamsData.ModulesTotem4P2 = new int[] { 0, 0, 0, 0 };
+		TeamsData.ModulesTotem5P2 = new int[] { 0, 0, 0, 0 };
 	}
 }
