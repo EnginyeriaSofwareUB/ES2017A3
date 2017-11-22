@@ -62,7 +62,7 @@ public class EndGameScreenController : MonoBehaviour {
 
 	// BUTTON LISTENERS
 	public void PlayAgain(){
-		SceneManager.LoadScene ("JuegoScene");
+		SceneManager.LoadScene ("TeamsScene");
 
 	}
 
