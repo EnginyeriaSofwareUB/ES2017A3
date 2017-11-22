@@ -46,6 +46,16 @@ public class Totem : MonoBehaviour
         AddModule(TotemType.TOTEM_AGUILA);
     }
 
+	public void AddTortugaTotem()
+	{
+		AddModule(TotemType.TOTEM_TORTUGA);
+	}
+
+	public void AddElefanteTotem()
+	{
+		AddModule(TotemType.TOTEM_ELEFANTE);
+	}
+
     public void DeleteGorilaTotem()
     {
         DeleteModule(TotemType.TOTEM_GORILA);
@@ -98,6 +108,20 @@ public class Totem : MonoBehaviour
                 instance.tag = GetComponent<Totem>().gameObject.tag + "Module";
                 modulos.Add(instance);
                 break;
+			case TotemType.TOTEM_TORTUGA:
+				instance = Instantiate(Resources.Load("TotemTurtle", typeof(GameObject))) as GameObject;
+				instance.AddComponent<ModuloTotemTortuga>();
+				instance.layer = GetComponent<Totem>().gameObject.layer;
+				instance.tag = GetComponent<Totem>().gameObject.tag + "Module";
+				modulos.Add(instance);
+				break;
+			case TotemType.TOTEM_ELEFANTE:
+				instance = Instantiate(Resources.Load("TotemElephant", typeof(GameObject))) as GameObject;
+				instance.AddComponent<ModuloTotemElefante>();
+				instance.layer = GetComponent<Totem>().gameObject.layer;
+				instance.tag = GetComponent<Totem>().gameObject.tag + "Module";
+				modulos.Add(instance);
+				break;
         }
 
         GameObject lastModuleAdded = modulos[modulos.Count - 1];
@@ -152,8 +176,8 @@ public class Totem : MonoBehaviour
     void Start()
     {
         AddModule(TotemType.TOTEM_BASE);
-        AddModule(TotemType.TOTEM_AGUILA);
-        AddModule(TotemType.TOTEM_GORILA);
+        //AddModule(TotemType.TOTEM_AGUILA);
+        //AddModule(TotemType.TOTEM_GORILA);
         this.movimiento = GetComponent<MovimientoController>();
         this.gameManager = GameObject.FindGameObjectWithTag("GameController");
         this.currentHealth = this.maxHealth;
@@ -172,8 +196,8 @@ public class Totem : MonoBehaviour
 
     private void deleteLineRenderer()
     {
-        GameObject drawnLine = transform.Find("Arrow").gameObject;
-        Destroy(drawnLine);
+        //GameObject drawnLine = transform.Find("Arrow").gameObject;
+        //Destroy(drawnLine);
     }
 
 	private void kill(){

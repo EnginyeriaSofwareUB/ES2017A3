@@ -1,7 +1,7 @@
 ﻿
 public static class TeamsData
 {
-	private static int playersRed = 2, playersBlue = 2;
+	private static int playersRed = 2, playersBlue = 2, currentTotem = 0;
 
 	public static int PlayersRed 
 	{
@@ -27,5 +27,16 @@ public static class TeamsData
 		}
 	}
 
+	public static int CurrentTotem 
+	{
+		get 
+		{
+			return currentTotem;
+		}
+		set 
+		{
+			currentTotem = value;
+		}
+	}
 
 }
