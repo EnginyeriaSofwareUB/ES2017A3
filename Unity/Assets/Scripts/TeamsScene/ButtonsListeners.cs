@@ -20,14 +20,14 @@ public class ButtonsListeners : MonoBehaviour {
 	private int contRed = 1;
 	private int contBlue = 1;
 
-	public GameObject totem; 
-	public CustomizeTotem obj;
+	//public GameObject totem; 
+	//public CustomizeTotem obj;
 
 
-
+	/*
 	public void setTotem(GameObject t){
 		totem = t;
-	}
+	}*/
 
 	public void fight()
 	{

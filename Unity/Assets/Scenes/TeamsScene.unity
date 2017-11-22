@@ -1577,8 +1577,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 716767544}
-  - component: {fileID: 716767542}
   - component: {fileID: 716767543}
+  - component: {fileID: 716767542}
   m_Layer: 0
   m_Name: SceneManager
   m_TagString: Untagged
@@ -1594,7 +1594,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 716767541}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a85bbc1ef65c34dd786ccda1af72b5f3, type: 3}
+  m_Script: {fileID: 11500000, guid: 87b72f79a2abf1f40b231ef80c8681b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   totem2Red: {fileID: 780650828}
@@ -1605,8 +1605,6 @@ MonoBehaviour:
   totem3Blue: {fileID: 1152600512}
   totem4Blue: {fileID: 320464987}
   totem5Blue: {fileID: 1643470993}
-  totem: {fileID: 107078463}
-  obj: {fileID: 0}
 --- !u!114 &716767543
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4317,14 +4315,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.834}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Texture: {fileID: 0}
+  m_Texture: {fileID: 2800000, guid: 25860d4f37455484c96942ade22fc830, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
