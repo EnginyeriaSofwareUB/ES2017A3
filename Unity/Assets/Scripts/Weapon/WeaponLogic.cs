@@ -27,12 +27,13 @@ namespace Assets.Scripts.Weapon
 
         void Update()
         {
-            ShotStartingPoint = CalculateFirePoint(ShootingVelocity);
+            
         }
 
 
         public void Shoot()
         {
+			ShotStartingPoint = CalculateFirePoint(ShootingVelocity);
             var weapon = CreateWeapon("Weapons/Bomb", ShotStartingPoint);
 
             SetWeaponVelocity(weapon, ShootingVelocity);
@@ -89,16 +90,9 @@ namespace Assets.Scripts.Weapon
 
         private Vector3 CalculateFirePoint(Vector3 velocity)
         {
-            var degree = Mathf.Atan2((transform.position.x+velocity.x) - transform.position.x, (transform.position.y+velocity.y) - transform.position.y) * 180 / Mathf.PI;
-            var fittedDegree = degree > 90 ? Mathf.Abs((degree - 450) % -360) : Mathf.Abs((degree - 90)%360);
-            return AngleToPoint(fittedDegree);
-        }
-
-        private Vector3 AngleToPoint(float degree)
-        {
-            var resultY = transform.position.y + (transform.localScale.y) * Mathf.Sin(degree * (Mathf.PI / 180));
-            var resultX = transform.position.x + (transform.localScale.x) * Mathf.Cos(degree * (Mathf.PI / 180));
-            return new Vector3(resultX, resultY, 0);
+			var resultY = transform.position.y;
+			var resultX = transform.position.x;
+			return new Vector3(resultX, resultY, 0);
         }
     }
 }

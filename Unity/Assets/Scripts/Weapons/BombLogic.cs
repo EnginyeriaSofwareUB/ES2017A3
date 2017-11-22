@@ -33,8 +33,8 @@ namespace Assets.Scripts.Weapons
             if (tag == "TerrainObject")
             {
                 Physics2D.IgnoreCollision(GetComponent<BoxCollider2D>(), collision.collider);
-                //Terrain2 t = collision.gameObject.GetComponent<Terrain2>();
-                //t.DestroyGround (destructionCircle);
+                Terrain2 t = collision.gameObject.GetComponent<Terrain2>();
+                t.DestroyGround (destructionCircle);
             }
             else if (tag.Contains("Player"))
             {
