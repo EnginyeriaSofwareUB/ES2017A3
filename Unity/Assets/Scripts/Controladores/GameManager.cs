@@ -236,6 +236,10 @@ public class GameManager : MonoBehaviour
 		int countRed = 0;
 		int countBlue = 0;
 
+		for(int i = 0; i<4; i++){
+			Debug.Log (TeamsData.ModulesTotem1P1 [i]);
+		}
+
 		listaTotemsJugador = new PriorityQueue<Totem>();
 		listaTotemsContrincante = new PriorityQueue<Totem>();
 		listaNombreTotemsJugador = new Dictionary<string, int>();

@@ -10,10 +10,12 @@ public class ButtonsListeners : MonoBehaviour {
 	public Button totem2Red;
 	public Button totem3Red;
 	public Button totem4Red;
+	public Button totem5Red;
 
 	public Button totem2Blue;
 	public Button totem3Blue;
 	public Button totem4Blue;
+	public Button totem5Blue;
 
 	private int contRed = 1;
 	private int contBlue = 1;
@@ -51,6 +53,9 @@ public class ButtonsListeners : MonoBehaviour {
 		case 3:
 			totem4Red.gameObject.SetActive (true);
 			break;
+		case 4:
+			totem5Red.gameObject.SetActive (true);
+			break;
 		default:
 			break;
 		};
@@ -68,6 +73,9 @@ public class ButtonsListeners : MonoBehaviour {
 			break;
 		case 3:
 			totem4Blue.gameObject.SetActive (true);
+			break;
+		case 4:
+			totem5Blue.gameObject.SetActive (true);
 			break;
 		default:
 			break;
@@ -96,6 +104,10 @@ public class ButtonsListeners : MonoBehaviour {
 		TeamsData.CurrentTotem = 4;
 	}
 
+	public void buttonCustomizeTotem5P1(){
+		TeamsData.CurrentTotem = 9;
+	}
+
 	public void buttonCustomizeTotem1P2(){
 		TeamsData.CurrentTotem = 5;
 	}
@@ -112,4 +124,8 @@ public class ButtonsListeners : MonoBehaviour {
 		TeamsData.CurrentTotem = 8;
 	}
 
+	public void buttonCustomizeTotem5P2(){
+		TeamsData.CurrentTotem = 10;
+	}
+		
 }
