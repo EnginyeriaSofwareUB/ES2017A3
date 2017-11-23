@@ -38,6 +38,8 @@ public class GameManager : MonoBehaviour
 
 	private StateHolder stateHolder;
 
+    private ItemFactory itemFactory;
+
     private void Awake()
     {
 
@@ -48,6 +50,7 @@ public class GameManager : MonoBehaviour
     {
 		this.stateHolder = GetComponent<StateHolder>();
 		initPlayers();
+        initItems();
         estadoPartida = PARTIDA_STATE.INICIO_RONDA;
         turnoJugador = TURNO_JUGADOR.PRIMER_JUGADOR;
 
@@ -228,26 +231,94 @@ public class GameManager : MonoBehaviour
         boxGenerator.GetComponent<BoxGeneratorController>().SendMessage("AddBox");
     }
 
-    private void initPlayers()
-    {
-        listaTotemsJugador = new PriorityQueue<Totem>();
-        listaTotemsContrincante = new PriorityQueue<Totem>();
+	private void initPlayers()
+	{
+		int countRed = 0;
+		int countBlue = 0;
+
+		listaTotemsJugador = new PriorityQueue<Totem>();
+		listaTotemsContrincante = new PriorityQueue<Totem>();
 		listaNombreTotemsJugador = new Dictionary<string, int>();
 		listaNombreTotemsContrincante = new Dictionary<string, int>();
-        Object[] allFirstPlayerTotems = GameObject.FindGameObjectsWithTag("FirstPlayer");
-        Object[] allSecondPlayerTotems = GameObject.FindGameObjectsWithTag("SecondPlayer");
+		Object[] allFirstPlayerTotems = GameObject.FindGameObjectsWithTag("FirstPlayer");
+		Object[] allSecondPlayerTotems = GameObject.FindGameObjectsWithTag("SecondPlayer");
 
-        foreach(GameObject firstPlayerTotem in allFirstPlayerTotems)
-        {
-            listaTotemsJugador.Add(firstPlayerTotem.GetComponent<Totem>());
-			listaNombreTotemsJugador.Add (firstPlayerTotem.GetComponent<Totem> ().name, 1);
-        }
+		foreach(GameObject firstPlayerTotem in allFirstPlayerTotems)
+		{
+			if (countRed < TeamsData.PlayersRed) 
+			{
+				//Add modules to totem:
+				for(int i = 0; i<4; i++){
+					int modul = getModuleTotem (1, countRed, i);
+					switch(modul){
+						case 1:
+							firstPlayerTotem.GetComponent<Totem> ().AddAguilaTotem ();
+							break;
+						case 2:
+							firstPlayerTotem.GetComponent<Totem> ().AddGorilaTotem ();
+							break;
+						case 3:
+							firstPlayerTotem.GetComponent<Totem> ().AddElefanteTotem();
+							break;
+						case 4:
+							firstPlayerTotem.GetComponent<Totem> ().AddTortugaTotem();
+							break;
+						default:
 
-        foreach (GameObject secondPlayerTotem in allSecondPlayerTotems)
-        {
-            listaTotemsContrincante.Add(secondPlayerTotem.GetComponent<Totem>());
-			listaNombreTotemsContrincante.Add (secondPlayerTotem.GetComponent<Totem> ().name, 1);
-        }
+							break;
+						}
+				}
+
+				listaTotemsJugador.Add (firstPlayerTotem.GetComponent<Totem> ());
+				listaNombreTotemsJugador.Add (firstPlayerTotem.GetComponent<Totem> ().name, 1);
+			} else {
+				firstPlayerTotem.gameObject.SetActive (false);
+			}
+
+			countRed++;
+
+		}
+
+		foreach (GameObject secondPlayerTotem in allSecondPlayerTotems)
+		{
+			if (countBlue < TeamsData.PlayersBlue) {
+
+				//Add modules to totem:
+				for(int i = 0; i<4; i++){
+					int modul = getModuleTotem(2, countBlue, i);
+					if (modul!= 0) {
+						switch(modul){
+						case 1:
+							secondPlayerTotem.GetComponent<Totem> ().AddAguilaTotem ();
+							break;
+						case 2:
+							secondPlayerTotem.GetComponent<Totem> ().AddGorilaTotem ();
+							break;
+						case 3:
+							secondPlayerTotem.GetComponent<Totem> ().AddElefanteTotem();
+							break;
+						case 4:
+							secondPlayerTotem.GetComponent<Totem> ().AddTortugaTotem();
+							break;
+						}
+					}
+				}
+
+
+				listaTotemsContrincante.Add (secondPlayerTotem.GetComponent<Totem> ());
+				listaNombreTotemsContrincante.Add (secondPlayerTotem.GetComponent<Totem> ().name, 1);
+			} else {
+				secondPlayerTotem.gameObject.SetActive (false);
+			}
+
+			countBlue++;
+
+		}
+	}
+
+    private void initItems()
+    {
+        itemFactory = new ItemFactory(2*5); //2 representa el num jugadores y 5 elnumero de personajes por jugador
     }
 
     public bool isEmptyList(LISTA_TOTEMS lista){
@@ -294,6 +365,62 @@ public class GameManager : MonoBehaviour
 			default:
 				return null;
 		}
+	}
+
+
+	private int getModuleTotem(int player, int currentTotem, int posModul){
+		//TeamsData.ModulesTotem1P1 [i];
+		int ret = 0;
+		currentTotem++;
+		if (player == 1) 
+		{
+			//Debug.Log ("in player 1"+ret+"ct"+currentTotem);
+			switch (currentTotem) 
+			{
+			case 1: 
+				ret = TeamsData.ModulesTotem1P1 [posModul];
+				break;
+			case 2: 
+				ret = TeamsData.ModulesTotem2P1 [posModul];			
+				break;
+			case 3: 
+				ret = TeamsData.ModulesTotem3P1 [posModul];
+				break;
+			case 4:
+				ret = TeamsData.ModulesTotem4P1 [posModul];
+				break;
+			case 5: 
+				ret = TeamsData.ModulesTotem5P1 [posModul];
+				break;
+
+			}
+
+		} else 
+		{
+			//Debug.Log ("in player 2"+ret+"ct"+currentTotem);
+			switch (currentTotem) 
+			{
+			case 1: 
+				ret = TeamsData.ModulesTotem1P2 [posModul];
+				break;
+			case 2: 
+				ret = TeamsData.ModulesTotem2P2 [posModul];			
+				break;
+			case 3: 
+				ret = TeamsData.ModulesTotem3P2 [posModul];
+				break;
+			case 4:
+				ret = TeamsData.ModulesTotem4P2 [posModul];
+				break;
+			case 5: 
+				ret = TeamsData.ModulesTotem5P2 [posModul];
+				break;
+
+			}
+
+		}
+
+		return ret;
 	}
 
 }

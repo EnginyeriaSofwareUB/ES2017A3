@@ -15,5 +15,8 @@ EditorBuildSettings:
     path: 
     guid: 26e2dbb85c7d41549b92a3ed7c862d16
   - enabled: 1
+    path: Assets/Scenes/TeamsScene.unity
+    guid: 73be80810b7674d93a23d7b2a208504d
+  - enabled: 1
     path: Assets/Scenes/JuegoScene.unity
     guid: 16b31ad7c92bfa541a012a454e666f66
