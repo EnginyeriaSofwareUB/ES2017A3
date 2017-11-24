@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+﻿/*using UnityEngine;
 using System.Collections;
 using Assets.Scripts.Environment;
 
@@ -63,4 +63,4 @@ public class Vitamina : HealingItem
     {
 
     }
-}
+}*/
