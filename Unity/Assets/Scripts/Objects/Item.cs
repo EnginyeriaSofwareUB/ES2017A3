@@ -45,7 +45,8 @@ abstract public class Item : MonoBehaviour {
 
 	abstract public void removeEffect();
 
-	abstract public ItemType GetItemType();
+
+    abstract public ItemType GetItemType();
 
 	virtual protected void setCanBeEquipedWithOthers(){
 		this.canBeEquipedWithOthers = false;
@@ -68,7 +69,11 @@ abstract public class Item : MonoBehaviour {
 		return this.isUsed && this.isActive; 
 	}
 
-	public bool isEquipableWithOthers(){
+    public abstract void OnCollisionEnter2D(Collision2D collision);
+
+
+
+    public bool isEquipableWithOthers(){
 		return this.canBeEquipedWithOthers;
 	}
 

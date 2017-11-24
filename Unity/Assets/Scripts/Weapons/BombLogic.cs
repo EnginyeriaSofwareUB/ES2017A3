@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.Weapons
 {
-    public class BombLogic : ExplosionBehavior {
+    public class BombLogic : MonoBehaviour {
 
 		public CircleCollider2D destructionCircle;
         public float damage = 1;
@@ -16,10 +16,10 @@ namespace Assets.Scripts.Weapons
 	
         void Update ()
         {
-            if (this.UpdateExplosion())
+            /*if (this.UpdateExplosion())
             {
                 Destroy(this.gameObject);
-            }
+            }*/
         }
 
         void OnCollisionEnter2D(Collision2D collision)
@@ -27,17 +27,16 @@ namespace Assets.Scripts.Weapons
             if (collision.transform.gameObject == this.Player)
             {
                 Physics2D.IgnoreCollision(GetComponent<BoxCollider2D>(), collision.collider);
-                return;
             }
 
-			if (collision.collider.tag == "TerrainObject") 
-			{
-				Terrain2 t = collision.gameObject.GetComponent<Terrain2>();
-				t.DestroyGround (destructionCircle);
-				Destroy (this.gameObject);
-			}
             string tag = collision.collider.tag;
-            if (tag.Contains("Player"))
+            if (tag == "TerrainObject")
+            {
+                Physics2D.IgnoreCollision(GetComponent<BoxCollider2D>(), collision.collider);
+                Terrain2 t = collision.gameObject.GetComponent<Terrain2>();
+                t.DestroyGround (destructionCircle);
+            }
+            else if (tag.Contains("Player"))
             {
                 int id = collision.collider.gameObject.GetInstanceID();
                 GameObject[] totems = GameObject.FindGameObjectsWithTag(tag.Replace("Module", ""));
@@ -50,8 +49,9 @@ namespace Assets.Scripts.Weapons
                             totem.DecreaseVida(damage);
                     }
                 }
-                Destroy(this.gameObject);
             }
+
+            Destroy(this.gameObject);
         }
     }
 }
