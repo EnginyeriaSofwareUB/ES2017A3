@@ -2,6 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum HealingItemType
+{
+    Vitamina,Botiqui
+}
+
 public abstract class HealingItem : Item {
 
 	protected int heal;

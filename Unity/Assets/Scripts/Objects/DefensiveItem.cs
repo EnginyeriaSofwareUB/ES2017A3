@@ -8,7 +8,7 @@ using UnityEngine;
 /// </summary>
 public enum DefensiveItemType
 {
-    Escut, EscutDoble, Iglú, ÀngelGuarda
+    Escut, EscutDoble, Iglu, AngelGuarda
 }
 
 public abstract class DefensiveItem : Item {
@@ -18,11 +18,11 @@ public abstract class DefensiveItem : Item {
 	protected int maxRound;
 	protected DefensiveItemType defensiveType;
 
-	override protected void Start () {
+    override protected void Start () {
 		base.Start();
 		this.roundCounter= 0;
 		this.setDefense();
-	}
+    }
 	
 	abstract protected void setDefense();
 
@@ -52,10 +52,7 @@ public abstract class DefensiveItem : Item {
 	}
 
 	public DefensiveItemType getDefensiveItemType(){
-		if (defensiveType != null) {
-			return defensiveType;
-		}
-		return null;
+		return defensiveType;
 
 	}
 		

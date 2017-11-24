@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum ItemType
 {
-    Atac, Curació, Defensa, Moviment
+    Atac , Curació, Defensa, Moviment
 }
 abstract public class Item : MonoBehaviour {
 
