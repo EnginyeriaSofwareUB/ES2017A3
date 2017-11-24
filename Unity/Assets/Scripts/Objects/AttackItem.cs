@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum AttackItemType
+{
+    Missil, GranadaFragmentacio, Semtex, BombaTradicional
+}
 public abstract class AttackItem : Item {
 
 	protected CircleCollider2D destructionCircle;

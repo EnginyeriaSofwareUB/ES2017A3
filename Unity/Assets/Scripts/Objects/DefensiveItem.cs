@@ -8,7 +8,7 @@ using UnityEngine;
 /// </summary>
 public enum DefensiveItemType
 {
-    Escut, EscutDoble, Iglú, ÀngelGuarda
+    Escut, EscutDoble, Iglu, AngelGuarda
 }
 
 public abstract class DefensiveItem : Item {
@@ -16,35 +16,13 @@ public abstract class DefensiveItem : Item {
 	protected int defense;
 	protected int roundCounter;
 	protected int maxRound;
-	private DefensiveItemType defensiveType;
+	protected DefensiveItemType defensiveType;
 
-	public DefensiveItem(DefensiveItemType itemType){
-		this.defensiveType = itemType;
-		switch (itemType) {
-			case DefensiveItemType.Escut:
-				this.maxRound = 3;
-				setItemUses (2);
-				break;
-			case DefensiveItemType.EscutDoble:
-				this.maxRound = 2;
-				setItemUses (2);
-				break;
-			case DefensiveItemType.Iglú:
-				this.maxRound = 1;
-				setItemUses (2);
-				break;
-			case DefensiveItemType.ÀngelGuarda:
-				this.maxRound = 5;
-				setItemUses (1);
-				break;
-		}
-	}
-
-	override protected void Start () {
+    override protected void Start () {
 		base.Start();
 		this.roundCounter= 0;
 		this.setDefense();
-	}
+    }
 	
 	abstract protected void setDefense();
 
@@ -73,10 +51,11 @@ public abstract class DefensiveItem : Item {
 		this.uses = uses;
 	}
 
-	public DefensiveItemType getTypeOfDefensiveItem(){
+	public DefensiveItemType getDefensiveItemType(){
 		return defensiveType;
-	}
 
+	}
+		
 	/// <summary>
 	/// Al actualizar miramos si el objeto ha llegado a su máximo de rondas o a su máximo de usos
 	/// </summary>

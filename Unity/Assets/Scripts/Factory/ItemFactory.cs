@@ -9,79 +9,148 @@ public class ItemFactory {
     AttackItemFactory attackFactory;
     MovementItemFactory movementFactory;
 
-    public ItemFactory(int numItems)
+	private int numCharacters;
+
+    public ItemFactory(int numCharacters)
     {
-        InitDefensiveItemFactory(numItems);
-        InitAttackItemFactory(numItems);
-        InitHealingItemFactory(numItems);
-        InitMovementItemFactory(numItems);
+		this.numCharacters = numCharacters;
+        InitDefensiveItemFactory();
+        InitAttackItemFactory();
+        InitHealingItemFactory();
+        InitMovementItemFactory();
     }
 
-    public HealingItem getHealingItem()
+    /// <summary>
+    /// Defensive items
+    /// </summary>
+    /// <returns></returns>
+
+    public DefensiveItem GetIglu()
     {
-        return healingFactory.getItem();
+        return defensiveFactory.GetIglu();
     }
 
-    public AttackItem getAttackItem()
+    public DefensiveItem GetEscut()
     {
-        return attackFactory.getItem();
+        return defensiveFactory.GetEscut();
     }
 
-    public MovementItem getMovementItem()
+    public DefensiveItem GetEscutDoble()
     {
-        return movementFactory.getItem();
+        return defensiveFactory.GetEscutDoble();
     }
 
-    public DefensiveItem getDefensiveItem()
+    public DefensiveItem GetAngelGuarda()
     {
-        return defensiveFactory.getItem();
+        return defensiveFactory.GetAngelGuarda();
     }
 
-    // Use this for initialization
-    public void InitDefensiveItemFactory(int numItems)
+    /// <summary>
+    /// Attack items
+    /// </summary>
+    /// <returns></returns>
+
+    public AttackItem GetMissil()
     {
-        InitItemFactory(ItemType.Defensa, numItems);
+        return attackFactory.GetMissil();
     }
 
-    public void InitAttackItemFactory(int numItems)
+    public AttackItem GetGranadaFragmentacio()
     {
-        InitItemFactory(ItemType.Atac, numItems);
+        return attackFactory.GetGranadaFragmentacio();
     }
 
-    public void InitHealingItemFactory(int numItems)
+    public AttackItem GetSemtex()
     {
-        InitItemFactory(ItemType.Curació, numItems);
+        return attackFactory.GetSemtex();
     }
 
-    public void InitMovementItemFactory(int numItems)
+    public AttackItem GetBombaTradicional()
     {
-        InitItemFactory(ItemType.Moviment, numItems);
+        return attackFactory.GetBombaTradicional();
     }
 
+    /// <summary>
+    /// Healing items
+    /// </summary>
+    /// <returns></returns>
 
-    private void InitItemFactory(ItemType item, int numItems)
+    public HealingItem GetBotiqui()
+    {
+        return healingFactory.GetBotiqui();
+    }
+
+    public HealingItem GetVitamina()
+    {
+        return healingFactory.GetVitamina();
+    }
+
+    /// <summary>
+    /// Movement items
+    /// </summary>
+    /// <returns></returns>
+    
+    public MovementItem GetBolaTeletransport()
+    {
+        return movementFactory.GetBolaTeletransport();
+    }
+
+    public MovementItem GetCoet()
+    {
+        return movementFactory.GetCoet();
+    }
+
+    public MovementItem GetRaig()
+    {
+        return movementFactory.GetRaig();
+    }
+
+    /// <summary>
+    /// Initialising factories
+    /// </summary>
+    public void InitDefensiveItemFactory()
+    {
+        InitItemFactory(ItemType.Defensa);
+    }
+
+    public void InitAttackItemFactory()
+    {
+        InitItemFactory(ItemType.Atac);
+    }
+
+    public void InitHealingItemFactory()
+    {
+        InitItemFactory(ItemType.Curació);
+    }
+
+    public void InitMovementItemFactory()
+    {
+        InitItemFactory(ItemType.Moviment);
+    }
+
+    /// <summary>
+    /// Create a factory
+    /// </summary>
+    /// <param name="item"></param>
+    private void InitItemFactory(ItemType item)
     {
         switch (item)
         {
             case ItemType.Curació:
-                healingFactory = new HealingItemFactory(numItems);
+			    healingFactory = new HealingItemFactory(numCharacters);
                 break;
             case ItemType.Atac:
-                attackFactory = new AttackItemFactory(numItems);
+			    attackFactory = new AttackItemFactory(numCharacters);
                 break;
             case ItemType.Defensa:
-                defensiveFactory = new DefensiveItemFactory(numItems);
+			    defensiveFactory = new DefensiveItemFactory(numCharacters);
                 break;
             case ItemType.Moviment:
-                movementFactory = new MovementItemFactory(numItems);
+			    movementFactory = new MovementItemFactory(numCharacters);
                 break;
             default:
                 break;
         }
     }
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    
 }
