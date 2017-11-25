@@ -587,3 +587,18 @@ MonoBehaviour:
     indexItemInList: 999
     rarity: 0
     itemAttributes: []
+  - itemName: Rocket
+    itemID: 38
+    itemDesc: Air Control
+    itemIcon: {fileID: 0}
+    itemModel: {fileID: 1663579228098034, guid: 5973b77ecb3144920954840e8e20b0f7,
+      type: 2}
+    itemValue: 1
+    itemType: 2
+    itemWeight: 0
+    maxStack: 1
+    indexItemInList: 999
+    rarity: 0
+    itemAttributes:
+    - attributeName: 
+      attributeValue: 0
