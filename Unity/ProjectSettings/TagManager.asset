@@ -13,6 +13,23 @@ TagManager:
   - Platform
   - FirstPlayerModule
   - SecondPlayerModule
+  - EquipmentSystem
+  - Item
+  - Slots
+  - Slot
+  - ItemIcon
+  - Hotbar
+  - Tooltip
+  - Panel
+  - ResultSlot
+  - CraftSystem
+  - Canvas
+  - EventSystem
+  - MainInventory
+  - DraggingItem
+  - Timer
+  - FirstPlayer_Hotbar
+  - SecondPlayer_Hotbar
   layers:
   - Default
   - TransparentFX
