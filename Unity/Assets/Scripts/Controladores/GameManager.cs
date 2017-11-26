@@ -38,7 +38,6 @@ public class GameManager : MonoBehaviour
 
 	private StateHolder stateHolder;
 
-    private ItemFactory itemFactory;
 
     private void Awake()
     {
@@ -50,7 +49,6 @@ public class GameManager : MonoBehaviour
     {
 		this.stateHolder = GetComponent<StateHolder>();
 		initPlayers();
-        initItems();
         estadoPartida = PARTIDA_STATE.INICIO_RONDA;
         turnoJugador = TURNO_JUGADOR.PRIMER_JUGADOR;
 
@@ -315,11 +313,6 @@ public class GameManager : MonoBehaviour
 
 		}
 	}
-
-    private void initItems()
-    {
-        itemFactory = new ItemFactory(2*5); //2 representa el num jugadores y 5 elnumero de personajes por jugador
-    }
 
     public bool isEmptyList(LISTA_TOTEMS lista){
         PriorityQueue<Totem> listToCheck;
