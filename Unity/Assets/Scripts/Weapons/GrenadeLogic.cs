@@ -3,12 +3,17 @@ using UnityEngine;
 
 namespace Assets.Scripts.Weapons
 {
-    public class BombLogic : MonoBehaviour {
+    public class GrenadeLogic : MonoBehaviour {
 
 		private CircleCollider2D destructionCircle;
         public float damage = 1;
 
         public GameObject Player { get; set; }
+
+		private Collision2D collision;
+
+		private bool ignore = false;
+
 
         void Start () {
 			this.destructionCircle = GetComponent<CircleCollider2D> ();
@@ -28,9 +33,10 @@ namespace Assets.Scripts.Weapons
             string tag = collision.collider.tag;
             if (tag == "TerrainObject")
             {
-                Physics2D.IgnoreCollision(GetComponent<BoxCollider2D>(), collision.collider);
-                Terrain2 t = collision.gameObject.GetComponent<Terrain2>();
-                t.DestroyGround (destructionCircle);
+				this.collision = collision;
+				if (!ignore)
+					Invoke("DoSomething", 2);
+				ignore = true;
             }
             else if (tag.Contains("Player"))
             {
@@ -47,7 +53,13 @@ namespace Assets.Scripts.Weapons
                 }
             }
 
-            Destroy(this.gameObject);
+            //Destroy(this.gameObject);
         }
-    }
+
+		void DoSomething() {
+			Terrain2 t = this.collision.gameObject.GetComponent<Terrain2>();
+			t.DestroyGround (destructionCircle);
+			Destroy (this.gameObject);
+		}
+	}
 }

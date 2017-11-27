@@ -216,7 +216,7 @@ public class Totem : MonoBehaviour
 	}
 
 	public void suicide(){
-		this.movimiento.endMovement ();
+		this.movimiento.endMovement();
         this.currentHealth = 0;
         deleteLineRenderer();
 	}
