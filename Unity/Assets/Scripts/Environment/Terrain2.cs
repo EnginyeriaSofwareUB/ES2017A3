@@ -51,7 +51,7 @@ public class Terrain2 : MonoBehaviour {
 				py = c.y + y;
 				ny = c.y - y;
 
-				if (px < widthPixel && py < heightPixel && px > 0 && py > 0) {
+				if (nx < widthPixel && ny < heightPixel && nx > 0 && ny > 0) {
 					sr.sprite.texture.SetPixel (px, py, transp);
 					sr.sprite.texture.SetPixel (nx, py, transp);
 					sr.sprite.texture.SetPixel (px, ny, transp);
