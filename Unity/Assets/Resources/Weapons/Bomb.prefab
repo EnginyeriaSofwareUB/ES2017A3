@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 131904}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.57, y: 5.39, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.35062265}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -72,7 +72,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 131904}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 4300000, guid: 4806675d2f7e4407db83d32a45e0424e, type: 3}
 --- !u!50 &5002288
 Rigidbody2D:
   serializedVersion: 4
@@ -129,7 +129,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6dbf3b262f747384499f5f5f2f5093b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destructionCircle: {fileID: 0}
   damage: 1
 --- !u!1001 &100100000
 Prefab:

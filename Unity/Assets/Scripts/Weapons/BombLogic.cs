@@ -5,7 +5,7 @@ namespace Assets.Scripts.Weapons
 {
     public class BombLogic : MonoBehaviour {
 
-		public CircleCollider2D destructionCircle;
+		private CircleCollider2D destructionCircle;
         public float damage = 1;
 
         public GameObject Player { get; set; }
@@ -16,10 +16,6 @@ namespace Assets.Scripts.Weapons
 	
         void Update ()
         {
-            /*if (this.UpdateExplosion())
-            {
-                Destroy(this.gameObject);
-            }*/
         }
 
         void OnCollisionEnter2D(Collision2D collision)
