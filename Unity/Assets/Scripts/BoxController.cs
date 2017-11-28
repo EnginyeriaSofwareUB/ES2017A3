@@ -24,8 +24,9 @@ public class BoxController : MonoBehaviour {
     private void OnCollisionEnter2D(Collision2D collision)
     {
 
-        Item itemSelecionadoRandom = inventoryItemList.itemList[numeroAleatorio].getCopy();
-        GameObject itemGameObject = itemSelecionadoRandom.itemModel;
+        GameObject itemGameObject = (GameObject)Instantiate(inventoryItemList.itemList[numeroAleatorio].itemModel);
+        PickUpItem item = itemGameObject.AddComponent<PickUpItem>();
+        item.item = inventoryItemList.itemList[numeroAleatorio];
 
         itemGameObject.gameObject.transform.GetChild(0).gameObject.AddComponent<CircleCollider2D>();
    
@@ -34,7 +35,8 @@ public class BoxController : MonoBehaviour {
 
         PickUpItem eliinar = itemGameObject.GetComponent<PickUpItem>();
         itemGameObject.AddComponent<CogerObjecto>();
-        itemGameObject.GetComponent<CogerObjecto>().item = itemSelecionadoRandom;
+        itemGameObject.AddComponent<Rigidbody2D>();
+        itemGameObject.GetComponent<CogerObjecto>().item = item;
         Instantiate(itemGameObject, transform.position, Quaternion.identity);
         Destroy(gameObject);
 
