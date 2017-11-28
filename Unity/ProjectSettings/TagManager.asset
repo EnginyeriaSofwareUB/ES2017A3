@@ -11,8 +11,6 @@ TagManager:
   - SecondPlayer
   - TerrainObject
   - Platform
-  - FirstPlayerModule
-  - SecondPlayerModule
   - EquipmentSystem
   - Item
   - Slots
@@ -30,6 +28,10 @@ TagManager:
   - Timer
   - FirstPlayer_Hotbar
   - SecondPlayer_Hotbar
+  - TotemFirstPlayer
+  - TotemSecondPlayer
+  - TotemFirstPlayerModule
+  - TotemSecondPlayerModule
   layers:
   - Default
   - TransparentFX

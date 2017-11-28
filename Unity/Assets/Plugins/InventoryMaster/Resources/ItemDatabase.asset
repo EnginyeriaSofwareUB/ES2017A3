@@ -46,7 +46,8 @@ MonoBehaviour:
     itemID: 2
     itemDesc: Botiquin
     itemIcon: {fileID: 21300000, guid: 093be3fa71d545a408eaa1f05a19eb68, type: 3}
-    itemModel: {fileID: 100002, guid: c5744e85571614df9ac358d945f99871, type: 3}
+    itemModel: {fileID: 1406895379464410, guid: 18e582ea7558047d1b79203397e46a07,
+      type: 2}
     itemValue: 1
     itemType: 2
     itemWeight: 0

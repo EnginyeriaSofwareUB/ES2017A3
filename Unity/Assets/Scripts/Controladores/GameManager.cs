@@ -112,6 +112,7 @@ public class GameManager : MonoBehaviour
         this.turnoJugador = TURNO_JUGADOR.PRIMER_JUGADOR;
         ronda += 1;
         txtNumeroRonda.text = "Ronda: " + ronda;
+        InitInventory();
 
     }
 
@@ -130,7 +131,7 @@ public class GameManager : MonoBehaviour
         else
             intercambiarTurno();
         turnCounter += 1;
-        if (BoxTurn() && !condicionFinJuego.IsWinCondition()) ThrowBox();
+        //if (BoxTurn() && !condicionFinJuego.IsWinCondition()) ThrowBox();
     }
 
     private void handleFinalRonda()
@@ -168,10 +169,10 @@ public class GameManager : MonoBehaviour
                 totemActual.activarControlMovimiento();
                 break;
         }
-
+        InitInventory();
         // Muestro el turno del jugador
         //txtTurnoJugador.text = "Turno: " + turnoJugador.ToString();
-       
+
 
     }
 
@@ -238,8 +239,8 @@ public class GameManager : MonoBehaviour
 		listaTotemsContrincante = new PriorityQueue<Totem>();
 		listaNombreTotemsJugador = new Dictionary<string, int>();
 		listaNombreTotemsContrincante = new Dictionary<string, int>();
-		Object[] allFirstPlayerTotems = GameObject.FindGameObjectsWithTag("FirstPlayer");
-		Object[] allSecondPlayerTotems = GameObject.FindGameObjectsWithTag("SecondPlayer");
+		Object[] allFirstPlayerTotems = GameObject.FindGameObjectsWithTag("TotemFirstPlayer");
+		Object[] allSecondPlayerTotems = GameObject.FindGameObjectsWithTag("TotemSecondPlayer");
 
 		foreach(GameObject firstPlayerTotem in allFirstPlayerTotems)
 		{
@@ -415,5 +416,35 @@ public class GameManager : MonoBehaviour
 
 		return ret;
 	}
+
+    public Totem getActualTotem()
+    {
+        return totemActual;
+    }
+
+    private void InitInventory()
+    {
+        Inventory playerInventory = totemActual.gameObject.GetComponentInParent<PlayerInventory>().inventory.GetComponent<Inventory>();
+        playerInventory.deleteAllItems();
+
+        Object[] totemsPlayer;
+
+        if(totemActual.tag == "TotemFirstPlayer")
+        {
+            totemsPlayer = GameObject.FindGameObjectsWithTag("TotemFirstPlayer");
+        }
+        else
+        {
+            totemsPlayer = GameObject.FindGameObjectsWithTag("TotemSecondPlayer");
+        }
+        foreach(GameObject totem in totemsPlayer)
+        {
+            List<Item> totemItems = totem.GetComponent<Totem>().getItemList();
+            foreach (Item item in totemItems)
+            {
+                playerInventory.addItemToInventory(item.itemID);
+            }
+        }
+    }
 
 }

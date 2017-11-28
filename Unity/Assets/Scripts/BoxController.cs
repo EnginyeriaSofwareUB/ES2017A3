@@ -23,28 +23,28 @@ public class BoxController : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-
-        GameObject itemGameObject = (GameObject)Instantiate(inventoryItemList.itemList[numeroAleatorio].itemModel);
-        PickUpItem item = itemGameObject.AddComponent<PickUpItem>();
-        item.item = inventoryItemList.itemList[numeroAleatorio];
-
-        itemGameObject.gameObject.transform.GetChild(0).gameObject.AddComponent<CircleCollider2D>();
-   
-
-
-
-        PickUpItem eliinar = itemGameObject.GetComponent<PickUpItem>();
-        itemGameObject.AddComponent<CogerObjecto>();
-        itemGameObject.AddComponent<Rigidbody2D>();
-        itemGameObject.GetComponent<CogerObjecto>().item = item;
-        Instantiate(itemGameObject, transform.position, Quaternion.identity);
-        Destroy(gameObject);
-
         if (collision.gameObject.tag == "Weapon")
         {
-            Destroy(gameObject);
-            //Alliberar objecte o trampa
+            /*GameObject itemGameObject = (GameObject)Instantiate(inventoryItemList.itemList[numeroAleatorio].itemModel);
+            PickUpItem item = itemGameObject.AddComponent<PickUpItem>();
+            item.item = inventoryItemList.itemList[numeroAleatorio];
+            itemGameObject.gameObject.transform.GetChild(0).gameObject.AddComponent<CircleCollider2D>();
+            PickUpItem eliinar = itemGameObject.GetComponent<PickUpItem>();
+            itemGameObject.AddComponent<CogerObjeto>();
+            itemGameObject.AddComponent<Rigidbody2D>();
+            itemGameObject.GetComponent<CogerObjeto>().item = item.item;
+            Instantiate(itemGameObject, transform.position, Quaternion.identity);
+            Destroy(gameObject);*/
 
+            Item item = inventoryItemList.itemList[numeroAleatorio];
+            GameObject itemGameObject = (GameObject)Instantiate(item.itemModel,transform.position,Quaternion.identity);
+            itemGameObject.AddComponent<PickUpItem>();
+            itemGameObject.GetComponent<PickUpItem>().item = item;
+            itemGameObject.AddComponent<CogerObjeto>();
+            itemGameObject.AddComponent<Rigidbody2D>();
+            itemGameObject.AddComponent<CircleCollider2D>();
+            itemGameObject.GetComponent<CogerObjeto>().item = item;
+            Destroy(gameObject);
         }
     }
 }

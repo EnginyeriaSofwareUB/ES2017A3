@@ -2,7 +2,7 @@
 using System.Collections;
 using Assets.Scripts.Environment;
 
-public class CogerObjecto : MonoBehaviour
+public class CogerObjeto : MonoBehaviour
 {
     public Item item;
     private Inventory _inventory;
@@ -36,11 +36,15 @@ public class CogerObjecto : MonoBehaviour
         {
             // Obtengo el jugador
             _player = collision.gameObject;
-            _inventory = _player.GetComponent<GestionInventario>().inventory.GetComponent<Inventory>();
-                        _inventory.addItemToInventory(item.itemID, item.itemValue);
-                        _inventory.updateItemList();
-                        _inventory.stackableSettings();
-                        Destroy(this.gameObject);
+            _inventory = _player.GetComponentInParent<PlayerInventory>().inventory.GetComponent<Inventory>();
+            _player.GetComponent<Totem>().AddItem(item);
+            //_inventory.deleteAllItems();
+           // _inventory = _player.GetComponent<PlayerInventory>().inventory.GetComponent<Inventory>();
+
+            _inventory.addItemToInventory(item.itemID, item.itemValue);
+            _inventory.updateItemList();
+            _inventory.stackableSettings();
+            Destroy(this.gameObject);
                     
             }
         }
