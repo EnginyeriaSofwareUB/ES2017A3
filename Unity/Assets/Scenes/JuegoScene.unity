@@ -683,6 +683,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3005236c9af7dcc478a567c2f1ad2e2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponType: Missile
 --- !u!114 &127215727
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1820,6 +1821,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3005236c9af7dcc478a567c2f1ad2e2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponType: Grenade
 --- !u!114 &326755384
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2076,6 +2078,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3005236c9af7dcc478a567c2f1ad2e2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponType: Grenade
 --- !u!114 &347560750
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4100,6 +4103,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3005236c9af7dcc478a567c2f1ad2e2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponType: Grenade
 --- !u!114 &850283690
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4358,6 +4362,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3005236c9af7dcc478a567c2f1ad2e2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponType: Grenade
 --- !u!114 &894934420
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4795,6 +4800,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3005236c9af7dcc478a567c2f1ad2e2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponType: Grenade
 --- !u!114 &927636074
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7317,6 +7323,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3005236c9af7dcc478a567c2f1ad2e2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponType: Grenade
 --- !u!114 &1555990954
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9944,6 +9951,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3005236c9af7dcc478a567c2f1ad2e2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponType: Grenade
 --- !u!114 &2039498833
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -14,6 +14,7 @@ namespace Assets.Scripts.Weapons
         void Start()
         {
             this.destructionCircle = GetComponent<CircleCollider2D>();
+            this.GetComponent<Rigidbody2D>().gravityScale = 0;
         }
 
         void Update()
@@ -49,7 +50,8 @@ namespace Assets.Scripts.Weapons
                 }
             }
 
-            Destroy(this.gameObject);
+            //Destroy(this.gameObject);
         }
     }
 }
+
