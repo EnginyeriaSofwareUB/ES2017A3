@@ -36,7 +36,6 @@ namespace Assets.Scripts.Weapons
             string tag = collision.collider.tag;
             if (tag == "TerrainObject")
             {
-				this.collision = collision;
 				if (!ignore)
 					Invoke("DoSomething", 2);
 				ignore = true;
@@ -55,6 +54,8 @@ namespace Assets.Scripts.Weapons
                     }
                 }
             }
+
+            this.collision = collision;
 
             //Destroy(this.gameObject);
         }
