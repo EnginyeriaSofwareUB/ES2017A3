@@ -24,3 +24,5 @@ MonoBehaviour:
     attributeValue: 0
   - attributeName: Slots
     attributeValue: 0
+  - attributeName: Vida
+    attributeValue: 0
