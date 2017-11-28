@@ -7,6 +7,8 @@ namespace Assets.Scripts.Weapon
 {
     public class WeaponLogic : MonoBehaviour
     {
+        public String weaponType = "Grenade";
+
         private PlayerBehaviour Player { get; set; }
 
         // Variable que tiene toda la estructura Totem
@@ -34,7 +36,7 @@ namespace Assets.Scripts.Weapon
         public void Shoot()
         {
 			ShotStartingPoint = CalculateFirePoint(ShootingVelocity);
-            var weapon = CreateWeapon("Weapons/Grenade", ShotStartingPoint);
+            var weapon = CreateWeapon("Weapons/" + weaponType, ShotStartingPoint);
 
             SetWeaponVelocity(weapon, ShootingVelocity);
         }

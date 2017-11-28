@@ -5,7 +5,10 @@ namespace Assets.Scripts.Weapons
 {
     public class GrenadeLogic : MonoBehaviour {
 
-		private CircleCollider2D destructionCircle;
+        public float radius = 5.0F;
+        public float power = 10.0F;
+
+        private CircleCollider2D destructionCircle;
         public float damage = 1;
 
         public GameObject Player { get; set; }
@@ -57,7 +60,16 @@ namespace Assets.Scripts.Weapons
         }
 
 		void DoSomething() {
-			Terrain2 t = this.collision.gameObject.GetComponent<Terrain2>();
+            /*Vector3 explosionPos = this.transform.position;
+            Collider[] colliders = Physics.OverlapSphere(explosionPos, radius);
+            foreach (Collider hit in colliders)
+            {
+                Rigidbody2D rb = hit.GetComponent<Rigidbody2D>();
+
+                if (rb != null)
+                    rb.AddForce(explosionPos, ForceMode2D.Impulse);
+            }*/
+            Terrain2 t = this.collision.gameObject.GetComponent<Terrain2>();
 			t.DestroyGround (destructionCircle);
 			Destroy (this.gameObject);
 		}
