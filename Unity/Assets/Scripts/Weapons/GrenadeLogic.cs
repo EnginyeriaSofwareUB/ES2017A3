@@ -71,7 +71,8 @@ namespace Assets.Scripts.Weapons
                     rb.AddForce(explosionPos, ForceMode2D.Impulse);
             }*/
             Terrain2 t = this.collision.gameObject.GetComponent<Terrain2>();
-			t.DestroyGround (destructionCircle);
+            if (t != null)
+			    t.DestroyGround (destructionCircle);
 			Destroy (this.gameObject);
 		}
 	}
