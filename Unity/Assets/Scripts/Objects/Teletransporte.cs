@@ -19,7 +19,7 @@ public class Teletransporte : MonoBehaviour
     {
 
         print(Time.time);
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(3);
         GameManager.Instance.totemActual.gameObject.transform.position += new Vector3(3, 0, 0);
         //this.gameObject.transform.parent.gameObject.transform.position += new Vector3(3, 0, 0);
         Destroy(gameObject);
