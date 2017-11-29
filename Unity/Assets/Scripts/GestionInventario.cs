@@ -166,7 +166,7 @@ public class GestionInventario : MonoBehaviour
             {
                 totemActual.aumentarVida(item.itemAttributes[i].attributeValue);
                 Debug.Log("Objeto de vida");
-
+                
             }
 
 
@@ -177,10 +177,13 @@ public class GestionInventario : MonoBehaviour
 
             if (item.itemAttributes[i].attributeName == "Cohete")
             {
-                totemActual.gameObject.transform.position += new Vector3(0, item.itemAttributes[i].attributeValue, 0);
+                totemActual.GetComponent<MovimientoController>().saltar(item.itemAttributes[i].attributeValue);
+                Debug.Log("Objeto de Cohete salto "+ item.itemAttributes[i].attributeValue);           
+                GameObject cohete = Instantiate(item.itemModel, totemActual.transform.position, Quaternion.identity) as GameObject;
 
-                Debug.Log("Objeto de Cohete");
-
+                cohete.transform.GetChild(0).gameObject.AddComponent<Cohete>();
+                cohete.transform.GetChild(0).gameObject.AddComponent<CircleCollider2D>();
+                cohete.transform.parent = totemActual.transform;
             }
 
             //Coet: propulsa cap a dalt, mantenint pres el botó de salt es manté més en l'aire (air control).
@@ -193,9 +196,13 @@ public class GestionInventario : MonoBehaviour
             // Bola de teletransport: disparar-la per teletransportar-se a una posició més endavant.
             if (item.itemID == Global.TIPO_OBJETOS.objetoTeletransporte)
             {
-                totemActual.gameObject.transform.position += new Vector3(5, 0, 0);
-                Debug.Log("Objeto de teletransporte" );
+                Debug.Log("Objeto de Cohete teletransporte " + item.itemAttributes[i].attributeValue);
+                GameObject teletransporte = Instantiate(item.itemModel, totemActual.transform.position, Quaternion.identity) as GameObject;
 
+                teletransporte.transform.GetChild(0).gameObject.AddComponent<Teletransporte>();
+                teletransporte.transform.GetChild(0).gameObject.AddComponent<CircleCollider2D>();
+                teletransporte.transform.parent = totemActual.transform;
+         
             }
             // Raig: permet moure's més ràpid i tenir més passos límit.
 

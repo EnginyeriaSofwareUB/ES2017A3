@@ -69,8 +69,7 @@ public class BoxController : MonoBehaviour {
 
             case Global.TIPO_OBJETOS.objetoCohete:
                 //TODO: Queda poner las particulas necesarias. Preguntar a albert 
-                //GameObject efectoVitamina = Instantiate(Resources.Load("Fx_OilTrailHIGH_Root"), objeto.transform.position, Quaternion.identity) as GameObject;
-                //efectoVitamina.transform.parent = objeto.transform;
+   
                 break;
 
             case Global.TIPO_OBJETOS.objetoTeletransporte:
