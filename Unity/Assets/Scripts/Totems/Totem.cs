@@ -261,6 +261,16 @@ public class Totem : MonoBehaviour
 		Debug.Log("Aumento la vida en " + cantidad);
 	}
 
+
+    public void aumentarAirControl(float cantidad)
+    {
+        GetComponent<MovimientoController>().TiempoSaltoMaximo += cantidad;
+    }
+    public void decrementalAirControl(float cantidad)
+    {
+        GetComponent<MovimientoController>().TiempoSaltoMaximo -= cantidad;
+
+    }
     public float getCurrentHealth()
     {
         return this.currentHealth;

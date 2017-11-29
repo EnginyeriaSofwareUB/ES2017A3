@@ -17,6 +17,18 @@ namespace Assets.Scripts.Environment
             public const int balaSegundoJugador = 11;
         }
 
+        public static class TIPO_OBJETOS
+        {
+            public const int objetoVitamina = 1;
+            public const int objetoBotiquin = 2;
+            public const int objetoCohete =3;
+            public const int objetoTeletransporte = 4;
+
+            public const int objetoIglu = 5;
+            public const int objetoEscudoSimple = 6;
+            public const int objetoEscudoDoble = 7;
+
+        }
         public static bool IsTerrainGenerated { get; set; }
 
         public static Vector3 TerrainNullPoint { get; set; }

@@ -26,3 +26,9 @@ MonoBehaviour:
     attributeValue: 0
   - attributeName: Vida
     attributeValue: 0
+  - attributeName: Teletransporte
+    attributeValue: 0
+  - attributeName: Cohete
+    attributeValue: 0
+  - attributeName: Rayo
+    attributeValue: 0
