@@ -5,6 +5,15 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+
+    private static GameManager _instance;
+
+    public static GameManager Instance
+    {
+        get { return _instance; }
+    }
+    
+
     // Lista de totems del contrincante. Se pueden asignar desde el editor de unity
     private PriorityQueue<Totem> listaTotemsContrincante;
 	//Diccionario con los nombres de los totems del contrincante y valor 1 si esta vivo, 0 si muere
@@ -39,11 +48,24 @@ public class GameManager : MonoBehaviour
 	private StateHolder stateHolder;
 
 
+    private List<Item> listaItemsPrimerJugador;
+    private List<Item> listaItemsSegundoJugador;
+
+    private Inventory inventario;
+
     private void Awake()
     {
-
-
+        if (_instance != null && _instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            _instance = this;
+        }
     }
+
+
     // Use this for initialization
     void Start()
     {
@@ -60,7 +82,15 @@ public class GameManager : MonoBehaviour
 
         turnCounter = 1;
 
+        this.listaItemsPrimerJugador = new List<Item>();
+        this.listaItemsSegundoJugador = new List<Item>();
+        GameObject inventarioGameObject= GameObject.FindGameObjectWithTag("MainInventory");
+        inventarioGameObject.SetActive(true);
+        this.inventario = inventarioGameObject.GetComponent<Inventory>();
+
     }
+
+
 
 
     // Update is called once per frame
@@ -112,7 +142,7 @@ public class GameManager : MonoBehaviour
         this.turnoJugador = TURNO_JUGADOR.PRIMER_JUGADOR;
         ronda += 1;
         txtNumeroRonda.text = "Ronda: " + ronda;
-        InitInventory();
+       // InitInventory();
 
     }
 
@@ -130,10 +160,12 @@ public class GameManager : MonoBehaviour
             estadoPartida = PARTIDA_STATE.FIN_RONDA;
         else
             intercambiarTurno();
+
         turnCounter += 1;
         //if (BoxTurn() && !condicionFinJuego.IsWinCondition()) ThrowBox();
     }
 
+  
     private void handleFinalRonda()
     {
         //Si han pasado X turnos (box turn) y no ha sucedido la condición de final, lanzamos la caja a la escena
@@ -149,7 +181,7 @@ public class GameManager : MonoBehaviour
     /// Función que permite intecambiar el turno de un jugador.
     /// Primeramente, desactiva el movimiento de todos los totems de los dos jugadores.
     /// </summary>
-    private void intercambiarTurno()
+    public void intercambiarTurno()
     {
         // Desactivo el movimiento del totem del jugador
         this.totemActual.desabilitarControlMovimiento();
@@ -169,7 +201,8 @@ public class GameManager : MonoBehaviour
                 totemActual.activarControlMovimiento();
                 break;
         }
-        InitInventory();
+        intercambiarInventario();
+       // InitInventory();
         // Muestro el turno del jugador
         //txtTurnoJugador.text = "Turno: " + turnoJugador.ToString();
 
@@ -352,10 +385,8 @@ public class GameManager : MonoBehaviour
 		switch(lista) {
 			case(LISTA_TOTEMS.LISTA_JUGADOR):
 				 return listaNombreTotemsJugador;
-				break;
 			case(LISTA_TOTEMS.LISTA_CONTRICANTE):
 				return listaNombreTotemsContrincante;
-				break;
 			default:
 				return null;
 		}
@@ -422,9 +453,53 @@ public class GameManager : MonoBehaviour
         return totemActual;
     }
 
+
+    public void guardarItem(Item item)
+    {
+        if (turnoJugador == TURNO_JUGADOR.PRIMER_JUGADOR)
+            this.listaItemsPrimerJugador.Add(item);
+        else
+            this.listaItemsSegundoJugador.Add(item);
+    }
+
+    public void eliminarItem(Item item)
+    {
+        if (turnoJugador == TURNO_JUGADOR.PRIMER_JUGADOR)
+            this.listaItemsPrimerJugador.Remove(item);
+        else
+            this.listaItemsSegundoJugador.Remove(item);
+    }
+
+    private void intercambiarInventario()
+    {
+        GestionInventario playerInventario = totemActual.transform.parent.GetComponent<GestionInventario>();
+        //GameObject.FindGameObjectWithTag("MainInventory").GetComponent<Inventory>().updateItemList();
+        this.inventario = playerInventario.inventory.GetComponent<Inventory>();
+        //this.inventario.deleteAllItems();
+
+        if (turnoJugador == TURNO_JUGADOR.PRIMER_JUGADOR)
+        {
+            foreach (Item item in this.listaItemsPrimerJugador)
+            {
+                inventario.addItemToInventory(item.itemID, item.itemValue);
+            }
+        }
+        else
+        {
+            foreach (Item item in this.listaItemsSegundoJugador)
+            {
+                inventario.addItemToInventory(item.itemID, item.itemValue);
+            }
+        }
+        inventario.updateItemList();
+        inventario.stackableSettings();
+    }
+
+
+
     private void InitInventory()
     {
-        Inventory playerInventory = totemActual.gameObject.GetComponentInParent<PlayerInventory>().inventory.GetComponent<Inventory>();
+        Inventory playerInventory = totemActual.gameObject.GetComponent<Inventory>();
         playerInventory.deleteAllItems();
 
         Object[] totemsPlayer;

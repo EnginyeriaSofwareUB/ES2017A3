@@ -45,19 +45,6 @@ public class MovimientoController : MonoBehaviour
 
     [SerializeField]  private bool puedeMoverse=false;
 
-    public bool PuedeMoverse
-    {
-        get
-        {
-            return puedeMoverse;
-        }
-
-        set
-        {
-            this.distanciaRecorrida = 0;
-            puedeMoverse = value;
-        }
-    }
 
     void Awake()
     {
@@ -150,4 +137,96 @@ public class MovimientoController : MonoBehaviour
 	public void endMovement(){
 		this.distanciaRecorrida = distanciaLimite + 1;
 	}
+
+    public bool PuedeMoverse
+    {
+        get
+        {
+            return puedeMoverse;
+        }
+
+        set
+        {
+            this.distanciaRecorrida = 0;
+            puedeMoverse = value;
+        }
+    }
+
+    public float VelocidadMovimiento
+    {
+        get
+        {
+            return velocidadMovimiento;
+        }
+
+        set
+        {
+            velocidadMovimiento = value;
+        }
+    }
+
+    public float VelocidadEnAire
+    {
+        get
+        {
+            return velocidadEnAire;
+        }
+
+        set
+        {
+            velocidadEnAire = value;
+        }
+    }
+
+    public float TiempoSaltoMaximo
+    {
+        get
+        {
+            return tiempoSaltoMaximo;
+        }
+
+        set
+        {
+            tiempoSaltoMaximo = value;
+        }
+    }
+
+    public float TiempoSaltoActual
+    {
+        get
+        {
+            return tiempoSaltoActual;
+        }
+
+        set
+        {
+            tiempoSaltoActual = value;
+        }
+    }
+
+    public float FuerzaSalto
+    {
+        get
+        {
+            return fuerzaSalto;
+        }
+
+        set
+        {
+            fuerzaSalto = value;
+        }
+    }
+
+    public float VelocidadMovimiento1
+    {
+        get
+        {
+            return velocidadMovimiento;
+        }
+
+        set
+        {
+            velocidadMovimiento = value;
+        }
+    }
 }

@@ -5,17 +5,18 @@ using Assets.Scripts.Environment;
 public class CogerObjeto : MonoBehaviour
 {
     public Item item;
-    private Inventory _inventory;
+    private Inventory inventario;
     private GameObject _player;
     // Use this for initialization
     private GameManager gestorJuego;
+
+
+    private GameObject inventarioGameObject;
     void Start()
     {
-        gestorJuego = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
 
-       // _player = gestorJuego.totemActual.gameObject;
-       // if (_player != null)
-       //     _inventory = _player.GetComponent<GestionInventario>().inventory.GetComponent<Inventory>();
+       
+
     }
 
     // Update is called once per frame
@@ -34,16 +35,12 @@ public class CogerObjeto : MonoBehaviour
 
         if (condicionFinal)
         {
-            // Obtengo el jugador
-            _player = collision.gameObject;
-            _inventory = _player.GetComponentInParent<PlayerInventory>().inventory.GetComponent<Inventory>();
-            _player.GetComponent<Totem>().AddItem(item);
-            //_inventory.deleteAllItems();
-           // _inventory = _player.GetComponent<PlayerInventory>().inventory.GetComponent<Inventory>();
-
-            _inventory.addItemToInventory(item.itemID, item.itemValue);
-            _inventory.updateItemList();
-            _inventory.stackableSettings();
+            GestionInventario playerInventario = collision.transform.parent.GetComponent<GestionInventario>();
+            inventario = playerInventario.inventory.GetComponent<Inventory>();
+            inventario.addItemToInventory(item.itemID, item.itemValue);
+            inventario.updateItemList();
+            inventario.stackableSettings();
+            GameManager.Instance.guardarItem(item);
             Destroy(this.gameObject);
                     
             }
