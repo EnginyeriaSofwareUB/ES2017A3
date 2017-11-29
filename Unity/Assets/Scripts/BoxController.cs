@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Assets.Scripts.Environment;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -38,13 +39,45 @@ public class BoxController : MonoBehaviour {
 
             Item item = inventoryItemList.itemList[numeroAleatorio];
             GameObject itemGameObject = (GameObject)Instantiate(item.itemModel,transform.position,Quaternion.identity);
-            itemGameObject.AddComponent<PickUpItem>();
-            itemGameObject.GetComponent<PickUpItem>().item = item;
+            //itemGameObject.AddComponent<PickUpItem>();
+            //itemGameObject.GetComponent<PickUpItem>().item = item;
             itemGameObject.AddComponent<CogerObjeto>();
             itemGameObject.AddComponent<Rigidbody2D>();
             itemGameObject.AddComponent<CircleCollider2D>();
             itemGameObject.GetComponent<CogerObjeto>().item = item;
+
+            //Ponemos el efecto asociado a ese objeto
+            setEfectoObjetoById(itemGameObject, item.itemID);
+
             Destroy(gameObject);
+        }
+    }
+
+    private void setEfectoObjetoById(GameObject objeto,int id)
+    {
+        switch (id)
+        {
+            case Global.TIPO_OBJETOS.objetoBotiquin:
+                GameObject efectoBotiquin = Instantiate(Resources.Load("GreenCore"), objeto.transform.position, Quaternion.identity) as GameObject;
+                efectoBotiquin.transform.parent = objeto.transform;
+                break;
+            case Global.TIPO_OBJETOS.objetoVitamina:
+                //TODO: Queda poner las particulas necesarias. Preguntar a albert 
+                GameObject efectoVitamina = Instantiate(Resources.Load("GreenCore"),objeto.transform.position, Quaternion.identity) as GameObject;
+                efectoVitamina.transform.parent = objeto.transform;
+                break;
+
+            case Global.TIPO_OBJETOS.objetoCohete:
+                //TODO: Queda poner las particulas necesarias. Preguntar a albert 
+   
+                break;
+
+            case Global.TIPO_OBJETOS.objetoTeletransporte:
+                GameObject efectoTeletransporte = Instantiate(Resources.Load("ErekiBall2"), objeto.transform.position, Quaternion.identity) as GameObject;
+                efectoTeletransporte.transform.parent = objeto.transform;
+                break;
+
+
         }
     }
 }
