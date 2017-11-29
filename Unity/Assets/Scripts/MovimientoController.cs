@@ -134,7 +134,17 @@ public class MovimientoController : MonoBehaviour
         return distanciaRecorrida > distanciaLimite;
     }
 
-	public void endMovement(){
+    public void saltar(float cantidad)
+    {
+        rigidbody2d.AddForce(new Vector2(0, cantidad));
+
+    }
+    public void efectoRayo(float numCantidadPasosAdd, float velocidadAumentar)
+    {
+        this.distanciaLimite += numCantidadPasosAdd;
+        this.velocidadMovimiento += velocidadAumentar;
+    }
+    public void endMovement(){
 		this.distanciaRecorrida = distanciaLimite + 1;
 	}
 

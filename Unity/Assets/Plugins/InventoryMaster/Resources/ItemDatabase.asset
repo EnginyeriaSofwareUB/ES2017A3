@@ -36,7 +36,7 @@ MonoBehaviour:
     itemValue: 1
     itemType: 2
     itemWeight: 0
-    maxStack: 1
+    maxStack: 10
     indexItemInList: 999
     rarity: 0
     itemAttributes:
@@ -51,7 +51,7 @@ MonoBehaviour:
     itemValue: 1
     itemType: 2
     itemWeight: 0
-    maxStack: 1
+    maxStack: 10
     indexItemInList: 999
     rarity: 0
     itemAttributes:
@@ -66,12 +66,12 @@ MonoBehaviour:
     itemValue: 1
     itemType: 2
     itemWeight: 0
-    maxStack: 1
+    maxStack: 10
     indexItemInList: 999
     rarity: 0
     itemAttributes:
-    - attributeName: 
-      attributeValue: 0
+    - attributeName: Cohete
+      attributeValue: 200
   - itemName: Teletransporte
     itemID: 4
     itemDesc: Teletransporte
@@ -81,7 +81,21 @@ MonoBehaviour:
     itemValue: 1
     itemType: 2
     itemWeight: 0
-    maxStack: 1
+    maxStack: 10
+    indexItemInList: 999
+    rarity: 0
+    itemAttributes:
+    - attributeName: Teletransporte
+      attributeValue: 10
+  - itemName: Rayo
+    itemID: 5
+    itemDesc: 
+    itemIcon: {fileID: 21300000, guid: c291f37e310eecf4895f1229b891e404, type: 3}
+    itemModel: {fileID: 0}
+    itemValue: 1
+    itemType: 0
+    itemWeight: 0
+    maxStack: 10
     indexItemInList: 999
     rarity: 0
     itemAttributes: []
