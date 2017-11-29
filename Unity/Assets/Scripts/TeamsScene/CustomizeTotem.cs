@@ -83,7 +83,7 @@ public class CustomizeTotem : MonoBehaviour {
 	{
 		if(!currentTotem.GetComponent<ContModules>().hasMaxModules())
 		{
-			currentTotem.GetComponent<Totem> ().AddAguilaTotem ();
+			currentTotem.GetComponent<SimpleTotem> ().AddAguilaTotem ();
 			currentTotem.GetComponent<ContModules> ().incrementContModules ();
 
 			/*int[] moduls = currentTotem.GetComponent<ContModules> ().getModules ();
@@ -99,7 +99,7 @@ public class CustomizeTotem : MonoBehaviour {
 	{
 		if(!currentTotem.GetComponent<ContModules>().hasMaxModules())
 		{
-			currentTotem.GetComponent<Totem> ().AddGorilaTotem ();
+			currentTotem.GetComponent<SimpleTotem> ().AddGorilaTotem ();
 			currentTotem.GetComponent<ContModules> ().incrementContModules ();
 
 			/*int[] moduls = currentTotem.GetComponent<ContModules> ().getModules ();
@@ -116,7 +116,7 @@ public class CustomizeTotem : MonoBehaviour {
 	{
 		if (!currentTotem.GetComponent<ContModules> ().hasMaxModules ()) 
 		{
-			currentTotem.GetComponent<Totem> ().AddElefanteTotem ();
+			currentTotem.GetComponent<SimpleTotem> ().AddElefanteTotem ();
 			currentTotem.GetComponent<ContModules> ().incrementContModules ();
 
 			/*int[] moduls = currentTotem.GetComponent<ContModules> ().getModules ();
@@ -135,7 +135,7 @@ public class CustomizeTotem : MonoBehaviour {
 	{
 		if (!currentTotem.GetComponent<ContModules> ().hasMaxModules ()) 
 		{
-			currentTotem.GetComponent<Totem> ().AddTortugaTotem ();
+			currentTotem.GetComponent<SimpleTotem> ().AddTortugaTotem ();
 			currentTotem.GetComponent<ContModules> ().incrementContModules ();
 
 			/*

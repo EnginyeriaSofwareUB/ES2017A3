@@ -13,6 +13,9 @@ public class Totem : MonoBehaviour
 
     [SerializeField] private List<GameObject> modulos;
 
+    [SerializeField] public Hotbar totemHotbar;
+    [SerializeField] public List<Item> totemItems;
+
     //Manejador del movimiento del jugador
     private MovimientoController movimiento;
 
@@ -22,7 +25,7 @@ public class Totem : MonoBehaviour
     {
         this.ataqueTotal = ataque;
         this.defensaTotal = defensa;
-
+        this.totemItems = new List<Item>();
     }
 
  
@@ -178,6 +181,9 @@ public class Totem : MonoBehaviour
         AddModule(TotemType.TOTEM_BASE);
         //AddModule(TotemType.TOTEM_AGUILA);
         //AddModule(TotemType.TOTEM_GORILA);
+        // Hotbar on ficar els items del totem, per no complicarnos serà compartida per tant s'ha de buidar i emplenar amb els items de cada totem al
+        // canviar de torn.
+        //this.totemHotbar = GameObject.FindGameObjectWithTag("Hotbar").GetComponent<Hotbar>();
         this.movimiento = GetComponent<MovimientoController>();
         this.gameManager = GameObject.FindGameObjectWithTag("GameController");
         this.currentHealth = this.maxHealth;
@@ -210,7 +216,7 @@ public class Totem : MonoBehaviour
 	}
 
 	public void suicide(){
-		this.movimiento.endMovement ();
+		this.movimiento.endMovement();
         this.currentHealth = 0;
         deleteLineRenderer();
 	}
@@ -263,5 +269,27 @@ public class Totem : MonoBehaviour
 	public float getMaxHealth() {
 		return this.maxHealth;
 	}
+
+    /*private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Item")
+        {
+            Item item = this.gameManager.GetComponent<GameManager>().getDataBaseList().getItemByName(gameObject.name);
+            totemItems.Add(item);
+            this.storage.storageItems.Add(item);
+            Destroy(collision.gameObject);
+
+        }
+    }*/
+
+    public void AddItem(Item item)
+    {
+        totemItems.Add(item);
+    }
+
+    public List<Item> getItemList()
+    {
+        return totemItems;
+    }
 
 }

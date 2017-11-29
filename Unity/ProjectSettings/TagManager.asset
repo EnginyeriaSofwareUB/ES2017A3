@@ -11,8 +11,27 @@ TagManager:
   - SecondPlayer
   - TerrainObject
   - Platform
-  - FirstPlayerModule
-  - SecondPlayerModule
+  - EquipmentSystem
+  - Item
+  - Slots
+  - Slot
+  - ItemIcon
+  - Hotbar
+  - Tooltip
+  - Panel
+  - ResultSlot
+  - CraftSystem
+  - Canvas
+  - EventSystem
+  - MainInventory
+  - DraggingItem
+  - Timer
+  - FirstPlayer_Hotbar
+  - SecondPlayer_Hotbar
+  - TotemFirstPlayer
+  - TotemSecondPlayer
+  - TotemFirstPlayerModule
+  - TotemSecondPlayerModule
   layers:
   - Default
   - TransparentFX
