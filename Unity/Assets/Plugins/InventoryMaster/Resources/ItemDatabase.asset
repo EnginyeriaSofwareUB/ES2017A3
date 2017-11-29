@@ -40,8 +40,8 @@ MonoBehaviour:
     indexItemInList: 999
     rarity: 0
     itemAttributes:
-    - attributeName: Health
-      attributeValue: 10
+    - attributeName: Vida
+      attributeValue: 2
   - itemName: Botiquin
     itemID: 2
     itemDesc: Botiquin
@@ -55,5 +55,33 @@ MonoBehaviour:
     indexItemInList: 999
     rarity: 0
     itemAttributes:
-    - attributeName: Health
-      attributeValue: 20
+    - attributeName: Vida
+      attributeValue: 3
+  - itemName: Cohete
+    itemID: 3
+    itemDesc: Cohete
+    itemIcon: {fileID: 21300000, guid: 3fddc95690d149e4e82dd1329960736b, type: 3}
+    itemModel: {fileID: 1663579228098034, guid: 5973b77ecb3144920954840e8e20b0f7,
+      type: 2}
+    itemValue: 1
+    itemType: 2
+    itemWeight: 0
+    maxStack: 1
+    indexItemInList: 999
+    rarity: 0
+    itemAttributes:
+    - attributeName: 
+      attributeValue: 0
+  - itemName: Teletransporte
+    itemID: 4
+    itemDesc: Teletransporte
+    itemIcon: {fileID: 21300000, guid: 591674545e59ff14d88a38058af5ae99, type: 3}
+    itemModel: {fileID: 1927883817010500, guid: 5609514baf3d14aebad306133f6741c1,
+      type: 2}
+    itemValue: 1
+    itemType: 2
+    itemWeight: 0
+    maxStack: 1
+    indexItemInList: 999
+    rarity: 0
+    itemAttributes: []
