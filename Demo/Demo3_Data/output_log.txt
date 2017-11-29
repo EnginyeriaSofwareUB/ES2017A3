@@ -1,0 +1,55 @@
+Initialize engine version: 2017.1.0f3 (472613c02cf7)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: NVIDIA GeForce GTX 750 Ti (ID=0x1380)
+    Vendor:   NVIDIA
+    VRAM:     2017 MB
+    Driver:   23.21.13.8813
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\s4tc\Desktop\Demo3_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\s4tc\Desktop\Demo3_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\s4tc\Desktop\Demo3_Data\Managed\Assembly-CSharp-firstpass.dll (this message is harmless)
+Loading C:\Users\s4tc\Desktop\Demo3_Data\Managed\Assembly-CSharp-firstpass.dll into Unity Child Domain
+Platform assembly: C:\Users\s4tc\Desktop\Demo3_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\s4tc\Desktop\Demo3_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\s4tc\Desktop\Demo3_Data\Managed\Assembly-UnityScript.dll (this message is harmless)
+Loading C:\Users\s4tc\Desktop\Demo3_Data\Managed\Assembly-UnityScript.dll into Unity Child Domain
+Platform assembly: C:\Users\s4tc\Desktop\Demo3_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\s4tc\Desktop\Demo3_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\Users\s4tc\Desktop\Demo3_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading C:\Users\s4tc\Desktop\Demo3_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: C:\Users\s4tc\Desktop\Demo3_Data\Managed\UnityEngine.Timeline.dll (this message is harmless)
+Loading C:\Users\s4tc\Desktop\Demo3_Data\Managed\UnityEngine.Timeline.dll into Unity Child Domain
+Platform assembly: C:\Users\s4tc\Desktop\Demo3_Data\Managed\System.dll (this message is harmless)
+Platform assembly: C:\Users\s4tc\Desktop\Demo3_Data\Managed\System.Core.dll (this message is harmless)
+- Completed reload, in  0.018 seconds
+<RI> Initializing input.
+XInput1_3.dll not found. Trying XInput9_1_0.dll instead...
+<RI> Input initialized.
+<RI> Initialized touch support.
+UnloadTime: 1.841176 ms
+Setting up 2 worker threads for Enlighten.
+  Thread -> id: 31a8 -> priority: 1 
+  Thread -> id: 331c -> priority: 1 
+Unloading 6 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 4.091577 ms
+
+Unloading 11 unused Assets to reduce memory usage. Loaded Objects now: 553.
+Total: 0.249970 ms (FindLiveObjects: 0.034433 ms CreateObjectMapping: 0.013905 ms MarkObjects: 0.189050 ms  DeleteObjects: 0.012250 ms)
+
+The referenced script on this Behaviour (Game Object 'Item') is missing!
+ 
+(Filename:  Line: 1758)
+
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.375121 ms
+
+Unloading 29 unused Assets to reduce memory usage. Loaded Objects now: 1530.
+Total: 1.781249 ms (FindLiveObjects: 0.113562 ms CreateObjectMapping: 0.089724 ms MarkObjects: 1.449831 ms  DeleteObjects: 0.127468 ms)
+
+Platform assembly: C:\Users\s4tc\Desktop\Demo3_Data\Managed\Boo.Lang.dll (this message is harmless)
+EndGameCondition :: Start called
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
