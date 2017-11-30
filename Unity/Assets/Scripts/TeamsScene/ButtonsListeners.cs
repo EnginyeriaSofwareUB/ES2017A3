@@ -49,13 +49,13 @@ public class ButtonsListeners : MonoBehaviour {
 			break;
 		case 2:
 			totem3Red.gameObject.SetActive (true);
-			break;
+            break;
 		case 3:
 			totem4Red.gameObject.SetActive (true);
-			break;
+            break;
 		case 4:
 			totem5Red.gameObject.SetActive (true);
-			break;
+            break;
 		default:
 			break;
 		};
