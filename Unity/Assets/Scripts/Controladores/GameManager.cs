@@ -87,16 +87,56 @@ public class GameManager : MonoBehaviour
         GameObject inventarioGameObject= GameObject.FindGameObjectWithTag("MainInventory");
         inventarioGameObject.SetActive(true);
         this.inventario = inventarioGameObject.GetComponent<Inventory>();
-
+        inicializarContorno();
     }
 
 
+    private void inicializarContorno()
+    {
+        
+        GameObject[] totemsPrimerEquipo = GameObject.FindGameObjectsWithTag("TotemFirstPlayerModule");
+        GameObject[] totemsSegundoEquipo = GameObject.FindGameObjectsWithTag("TotemSecondPlayerModule");
+        foreach (GameObject totem in totemsPrimerEquipo)
+        {
+            if(totem!=null)
+            totem.transform.GetChild(0).gameObject.AddComponent<cakeslice.Outline>();
+        }
+        foreach (GameObject totem in totemsSegundoEquipo)
+        {
+            if(totem!=null)
+            totem.transform.GetChild(0).gameObject.AddComponent<cakeslice.Outline>();
+        }
+        actualizarContornos();
+    }
+    private void actualizarContornos()
+    {
+        GameObject[] totemsPrimerEquipo = GameObject.FindGameObjectsWithTag("TotemFirstPlayerModule");
+        GameObject[] totemsSegundoEquipo = GameObject.FindGameObjectsWithTag("TotemSecondPlayerModule");
+        foreach (GameObject totem in totemsPrimerEquipo)
+        {
+            if (totem == null)
+            {
+                Debug.Log("sdad");
+            }else
+                totem.transform.GetChild(0).GetComponent<cakeslice.Outline>().color = 0;
+        }
+        foreach (GameObject totem in totemsSegundoEquipo)
+        {
+            if (totem == null)
+            {
+                Debug.Log("sdad");
+            }
+            else
+            {
+                totem.transform.GetChild(0).GetComponent<cakeslice.Outline>().color = 1;
+            }
+        }
 
-
+    }
     // Update is called once per frame
     void LateUpdate()
     {
-        if(turnoJugador== TURNO_JUGADOR.PRIMER_JUGADOR)
+        if (turnoJugador== TURNO_JUGADOR.PRIMER_JUGADOR)
         {
             txtTurnoJugador.text = "Es tu turno";
             txtTurnoJugador.color = new Color(0f, 1f, 0f);
@@ -299,9 +339,11 @@ public class GameManager : MonoBehaviour
 
 							break;
 						}
-				}
 
-				listaTotemsJugador.Add (firstPlayerTotem.GetComponent<Totem> ());
+
+                }
+
+                listaTotemsJugador.Add (firstPlayerTotem.GetComponent<Totem> ());
 				listaNombreTotemsJugador.Add (firstPlayerTotem.GetComponent<Totem> ().name, 1);
 			} else {
 				firstPlayerTotem.gameObject.SetActive (false);
@@ -333,11 +375,12 @@ public class GameManager : MonoBehaviour
 							secondPlayerTotem.GetComponent<Totem> ().AddTortugaTotem();
 							break;
 						}
-					}
-				}
+                    }
+
+                }
 
 
-				listaTotemsContrincante.Add (secondPlayerTotem.GetComponent<Totem> ());
+                listaTotemsContrincante.Add (secondPlayerTotem.GetComponent<Totem> ());
 				listaNombreTotemsContrincante.Add (secondPlayerTotem.GetComponent<Totem> ().name, 1);
 			} else {
 				secondPlayerTotem.gameObject.SetActive (false);
