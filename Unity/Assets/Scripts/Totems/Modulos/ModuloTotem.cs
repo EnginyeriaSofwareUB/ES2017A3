@@ -15,6 +15,8 @@ public class ModuloTotem : MonoBehaviour {
 
     protected int ataque;
     protected int defensa;
+	protected int movimiento; 
+	protected int vida;
     protected TotemType getTipoTotem;
     //private Transform meshTotem;
     public TotemType getTypeOfTotem()
@@ -43,5 +45,15 @@ public class ModuloTotem : MonoBehaviour {
     {
         return defensa;
     }
+
+	public int getMovimiento()
+	{
+		return movimiento;
+	}
+
+	public int getVida()
+	{
+		return vida;
+	}
 
 }

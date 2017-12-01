@@ -6,8 +6,10 @@ public class ModuloTotemAguila : ModuloTotem
 {
     public ModuloTotemAguila()
     {
-        this.ataque = 10;
-        this.defensa = 20;
+		this.ataque = 0;
+		this.defensa = 0;
+		this.vida = 0;
+		this.movimiento = 10;
         this.getTipoTotem = TotemType.TOTEM_AGUILA;
 
 

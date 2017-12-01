@@ -239,4 +239,16 @@ public class MovimientoController : MonoBehaviour
             velocidadMovimiento = value;
         }
     }
+
+	public float DistanciaLimite
+	{
+		get 
+		{
+			return distanciaLimite;
+		}
+		set
+		{
+			distanciaLimite = value;
+		}
+	}
 }
