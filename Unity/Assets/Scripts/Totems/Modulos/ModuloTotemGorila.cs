@@ -6,8 +6,10 @@ public class ModuloTotemGorila : ModuloTotem
 {
     public ModuloTotemGorila()
     {
-        this.ataque = 20;
-        this.defensa = 10;
+		this.ataque = 10;
+		this.defensa = 0;
+		this.vida = 0;
+		this.movimiento = 0;
         this.getTipoTotem = TotemType.TOTEM_GORILA;
 
     }

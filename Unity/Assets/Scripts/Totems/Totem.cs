@@ -8,6 +8,8 @@ public class Totem : MonoBehaviour
 
     [SerializeField] private int ataqueTotal { get; set; }
     [SerializeField] private int defensaTotal { get; set; }
+	[SerializeField] private int movimientoTotal { get; set; }
+	[SerializeField] private int vidaTotal { get; set; }
     [SerializeField] private float maxHealth=10f;
     [SerializeField] private float currentHealth;
 
@@ -21,10 +23,12 @@ public class Totem : MonoBehaviour
 
     private GameObject gameManager;
 
-    public Totem(int ataque, int defensa)
+	public Totem(int ataque, int defensa, int movimiento, int vida)
     {
         this.ataqueTotal = ataque;
         this.defensaTotal = defensa;
+		this.movimientoTotal = movimiento;
+		this.vidaTotal = vida;
         this.totemItems = new List<Item>();
     }
 
@@ -132,6 +136,10 @@ public class Totem : MonoBehaviour
         // Sumamos los parámetros de los módulos al totem
         this.ataqueTotal += lastModuleAdded.GetComponent<ModuloTotem>().getAtaque();
         this.defensaTotal += lastModuleAdded.GetComponent<ModuloTotem>().getDefensa();
+		this.movimientoTotal += lastModuleAdded.GetComponent<ModuloTotem>().getMovimiento();
+		this.vidaTotal += lastModuleAdded.GetComponent<ModuloTotem>().getVida();
+
+
 
         // En caso que sea el primer módulo que se añade
         if (modulos.Count < 2)
@@ -149,6 +157,10 @@ public class Totem : MonoBehaviour
             lastModuleAdded.transform.position = lastModuleAdded.transform.position + moduloAnterior.transform.up * 0.7f;
             lastModuleAdded.transform.parent = this.transform;
         }
+
+		this.movimiento.DistanciaLimite += movimientoTotal;
+		aumentarVida(vidaTotal);
+
 
     }
 
@@ -178,15 +190,16 @@ public class Totem : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+		this.movimiento = GetComponent<MovimientoController>();
         AddModule(TotemType.TOTEM_BASE);
         //AddModule(TotemType.TOTEM_AGUILA);
         //AddModule(TotemType.TOTEM_GORILA);
         // Hotbar on ficar els items del totem, per no complicarnos serà compartida per tant s'ha de buidar i emplenar amb els items de cada totem al
         // canviar de torn.
         //this.totemHotbar = GameObject.FindGameObjectWithTag("Hotbar").GetComponent<Hotbar>();
-        this.movimiento = GetComponent<MovimientoController>();
         this.gameManager = GameObject.FindGameObjectWithTag("GameController");
         this.currentHealth = this.maxHealth;
+
 
     }
 

@@ -6,8 +6,10 @@ public class ModuloTotemBase : ModuloTotem
 {
     public ModuloTotemBase()
     {
-        this.ataque = 10;
-        this.defensa = 10;
+        this.ataque = 5;
+        this.defensa = 5;
+		this.vida = 5;
+		this.movimiento = 5;
         this.getTipoTotem = TotemType.TOTEM_BASE;
 
     }
