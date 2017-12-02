@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using Assets.Scripts.Environment;
+using YounGenTech.HealthScript;
 
 public class GestionInventario : MonoBehaviour
 {
@@ -164,9 +165,10 @@ public class GestionInventario : MonoBehaviour
 
             if (item.itemAttributes[i].attributeName == "Vida")
             {
-                totemActual.aumentarVida(item.itemAttributes[i].attributeValue);
+                //totemActual.aumentarVida(item.itemAttributes[i].attributeValue);
                 Debug.Log("Objeto de vida");
-                
+                totemActual.SendMessage("Heal", new HealthEvent(gameObject, item.itemAttributes[i].attributeValue));
+
             }
 
 
