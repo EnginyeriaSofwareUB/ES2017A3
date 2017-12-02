@@ -239,4 +239,9 @@ public class MovimientoController : MonoBehaviour
             velocidadMovimiento = value;
         }
     }
+
+    public bool ColisionaConTerreno()
+    {
+        return isColisionTerreno;
+    }
 }

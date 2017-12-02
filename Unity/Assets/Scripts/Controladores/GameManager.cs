@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Assets.Scripts.Environment;
 
 public class GameManager : MonoBehaviour
 {
@@ -94,8 +95,8 @@ public class GameManager : MonoBehaviour
     private void inicializarContorno()
     {
         
-        GameObject[] totemsPrimerEquipo = GameObject.FindGameObjectsWithTag("TotemFirstPlayerModule");
-        GameObject[] totemsSegundoEquipo = GameObject.FindGameObjectsWithTag("TotemSecondPlayerModule");
+        GameObject[] totemsPrimerEquipo = GameObject.FindGameObjectsWithTag(Global.TOTEM_FIRST_PLAYER_MODULE);
+        GameObject[] totemsSegundoEquipo = GameObject.FindGameObjectsWithTag(Global.TOTEM_SECOND_PLAYER_MODULE);
         foreach (GameObject totem in totemsPrimerEquipo)
         {
             if(totem!=null)
@@ -110,8 +111,8 @@ public class GameManager : MonoBehaviour
     }
     private void actualizarContornos()
     {
-        GameObject[] totemsPrimerEquipo = GameObject.FindGameObjectsWithTag("TotemFirstPlayerModule");
-        GameObject[] totemsSegundoEquipo = GameObject.FindGameObjectsWithTag("TotemSecondPlayerModule");
+        GameObject[] totemsPrimerEquipo = GameObject.FindGameObjectsWithTag(Global.TOTEM_FIRST_PLAYER_MODULE);
+        GameObject[] totemsSegundoEquipo = GameObject.FindGameObjectsWithTag(Global.TOTEM_SECOND_PLAYER_MODULE);
         foreach (GameObject totem in totemsPrimerEquipo)
         {
             if (totem == null)
@@ -312,8 +313,8 @@ public class GameManager : MonoBehaviour
 		listaTotemsContrincante = new PriorityQueue<Totem>();
 		listaNombreTotemsJugador = new Dictionary<string, int>();
 		listaNombreTotemsContrincante = new Dictionary<string, int>();
-		Object[] allFirstPlayerTotems = GameObject.FindGameObjectsWithTag("TotemFirstPlayer");
-		Object[] allSecondPlayerTotems = GameObject.FindGameObjectsWithTag("TotemSecondPlayer");
+		Object[] allFirstPlayerTotems = GameObject.FindGameObjectsWithTag(Global.TOTEM_FIRST_PLAYER);
+		Object[] allSecondPlayerTotems = GameObject.FindGameObjectsWithTag(Global.TOTEM_SECOND_PLAYER);
 
 		foreach(GameObject firstPlayerTotem in allFirstPlayerTotems)
 		{
@@ -408,7 +409,7 @@ public class GameManager : MonoBehaviour
 
     public void RemoveTotem(Totem totem)
     {
-        if (totem.tag == "FirstPlayer")
+        if (totem.tag == Global.FIRST_PLAYER)
         {
             listaTotemsJugador.Remove(totem);
 			listaNombreTotemsJugador [totem.name] = 0;
@@ -547,13 +548,13 @@ public class GameManager : MonoBehaviour
 
         Object[] totemsPlayer;
 
-        if(totemActual.tag == "TotemFirstPlayer")
+        if(totemActual.tag == Global.TOTEM_FIRST_PLAYER)
         {
-            totemsPlayer = GameObject.FindGameObjectsWithTag("TotemFirstPlayer");
+            totemsPlayer = GameObject.FindGameObjectsWithTag(Global.TOTEM_FIRST_PLAYER);
         }
         else
         {
-            totemsPlayer = GameObject.FindGameObjectsWithTag("TotemSecondPlayer");
+            totemsPlayer = GameObject.FindGameObjectsWithTag(Global.TOTEM_SECOND_PLAYER);
         }
         foreach(GameObject totem in totemsPlayer)
         {
@@ -563,6 +564,11 @@ public class GameManager : MonoBehaviour
                 playerInventory.addItemToInventory(item.itemID);
             }
         }
+    }
+
+    public int GetRondaActual()
+    {
+        return ronda;
     }
 
 }

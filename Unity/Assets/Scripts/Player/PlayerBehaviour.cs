@@ -34,7 +34,7 @@ namespace Assets.Scripts.Player
             {
                 //WeaponDirection();
                 //WeaponForce();
-                Shoot();
+                //Shoot();
                 drawLine();
             }
             else

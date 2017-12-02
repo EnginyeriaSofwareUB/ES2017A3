@@ -99,3 +99,75 @@ MonoBehaviour:
     indexItemInList: 999
     rarity: 0
     itemAttributes: []
+  - itemName: Iglu
+    itemID: 6
+    itemDesc: 
+    itemIcon: {fileID: 21300000, guid: 5bab3950eeef9c242999727a8b29b5cd, type: 3}
+    itemModel: {fileID: 1963228974943850, guid: 4df3a78ad0fd9416494aed20bbfba00a,
+      type: 2}
+    itemValue: 1
+    itemType: 2
+    itemWeight: 0
+    maxStack: 10
+    indexItemInList: 999
+    rarity: 0
+    itemAttributes:
+    - attributeName: Iglu
+      attributeValue: 0
+  - itemName: Escut
+    itemID: 7
+    itemDesc: 
+    itemIcon: {fileID: 21300000, guid: cbf21f9c2dc6657478d8020c5cb2531e, type: 3}
+    itemModel: {fileID: 1592870039195856, guid: aede543507b844402959e06f53605535,
+      type: 2}
+    itemValue: 1
+    itemType: 2
+    itemWeight: 0
+    maxStack: 10
+    indexItemInList: 999
+    rarity: 0
+    itemAttributes:
+    - attributeName: Escut
+      attributeValue: 0
+  - itemName: AngelGuarda
+    itemID: 8
+    itemDesc: 
+    itemIcon: {fileID: 21300000, guid: 9ab69b97d59a14283bf959a1940d240c, type: 3}
+    itemModel: {fileID: 1812569235095272, guid: 618883c171df34085bb6b6042f0ec679,
+      type: 2}
+    itemValue: 1
+    itemType: 2
+    itemWeight: 0
+    maxStack: 10
+    indexItemInList: 999
+    rarity: 0
+    itemAttributes:
+    - attributeName: Angel
+      attributeValue: 0
+  - itemName: EscutDoble
+    itemID: 9
+    itemDesc: 
+    itemIcon: {fileID: 21300000, guid: d79a7cc261687e74d91d4b2488d76851, type: 3}
+    itemModel: {fileID: 1341298174010140, guid: 0f393de90047740519ef059d4a462e79,
+      type: 2}
+    itemValue: 1
+    itemType: 2
+    itemWeight: 0
+    maxStack: 10
+    indexItemInList: 999
+    rarity: 0
+    itemAttributes:
+    - attributeName: EscutDoble
+      attributeValue: 0
+  - itemName: New Item
+    itemID: 10
+    itemDesc: 
+    itemIcon: {fileID: 0}
+    itemModel: {fileID: 0}
+    itemValue: 1
+    itemType: 0
+    itemWeight: 0
+    maxStack: 1
+    indexItemInList: 999
+    rarity: 0
+    itemAttributes: []
