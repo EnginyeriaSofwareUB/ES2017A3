@@ -190,7 +190,11 @@ public class Inventory : MonoBehaviour
     public void ConsumeItem(Item item)
     {
         if (ItemConsumed != null)
-            ItemConsumed(item);
+            if(GetComponent<Hotbar>()!=null)
+                ItemConsumed(item);
+            else
+                ItemEquip(item);
+        
     }
 
     public void EquiptItem(Item item)

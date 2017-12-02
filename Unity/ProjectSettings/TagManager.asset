@@ -32,6 +32,9 @@ TagManager:
   - TotemSecondPlayer
   - TotemFirstPlayerModule
   - TotemSecondPlayerModule
+  - Enemy
+  - Friendly
+  - Totem_prefab
   layers:
   - Default
   - TransparentFX

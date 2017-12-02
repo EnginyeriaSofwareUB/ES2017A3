@@ -6,8 +6,10 @@ public class ModuloTotemElefante : ModuloTotem
 {
 	public ModuloTotemElefante()
 	{
-		this.ataque = 20;
-		this.defensa = 10;
+		this.ataque = 0;
+		this.defensa = 0;
+		this.vida = 5;
+		this.movimiento = 0;
 		this.getTipoTotem = TotemType.TOTEM_ELEFANTE;
 
 	}

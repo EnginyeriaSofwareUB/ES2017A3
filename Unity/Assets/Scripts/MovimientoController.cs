@@ -240,8 +240,15 @@ public class MovimientoController : MonoBehaviour
         }
     }
 
-    public bool ColisionaConTerreno()
-    {
-        return isColisionTerreno;
-    }
+	public float DistanciaLimite
+	{
+		get 
+		{
+			return distanciaLimite;
+		}
+		set
+		{
+			distanciaLimite = value;
+		}
+	}
 }
