@@ -41,7 +41,7 @@ MonoBehaviour:
     rarity: 0
     itemAttributes:
     - attributeName: Vida
-      attributeValue: 10
+      attributeValue: 20
   - itemName: Botiquin
     itemID: 2
     itemDesc: Botiquin
@@ -56,7 +56,7 @@ MonoBehaviour:
     rarity: 0
     itemAttributes:
     - attributeName: Vida
-      attributeValue: 15
+      attributeValue: 30
   - itemName: Cohete
     itemID: 3
     itemDesc: Cohete
