@@ -192,8 +192,8 @@ public class GameManager : MonoBehaviour
         // Por defecto, a cada inicio de ronda empezará el primer jugador con el movimiento activado
         this.totemActual = this.listaTotemsJugador.Poll();
         this.totemActual.activarControlMovimiento();
-        this.addTotemItems(this.totemActual);
-
+        //this.addTotemItems(this.totemActual);
+        this.hotbar.addItemToInventory(Global.TIPO_OBJETOS.objetoAngel);
 
         // Finalmente,  actualizo el estado
         this.estadoPartida = PARTIDA_STATE.TURNO_RONDA;
@@ -337,13 +337,13 @@ public class GameManager : MonoBehaviour
 		listaTotemsContrincante = new PriorityQueue<Totem>();
 		listaNombreTotemsJugador = new Dictionary<string, int>();
 		listaNombreTotemsContrincante = new Dictionary<string, int>();
-		UnityEngine.Object[] allFirstPlayerTotems = GameObject.FindGameObjectsWithTag("TotemFirstPlayer");
-		UnityEngine.Object[] allSecondPlayerTotems = GameObject.FindGameObjectsWithTag("TotemSecondPlayer");
+		UnityEngine.Object[] allFirstPlayerTotems = GameObject.FindGameObjectsWithTag( Global.TOTEM_FIRST_PLAYER);
+		UnityEngine.Object[] allSecondPlayerTotems = GameObject.FindGameObjectsWithTag( Global.TOTEM_SECOND_PLAYER);
     /* 
         // Creación de un totem dinamicamente               Posicion dentro de la escena
         GameObject totem = Instantiate(this.totem, new Vector3(-11.99f, 12.42f, 0.1011065f), Quaternion.identity);
         // Cambio de tag
-        totem.tag = "TotemSecondPlayer";
+        totem.tag =  Global.TOTEM_SECOND_PLAYER;
         // Nombre para encontrarlo
         totem.name ="Itsme";
         // Layer 9 = TotemsSegundoJugador, Layer 8 = TotemsPrimerJugador

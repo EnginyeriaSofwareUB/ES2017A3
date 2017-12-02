@@ -24,7 +24,7 @@ public class Angel : MonoBehaviour
     {
         if(EfectoHaTerminado())
         {
-            Destroy(gameObject,.5f);
+            Destroy(gameObject,2f);
         }
         if (totem.ColisionaConTerreno())
         {

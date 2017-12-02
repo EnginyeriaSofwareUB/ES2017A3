@@ -249,11 +249,20 @@ public class Totem : MonoBehaviour
         
     }
 
-    public void suicide(){
-		this.movimiento.endMovement();
-        this.currentHealth = 0;
-        deleteLineRenderer();
-	}
+    public void suicide()
+    {
+        if (!AngelGuardaActivado())
+        {
+            this.movimiento.endMovement();
+            this.currentHealth = 0;
+            deleteLineRenderer();
+        }
+        else
+        {
+            RevivirTotem();
+        }
+
+    }
 
     public void desabilitarControlMovimiento()
     {

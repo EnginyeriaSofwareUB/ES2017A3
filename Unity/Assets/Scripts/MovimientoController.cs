@@ -251,4 +251,9 @@ public class MovimientoController : MonoBehaviour
 			distanciaLimite = value;
 		}
 	}
+
+    public bool ColisionaConTerreno()
+    {
+        return isColisionTerreno;
+    }
 }
