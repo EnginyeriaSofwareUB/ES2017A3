@@ -228,7 +228,18 @@ public class Totem : MonoBehaviour
         }
 	}
 
-	public void suicide(){
+
+
+    public void eliminarTotem()
+    {
+
+
+            gameManager.SendMessage("RemoveTotem", this);
+            deleteLineRenderer();
+        
+    }
+
+    public void suicide(){
 		this.movimiento.endMovement();
         this.currentHealth = 0;
         deleteLineRenderer();
