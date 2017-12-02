@@ -84,7 +84,6 @@ public class GameManager : MonoBehaviour
         turnoJugador = TURNO_JUGADOR.PRIMER_JUGADOR;
 
         GameObject inventarioGameObject= GameObject.FindGameObjectWithTag("MainInventory");
-        inventarioGameObject.SetActive(true);
         this.inventario = inventarioGameObject.GetComponent<Inventory>();
         GameObject hotbarGameObject = GameObject.FindGameObjectWithTag("Hotbar");
         this.hotbar = hotbarGameObject.GetComponent<Inventory>();
