@@ -11,7 +11,7 @@ public class Totem : MonoBehaviour
 	[SerializeField] private int movimientoTotal { get; set; }
 	[SerializeField] private int vidaTotal { get; set; }
     [SerializeField] private float maxHealth=10f;
-    [SerializeField] private float currentHealth;
+    [SerializeField] public float currentHealth;
 
     [SerializeField] private List<GameObject> modulos;
 
@@ -22,6 +22,7 @@ public class Totem : MonoBehaviour
     private MovimientoController movimiento;
 
     private GameObject gameManager;
+    public bool angelGuarda;
 
 	public Totem(int ataque, int defensa, int movimiento, int vida)
     {
@@ -199,6 +200,7 @@ public class Totem : MonoBehaviour
         //this.totemHotbar = GameObject.FindGameObjectWithTag("Hotbar").GetComponent<Hotbar>();
         this.gameManager = GameObject.FindGameObjectWithTag("GameController");
         this.currentHealth = this.maxHealth;
+        this.angelGuarda = false;
 
 
     }
@@ -222,9 +224,17 @@ public class Totem : MonoBehaviour
 	private void kill(){
 		if (this.currentHealth < 1)
 		{
-            gameManager.SendMessage("RemoveTotem", this);
-            this.currentHealth = 0;
-            deleteLineRenderer();
+            if (AngelGuardaActivado())
+            {
+                RevivirTotem();
+            }
+            else
+            {
+                gameManager.SendMessage("RemoveTotem", this);
+                this.currentHealth = 0;
+                deleteLineRenderer();
+            }
+            
         }
 	}
 
@@ -239,11 +249,20 @@ public class Totem : MonoBehaviour
         
     }
 
-    public void suicide(){
-		this.movimiento.endMovement();
-        this.currentHealth = 0;
-        deleteLineRenderer();
-	}
+    public void suicide()
+    {
+        if (!AngelGuardaActivado())
+        {
+            this.movimiento.endMovement();
+            this.currentHealth = 0;
+            deleteLineRenderer();
+        }
+        else
+        {
+            RevivirTotem();
+        }
+
+    }
 
     public void desabilitarControlMovimiento()
     {
@@ -304,18 +323,6 @@ public class Totem : MonoBehaviour
 		return this.maxHealth;
 	}
 
-    /*private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "Item")
-        {
-            Item item = this.gameManager.GetComponent<GameManager>().getDataBaseList().getItemByName(gameObject.name);
-            totemItems.Add(item);
-            this.storage.storageItems.Add(item);
-            Destroy(collision.gameObject);
-
-        }
-    }*/
-
     public void AddItem(Item item)
     {
         totemItems.Add(item);
@@ -324,6 +331,32 @@ public class Totem : MonoBehaviour
     public List<Item> getItemList()
     {
         return totemItems;
+    }
+
+    public void ActivarAngelGuarda()
+    {
+        angelGuarda = true;
+    }
+
+   public bool AngelGuardaActivado()
+   {
+        return angelGuarda;
+   }
+
+    public void RevivirTotem()
+    {
+        Debug.Log("Revivir totem");
+        Angel angel = gameObject.GetComponentInChildren<Angel>();
+        this.currentHealth = this.maxHealth;
+        this.transform.position = angel.GetPosicionValidaTotem();
+        angel.ActivarAnimacion();
+        angel.IncNumeroUsos();
+        angelGuarda = false;
+    }
+
+    public bool ColisionaConTerreno()
+    {
+        return movimiento.ColisionaConTerreno();
     }
 
 }
