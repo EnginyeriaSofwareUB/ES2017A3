@@ -256,4 +256,25 @@ public class MovimientoController : MonoBehaviour
     {
         return isColisionTerreno;
     }
+
+	public void setTiempoSaltoMax(float tiempoSaltoMaximo)
+	{
+		this.tiempoSaltoMaximo = tiempoSaltoMaximo;
+	}
+
+	public void setFuerzaSalto(float fuerzaSalto)
+	{
+		this.fuerzaSalto = fuerzaSalto;
+	}
+
+	public void setVelocidadMovimiento(float velocidadMovimiento)
+	{
+		this.velocidadMovimiento = velocidadMovimiento;
+	}
+
+	public void setDistanciaLimite(float distanciaLimite)
+	{
+		this.distanciaLimite = distanciaLimite; 
+	}
+
 }

@@ -192,9 +192,10 @@ public class GameManager : MonoBehaviour
         this.totemActual = this.listaTotemsJugador.Poll();
         this.totemActual.activarControlMovimiento();
         //this.addTotemItems(this.totemActual);
-        this.hotbar.addItemToInventory(Global.TIPO_OBJETOS.objetoEscudoDoble);
-        this.hotbar.addItemToInventory(Global.TIPO_OBJETOS.objetoEscudoSimple);
-        this.hotbar.addItemToInventory(Global.TIPO_OBJETOS.objetoAngel);
+		this.hotbar.addItemToInventory(Global.TIPO_OBJETOS.objetoAngel);
+		this.hotbar.addItemToInventory(Global.TIPO_OBJETOS.objetoEscudoDoble);
+		this.hotbar.addItemToInventory(Global.TIPO_OBJETOS.objetoEscudoSimple);
+
         // Finalmente,  actualizo el estado
         this.estadoPartida = PARTIDA_STATE.TURNO_RONDA;
         this.turnoJugador = TURNO_JUGADOR.PRIMER_JUGADOR;
