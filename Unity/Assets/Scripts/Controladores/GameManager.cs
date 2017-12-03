@@ -185,6 +185,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     private void actualizarContornoTotemActual()
     {
+        if (this.totemActual == null) return;
         // Obtengo todos los contornos de los módulos del totem
         cakeslice.Outline[] outlineModulos = this.totemActual.GetComponentsInChildren<cakeslice.Outline>();
         // Actualizo el color a amarillo
