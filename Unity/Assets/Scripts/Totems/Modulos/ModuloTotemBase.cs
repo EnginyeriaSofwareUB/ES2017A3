@@ -13,18 +13,7 @@ public class ModuloTotemBase : ModuloTotem
         this.getTipoTotem = TotemType.TOTEM_BASE;
 
     }
-
-    public void Awake()
-    {
-    
-    }
-
-    // Use this for initialization
-    void Start()
-    {
-        this.gameObject.AddComponent<CircleCollider2D>();
-
-    }
+   
 
     // Update is called once per frame
     void Update()
