@@ -52,8 +52,8 @@ namespace Assets.Scripts.Environment
         {
             public const int ANGEL = 1;
             public const int IGLU = 1;
-            public const int ESCUT = 2;
-            public const int ESCUTDOBLE = 1;
+            public const int ESCUT = 3;
+            public const int ESCUTDOBLE = 2;
         }
         public static bool IsTerrainGenerated { get; set; }
 
