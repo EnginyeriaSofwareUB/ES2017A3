@@ -14,14 +14,8 @@ public class ModuloTotemTortuga : ModuloTotem
 
 	}
 
-	// Use this for initialization
-	void Start () {
-		this.gameObject.AddComponent<CircleCollider2D>();
-
-	}
-
-	// Update is called once per frame
-	void Update () {
+    // Update is called once per frame
+    void Update () {
 
 	}
 }

@@ -109,51 +109,9 @@ public class GameManager : MonoBehaviour
 
 
         inicializarContorno();
-    }
-
-
-    private void inicializarContorno()
-    {
-        
-        GameObject[] totemsPrimerEquipo = GameObject.FindGameObjectsWithTag(Global.TOTEM_FIRST_PLAYER_MODULE);
-        GameObject[] totemsSegundoEquipo = GameObject.FindGameObjectsWithTag(Global.TOTEM_SECOND_PLAYER_MODULE);
-        foreach (GameObject totem in totemsPrimerEquipo)
-        {
-            if(totem!=null)
-            totem.transform.GetChild(0).gameObject.AddComponent<cakeslice.Outline>();
-        }
-        foreach (GameObject totem in totemsSegundoEquipo)
-        {
-            if(totem!=null)
-            totem.transform.GetChild(0).gameObject.AddComponent<cakeslice.Outline>();
-        }
-        actualizarContornos();
-    }
-    private void actualizarContornos()
-    {
-        GameObject[] totemsPrimerEquipo = GameObject.FindGameObjectsWithTag(Global.TOTEM_FIRST_PLAYER_MODULE);
-        GameObject[] totemsSegundoEquipo = GameObject.FindGameObjectsWithTag(Global.TOTEM_SECOND_PLAYER_MODULE);
-        foreach (GameObject totem in totemsPrimerEquipo)
-        {
-            if (totem == null)
-            {
-                Debug.Log("sdad");
-            }else
-                totem.transform.GetChild(0).GetComponent<cakeslice.Outline>().color = 0;
-        }
-        foreach (GameObject totem in totemsSegundoEquipo)
-        {
-            if (totem == null)
-            {
-                Debug.Log("sdad");
-            }
-            else
-            {
-                totem.transform.GetChild(0).GetComponent<cakeslice.Outline>().color = 1;
-            }
-        }
 
     }
+
     // Update is called once per frame
     void LateUpdate()
     {
@@ -192,9 +150,11 @@ public class GameManager : MonoBehaviour
         // Primeramente desactivo el movimiento de todos los totems
         this.desactivarMovimientoTotems();
 
+        resetContornoTotemActual();
 
         // Por defecto, a cada inicio de ronda empezará el primer jugador con el movimiento activado
         this.totemActual = this.listaTotemsJugador.Poll();
+
         this.totemActual.activarControlMovimiento();
 
         // Finalmente,  actualizo el estado
@@ -204,6 +164,37 @@ public class GameManager : MonoBehaviour
         txtNumeroRonda.text = "Ronda: " + ronda;
         intercambiarInventario();
         // InitInventory();
+
+        // Actualiza el contorno del módulo
+        actualizarContornoTotemActual();
+    }
+
+    /// <summary>
+    /// Permite actualizar el contorno del totem actual a amarillo
+    /// </summary>
+    private void resetContornoTotemActual()
+    {
+        // Caso que se produce cuando el inicia el juego y aún no hay ningún totem 
+        if (this.totemActual == null) return;
+
+        // Obtengo todos los contornos de los módulos del totem
+        ModuloTotem[] modulosTotem = this.totemActual.GetComponentsInChildren<ModuloTotem>();
+        // Actualizo el color a amarillo
+        foreach (ModuloTotem moduloTotem in modulosTotem)
+            moduloTotem.resetColorContorno();
+    }
+
+    /// <summary>
+    /// Permite actualizar el contorno del totem actual a amarillo
+    /// </summary>
+    private void actualizarContornoTotemActual()
+    {
+        if (this.totemActual == null) return;
+        // Obtengo todos los contornos de los módulos del totem
+        cakeslice.Outline[] outlineModulos = this.totemActual.GetComponentsInChildren<cakeslice.Outline>();
+        // Actualizo el color a amarillo
+        foreach (cakeslice.Outline outlineModulo in outlineModulos)
+            outlineModulo.color = 2;
     }
 
     private void addTotemItems(Totem totemActual)
@@ -263,6 +254,9 @@ public class GameManager : MonoBehaviour
         // Intercambio el turno del jugador
         turnoJugador = turnoJugador == TURNO_JUGADOR.PRIMER_JUGADOR ? TURNO_JUGADOR.SEGUNDO_JUGADOR : TURNO_JUGADOR.PRIMER_JUGADOR;
 
+        ModuloTotem modulo = this.totemActual.GetComponentInChildren<ModuloTotem>();
+        modulo.resetColorContorno();
+
         switch (turnoJugador)
         {
             case TURNO_JUGADOR.PRIMER_JUGADOR:
@@ -274,6 +268,7 @@ public class GameManager : MonoBehaviour
                 totemActual.activarControlMovimiento();
                 break;
         }
+        actualizarContornoTotemActual();
         intercambiarInventario();
        // InitInventory();
         // Muestro el turno del jugador

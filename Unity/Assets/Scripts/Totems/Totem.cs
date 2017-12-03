@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets.Scripts.Environment;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -36,7 +37,7 @@ public class Totem : MonoBehaviour
         this.totemItems = new List<int>();
     }
 
- 
+
 
     public Totem()
     {
