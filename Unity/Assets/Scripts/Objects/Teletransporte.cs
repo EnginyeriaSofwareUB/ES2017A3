@@ -7,8 +7,6 @@ public class Teletransporte : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-   
-
         GameObject efectoCohete = Instantiate(Resources.Load("ErekiBall2"), this.transform.position, Quaternion.identity) as GameObject;
         efectoCohete.transform.parent = this.transform;
         StartCoroutine(Example());
