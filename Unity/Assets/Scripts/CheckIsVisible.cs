@@ -16,6 +16,7 @@ public class CheckIsVisible : MonoBehaviour
 	void OnBecameInvisible() {
 		//Debug.Log("CheckIsVisible :: Destroy object");
 		if (this.totem != null) {
+			Debug.Log("X is = " + this.totem.gameObject.transform.position.x +  " Y is = " + this.totem.gameObject.transform.position.y);
 			this.totem.suicide();
 		} else {
 			Destroy(this.gameObject);

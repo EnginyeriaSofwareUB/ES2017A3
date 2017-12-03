@@ -1361,9 +1361,11 @@ MonoBehaviour:
   maxHealth: 10
   currentHealth: 0
   modulos: []
-  totemHotbar: {fileID: 0}
   totemItems: []
   angelGuarda: 0
+  deathExplosion: {fileID: 1779881074926358, guid: 7fdda3c6252719d43af5893ff316daa6,
+    type: 2}
+  fallExplosion: {fileID: 100004, guid: a89abc0d2591545288f4c041059ae633, type: 2}
 --- !u!4 &127215731
 Transform:
   m_ObjectHideFlags: 0
@@ -3479,9 +3481,11 @@ MonoBehaviour:
   maxHealth: 10
   currentHealth: 0
   modulos: []
-  totemHotbar: {fileID: 0}
   totemItems: []
   angelGuarda: 0
+  deathExplosion: {fileID: 1779881074926358, guid: 7fdda3c6252719d43af5893ff316daa6,
+    type: 2}
+  fallExplosion: {fileID: 100004, guid: a89abc0d2591545288f4c041059ae633, type: 2}
 --- !u!4 &326755388
 Transform:
   m_ObjectHideFlags: 0
@@ -3744,9 +3748,11 @@ MonoBehaviour:
   maxHealth: 10
   currentHealth: 0
   modulos: []
-  totemHotbar: {fileID: 0}
   totemItems: []
   angelGuarda: 0
+  deathExplosion: {fileID: 1779881074926358, guid: 7fdda3c6252719d43af5893ff316daa6,
+    type: 2}
+  fallExplosion: {fileID: 100004, guid: a89abc0d2591545288f4c041059ae633, type: 2}
 --- !u!4 &347560754
 Transform:
   m_ObjectHideFlags: 0
@@ -5545,33 +5551,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 27
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!84 &566982016
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_Width: 1035
-  m_Height: 535
-  m_AntiAliasing: 1
-  m_DepthFormat: 1
-  m_ColorFormat: 0
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!1 &571022313
 GameObject:
   m_ObjectHideFlags: 0
@@ -8824,9 +8803,11 @@ MonoBehaviour:
   maxHealth: 10
   currentHealth: 0
   modulos: []
-  totemHotbar: {fileID: 0}
   totemItems: []
   angelGuarda: 0
+  deathExplosion: {fileID: 1779881074926358, guid: 7fdda3c6252719d43af5893ff316daa6,
+    type: 2}
+  fallExplosion: {fileID: 100004, guid: a89abc0d2591545288f4c041059ae633, type: 2}
 --- !u!4 &850283694
 Transform:
   m_ObjectHideFlags: 0
@@ -9422,9 +9403,11 @@ MonoBehaviour:
   maxHealth: 10
   currentHealth: 0
   modulos: []
-  totemHotbar: {fileID: 0}
   totemItems: []
   angelGuarda: 0
+  deathExplosion: {fileID: 1779881074926358, guid: 7fdda3c6252719d43af5893ff316daa6,
+    type: 2}
+  fallExplosion: {fileID: 100004, guid: a89abc0d2591545288f4c041059ae633, type: 2}
 --- !u!4 &894934424
 Transform:
   m_ObjectHideFlags: 0
@@ -9728,9 +9711,11 @@ MonoBehaviour:
   maxHealth: 10
   currentHealth: 0
   modulos: []
-  totemHotbar: {fileID: 0}
   totemItems: []
   angelGuarda: 0
+  deathExplosion: {fileID: 1779881074926358, guid: 7fdda3c6252719d43af5893ff316daa6,
+    type: 2}
+  fallExplosion: {fileID: 100004, guid: a89abc0d2591545288f4c041059ae633, type: 2}
 --- !u!4 &927636071
 Transform:
   m_ObjectHideFlags: 0
@@ -11224,7 +11209,7 @@ Camera:
     serializedVersion: 2
     m_Bits: 0
   m_RenderingPath: 1
-  m_TargetTexture: {fileID: 1532457419}
+  m_TargetTexture: {fileID: 1682750692}
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 0
@@ -14074,8 +14059,8 @@ MonoBehaviour:
   autoEnableOutlines: 1
   outlineCamera: {fileID: 1083674408}
   outlineShaderMaterial: {fileID: 0}
-  renderTexture: {fileID: 1532457419}
-  extraRenderTexture: {fileID: 566982016}
+  renderTexture: {fileID: 1682750692}
+  extraRenderTexture: {fileID: 1580101132}
 --- !u!1 &1406570935
 GameObject:
   m_ObjectHideFlags: 0
@@ -15515,33 +15500,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1513503259}
---- !u!84 &1532457419
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_Width: 1035
-  m_Height: 535
-  m_AntiAliasing: 1
-  m_DepthFormat: 1
-  m_ColorFormat: 0
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 0
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!1 &1555990950
 GameObject:
   m_ObjectHideFlags: 0
@@ -15675,9 +15633,11 @@ MonoBehaviour:
   maxHealth: 10
   currentHealth: 0
   modulos: []
-  totemHotbar: {fileID: 0}
   totemItems: []
   angelGuarda: 0
+  deathExplosion: {fileID: 1779881074926358, guid: 7fdda3c6252719d43af5893ff316daa6,
+    type: 2}
+  fallExplosion: {fileID: 100004, guid: a89abc0d2591545288f4c041059ae633, type: 2}
 --- !u!4 &1555990958
 Transform:
   m_ObjectHideFlags: 0
@@ -16065,6 +16025,33 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -4, y: -10}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!84 &1580101132
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_Width: 1035
+  m_Height: 535
+  m_AntiAliasing: 1
+  m_DepthFormat: 1
+  m_ColorFormat: 0
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!1001 &1595147851
 Prefab:
   m_ObjectHideFlags: 0
@@ -17120,6 +17107,33 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!84 &1682750692
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_Width: 1035
+  m_Height: 535
+  m_AntiAliasing: 1
+  m_DepthFormat: 1
+  m_ColorFormat: 0
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 0
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!1 &1683116549
 GameObject:
   m_ObjectHideFlags: 0
@@ -20789,9 +20803,11 @@ MonoBehaviour:
   maxHealth: 10
   currentHealth: 0
   modulos: []
-  totemHotbar: {fileID: 0}
   totemItems: []
   angelGuarda: 0
+  deathExplosion: {fileID: 1779881074926358, guid: 7fdda3c6252719d43af5893ff316daa6,
+    type: 2}
+  fallExplosion: {fileID: 100004, guid: a89abc0d2591545288f4c041059ae633, type: 2}
 --- !u!4 &2039498831
 Transform:
   m_ObjectHideFlags: 0

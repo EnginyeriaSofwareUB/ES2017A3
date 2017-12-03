@@ -1,10 +1,16 @@
 fileFormatVersion: 2
 guid: a725d09a77c03684fb9fff04ecaef906
-timeCreated: 1507726750
+timeCreated: 1512299461
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - totemHotbar: {instanceID: 0}
+  - deathExplosion: {fileID: 4837151888573628, guid: 7fdda3c6252719d43af5893ff316daa6,
+      type: 2}
+  - fallExplosion: {fileID: 400004, guid: a89abc0d2591545288f4c041059ae633, type: 2}
+  - deathSound: {fileID: 8300000, guid: f03ca00748cc75c438092911536058b5, type: 3}
+  - fallSound: {fileID: 8300000, guid: 0a14b81c9eeb97d42861fbdd686e65da, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
