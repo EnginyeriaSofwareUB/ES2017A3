@@ -55,8 +55,8 @@ public class GameManager : MonoBehaviour
 	private StateHolder stateHolder;
 
 
-    private List<Item> listaItemsPrimerJugador;
-    private List<Item> listaItemsSegundoJugador;
+    private List<int> listaItemsPrimerJugador;
+    private List<int> listaItemsSegundoJugador;
 
     private Inventory inventario;
 
@@ -99,10 +99,17 @@ public class GameManager : MonoBehaviour
 
         turnCounter = 1;
 
-        this.listaItemsPrimerJugador = new List<Item>();
-        this.listaItemsSegundoJugador = new List<Item>();
-        
-        
+        this.listaItemsPrimerJugador = new List<int>();
+        listaItemsPrimerJugador.Add(Global.TIPO_OBJETOS.objetoAngel);
+        listaItemsPrimerJugador.Add(Global.TIPO_OBJETOS.objetoEscudoDoble);
+        listaItemsPrimerJugador.Add(Global.TIPO_OBJETOS.objetoTeletransporte);
+        this.listaItemsSegundoJugador = new List<int>();
+        listaItemsSegundoJugador.Add(Global.TIPO_OBJETOS.objetoIglu);
+        listaItemsSegundoJugador.Add(Global.TIPO_OBJETOS.objetoEscudoSimple);
+
+
+        inicializarContorno();
+
     }
 
     // Update is called once per frame
@@ -149,16 +156,13 @@ public class GameManager : MonoBehaviour
         this.totemActual = this.listaTotemsJugador.Poll();
 
         this.totemActual.activarControlMovimiento();
-        //this.addTotemItems(this.totemActual);
-		this.hotbar.addItemToInventory(Global.TIPO_OBJETOS.objetoAngel);
-		this.hotbar.addItemToInventory(Global.TIPO_OBJETOS.objetoEscudoDoble);
-		this.hotbar.addItemToInventory(Global.TIPO_OBJETOS.objetoEscudoSimple);
 
         // Finalmente,  actualizo el estado
         this.estadoPartida = PARTIDA_STATE.TURNO_RONDA;
         this.turnoJugador = TURNO_JUGADOR.PRIMER_JUGADOR;
         ronda += 1;
         txtNumeroRonda.text = "Ronda: " + ronda;
+        intercambiarInventario();
         // InitInventory();
 
         // Actualiza el contorno del módulo
@@ -196,9 +200,15 @@ public class GameManager : MonoBehaviour
     private void addTotemItems(Totem totemActual)
     {
         this.hotbar.deleteAllItems();
-        foreach (Item item in totemActual.getItemList()){
-            this.hotbar.addItemToInventory(item.itemID);
+        foreach (int item in totemActual.getItemList()){
+            this.hotbar.addItemToInventory(item);
         }
+    }
+
+    public void AddItemToHotbar(int itemID)
+    {
+        this.hotbar.addItemToInventory(itemID);;
+        totemActual.AddItem(itemID);
     }
 
     private void handleTurno()
@@ -437,7 +447,7 @@ public class GameManager : MonoBehaviour
 
     public void RemoveTotem(Totem totem)
     {
-        if (totem.tag == Global.FIRST_PLAYER)
+        if (totem.tag == Global.TOTEM_FIRST_PLAYER)
         {
             listaTotemsJugador.Remove(totem);
 			listaNombreTotemsJugador [totem.name] = 0;
@@ -526,41 +536,44 @@ public class GameManager : MonoBehaviour
     }
 
 
-    public void guardarItem(Item item)
+    public void guardarItem(int itemID)
     {
         if (turnoJugador == TURNO_JUGADOR.PRIMER_JUGADOR)
-            this.listaItemsPrimerJugador.Add(item);
+            this.listaItemsPrimerJugador.Add(itemID);
         else
-            this.listaItemsSegundoJugador.Add(item);
+            this.listaItemsSegundoJugador.Add(itemID);
     }
 
-    public void eliminarItem(Item item)
+    public void eliminarItem(int itemID)
     {
         if (turnoJugador == TURNO_JUGADOR.PRIMER_JUGADOR)
-            this.listaItemsPrimerJugador.Remove(item);
+            this.listaItemsPrimerJugador.Remove(itemID);
         else
-            this.listaItemsSegundoJugador.Remove(item);
+            this.listaItemsSegundoJugador.Remove(itemID);
     }
 
     private void intercambiarInventario()
     {
-
+        this.inventario.deleteAllItems();
         if (turnoJugador == TURNO_JUGADOR.PRIMER_JUGADOR)
         {
-            foreach (Item item in this.listaItemsPrimerJugador)
+            foreach (int item in this.listaItemsPrimerJugador)
             {
-                this.inventario.addItemToInventory(item.itemID, item.itemValue);
+                //En caso de stackear el item con el número de items cogidos, se pasara el itemValue y el array será de Item envez de int
+                this.inventario.addItemToInventory(item);
             }
         }
         else
         {
-            foreach (Item item in this.listaItemsSegundoJugador)
+            foreach (int item in this.listaItemsSegundoJugador)
             {
-                this.inventario.addItemToInventory(item.itemID, item.itemValue);
+                //En caso de stackear el item con el número de items cogidos, se pasara el itemValue y el array será de Item envez de int
+                this.inventario.addItemToInventory(item);
             }
         }
         this.inventario.updateItemList();
         this.inventario.stackableSettings();
+        this.addTotemItems(this.totemActual);
     }
 
     public int GetRondaActual()

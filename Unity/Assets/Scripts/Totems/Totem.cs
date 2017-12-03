@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using YounGenTech.HealthScript;
+using Assets.Scripts.Environment;
 
 public class Totem : MonoBehaviour
 {
@@ -17,7 +18,7 @@ public class Totem : MonoBehaviour
 
     [SerializeField] private List<GameObject> modulos;
 
-    [SerializeField] public List<Item> totemItems;
+    [SerializeField] public List<int> totemItems;
 
     //Manejador del movimiento del jugador
     private MovimientoController movimiento;
@@ -33,7 +34,7 @@ public class Totem : MonoBehaviour
         this.defensaTotal = defensa;
 		this.movimientoTotal = movimiento;
 		this.vidaTotal = vida;
-        this.totemItems = new List<Item>();
+        this.totemItems = new List<int>();
     }
 
 
@@ -199,6 +200,12 @@ public class Totem : MonoBehaviour
         this.gameManager = GameObject.FindGameObjectWithTag("GameController");
         this.currentHealth = this.maxHealth;
         this.angelGuarda = false;
+        if(this.name == "Totem3P1")
+        {
+            AddItem(Global.TIPO_OBJETOS.objetoAngel);
+            AddItem(Global.TIPO_OBJETOS.objetoEscudoDoble);
+            AddItem(Global.TIPO_OBJETOS.objetoEscudoSimple);
+        }
 
     }
 
@@ -337,12 +344,12 @@ public class Totem : MonoBehaviour
 		return this.maxHealth;
 	}
 
-    public void AddItem(Item item)
+    public void AddItem(int itemID)
     {
-        totemItems.Add(item);
+        totemItems.Add(itemID);
     }
 
-    public List<Item> getItemList()
+    public List<int> getItemList()
     {
         return totemItems;
     }
@@ -356,17 +363,6 @@ public class Totem : MonoBehaviour
    {
         return angelGuarda;
    }
-
-    /*public void RevivirTotem()
-    {
-        Debug.Log("Revivir totem");
-        Angel angel = gameObject.GetComponentInChildren<Angel>();
-        ResetHealth();
-        this.transform.position = angel.GetPosicionValidaTotem();
-        angel.ActivarAnimacion();
-        angel.IncNumeroUsos();
-        angelGuarda = false;
-    }*/
 
     IEnumerator RevivirTotem()
     {

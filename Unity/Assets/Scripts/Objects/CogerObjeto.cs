@@ -40,7 +40,7 @@ public class CogerObjeto : MonoBehaviour
             inventario.addItemToInventory(item.itemID, item.itemValue);
             inventario.updateItemList();
             inventario.stackableSettings();
-            GameManager.Instance.guardarItem(item);
+            GameManager.Instance.guardarItem(item.itemID);
             Destroy(this.gameObject);
                     
             }

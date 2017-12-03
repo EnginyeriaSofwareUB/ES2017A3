@@ -21,7 +21,7 @@ public class Iglu : MonoBehaviour
     {
         if (EfectoHaTerminado())
         {
-            Destroy(gameObject);
+            Destroy(gameObject.transform.parent.gameObject);
         }
     }
 
