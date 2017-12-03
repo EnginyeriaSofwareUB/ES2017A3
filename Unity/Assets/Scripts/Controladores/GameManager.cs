@@ -194,7 +194,7 @@ public class GameManager : MonoBehaviour
         //this.addTotemItems(this.totemActual);
 		this.hotbar.addItemToInventory(Global.TIPO_OBJETOS.objetoAngel);
 		this.hotbar.addItemToInventory(Global.TIPO_OBJETOS.objetoRayo);
-		this.hotbar.addItemToInventory(Global.TIPO_OBJETOS.objetoCohete);
+		this.hotbar.addItemToInventory(Global.TIPO_OBJETOS.objetoTeletransporte);
 
         // Finalmente,  actualizo el estado
         this.estadoPartida = PARTIDA_STATE.TURNO_RONDA;
