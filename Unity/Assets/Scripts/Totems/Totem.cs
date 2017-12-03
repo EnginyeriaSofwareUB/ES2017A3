@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using YounGenTech.HealthScript;
 
 public class Totem : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class Totem : MonoBehaviour
     [SerializeField] private int defensaTotal { get; set; }
 	[SerializeField] private int movimientoTotal { get; set; }
 	[SerializeField] private int vidaTotal { get; set; }
-    [SerializeField] private float maxHealth=10f;
+    [SerializeField] private float maxHealth=100f;
     [SerializeField] public float currentHealth;
 
     [SerializeField] private List<GameObject> modulos;
@@ -222,7 +223,7 @@ public class Totem : MonoBehaviour
 		{
             if (AngelGuardaActivado())
             {
-                RevivirTotem();
+                StartCoroutine(RevivirTotem());
             }
             else
             {
@@ -247,11 +248,17 @@ public class Totem : MonoBehaviour
                 GameObject executeDeathExplosion = Instantiate(this.deathExplosion,this.gameObject.transform.position,this.deathExplosion.transform.rotation);
                 Destroy(executeDeathExplosion, executeDeathExplosion.GetComponent<AudioSource>().clip.length);
             }
-            gameManager.SendMessage("RemoveTotem", this);
-            this.movimiento.endMovement();
-            this.currentHealth = 0;
-            deleteLineRenderer();
-        
+            if (AngelGuardaActivado())
+            {
+                StartCoroutine(RevivirTotem());
+            }
+            else
+            {
+                gameManager.SendMessage("RemoveTotem", this);
+                this.movimiento.endMovement();
+                this.currentHealth = 0;
+                deleteLineRenderer();
+            }
     }
 
     public void suicide()
@@ -262,7 +269,7 @@ public class Totem : MonoBehaviour
         }
         else
         {
-            RevivirTotem();
+            StartCoroutine(RevivirTotem());
         }
 
     }
@@ -307,7 +314,8 @@ public class Totem : MonoBehaviour
 	public void aumentarVida(float cantidad)
 	{
 		this.currentHealth += cantidad;
-		Debug.Log("Aumento la vida en " + cantidad);
+        SendMessage("Heal", new HealthEvent(gameObject, cantidad));
+        Debug.Log("Aumento la vida en " + cantidad);
 	}
 
 
@@ -349,20 +357,40 @@ public class Totem : MonoBehaviour
         return angelGuarda;
    }
 
-    public void RevivirTotem()
+    /*public void RevivirTotem()
     {
         Debug.Log("Revivir totem");
         Angel angel = gameObject.GetComponentInChildren<Angel>();
-        this.currentHealth = this.maxHealth;
+        ResetHealth();
         this.transform.position = angel.GetPosicionValidaTotem();
         angel.ActivarAnimacion();
         angel.IncNumeroUsos();
         angelGuarda = false;
+    }*/
+
+    IEnumerator RevivirTotem()
+    {
+        Debug.Log("Revivir totem");
+        Debug.Log(Time.time);
+        yield return new WaitForSeconds(2);
+        Angel angel = gameObject.GetComponentInChildren<Angel>();
+        ResetHealth();
+        this.transform.position = angel.GetPosicionValidaTotem();
+        angel.ActivarAnimacion();
+        angel.IncNumeroUsos();
+        angelGuarda = false;
+        Debug.Log(Time.time);
     }
 
     public bool ColisionaConTerreno()
     {
         return movimiento.ColisionaConTerreno();
+    }
+
+    public void ResetHealth()
+    {
+        this.currentHealth = this.getMaxHealth();
+        SendMessage("Heal", new HealthEvent(gameObject, this.getMaxHealth()));
     }
 
 }
