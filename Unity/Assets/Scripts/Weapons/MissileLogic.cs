@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.Environment;
 using UnityEngine;
+using YounGenTech.HealthScript;
 
 namespace Assets.Scripts.Weapons
 {
@@ -45,7 +46,8 @@ namespace Assets.Scripts.Weapons
                     foreach (GameObject mod in totem.Modulos)
                     {
                         if (mod.GetInstanceID() == id)
-                            totem.DecreaseVida(damage);
+                            totem.SendMessage("Damage", new HealthEvent(gameObject, damage));
+                            totem.DecreaseVida();
                     }
                 }
             }
