@@ -23,7 +23,7 @@ public class Totem : MonoBehaviour
     private GameObject gameManager;
     public bool angelGuarda;
 
-    public GameObject deathExplosion, fallExplosion;
+    public GameObject deathExplosion, fallExplosion, onHitEffect;
 
 	public Totem(int ataque, int defensa, int movimiento, int vida)
     {
@@ -226,9 +226,6 @@ public class Totem : MonoBehaviour
             }
             else
             {
-                GameObject executeDeathExplosion = Instantiate(this.deathExplosion,this.gameObject.transform.position,this.gameObject.transform.rotation);
-                executeDeathExplosion.GetComponent<AudioSource>().Play();
-                Destroy(executeDeathExplosion, 2.0f);
                 this.eliminarTotem();
             }
             
@@ -239,8 +236,17 @@ public class Totem : MonoBehaviour
 
     public void eliminarTotem()
     {
-
-
+            if (this.currentHealth > 0){
+                Vector3 updatedPosition = this.gameObject.transform.position;
+                if (updatedPosition.x < -20) updatedPosition.x = -20;
+                else if (updatedPosition.x > 37) updatedPosition.x = 37;
+                updatedPosition.y = -20;
+                GameObject executeFallExplosion = Instantiate(this.fallExplosion,updatedPosition,this.gameObject.transform.rotation);
+                Destroy(executeFallExplosion,executeFallExplosion.GetComponent<AudioSource>().clip.length);
+            }else{
+                GameObject executeDeathExplosion = Instantiate(this.deathExplosion,this.gameObject.transform.position,this.deathExplosion.transform.rotation);
+                Destroy(executeDeathExplosion, executeDeathExplosion.GetComponent<AudioSource>().clip.length);
+            }
             gameManager.SendMessage("RemoveTotem", this);
             this.movimiento.endMovement();
             this.currentHealth = 0;
@@ -252,13 +258,6 @@ public class Totem : MonoBehaviour
     {
         if (!AngelGuardaActivado())
         {
-            Vector3 updatedPosition = this.gameObject.transform.position;
-            if (updatedPosition.x < -20) updatedPosition.x = -20;
-            else if (updatedPosition.x > 37) updatedPosition.x = 37;
-            updatedPosition.y = -20;
-            GameObject executeFallExplosion = Instantiate(this.fallExplosion,updatedPosition,this.gameObject.transform.rotation);
-            executeFallExplosion.GetComponent<AudioSource>().Play();
-            Destroy(executeFallExplosion, 2.0f);
             this.eliminarTotem();
         }
         else
@@ -296,10 +295,13 @@ public class Totem : MonoBehaviour
         }
     }
 
-    public void DecreaseVida(float decrease)
+    public void DecreaseVida()
     {
-        this.currentHealth -= decrease;
-        kill();
+        Vector3 updatedPosition = this.gameObject.transform.position;
+        updatedPosition.z = 0.5f;
+        GameObject executeOnHitEffect = Instantiate(this.onHitEffect,updatedPosition,this.onHitEffect.transform.rotation);
+        executeOnHitEffect.GetComponent<AudioSource>().Play();
+        Destroy(executeOnHitEffect, executeOnHitEffect.GetComponent<AudioSource>().clip.length);
     }
 
 	public void aumentarVida(float cantidad)
