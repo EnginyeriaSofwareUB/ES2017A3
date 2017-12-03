@@ -137,9 +137,15 @@ public class GestionHotbar : MonoBehaviour
 
                 //Debug.Log("Objeto Escudo " + item.itemAttributes[i].attributeValue);
                 GameObject escudo = Instantiate(item.itemModel, totemActual.transform.position, Quaternion.identity) as GameObject;
+                escudo.transform.position = new Vector3(escudo.transform.position.x + 0.7f, escudo.transform.position.y, escudo.transform.position.z);
                 escudo.transform.Rotate(transform.rotation.x, 90, transform.rotation.z);
                 escudo.transform.GetChild(0).gameObject.AddComponent<Escut>();
                 escudo.transform.GetChild(0).gameObject.AddComponent<CircleCollider2D>();
+                //GameObject obj = Instantiate(new GameObject());
+                //GameObject obj = new GameObject();
+                //obj.transform.Rotate(new Vector3(transform.rotation.x, 90, transform.rotation.z));
+                //obj.transform.parent = escudo.transform;
+                //obj.gameObject.AddComponent<BoxCollider2D>();
                 escudo.transform.parent = totemActual.transform;
                 break;
 
@@ -149,9 +155,26 @@ public class GestionHotbar : MonoBehaviour
                 //Debug.Log("Objeto Escudo Doble " + item.itemAttributes[i].attributeValue);
                 GameObject escudo_doble = Instantiate(item.itemModel, totemActual.transform.position, Quaternion.identity) as GameObject;
                 escudo_doble.transform.Rotate(transform.rotation.x, 90, transform.rotation.z);
-                escudo_doble.transform.GetChild(0).gameObject.AddComponent<EscutDoble>();
+                //escudo_doble.transform.GetChild(0).gameObject.AddComponent<EscutDoble>();
+                escudo_doble.gameObject.AddComponent<EscutDoble>();
+
+                //BoxCollider escudo1 = escudo_doble.transform.GetChild(0).gameObject.AddComponent<BoxCollider>();
+                /*CapsuleCollider escudo2 = escudo_doble.transform.GetChild(0).gameObject.AddComponent<CapsuleCollider>();
+
+                //escudo1.center = new Vector3(-8.25f, -0.5f, -1.18f);
+                //escudo1.size = new Vector3(1, 3.6f, 1.02f);
+                escudo2.center = new Vector3(8.67f, -0.51f, 1.2f);
+                escudo2.radius = 0.49f;
+                escudo2.height = 3.65f;
+                escudo2.direction = 1;*/
                 escudo_doble.transform.GetChild(0).gameObject.AddComponent<CircleCollider2D>();
+                /*GameObject obj = new GameObject();
+                obj.transform.parent = escudo_doble.transform;
+                obj.gameObject.transform.Rotate(escudo_doble.transform.rotation.x, escudo_doble.transform.rotation.y, escudo_doble.transform.rotation.z);
+                obj.gameObject.AddComponent<BoxCollider2D>();
+                //escudo_doble.transform.GetChild(0).gameObject.AddComponent<MeshCollider>();*/
                 escudo_doble.transform.parent = totemActual.transform;
+                
                 break;
 
         }

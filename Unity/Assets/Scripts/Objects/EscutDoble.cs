@@ -30,7 +30,7 @@ public class EscutDoble : MonoBehaviour
         return (gameManager.GetRondaActual() - rondaInicial == Global.MAX_RONDA_ITEM.ESCUTDOBLE) || (numeroUsos == Global.MAX_USO_ITEM.ESCUTDOBLE);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    /*private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == Global.WEAPON)
         {
@@ -38,5 +38,15 @@ public class EscutDoble : MonoBehaviour
             Destroy(collision.gameObject);
         }
 
+    }*/
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == Global.WEAPON)
+        {
+            numeroUsos += 1;
+            Destroy(collision.gameObject);
+        }
     }
+
 }

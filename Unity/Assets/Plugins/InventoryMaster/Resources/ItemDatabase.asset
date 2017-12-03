@@ -148,7 +148,7 @@ MonoBehaviour:
     itemID: 9
     itemDesc: 
     itemIcon: {fileID: 21300000, guid: d79a7cc261687e74d91d4b2488d76851, type: 3}
-    itemModel: {fileID: 1341298174010140, guid: 0f393de90047740519ef059d4a462e79,
+    itemModel: {fileID: 1328493447344672, guid: 0f393de90047740519ef059d4a462e79,
       type: 2}
     itemValue: 1
     itemType: 2
