@@ -190,6 +190,15 @@ public class GestionHotbar : MonoBehaviour
                 
                 break;
 
+		case Global.TIPO_OBJETOS.objetoCohete:
+			Debug.Log ("in objetoCohete");
+			GameObject cohete = Instantiate(item.itemModel, totemActual.transform.position, Quaternion.identity) as GameObject;
+			//cohete.transform.GetChild(0).gameObject.AddComponent<Cohete>();
+			cohete.gameObject.AddComponent<Cohete>();
+			cohete.transform.GetChild(0).gameObject.AddComponent<CircleCollider2D>();
+			cohete.transform.parent = totemActual.transform;
+			break;
+
         }
         GameManager.Instance.eliminarItem(item);
 
