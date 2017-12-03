@@ -20,7 +20,7 @@ public class Escut : MonoBehaviour {
     {
         if (EfectoHaTerminado())
         {
-            Destroy(gameObject);
+            Destroy(gameObject.transform.parent.gameObject);
         }
     }
 

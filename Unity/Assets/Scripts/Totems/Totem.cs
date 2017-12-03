@@ -15,7 +15,6 @@ public class Totem : MonoBehaviour
 
     [SerializeField] private List<GameObject> modulos;
 
-    [SerializeField] public Hotbar totemHotbar;
     [SerializeField] public List<Item> totemItems;
 
     //Manejador del movimiento del jugador
@@ -23,6 +22,8 @@ public class Totem : MonoBehaviour
 
     private GameObject gameManager;
     public bool angelGuarda;
+
+    public GameObject deathExplosion, fallExplosion, onHitEffect;
 
 	public Totem(int ataque, int defensa, int movimiento, int vida)
     {
@@ -193,11 +194,6 @@ public class Totem : MonoBehaviour
     {
 		this.movimiento = GetComponent<MovimientoController>();
         AddModule(TotemType.TOTEM_BASE);
-        //AddModule(TotemType.TOTEM_AGUILA);
-        //AddModule(TotemType.TOTEM_GORILA);
-        // Hotbar on ficar els items del totem, per no complicarnos serà compartida per tant s'ha de buidar i emplenar amb els items de cada totem al
-        // canviar de torn.
-        //this.totemHotbar = GameObject.FindGameObjectWithTag("Hotbar").GetComponent<Hotbar>();
         this.gameManager = GameObject.FindGameObjectWithTag("GameController");
         this.currentHealth = this.maxHealth;
         this.angelGuarda = false;
@@ -230,9 +226,7 @@ public class Totem : MonoBehaviour
             }
             else
             {
-                gameManager.SendMessage("RemoveTotem", this);
-                this.currentHealth = 0;
-                deleteLineRenderer();
+                this.eliminarTotem();
             }
             
         }
@@ -242,9 +236,20 @@ public class Totem : MonoBehaviour
 
     public void eliminarTotem()
     {
-
-
+            if (this.currentHealth > 0){
+                Vector3 updatedPosition = this.gameObject.transform.position;
+                if (updatedPosition.x < -20) updatedPosition.x = -20;
+                else if (updatedPosition.x > 37) updatedPosition.x = 37;
+                updatedPosition.y = -20;
+                GameObject executeFallExplosion = Instantiate(this.fallExplosion,updatedPosition,this.gameObject.transform.rotation);
+                Destroy(executeFallExplosion,executeFallExplosion.GetComponent<AudioSource>().clip.length);
+            }else{
+                GameObject executeDeathExplosion = Instantiate(this.deathExplosion,this.gameObject.transform.position,this.deathExplosion.transform.rotation);
+                Destroy(executeDeathExplosion, executeDeathExplosion.GetComponent<AudioSource>().clip.length);
+            }
             gameManager.SendMessage("RemoveTotem", this);
+            this.movimiento.endMovement();
+            this.currentHealth = 0;
             deleteLineRenderer();
         
     }
@@ -253,9 +258,7 @@ public class Totem : MonoBehaviour
     {
         if (!AngelGuardaActivado())
         {
-            this.movimiento.endMovement();
-            this.currentHealth = 0;
-            deleteLineRenderer();
+            this.eliminarTotem();
         }
         else
         {
@@ -292,10 +295,13 @@ public class Totem : MonoBehaviour
         }
     }
 
-    public void DecreaseVida(float decrease)
+    public void DecreaseVida()
     {
-        this.currentHealth -= decrease;
-        kill();
+        Vector3 updatedPosition = this.gameObject.transform.position;
+        updatedPosition.z = 0.5f;
+        GameObject executeOnHitEffect = Instantiate(this.onHitEffect,updatedPosition,this.onHitEffect.transform.rotation);
+        executeOnHitEffect.GetComponent<AudioSource>().Play();
+        Destroy(executeOnHitEffect, executeOnHitEffect.GetComponent<AudioSource>().clip.length);
     }
 
 	public void aumentarVida(float cantidad)

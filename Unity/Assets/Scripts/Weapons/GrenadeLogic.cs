@@ -54,6 +54,7 @@ namespace Assets.Scripts.Weapons
                         {
                             // totem.DecreaseVida(damage);
                             totem.SendMessage("Damage", new HealthEvent(gameObject, damage));
+                            totem.DecreaseVida();
                         }
                     }
                 }

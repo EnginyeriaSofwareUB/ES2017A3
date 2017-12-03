@@ -1,10 +1,15 @@
 fileFormatVersion: 2
 guid: a725d09a77c03684fb9fff04ecaef906
-timeCreated: 1507726750
+timeCreated: 1512302026
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - deathExplosion: {fileID: 1779881074926358, guid: 7fdda3c6252719d43af5893ff316daa6,
+      type: 2}
+  - fallExplosion: {fileID: 100004, guid: a89abc0d2591545288f4c041059ae633, type: 2}
+  - onHitEffect: {fileID: 1598593861354004, guid: b6889e8818170c8478e5824800c73f01,
+      type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
