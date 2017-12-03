@@ -9,6 +9,7 @@ namespace cakeslice
     {
         bool totemPrimerJugador = false;
         bool totemContrincante = false;
+        bool totemActual = false;
 
         // Use this for initialization
         void Start()
@@ -62,13 +63,35 @@ namespace cakeslice
             GetComponent<OutlineEffect>().lineColor1 = colorSegundoCanal;
             GetComponent<OutlineEffect>().UpdateMaterialsPublicProperties();
         }
+        private void outlineTotemActual()
+        {
+            Color colorTercerCanal = GetComponent<OutlineEffect>().lineColor2;
+            if (totemActual)
+            {
+                colorTercerCanal.a += Time.deltaTime;
 
+                if (colorTercerCanal.a >= 1)
+                    totemActual = false;
+            }
+            else
+            {
+                colorTercerCanal.a -= Time.deltaTime;
+
+                if (colorTercerCanal.a <= 0)
+                    totemActual = true;
+            }
+
+            colorTercerCanal.a = Mathf.Clamp01(colorTercerCanal.a);
+            GetComponent<OutlineEffect>().lineColor2 = colorTercerCanal;
+            GetComponent<OutlineEffect>().UpdateMaterialsPublicProperties();
+        }
 
         // Update is called once per frame
         void Update()
         {
             outlineTotemPrimerJugador();
             outlineTotemContrincante();
+            outlineTotemActual();
         }
     }
 }
