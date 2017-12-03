@@ -26,10 +26,10 @@ public class Angel : MonoBehaviour
         {
             Destroy(gameObject,2f);
         }
-        if (totem.ColisionaConTerreno())
+        /*if (totem.ColisionaConTerreno())
         {
             posicionValidaTotem = totem.transform.position;
-        }
+        }*/
     }
 
     private bool EfectoHaTerminado()
