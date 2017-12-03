@@ -193,7 +193,7 @@ public class GameManager : MonoBehaviour
         this.totemActual.activarControlMovimiento();
         //this.addTotemItems(this.totemActual);
         this.hotbar.addItemToInventory(Global.TIPO_OBJETOS.objetoEscudoDoble);
-        this.hotbar.addItemToInventory(Global.TIPO_OBJETOS.objetoEscudoSimple);
+		this.hotbar.addItemToInventory(Global.TIPO_OBJETOS.objetoRayo);
 		this.hotbar.addItemToInventory(Global.TIPO_OBJETOS.objetoCohete);
 
 

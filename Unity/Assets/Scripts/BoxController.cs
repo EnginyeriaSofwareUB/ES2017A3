@@ -68,8 +68,7 @@ public class BoxController : MonoBehaviour {
                 break;
 
             case Global.TIPO_OBJETOS.objetoCohete:
-                //TODO: Queda poner las particulas necesarias. Preguntar a albert 
-   
+				GameObject efectoCohete = Instantiate(Resources.Load("Fx_OilTrailHIGH_Root"), objeto.transform.position, Quaternion.identity) as GameObject;
                 break;
 
             case Global.TIPO_OBJETOS.objetoTeletransporte:
