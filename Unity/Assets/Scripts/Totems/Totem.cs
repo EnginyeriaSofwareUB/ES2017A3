@@ -389,4 +389,14 @@ public class Totem : MonoBehaviour
         SendMessage("Heal", new HealthEvent(gameObject, this.getMaxHealth()));
     }
 
+    public bool HotbarLleno()
+    {
+        return this.getItemList().Count == 3;
+    }
+
+    public void EliminarItem(int itemId)
+    {
+        this.getItemList().Remove(itemId);
+    }
+
 }
