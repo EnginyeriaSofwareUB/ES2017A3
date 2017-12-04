@@ -355,4 +355,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   radius: 5
   power: 10
-  damage: 1
+  damage: 10

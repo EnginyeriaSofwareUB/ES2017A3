@@ -1,7 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Assets.Scripts.Environment;
 
 public class GameManager : MonoBehaviour
 {
@@ -13,6 +15,7 @@ public class GameManager : MonoBehaviour
         get { return _instance; }
     }
     
+    public GameObject totem;
 
     // Lista de totems del contrincante. Se pueden asignar desde el editor de unity
     private PriorityQueue<Totem> listaTotemsContrincante;
@@ -27,6 +30,10 @@ public class GameManager : MonoBehaviour
     private EndGameCondition condicionFinJuego;
     // Totem actual del jugadorIsWinCondition
     public Totem totemActual;
+
+    private GestionInventario gestorInventario;
+
+    private GestionHotbar gestorHotbar;
 
     private int turnCounter;
 
@@ -48,10 +55,12 @@ public class GameManager : MonoBehaviour
 	private StateHolder stateHolder;
 
 
-    private List<Item> listaItemsPrimerJugador;
-    private List<Item> listaItemsSegundoJugador;
+    private List<int> listaItemsPrimerJugador;
+    private List<int> listaItemsSegundoJugador;
 
     private Inventory inventario;
+
+    private Inventory hotbar;
 
     private void Awake()
     {
@@ -74,6 +83,14 @@ public class GameManager : MonoBehaviour
         estadoPartida = PARTIDA_STATE.INICIO_RONDA;
         turnoJugador = TURNO_JUGADOR.PRIMER_JUGADOR;
 
+        GameObject inventarioGameObject= GameObject.FindGameObjectWithTag("MainInventory");
+        this.inventario = inventarioGameObject.GetComponent<Inventory>();
+        GameObject hotbarGameObject = GameObject.FindGameObjectWithTag("Hotbar");
+        this.hotbar = hotbarGameObject.GetComponent<Inventory>();
+        gestorInventario = this.gameObject.AddComponent<GestionInventario>();
+        gestorInventario.inventory = inventarioGameObject;
+        gestorHotbar = this.gameObject.AddComponent<GestionHotbar>();
+        gestorHotbar.inventory = hotbarGameObject; 
         condicionFinJuego = GetComponent<EndGameCondition>();
 
         //txtTurnoJugador.text = "Turno: " + turnoJugador.ToString();
@@ -82,21 +99,20 @@ public class GameManager : MonoBehaviour
 
         turnCounter = 1;
 
-        this.listaItemsPrimerJugador = new List<Item>();
-        this.listaItemsSegundoJugador = new List<Item>();
-        GameObject inventarioGameObject= GameObject.FindGameObjectWithTag("MainInventory");
-        inventarioGameObject.SetActive(true);
-        this.inventario = inventarioGameObject.GetComponent<Inventory>();
+        this.listaItemsPrimerJugador = new List<int>();
+        listaItemsPrimerJugador.Add(Global.TIPO_OBJETOS.objetoAngel);
+        listaItemsPrimerJugador.Add(Global.TIPO_OBJETOS.objetoEscudoDoble);
+        listaItemsPrimerJugador.Add(Global.TIPO_OBJETOS.objetoTeletransporte);
+        this.listaItemsSegundoJugador = new List<int>();
+        listaItemsSegundoJugador.Add(Global.TIPO_OBJETOS.objetoIglu);
+        listaItemsSegundoJugador.Add(Global.TIPO_OBJETOS.objetoEscudoSimple);
 
     }
-
-
-
 
     // Update is called once per frame
     void LateUpdate()
     {
-        if(turnoJugador== TURNO_JUGADOR.PRIMER_JUGADOR)
+        if (turnoJugador== TURNO_JUGADOR.PRIMER_JUGADOR)
         {
             txtTurnoJugador.text = "Es tu turno";
             txtTurnoJugador.color = new Color(0f, 1f, 0f);
@@ -131,21 +147,75 @@ public class GameManager : MonoBehaviour
         // Primeramente desactivo el movimiento de todos los totems
         this.desactivarMovimientoTotems();
 
+        resetContornoTotemActual();
 
         // Por defecto, a cada inicio de ronda empezará el primer jugador con el movimiento activado
         this.totemActual = this.listaTotemsJugador.Poll();
-        this.totemActual.activarControlMovimiento();
 
+        this.totemActual.activarControlMovimiento();
 
         // Finalmente,  actualizo el estado
         this.estadoPartida = PARTIDA_STATE.TURNO_RONDA;
         this.turnoJugador = TURNO_JUGADOR.PRIMER_JUGADOR;
         ronda += 1;
         txtNumeroRonda.text = "Ronda: " + ronda;
-       // InitInventory();
+        intercambiarInventario();
+        // InitInventory();
 
+        // Actualiza el contorno del módulo
+        actualizarContornoTotemActual();
     }
 
+    /// <summary>
+    /// Permite actualizar el contorno del totem actual a amarillo
+    /// </summary>
+    private void resetContornoTotemActual()
+    {
+        // Caso que se produce cuando el inicia el juego y aún no hay ningún totem 
+        if (this.totemActual == null) return;
+
+        // Obtengo todos los contornos de los módulos del totem
+        ModuloTotem[] modulosTotem = this.totemActual.GetComponentsInChildren<ModuloTotem>();
+        // Actualizo el color a amarillo
+        foreach (ModuloTotem moduloTotem in modulosTotem)
+            moduloTotem.resetColorContorno();
+    }
+
+    /// <summary>
+    /// Permite actualizar el contorno del totem actual a amarillo
+    /// </summary>
+    private void actualizarContornoTotemActual()
+    {
+        if (this.totemActual == null) return;
+        // Obtengo todos los contornos de los módulos del totem
+        cakeslice.Outline[] outlineModulos = this.totemActual.GetComponentsInChildren<cakeslice.Outline>();
+        // Actualizo el color a amarillo
+        foreach (cakeslice.Outline outlineModulo in outlineModulos)
+            outlineModulo.color = 2;
+    }
+
+    private void addTotemItems(Totem totemActual)
+    {
+        this.hotbar.deleteAllItems();
+        foreach (int item in totemActual.getItemList()){
+            this.hotbar.addItemToInventory(item);
+        }
+    }
+
+    public void AddItemToHotbar(int itemID)
+    {
+        if (!this.totemActual.HotbarLleno())
+        {
+            this.eliminarItemInventario(itemID);
+            this.hotbar.addItemToInventory(itemID);
+            totemActual.AddItem(itemID);
+        }
+        else
+        {
+            this.inventario.addItemToInventory(itemID);
+        }
+        
+    }
 
     private void handleTurno()
     {
@@ -190,6 +260,9 @@ public class GameManager : MonoBehaviour
         // Intercambio el turno del jugador
         turnoJugador = turnoJugador == TURNO_JUGADOR.PRIMER_JUGADOR ? TURNO_JUGADOR.SEGUNDO_JUGADOR : TURNO_JUGADOR.PRIMER_JUGADOR;
 
+        ModuloTotem modulo = this.totemActual.GetComponentInChildren<ModuloTotem>();
+        modulo.resetColorContorno();
+
         switch (turnoJugador)
         {
             case TURNO_JUGADOR.PRIMER_JUGADOR:
@@ -201,6 +274,7 @@ public class GameManager : MonoBehaviour
                 totemActual.activarControlMovimiento();
                 break;
         }
+        actualizarContornoTotemActual();
         intercambiarInventario();
        // InitInventory();
         // Muestro el turno del jugador
@@ -272,9 +346,20 @@ public class GameManager : MonoBehaviour
 		listaTotemsContrincante = new PriorityQueue<Totem>();
 		listaNombreTotemsJugador = new Dictionary<string, int>();
 		listaNombreTotemsContrincante = new Dictionary<string, int>();
-		Object[] allFirstPlayerTotems = GameObject.FindGameObjectsWithTag("TotemFirstPlayer");
-		Object[] allSecondPlayerTotems = GameObject.FindGameObjectsWithTag("TotemSecondPlayer");
-
+		UnityEngine.Object[] allFirstPlayerTotems = GameObject.FindGameObjectsWithTag( Global.TOTEM_FIRST_PLAYER);
+		UnityEngine.Object[] allSecondPlayerTotems = GameObject.FindGameObjectsWithTag( Global.TOTEM_SECOND_PLAYER);
+    /* 
+        // Creación de un totem dinamicamente               Posicion dentro de la escena
+        GameObject totem = Instantiate(this.totem, new Vector3(-11.99f, 12.42f, 0.1011065f), Quaternion.identity);
+        // Cambio de tag
+        totem.tag =  Global.TOTEM_SECOND_PLAYER;
+        // Nombre para encontrarlo
+        totem.name ="Itsme";
+        // Layer 9 = TotemsSegundoJugador, Layer 8 = TotemsPrimerJugador
+        totem.layer = 9;
+        // Assignar el totem al player correspondiente
+        totem.transform.parent = GameObject.FindGameObjectWithTag("SecondPlayer").transform;
+    */
 		foreach(GameObject firstPlayerTotem in allFirstPlayerTotems)
 		{
 			if (countRed < TeamsData.PlayersRed) 
@@ -299,9 +384,11 @@ public class GameManager : MonoBehaviour
 
 							break;
 						}
-				}
 
-				listaTotemsJugador.Add (firstPlayerTotem.GetComponent<Totem> ());
+
+                }
+
+                listaTotemsJugador.Add (firstPlayerTotem.GetComponent<Totem> ());
 				listaNombreTotemsJugador.Add (firstPlayerTotem.GetComponent<Totem> ().name, 1);
 			} else {
 				firstPlayerTotem.gameObject.SetActive (false);
@@ -333,11 +420,12 @@ public class GameManager : MonoBehaviour
 							secondPlayerTotem.GetComponent<Totem> ().AddTortugaTotem();
 							break;
 						}
-					}
-				}
+                    }
+
+                }
 
 
-				listaTotemsContrincante.Add (secondPlayerTotem.GetComponent<Totem> ());
+                listaTotemsContrincante.Add (secondPlayerTotem.GetComponent<Totem> ());
 				listaNombreTotemsContrincante.Add (secondPlayerTotem.GetComponent<Totem> ().name, 1);
 			} else {
 				secondPlayerTotem.gameObject.SetActive (false);
@@ -365,7 +453,7 @@ public class GameManager : MonoBehaviour
 
     public void RemoveTotem(Totem totem)
     {
-        if (totem.tag == "FirstPlayer")
+        if (totem.tag == Global.TOTEM_FIRST_PLAYER)
         {
             listaTotemsJugador.Remove(totem);
 			listaNombreTotemsJugador [totem.name] = 0;
@@ -454,72 +542,55 @@ public class GameManager : MonoBehaviour
     }
 
 
-    public void guardarItem(Item item)
+    public void guardarItem(int itemID)
     {
         if (turnoJugador == TURNO_JUGADOR.PRIMER_JUGADOR)
-            this.listaItemsPrimerJugador.Add(item);
+            this.listaItemsPrimerJugador.Add(itemID);
         else
-            this.listaItemsSegundoJugador.Add(item);
+            this.listaItemsSegundoJugador.Add(itemID);
     }
 
-    public void eliminarItem(Item item)
+    public void eliminarItemInventario(int itemID)
     {
         if (turnoJugador == TURNO_JUGADOR.PRIMER_JUGADOR)
-            this.listaItemsPrimerJugador.Remove(item);
+            this.listaItemsPrimerJugador.Remove(itemID);
         else
-            this.listaItemsSegundoJugador.Remove(item);
+            this.listaItemsSegundoJugador.Remove(itemID);
+        
+    }
+
+    public void eliminarItemHotbar(int itemID)
+    {
+        totemActual.EliminarItem(itemID);
     }
 
     private void intercambiarInventario()
     {
-        GestionInventario playerInventario = totemActual.transform.parent.GetComponent<GestionInventario>();
-        //GameObject.FindGameObjectWithTag("MainInventory").GetComponent<Inventory>().updateItemList();
-        this.inventario = playerInventario.inventory.GetComponent<Inventory>();
-        //this.inventario.deleteAllItems();
-
+        this.inventario.deleteAllItems();
         if (turnoJugador == TURNO_JUGADOR.PRIMER_JUGADOR)
         {
-            foreach (Item item in this.listaItemsPrimerJugador)
+            foreach (int item in this.listaItemsPrimerJugador)
             {
-                inventario.addItemToInventory(item.itemID, item.itemValue);
+                //En caso de stackear el item con el número de items cogidos, se pasara el itemValue y el array será de Item envez de int
+                this.inventario.addItemToInventory(item);
             }
         }
         else
         {
-            foreach (Item item in this.listaItemsSegundoJugador)
+            foreach (int item in this.listaItemsSegundoJugador)
             {
-                inventario.addItemToInventory(item.itemID, item.itemValue);
+                //En caso de stackear el item con el número de items cogidos, se pasara el itemValue y el array será de Item envez de int
+                this.inventario.addItemToInventory(item);
             }
         }
-        inventario.updateItemList();
-        inventario.stackableSettings();
+        this.inventario.updateItemList();
+        this.inventario.stackableSettings();
+        this.addTotemItems(this.totemActual);
     }
 
-
-
-    private void InitInventory()
+    public int GetRondaActual()
     {
-        Inventory playerInventory = totemActual.gameObject.GetComponent<Inventory>();
-        playerInventory.deleteAllItems();
-
-        Object[] totemsPlayer;
-
-        if(totemActual.tag == "TotemFirstPlayer")
-        {
-            totemsPlayer = GameObject.FindGameObjectsWithTag("TotemFirstPlayer");
-        }
-        else
-        {
-            totemsPlayer = GameObject.FindGameObjectsWithTag("TotemSecondPlayer");
-        }
-        foreach(GameObject totem in totemsPlayer)
-        {
-            List<Item> totemItems = totem.GetComponent<Totem>().getItemList();
-            foreach (Item item in totemItems)
-            {
-                playerInventory.addItemToInventory(item.itemID);
-            }
-        }
+        return ronda;
     }
 
 }

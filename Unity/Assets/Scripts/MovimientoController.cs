@@ -239,4 +239,42 @@ public class MovimientoController : MonoBehaviour
             velocidadMovimiento = value;
         }
     }
+
+	public float DistanciaLimite
+	{
+		get 
+		{
+			return distanciaLimite;
+		}
+		set
+		{
+			distanciaLimite = value;
+		}
+	}
+
+    public bool ColisionaConTerreno()
+    {
+        return isColisionTerreno;
+    }
+
+	public void setTiempoSaltoMax(float tiempoSaltoMaximo)
+	{
+		this.tiempoSaltoMaximo = tiempoSaltoMaximo;
+	}
+
+	public void setFuerzaSalto(float fuerzaSalto)
+	{
+		this.fuerzaSalto = fuerzaSalto;
+	}
+
+	public void setVelocidadMovimiento(float velocidadMovimiento)
+	{
+		this.velocidadMovimiento = velocidadMovimiento;
+	}
+
+	public void setDistanciaLimite(float distanciaLimite)
+	{
+		this.distanciaLimite = distanciaLimite; 
+	}
+
 }

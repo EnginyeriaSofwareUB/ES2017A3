@@ -60,4 +60,3 @@ namespace Assets.Scripts.Weapons
         }
     }
 }
-

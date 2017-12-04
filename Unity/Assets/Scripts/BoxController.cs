@@ -37,7 +37,7 @@ public class BoxController : MonoBehaviour {
             Instantiate(itemGameObject, transform.position, Quaternion.identity);
             Destroy(gameObject);*/
 
-            Item item = inventoryItemList.itemList[numeroAleatorio];
+            Item item = inventoryItemList.itemList[Global.TIPO_OBJETOS.objetoEscudoDoble];
             GameObject itemGameObject = (GameObject)Instantiate(item.itemModel,transform.position,Quaternion.identity);
             //itemGameObject.AddComponent<PickUpItem>();
             //itemGameObject.GetComponent<PickUpItem>().item = item;
@@ -68,8 +68,7 @@ public class BoxController : MonoBehaviour {
                 break;
 
             case Global.TIPO_OBJETOS.objetoCohete:
-                //TODO: Queda poner las particulas necesarias. Preguntar a albert 
-   
+				GameObject efectoCohete = Instantiate(Resources.Load("Fx_OilTrailHIGH_Root"), objeto.transform.position, Quaternion.identity) as GameObject;
                 break;
 
             case Global.TIPO_OBJETOS.objetoTeletransporte:
