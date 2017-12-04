@@ -114,12 +114,12 @@ public class GameManager : MonoBehaviour
     {
         if (turnoJugador== TURNO_JUGADOR.PRIMER_JUGADOR)
         {
-            txtTurnoJugador.text = "Es tu turno";
-            txtTurnoJugador.color = new Color(0f, 1f, 0f);
+            txtTurnoJugador.text = "EQUIPO AZUL";
+            txtTurnoJugador.color = new Color(0f, 0f, 1f);
         }
         else
         {
-            txtTurnoJugador.text = "Turno del contrincante";
+            txtTurnoJugador.text = "EQUIPO ROJO";
             txtTurnoJugador.color = new Color(1f, 0f, 0f);
 
         }
