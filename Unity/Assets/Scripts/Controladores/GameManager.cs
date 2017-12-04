@@ -107,9 +107,6 @@ public class GameManager : MonoBehaviour
         listaItemsSegundoJugador.Add(Global.TIPO_OBJETOS.objetoIglu);
         listaItemsSegundoJugador.Add(Global.TIPO_OBJETOS.objetoEscudoSimple);
 
-
-        inicializarContorno();
-
     }
 
     // Update is called once per frame
@@ -207,8 +204,17 @@ public class GameManager : MonoBehaviour
 
     public void AddItemToHotbar(int itemID)
     {
-        this.hotbar.addItemToInventory(itemID);;
-        totemActual.AddItem(itemID);
+        if (!this.totemActual.HotbarLleno())
+        {
+            this.eliminarItemInventario(itemID);
+            this.hotbar.addItemToInventory(itemID);
+            totemActual.AddItem(itemID);
+        }
+        else
+        {
+            this.inventario.addItemToInventory(itemID);
+        }
+        
     }
 
     private void handleTurno()
@@ -544,12 +550,18 @@ public class GameManager : MonoBehaviour
             this.listaItemsSegundoJugador.Add(itemID);
     }
 
-    public void eliminarItem(int itemID)
+    public void eliminarItemInventario(int itemID)
     {
         if (turnoJugador == TURNO_JUGADOR.PRIMER_JUGADOR)
             this.listaItemsPrimerJugador.Remove(itemID);
         else
             this.listaItemsSegundoJugador.Remove(itemID);
+        
+    }
+
+    public void eliminarItemHotbar(int itemID)
+    {
+        totemActual.EliminarItem(itemID);
     }
 
     private void intercambiarInventario()

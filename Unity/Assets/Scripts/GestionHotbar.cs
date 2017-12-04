@@ -208,7 +208,7 @@ public class GestionHotbar : MonoBehaviour
 			break;
 
         }
-        GameManager.Instance.eliminarItem(item.itemID);
+        GameManager.Instance.eliminarItemHotbar(item.itemID);
 
     }
     // Update is called once per frame
