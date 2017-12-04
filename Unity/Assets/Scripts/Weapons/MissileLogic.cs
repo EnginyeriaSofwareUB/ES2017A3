@@ -6,6 +6,9 @@ namespace Assets.Scripts.Weapons
     public class MissileLogic : MonoBehaviour
     {
 
+        public float radius = 7.0F;
+        public float power = 10.0F;
+
         private CircleCollider2D destructionCircle;
         public float damage = 1;
 
@@ -33,7 +36,10 @@ namespace Assets.Scripts.Weapons
             {
                 Physics2D.IgnoreCollision(GetComponent<BoxCollider2D>(), collision.collider);
                 Terrain2 t = collision.gameObject.GetComponent<Terrain2>();
+                float tmp = destructionCircle.radius;
+                destructionCircle.radius = radius;
                 t.DestroyGround(destructionCircle);
+                destructionCircle.radius = tmp;
             }
             else if (tag.Contains("Player"))
             {
@@ -50,7 +56,7 @@ namespace Assets.Scripts.Weapons
                 }
             }
 
-            //Destroy(this.gameObject);
+            Destroy(this.gameObject);
         }
     }
 }

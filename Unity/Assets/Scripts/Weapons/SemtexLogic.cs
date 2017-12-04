@@ -3,9 +3,13 @@ using UnityEngine;
 
 namespace Assets.Scripts.Weapons
 {
-    public class SemtexLogic : MonoBehaviour {
+    public class SemtexLogic : MonoBehaviour
+    {
 
-		private CircleCollider2D destructionCircle;
+        public float radius = 6.0F;
+        public float power = 10.0F;
+
+        private CircleCollider2D destructionCircle;
         public float damage = 1;
 
         public GameObject Player { get; set; }
@@ -35,7 +39,7 @@ namespace Assets.Scripts.Weapons
 				r.velocity = Vector3.zero;
 				r.gravityScale = 0;
 				this.collision = collision;
-				Invoke("DoSomething", 2);
+				Invoke("Explosion", 2);
             }
             else if (tag.Contains("Player"))
             {
@@ -51,14 +55,16 @@ namespace Assets.Scripts.Weapons
                     }
                 }
             }
-
-            //Destroy(this.gameObject);
         }
 
-		void DoSomething() {
-			Terrain2 t = this.collision.gameObject.GetComponent<Terrain2>();
-			t.DestroyGround (destructionCircle);
-			Destroy (this.gameObject);
-		}
+		void Explosion() {
+            Terrain2 t = this.collision.gameObject.GetComponent<Terrain2>();
+            if (t != null)
+            {
+                destructionCircle.radius = radius;
+                t.DestroyGround(destructionCircle);
+            }
+            Destroy(this.gameObject);
+        }
 	}
 }

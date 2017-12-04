@@ -3,9 +3,13 @@ using UnityEngine;
 
 namespace Assets.Scripts.Weapons
 {
-    public class BombLogic : MonoBehaviour {
+    public class BombLogic : MonoBehaviour
+    {
 
-		private CircleCollider2D destructionCircle;
+        public float radius = 4.0F;
+        public float power = 10.0F;
+
+        private CircleCollider2D destructionCircle;
         public float damage = 1;
 
         public GameObject Player { get; set; }
@@ -30,7 +34,8 @@ namespace Assets.Scripts.Weapons
             {
                 Physics2D.IgnoreCollision(GetComponent<BoxCollider2D>(), collision.collider);
                 Terrain2 t = collision.gameObject.GetComponent<Terrain2>();
-                t.DestroyGround (destructionCircle);
+                destructionCircle.radius = radius;
+                t.DestroyGround(destructionCircle);
             }
             else if (tag.Contains("Player"))
             {
