@@ -38,7 +38,7 @@ namespace Assets.Scripts.Weapons
             if (tag == "TerrainObject")
             {
 				if (!ignore)
-					Invoke("DoSomething", 2);
+					Invoke("Explosion", 2);
 				ignore = true;
             }
             else if (tag.Contains("Player"))
@@ -61,10 +61,8 @@ namespace Assets.Scripts.Weapons
             }
 
             this.collision = collision;
-
-            //Destroy(this.gameObject);
         }
-        void DoSomething()
+        void Explosion()
         {
             /*Vector3 explosionPos = this.transform.position;
             Collider[] colliders = Physics.OverlapSphere(explosionPos, radius);
@@ -76,7 +74,10 @@ namespace Assets.Scripts.Weapons
             }*/
             Terrain2 t = this.collision.gameObject.GetComponent<Terrain2>();
             if (t != null)
+            {
+                destructionCircle.radius = radius;
                 t.DestroyGround(destructionCircle);
+            }
             Destroy(this.gameObject);
         }
     }
