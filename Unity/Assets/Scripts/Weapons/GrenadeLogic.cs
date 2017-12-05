@@ -18,6 +18,8 @@ namespace Assets.Scripts.Weapons
 
 		private bool ignore = false;
 
+        public GameObject explosion;
+
 
         void Start () {
 			this.destructionCircle = GetComponent<CircleCollider2D> ();
@@ -78,7 +80,9 @@ namespace Assets.Scripts.Weapons
                 destructionCircle.radius = radius;
                 t.DestroyGround(destructionCircle);
             }
-            Destroy(this.gameObject);
+            GameObject executeDeathExplosion = Instantiate(this.explosion, this.gameObject.transform.position, this.explosion.transform.rotation);
+            Destroy(executeDeathExplosion, executeDeathExplosion.GetComponent<AudioSource>().clip.length);
+            //Destroy(this.gameObject);
         }
     }
 }

@@ -15,6 +15,8 @@ namespace Assets.Scripts.Weapons
 
         public GameObject Player { get; set; }
 
+        public GameObject explosion;
+
         void Start () {
 			this.destructionCircle = GetComponent<CircleCollider2D> ();
         }
@@ -53,8 +55,10 @@ namespace Assets.Scripts.Weapons
                     }
                 }
             }
+            GameObject executeDeathExplosion = Instantiate(this.explosion, this.gameObject.transform.position, this.explosion.transform.rotation);
+            Destroy(executeDeathExplosion, executeDeathExplosion.GetComponent<AudioSource>().clip.length);
 
-            Destroy(this.gameObject);
+            //Destroy(this.gameObject);
         }
     }
 }
