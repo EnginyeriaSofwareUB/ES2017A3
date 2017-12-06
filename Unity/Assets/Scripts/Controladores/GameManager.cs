@@ -93,6 +93,8 @@ public class GameManager : MonoBehaviour
         gestorHotbar.inventory = hotbarGameObject; 
         condicionFinJuego = GetComponent<EndGameCondition>();
 
+		gameObject.AddComponent<PlatformSpawner> ();
+
         //txtTurnoJugador.text = "Turno: " + turnoJugador.ToString();
 
         ronda = 0;

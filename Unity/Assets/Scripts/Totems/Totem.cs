@@ -398,5 +398,4 @@ public class Totem : MonoBehaviour
     {
         this.getItemList().Remove(itemId);
     }
-
 }
