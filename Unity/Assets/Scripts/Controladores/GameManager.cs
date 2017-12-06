@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour
 
     public Text txtNumeroRonda;
     public Text txtTurnoJugador;
+    public Text txtRemainingSteps;
 
     private int ronda;
     
@@ -116,12 +117,12 @@ public class GameManager : MonoBehaviour
     {
         if (turnoJugador== TURNO_JUGADOR.PRIMER_JUGADOR)
         {
-            txtTurnoJugador.text = "Es tu turno";
-            txtTurnoJugador.color = new Color(0f, 1f, 0f);
+            txtTurnoJugador.text = "EQUIPO AZUL";
+            txtTurnoJugador.color = new Color(0f, 0f, 1f);
         }
         else
         {
-            txtTurnoJugador.text = "Turno del contrincante";
+            txtTurnoJugador.text = "EQUIPO ROJO";
             txtTurnoJugador.color = new Color(1f, 0f, 0f);
 
         }
@@ -223,6 +224,7 @@ public class GameManager : MonoBehaviour
     {
         // En caso que el totem del jugador actual no exceda la distancia desactivo su movimiento
         while (!totemActual.excedeLimiteDistancia()){
+            actualizarDistancia();
             return;
         }
 
@@ -283,6 +285,11 @@ public class GameManager : MonoBehaviour
         //txtTurnoJugador.text = "Turno: " + turnoJugador.ToString();
 
 
+    }
+
+    public void actualizarDistancia()
+    {
+        this.txtRemainingSteps.text = totemActual.distanciaRestante();
     }
 
     /// <summary>

@@ -295,6 +295,11 @@ public class Totem : MonoBehaviour
         return this.movimiento.isLimitePasos();
     }
 
+    public string distanciaRestante()
+    {
+        return System.Math.Round(this.movimiento.GetDistanciaRecorrida(),1).ToString() + "/" + this.movimiento.DistanciaLimite.ToString();
+    }
+
     public List<GameObject> Modulos
     {
         get
