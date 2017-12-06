@@ -35,6 +35,7 @@ TagManager:
   - Enemy
   - Friendly
   - Totem_prefab
+  - MovingPlatform
   layers:
   - Default
   - TransparentFX
