@@ -113,8 +113,11 @@ public class MovimientoController : MonoBehaviour
             }
 
         }
-        distanciaRecorrida += System.Math.Abs(transform.position.x - posicionAnterior.x);
-            posicionAnterior = transform.position;
+        if(transform.parent.tag != "MovingPlatform")
+        {
+            distanciaRecorrida += System.Math.Abs(transform.position.x - posicionAnterior.x);
+        }
+        posicionAnterior = transform.position;
         
 
     }
