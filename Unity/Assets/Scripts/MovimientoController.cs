@@ -113,8 +113,11 @@ public class MovimientoController : MonoBehaviour
             }
 
         }
-        distanciaRecorrida += Vector2.Distance(transform.position, posicionAnterior);
-            posicionAnterior = transform.position;
+        if(transform.parent.tag != "MovingPlatform")
+        {
+            distanciaRecorrida += Vector2.Distance(transform.position, posicionAnterior);
+        }
+        posicionAnterior = transform.position;
         
 
     }
