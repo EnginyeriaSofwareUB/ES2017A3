@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour
 
     public Text txtNumeroRonda;
     public Text txtTurnoJugador;
+    public Text txtRemainingSteps;
 
     private int ronda;
     
@@ -221,6 +222,7 @@ public class GameManager : MonoBehaviour
     {
         // En caso que el totem del jugador actual no exceda la distancia desactivo su movimiento
         while (!totemActual.excedeLimiteDistancia()){
+            actualizarDistancia();
             return;
         }
 
@@ -281,6 +283,11 @@ public class GameManager : MonoBehaviour
         //txtTurnoJugador.text = "Turno: " + turnoJugador.ToString();
 
 
+    }
+
+    public void actualizarDistancia()
+    {
+        this.txtRemainingSteps.text = totemActual.distanciaRestante();
     }
 
     /// <summary>
