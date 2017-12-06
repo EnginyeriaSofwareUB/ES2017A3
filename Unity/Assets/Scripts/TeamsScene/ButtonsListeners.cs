@@ -30,7 +30,7 @@ public class ButtonsListeners : MonoBehaviour {
 	public Sprite totem4BlueSprite;
 	public Sprite totem5BlueSprite;
 
-
+    private readonly int MAXPLAYERS = 5;
 	private int contRed = 1;
 	private int contBlue = 1;
 
@@ -73,7 +73,8 @@ public class ButtonsListeners : MonoBehaviour {
 		default:
 			break;
 		};
-		contRed++;
+        if (contRed < MAXPLAYERS)
+            contRed++;
 	}
 
 	public void addNewPlayerBlue()
@@ -94,8 +95,9 @@ public class ButtonsListeners : MonoBehaviour {
 		default:
 			break;
 		};
-		contBlue++;
-	}
+        if (contBlue < MAXPLAYERS)
+            contBlue++;
+    }
 
 
 
