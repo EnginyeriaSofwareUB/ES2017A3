@@ -35,9 +35,14 @@ public class ButtonsListeners : MonoBehaviour {
 	private int contBlue = 1;
 
 	public GameObject totem; 
+	public GameObject dinero;
 	public CustomizeTotem obj;
+	private DineroController dineroController;
 
 
+	void Start () {
+		dineroController = dinero.GetComponent<DineroController>();
+	}
 
 	public void setTotem(GameObject t){
 		totem = t;
@@ -57,44 +62,63 @@ public class ButtonsListeners : MonoBehaviour {
 
 	public void addNewPlayerRed()
 	{
-		switch (contRed) {
-		case 1:
-			totem2Red.gameObject.SetActive (true);
-			break;
-		case 2:
-			totem3Red.gameObject.SetActive (true);
-            break;
-		case 3:
-			totem4Red.gameObject.SetActive (true);
-            break;
-		case 4:
-			totem5Red.gameObject.SetActive (true);
-            break;
-		default:
-			break;
-		};
-		contRed++;
+		if (dineroController.redHasEnoughMoneyForTotem ()) {
+			switch (contRed) {
+			case 1:
+				totem2Red.gameObject.SetActive (true);
+				break;
+			case 2:
+				totem3Red.gameObject.SetActive (true);
+				break;
+			case 3:
+				totem4Red.gameObject.SetActive (true);
+				break;
+			case 4:
+				totem5Red.gameObject.SetActive (true);
+				break;
+			default:
+				break;
+			}
+			;
+			dineroController.redBuysTotem ();
+			Debug.Log ("Red"+dineroController.getRedMoney());
+			contRed++;
+		} else {
+			//TODO display text not enough money 
+			Debug.Log("not enough money");
+		}
+
+
 	}
 
 	public void addNewPlayerBlue()
 	{
-		switch (contBlue) {
-		case 1:
-			totem2Blue.gameObject.SetActive (true);
-			break;
-		case 2:
-			totem3Blue.gameObject.SetActive (true);
-			break;
-		case 3:
-			totem4Blue.gameObject.SetActive (true);
-			break;
-		case 4:
-			totem5Blue.gameObject.SetActive (true);
-			break;
-		default:
-			break;
-		};
-		contBlue++;
+		if (dineroController.blueHasEnoughMoneyForTotem ()) {
+			switch (contBlue) {
+			case 1:
+				totem2Blue.gameObject.SetActive (true);
+				break;
+			case 2:
+				totem3Blue.gameObject.SetActive (true);
+				break;
+			case 3:
+				totem4Blue.gameObject.SetActive (true);
+				break;
+			case 4:
+				totem5Blue.gameObject.SetActive (true);
+				break;
+			default:
+				break;
+			}
+			;
+			dineroController.blueBuysTotem ();
+			Debug.Log ("Blue"+dineroController.getBlueMoney());
+			contBlue++;
+		} else {
+			//TODO show text not enough money
+			Debug.Log("not enough money");
+		}
+
 	}
 
 

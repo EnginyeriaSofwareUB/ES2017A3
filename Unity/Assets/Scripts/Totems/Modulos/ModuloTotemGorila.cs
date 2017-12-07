@@ -11,6 +11,7 @@ public class ModuloTotemGorila : ModuloTotem
 		this.vida = 0;
 		this.movimiento = 0;
         this.getTipoTotem = TotemType.TOTEM_GORILA;
+		this.precio = 40;
 
     }
 
