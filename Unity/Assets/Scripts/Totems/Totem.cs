@@ -152,6 +152,7 @@ public class Totem : MonoBehaviour
             lastModuleAdded.transform.position = this.transform.position;
             // Subimos la posición del totem para apilarlo
             lastModuleAdded.transform.parent = this.transform;
+
         }
         else
         {
@@ -162,8 +163,7 @@ public class Totem : MonoBehaviour
             lastModuleAdded.transform.position = lastModuleAdded.transform.position + moduloAnterior.transform.up * 0.7f;
             lastModuleAdded.transform.parent = this.transform;
         }
-
-		this.movimiento.DistanciaLimite += movimientoTotal;
+        this.movimiento.DistanciaLimite += movimientoTotal;
 		aumentarVida(vidaTotal);
 
 
@@ -193,10 +193,9 @@ public class Totem : MonoBehaviour
     }
 
     // Use this for initialization
-    void Start()
+    void Awake()
     {
 		this.movimiento = GetComponent<MovimientoController>();
-        AddModule(TotemType.TOTEM_BASE);
         this.gameManager = GameObject.FindGameObjectWithTag("GameController");
         this.currentHealth = this.maxHealth;
         this.angelGuarda = false;
@@ -294,6 +293,11 @@ public class Totem : MonoBehaviour
     public bool excedeLimiteDistancia()
     {
         return this.movimiento.isLimitePasos();
+    }
+
+    public string distanciaRestante()
+    {
+        return System.Math.Round(this.movimiento.GetDistanciaRecorrida(),1).ToString() + "/" + this.movimiento.DistanciaLimite.ToString();
     }
 
     public List<GameObject> Modulos
@@ -398,5 +402,4 @@ public class Totem : MonoBehaviour
     {
         this.getItemList().Remove(itemId);
     }
-
 }

@@ -113,12 +113,19 @@ public class MovimientoController : MonoBehaviour
             }
 
         }
-        distanciaRecorrida += Vector2.Distance(transform.position, posicionAnterior);
-            posicionAnterior = transform.position;
+        if(transform.parent.tag != "MovingPlatform")
+        {
+            distanciaRecorrida += System.Math.Abs(transform.position.x - posicionAnterior.x);
+        }
+        posicionAnterior = transform.position;
         
 
     }
 
+    public float GetDistanciaRecorrida()
+    {
+        return distanciaRecorrida;
+    }
     
     protected void OnCollisionEnter2D(Collision2D other)
     {

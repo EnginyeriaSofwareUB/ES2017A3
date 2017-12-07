@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour
 
     public Text txtNumeroRonda;
     public Text txtTurnoJugador;
+    public Text txtRemainingSteps;
 
     private int ronda;
     
@@ -93,6 +94,8 @@ public class GameManager : MonoBehaviour
         gestorHotbar.inventory = hotbarGameObject; 
         condicionFinJuego = GetComponent<EndGameCondition>();
 
+		gameObject.AddComponent<PlatformSpawner> ();
+
         //txtTurnoJugador.text = "Turno: " + turnoJugador.ToString();
 
         ronda = 0;
@@ -114,12 +117,12 @@ public class GameManager : MonoBehaviour
     {
         if (turnoJugador== TURNO_JUGADOR.PRIMER_JUGADOR)
         {
-            txtTurnoJugador.text = "Es tu turno";
-            txtTurnoJugador.color = new Color(0f, 1f, 0f);
+            txtTurnoJugador.text = "EQUIPO AZUL";
+            txtTurnoJugador.color = new Color(0f, 0f, 1f);
         }
         else
         {
-            txtTurnoJugador.text = "Turno del contrincante";
+            txtTurnoJugador.text = "EQUIPO ROJO";
             txtTurnoJugador.color = new Color(1f, 0f, 0f);
 
         }
@@ -221,6 +224,7 @@ public class GameManager : MonoBehaviour
     {
         // En caso que el totem del jugador actual no exceda la distancia desactivo su movimiento
         while (!totemActual.excedeLimiteDistancia()){
+            actualizarDistancia();
             return;
         }
 
@@ -283,6 +287,11 @@ public class GameManager : MonoBehaviour
 
     }
 
+    public void actualizarDistancia()
+    {
+        this.txtRemainingSteps.text = totemActual.distanciaRestante();
+    }
+
     /// <summary>
     /// Método que permite desactivar el movimiento de todos los totems del primer jugador
     /// </summary>
@@ -339,100 +348,99 @@ public class GameManager : MonoBehaviour
 
 	private void initPlayers()
 	{
-		int countRed = 0;
-		int countBlue = 0;
-
 		listaTotemsJugador = new PriorityQueue<Totem>();
 		listaTotemsContrincante = new PriorityQueue<Totem>();
 		listaNombreTotemsJugador = new Dictionary<string, int>();
 		listaNombreTotemsContrincante = new Dictionary<string, int>();
-		UnityEngine.Object[] allFirstPlayerTotems = GameObject.FindGameObjectsWithTag( Global.TOTEM_FIRST_PLAYER);
-		UnityEngine.Object[] allSecondPlayerTotems = GameObject.FindGameObjectsWithTag( Global.TOTEM_SECOND_PLAYER);
-    /* 
-        // Creación de un totem dinamicamente               Posicion dentro de la escena
-        GameObject totem = Instantiate(this.totem, new Vector3(-11.99f, 12.42f, 0.1011065f), Quaternion.identity);
-        // Cambio de tag
-        totem.tag =  Global.TOTEM_SECOND_PLAYER;
-        // Nombre para encontrarlo
-        totem.name ="Itsme";
-        // Layer 9 = TotemsSegundoJugador, Layer 8 = TotemsPrimerJugador
-        totem.layer = 9;
-        // Assignar el totem al player correspondiente
-        totem.transform.parent = GameObject.FindGameObjectWithTag("SecondPlayer").transform;
-    */
-		foreach(GameObject firstPlayerTotem in allFirstPlayerTotems)
+        GameObject firstPlayerTotems = GameObject.FindGameObjectWithTag("FirstPlayer");
+        GameObject secondPlayerTotems = GameObject.FindGameObjectWithTag("SecondPlayer");
+       
+        /* 
+            // Creación de un totem dinamicamente               Posicion dentro de la escena
+            GameObject totem = Instantiate(this.totem, new Vector3(-11.99f, 12.42f, 0.1011065f), Quaternion.identity);
+            // Cambio de tag
+            totem.tag =  Global.TOTEM_SECOND_PLAYER;
+            // Nombre para encontrarlo
+            totem.name ="Itsme";
+            // Layer 9 = TotemsSegundoJugador, Layer 8 = TotemsPrimerJugador
+            totem.layer = 9;
+            // Assignar el totem al player correspondiente
+            totem.transform.parent = GameObject.FindGameObjectWithTag("SecondPlayer").transform;
+        */
+        for (int j = 0; j < TeamsData.PlayersRed; j++)
 		{
-			if (countRed < TeamsData.PlayersRed) 
-			{
+            Vector3 position = new Vector3(UnityEngine.Random.Range(-15, 30), 2f, 0.11f);
+            GameObject totemPlayer = Instantiate(Resources.Load("TotemPlayer"), position, Quaternion.identity) as GameObject;
+            totemPlayer.tag = Global.TOTEM_FIRST_PLAYER;
+            totemPlayer.layer = 8;
+            totemPlayer.name = "TotemRed" + j;
+            totemPlayer.GetComponent<Totem>().CreateTotem();
+            totemPlayer.transform.parent = firstPlayerTotems.transform;
 				//Add modules to totem:
+
 				for(int i = 0; i<4; i++){
-					int modul = getModuleTotem (1, countRed, i);
+					int modul = getModuleTotem (1, j, i);
 					switch(modul){
 						case 1:
-							firstPlayerTotem.GetComponent<Totem> ().AddAguilaTotem ();
+                         totemPlayer.GetComponent<Totem> ().AddAguilaTotem ();
 							break;
 						case 2:
-							firstPlayerTotem.GetComponent<Totem> ().AddGorilaTotem ();
+                            totemPlayer.GetComponent<Totem> ().AddGorilaTotem ();
 							break;
 						case 3:
-							firstPlayerTotem.GetComponent<Totem> ().AddElefanteTotem();
+                            totemPlayer.GetComponent<Totem> ().AddElefanteTotem();
 							break;
 						case 4:
-							firstPlayerTotem.GetComponent<Totem> ().AddTortugaTotem();
+                            totemPlayer.GetComponent<Totem> ().AddTortugaTotem();
 							break;
 						default:
 
 							break;
 						}
-
-
                 }
 
-                listaTotemsJugador.Add (firstPlayerTotem.GetComponent<Totem> ());
-				listaNombreTotemsJugador.Add (firstPlayerTotem.GetComponent<Totem> ().name, 1);
-			} else {
-				firstPlayerTotem.gameObject.SetActive (false);
-			}
-
-			countRed++;
+            listaTotemsJugador.Add(totemPlayer.GetComponent<Totem>());
+            listaNombreTotemsJugador.Add(totemPlayer.GetComponent<Totem>().name, 1);
 
 		}
 
-		foreach (GameObject secondPlayerTotem in allSecondPlayerTotems)
-		{
-			if (countBlue < TeamsData.PlayersBlue) {
+        for (int j = 0; j < TeamsData.PlayersBlue; j++)
+        {
+            Vector3 position = new Vector3(UnityEngine.Random.Range(-15, 30), 2f, 0.11f);
+            GameObject totemPlayer = Instantiate(Resources.Load("TotemPlayer"), position, Quaternion.identity) as GameObject;
+            totemPlayer.tag = Global.TOTEM_SECOND_PLAYER;
+            totemPlayer.layer = 9;
+            totemPlayer.name = "TotemBlue" + j;
+            totemPlayer.GetComponent<Totem>().CreateTotem();
+            totemPlayer.transform.parent = secondPlayerTotems.transform;
 
-				//Add modules to totem:
-				for(int i = 0; i<4; i++){
-					int modul = getModuleTotem(2, countBlue, i);
-					if (modul!= 0) {
-						switch(modul){
-						case 1:
-							secondPlayerTotem.GetComponent<Totem> ().AddAguilaTotem ();
-							break;
-						case 2:
-							secondPlayerTotem.GetComponent<Totem> ().AddGorilaTotem ();
-							break;
-						case 3:
-							secondPlayerTotem.GetComponent<Totem> ().AddElefanteTotem();
-							break;
-						case 4:
-							secondPlayerTotem.GetComponent<Totem> ().AddTortugaTotem();
-							break;
-						}
-                    }
 
+            //Add modules to totem:
+            for (int i = 0; i<4; i++){
+				int modul = getModuleTotem(2, j, i);
+				if (modul!= 0) {
+					switch(modul){
+					case 1:
+                       totemPlayer.GetComponent<Totem> ().AddAguilaTotem ();
+						break;
+					case 2:
+                       totemPlayer.GetComponent<Totem> ().AddGorilaTotem ();
+						break;
+					case 3:
+                        totemPlayer.GetComponent<Totem> ().AddElefanteTotem();
+						break;
+					case 4:
+                        totemPlayer.GetComponent<Totem> ().AddTortugaTotem();
+						break;
+					}
                 }
 
+            }
 
-                listaTotemsContrincante.Add (secondPlayerTotem.GetComponent<Totem> ());
-				listaNombreTotemsContrincante.Add (secondPlayerTotem.GetComponent<Totem> ().name, 1);
-			} else {
-				secondPlayerTotem.gameObject.SetActive (false);
-			}
 
-			countBlue++;
-
+            listaTotemsContrincante.Add (totemPlayer.GetComponent<Totem> ());
+			listaNombreTotemsContrincante.Add (totemPlayer.GetComponent<Totem> ().name, 1);
+			
 		}
 	}
 

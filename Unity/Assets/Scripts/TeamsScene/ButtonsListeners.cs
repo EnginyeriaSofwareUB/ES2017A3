@@ -30,7 +30,7 @@ public class ButtonsListeners : MonoBehaviour {
 	public Sprite totem4BlueSprite;
 	public Sprite totem5BlueSprite;
 
-
+    private readonly int MAXPLAYERS = 5;
 	private int contRed = 1;
 	private int contBlue = 1;
 
@@ -82,13 +82,13 @@ public class ButtonsListeners : MonoBehaviour {
 			;
 			dineroController.redBuysTotem ();
 			Debug.Log ("Red"+dineroController.getRedMoney());
-			contRed++;
+			if (contRed < MAXPLAYERS)
+				contRed++;
 		} else {
 			//TODO display text not enough money 
 			Debug.Log("not enough money");
 		}
-
-
+			
 	}
 
 	public void addNewPlayerBlue()
@@ -113,15 +113,14 @@ public class ButtonsListeners : MonoBehaviour {
 			;
 			dineroController.blueBuysTotem ();
 			Debug.Log ("Blue"+dineroController.getBlueMoney());
-			contBlue++;
+			if (contBlue < MAXPLAYERS)
+				contBlue++;
 		} else {
 			//TODO show text not enough money
 			Debug.Log("not enough money");
 		}
 
 	}
-
-
 
 
 	//totems
