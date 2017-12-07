@@ -42,6 +42,7 @@ public class ButtonsListeners : MonoBehaviour {
 
 	void Start () {
 		dineroController = dinero.GetComponent<DineroController>();
+		dineroController.updateTexts ();
 	}
 
 	public void setTotem(GameObject t){
@@ -81,12 +82,12 @@ public class ButtonsListeners : MonoBehaviour {
 			}
 			;
 			dineroController.redBuysTotem ();
+			dineroController.updateTexts ();
 			Debug.Log ("Red"+dineroController.getRedMoney());
 			if (contRed < MAXPLAYERS)
 				contRed++;
 		} else {
-			//TODO display text not enough money 
-			Debug.Log("not enough money");
+			dineroController.showWarning ("Red", "Totem");
 		}
 			
 	}
@@ -112,12 +113,12 @@ public class ButtonsListeners : MonoBehaviour {
 			}
 			;
 			dineroController.blueBuysTotem ();
+			dineroController.updateTexts ();
 			Debug.Log ("Blue"+dineroController.getBlueMoney());
 			if (contBlue < MAXPLAYERS)
 				contBlue++;
 		} else {
-			//TODO show text not enough money
-			Debug.Log("not enough money");
+			dineroController.showWarning ("Blue", "Totem");
 		}
 
 	}

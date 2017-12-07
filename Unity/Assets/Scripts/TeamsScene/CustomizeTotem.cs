@@ -102,7 +102,13 @@ public class CustomizeTotem : MonoBehaviour {
 				saveModuleToData (1);
 				pay ();
 			} else {
-				//TODO show text
+				string p;
+				if (isPlayerRed) {
+					p = "Red";
+				} else {
+					p = "Blue";
+				}
+				dinero.showWarning (p, "Alligator module");
 			}
 		}
 
@@ -118,7 +124,13 @@ public class CustomizeTotem : MonoBehaviour {
 				saveModuleToData (2);
 				pay ();
 			} else {
-				//TODO show text 
+				string p;
+				if (isPlayerRed) {
+					p = "Red";
+				} else {
+					p = "Blue";
+				}
+				dinero.showWarning (p, "Gorilla module");
 			}
 
 		}
@@ -135,7 +147,13 @@ public class CustomizeTotem : MonoBehaviour {
 				saveModuleToData (3);
 				pay ();
 			} else {
-				// TODO show text
+				string p;
+				if (isPlayerRed) {
+					p = "Red";
+				} else {
+					p = "Blue";
+				}
+				dinero.showWarning (p, "Elephant module");
 			}
 				
 		}
@@ -151,7 +169,13 @@ public class CustomizeTotem : MonoBehaviour {
 				saveModuleToData (4);
 				pay ();
 			} else {
-				//TODO show text
+				string p;
+				if (isPlayerRed) {
+					p = "Red";
+				} else {
+					p = "Blue";
+				}
+				dinero.showWarning (p, "Turtle module");
 			}
 		}
 	}
@@ -172,6 +196,7 @@ public class CustomizeTotem : MonoBehaviour {
 			dinero.blueBuysModule ();
 			Debug.Log ("Blue"+dinero.getBlueMoney());
 		}
+		dinero.updateTexts ();
 	}
 
 

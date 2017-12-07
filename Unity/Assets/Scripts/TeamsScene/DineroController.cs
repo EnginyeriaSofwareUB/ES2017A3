@@ -1,11 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+using UnityEngine; 
+using UnityEngine.UI;
 
 public class DineroController : MonoBehaviour {
 
 	private int moneyRed;
 	private int moneyBlue; 
+	public Text redTxt;
+	public Text blueTxt;
+	public Text warniningTxt;
+	public GameObject warningTxt;
 
 	void Start () {
 		moneyRed = 600;
@@ -62,7 +67,18 @@ public class DineroController : MonoBehaviour {
 	}
 
 
-	//Text moneys
+	public void updateTexts(){
+		redTxt.text = "Money left:" + moneyRed;
+		blueTxt.text = "Money left:" + moneyBlue;
+	}
 
+	public void showWarning(string team, string product){
+		warningTxt.SetActive (true);
+		warniningTxt.text = team + " team does not have enough money to buy a new " + product;
+	}
+
+	public void hideWarning(){
+		warningTxt.SetActive (false);
+	}
 
 }

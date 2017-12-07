@@ -7,7 +7,7 @@ public class MovementOverPlatform : MonoBehaviour {
 
     void Start()
     {
-        //lastParent = transform.parent.transform.parent.gameObject;
+        lastParent = transform.parent.transform.parent.gameObject;
     }
 
     void OnTriggerStay2D(Collider2D col)
