@@ -35,9 +35,15 @@ public class ButtonsListeners : MonoBehaviour {
 	private int contBlue = 1;
 
 	public GameObject totem; 
+	public GameObject dinero;
 	public CustomizeTotem obj;
+	private DineroController dineroController;
 
 
+	void Start () {
+		dineroController = dinero.GetComponent<DineroController>();
+		dineroController.updateTexts ();
+	}
 
 	public void setTotem(GameObject t){
 		totem = t;
@@ -57,49 +63,65 @@ public class ButtonsListeners : MonoBehaviour {
 
 	public void addNewPlayerRed()
 	{
-		switch (contRed) {
-		case 1:
-			totem2Red.gameObject.SetActive (true);
-			break;
-		case 2:
-			totem3Red.gameObject.SetActive (true);
-            break;
-		case 3:
-			totem4Red.gameObject.SetActive (true);
-            break;
-		case 4:
-			totem5Red.gameObject.SetActive (true);
-            break;
-		default:
-			break;
-		};
-        if (contRed < MAXPLAYERS)
-            contRed++;
+		if (dineroController.redHasEnoughMoneyForTotem ()) {
+			switch (contRed) {
+			case 1:
+				totem2Red.gameObject.SetActive (true);
+				break;
+			case 2:
+				totem3Red.gameObject.SetActive (true);
+				break;
+			case 3:
+				totem4Red.gameObject.SetActive (true);
+				break;
+			case 4:
+				totem5Red.gameObject.SetActive (true);
+				break;
+			default:
+				break;
+			}
+			;
+			dineroController.redBuysTotem ();
+			dineroController.updateTexts ();
+			Debug.Log ("Red"+dineroController.getRedMoney());
+			if (contRed < MAXPLAYERS)
+				contRed++;
+		} else {
+			dineroController.showWarning ("Red", "Totem");
+		}
+			
 	}
 
 	public void addNewPlayerBlue()
 	{
-		switch (contBlue) {
-		case 1:
-			totem2Blue.gameObject.SetActive (true);
-			break;
-		case 2:
-			totem3Blue.gameObject.SetActive (true);
-			break;
-		case 3:
-			totem4Blue.gameObject.SetActive (true);
-			break;
-		case 4:
-			totem5Blue.gameObject.SetActive (true);
-			break;
-		default:
-			break;
-		};
-        if (contBlue < MAXPLAYERS)
-            contBlue++;
-    }
+		if (dineroController.blueHasEnoughMoneyForTotem ()) {
+			switch (contBlue) {
+			case 1:
+				totem2Blue.gameObject.SetActive (true);
+				break;
+			case 2:
+				totem3Blue.gameObject.SetActive (true);
+				break;
+			case 3:
+				totem4Blue.gameObject.SetActive (true);
+				break;
+			case 4:
+				totem5Blue.gameObject.SetActive (true);
+				break;
+			default:
+				break;
+			}
+			;
+			dineroController.blueBuysTotem ();
+			dineroController.updateTexts ();
+			Debug.Log ("Blue"+dineroController.getBlueMoney());
+			if (contBlue < MAXPLAYERS)
+				contBlue++;
+		} else {
+			dineroController.showWarning ("Blue", "Totem");
+		}
 
-
+	}
 
 
 	//totems

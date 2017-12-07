@@ -8,6 +8,7 @@ public class SimpleTotem : MonoBehaviour
 
 	[SerializeField] private int ataqueTotal { get; set; }
 	[SerializeField] private int defensaTotal { get; set; }
+	[SerializeField] private int precio { get; set; }
 	[SerializeField] private float maxHealth=10f;
 	[SerializeField] private float currentHealth;
 
@@ -25,6 +26,7 @@ public class SimpleTotem : MonoBehaviour
 	{
 		this.ataqueTotal = ataque;
 		this.defensaTotal = defensa;
+		this.precio = 100;
 		//this.totemItems = new List<Item>();
 	}
 

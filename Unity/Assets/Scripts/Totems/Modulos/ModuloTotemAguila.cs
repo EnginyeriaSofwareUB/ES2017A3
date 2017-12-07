@@ -11,6 +11,8 @@ public class ModuloTotemAguila : ModuloTotem
 		this.vida = 0;
 		this.movimiento = 10;
         this.getTipoTotem = TotemType.TOTEM_AGUILA;
+		this.precio = 40;
+
     }
 
    
