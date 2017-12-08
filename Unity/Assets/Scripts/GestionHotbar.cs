@@ -94,6 +94,13 @@ public class GestionHotbar : MonoBehaviour
             //   }
         }
 
+        //Esto en es caso de que ya tengamos activo un angel,escudo, escudo doble o iglu.
+        if (totemActual.TieneItemActivo(item.itemID))
+        {
+            //GameManager.Instance.addTotemItems(totemActual);
+            StartCoroutine(GameManager.Instance.AñadirItemHotbar(item.itemID));
+            return;
+        }
         switch (item.itemID)
         {
             // Bola de teletransport: disparar-la per teletransportar-se a una posició més endavant.
