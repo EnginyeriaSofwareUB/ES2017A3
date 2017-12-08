@@ -25,6 +25,7 @@ public class Angel : MonoBehaviour
         if(EfectoHaTerminado())
         {
             Destroy(gameObject,2f);
+            totem.DesactivarAngelGuarda();
         }
         /*if (totem.ColisionaConTerreno())
         {
@@ -34,7 +35,7 @@ public class Angel : MonoBehaviour
 
     private bool EfectoHaTerminado()
     {
-        return (gameManager.GetRondaActual() - rondaInicial == Global.MAX_RONDA_ITEM.ANGEL) || (numeroUsos == Global.MAX_USO_ITEM.ANGEL);
+        return ((gameManager.GetRondaActual() - rondaInicial) == Global.MAX_RONDA_ITEM.ANGEL) || (numeroUsos == Global.MAX_USO_ITEM.ANGEL);
     }
 
     public void IncNumeroUsos()

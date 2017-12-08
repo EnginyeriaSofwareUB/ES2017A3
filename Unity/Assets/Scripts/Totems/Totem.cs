@@ -34,7 +34,6 @@ public class Totem : MonoBehaviour
         this.defensaTotal = defensa;
 		this.movimientoTotal = movimiento;
 		this.vidaTotal = vida;
-        this.totemItems = new List<int>();
     }
 
 
@@ -199,12 +198,10 @@ public class Totem : MonoBehaviour
         this.gameManager = GameObject.FindGameObjectWithTag("GameController");
         this.currentHealth = this.maxHealth;
         this.angelGuarda = false;
-        if(this.name == "Totem3P1")
-        {
-            AddItem(Global.TIPO_OBJETOS.objetoAngel);
-            AddItem(Global.TIPO_OBJETOS.objetoEscudoDoble);
-            AddItem(Global.TIPO_OBJETOS.objetoEscudoSimple);
-        }
+        this.totemItems = new List<int>();
+        /*AddItem(Global.TIPO_OBJETOS.objetoAngel);
+        AddItem(Global.TIPO_OBJETOS.objetoEscudoSimple);
+        AddItem(Global.TIPO_OBJETOS.objetoEscudoSimple);*/
 
     }
 
@@ -363,6 +360,11 @@ public class Totem : MonoBehaviour
         angelGuarda = true;
     }
 
+    public void DesactivarAngelGuarda()
+    {
+        angelGuarda = false;
+    }
+
    public bool AngelGuardaActivado()
    {
         return angelGuarda;
@@ -378,7 +380,6 @@ public class Totem : MonoBehaviour
         this.transform.position = angel.GetPosicionValidaTotem();
         angel.ActivarAnimacion();
         angel.IncNumeroUsos();
-        angelGuarda = false;
         Debug.Log(Time.time);
     }
 
@@ -401,5 +402,29 @@ public class Totem : MonoBehaviour
     public void EliminarItem(int itemId)
     {
         this.getItemList().Remove(itemId);
+    }
+
+    public bool TieneItemActivo(int itemId)
+    {
+        UnityEngine.Object itemActivo = null;
+        switch (itemId)
+        {
+            case Global.TIPO_OBJETOS.objetoAngel:
+                itemActivo = gameObject.GetComponentInChildren<Angel>();
+                break;
+            case Global.TIPO_OBJETOS.objetoEscudoSimple:
+                itemActivo = gameObject.GetComponentInChildren<Escut>();
+                break;
+            case Global.TIPO_OBJETOS.objetoEscudoDoble:
+                itemActivo = gameObject.GetComponentInChildren<EscutDoble>();
+                break;
+            case Global.TIPO_OBJETOS.objetoIglu:
+                itemActivo = gameObject.GetComponentInChildren<Iglu>();
+                break;
+            default:
+                itemActivo = null;
+                break;
+        }
+        return itemActivo != null ? true : false;
     }
 }

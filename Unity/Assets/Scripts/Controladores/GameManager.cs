@@ -107,8 +107,11 @@ public class GameManager : MonoBehaviour
         listaItemsPrimerJugador.Add(Global.TIPO_OBJETOS.objetoEscudoDoble);
         listaItemsPrimerJugador.Add(Global.TIPO_OBJETOS.objetoTeletransporte);
         this.listaItemsSegundoJugador = new List<int>();
-        listaItemsSegundoJugador.Add(Global.TIPO_OBJETOS.objetoIglu);
-        listaItemsSegundoJugador.Add(Global.TIPO_OBJETOS.objetoEscudoSimple);
+        /*listaItemsSegundoJugador.Add(Global.TIPO_OBJETOS.objetoIglu);
+        listaItemsSegundoJugador.Add(Global.TIPO_OBJETOS.objetoEscudoSimple);*/
+        listaItemsSegundoJugador.Add(Global.TIPO_OBJETOS.objetoAngel);
+        listaItemsSegundoJugador.Add(Global.TIPO_OBJETOS.objetoEscudoDoble);
+        listaItemsSegundoJugador.Add(Global.TIPO_OBJETOS.objetoTeletransporte);
 
     }
 
@@ -162,7 +165,7 @@ public class GameManager : MonoBehaviour
         this.turnoJugador = TURNO_JUGADOR.PRIMER_JUGADOR;
         ronda += 1;
         txtNumeroRonda.text = "Ronda: " + ronda;
-        intercambiarInventario();
+        StartCoroutine(intercambiarInventario());
         // InitInventory();
 
         // Actualiza el contorno del módulo
@@ -197,27 +200,43 @@ public class GameManager : MonoBehaviour
             outlineModulo.color = 2;
     }
 
-    private void addTotemItems(Totem totemActual)
+    public void addTotemItems(Totem totemActual)
     {
-        this.hotbar.deleteAllItems();
-        foreach (int item in totemActual.getItemList()){
+        
+        List<int> totemItems = totemActual.getItemList();
+        foreach (int item in totemItems)
+        {
             this.hotbar.addItemToInventory(item);
         }
+        
+
     }
 
-    public void AddItemToHotbar(int itemID)
+    public void AsignarItemTotem(int itemID)
     {
         if (!this.totemActual.HotbarLleno())
         {
             this.eliminarItemInventario(itemID);
-            this.hotbar.addItemToInventory(itemID);
+            StartCoroutine(AñadirItemHotbar(itemID));
             totemActual.AddItem(itemID);
         }
         else
         {
-            this.inventario.addItemToInventory(itemID);
+            StartCoroutine(AñadirItemInventario(itemID));
         }
         
+    }
+
+    public IEnumerator AñadirItemHotbar(int itemID)
+    {
+        yield return new WaitForSecondsRealtime(0.1f);
+        this.hotbar.addItemToInventory(itemID);
+    }
+
+    public IEnumerator AñadirItemInventario(int itemID)
+    {
+        yield return new WaitForSecondsRealtime(0.1f);
+        this.inventario.addItemToInventory(itemID);
     }
 
     private void handleTurno()
@@ -279,8 +298,8 @@ public class GameManager : MonoBehaviour
                 break;
         }
         actualizarContornoTotemActual();
-        intercambiarInventario();
-       // InitInventory();
+        StartCoroutine(intercambiarInventario());
+        // InitInventory();
         // Muestro el turno del jugador
         //txtTurnoJugador.text = "Turno: " + turnoJugador.ToString();
 
@@ -572,9 +591,12 @@ public class GameManager : MonoBehaviour
         totemActual.EliminarItem(itemID);
     }
 
-    private void intercambiarInventario()
+    IEnumerator intercambiarInventario()
     {
         this.inventario.deleteAllItems();
+        this.hotbar.deleteAllItems();
+        //yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSecondsRealtime(0.1f);
         if (turnoJugador == TURNO_JUGADOR.PRIMER_JUGADOR)
         {
             foreach (int item in this.listaItemsPrimerJugador)
