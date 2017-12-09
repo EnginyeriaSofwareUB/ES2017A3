@@ -42,7 +42,7 @@ namespace Assets.Scripts.Environment
 
         public static class MAX_RONDA_ITEM
         {
-            public const int ANGEL = 1;
+            public const int ANGEL = 5;
             public const int IGLU = 5;
             public const int ESCUT = 5;
             public const int ESCUTDOBLE = 5;
