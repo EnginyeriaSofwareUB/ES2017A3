@@ -38,6 +38,7 @@ public class MovimientoController : MonoBehaviour
     private ESTADO_SALTO estadoSalto = ESTADO_SALTO.EN_TIERRA;
 
     private Rigidbody2D rigidbody2d;
+	private bool pressedKey = false;
 
     [SerializeField] private Vector2 posicionAnterior;
     [SerializeField] private float distanciaRecorrida = 0;
@@ -55,64 +56,59 @@ public class MovimientoController : MonoBehaviour
     void FixedUpdate()
     {
         bool isPulsadoSalto = Input.GetKey(KeyCode.Space) == true;
+
+		if (puedeMoverse && (Input.GetKeyDown (KeyCode.LeftArrow) || Input.GetKeyDown (KeyCode.RightArrow))) {
+			pressedKey = true;
+		}
            
-        float horizontal = Input.GetAxis("Horizontal");
+		float horizontal = 0;
+		if (pressedKey) {
+			horizontal = Input.GetAxis("Horizontal");
+		}
 
 
-        if (puedeMoverse)
-        {
+		if (puedeMoverse) {
 
-            if (isColisionTerreno)
-            {
-                estadoSalto = ESTADO_SALTO.EN_TIERRA;
-            }
-
-            else if (estadoSalto != ESTADO_SALTO.SALTANDO)
-            {
-                estadoSalto = ESTADO_SALTO.CAYENDO;
-            }
+			if (isColisionTerreno) {
+				estadoSalto = ESTADO_SALTO.EN_TIERRA;
+			} else if (estadoSalto != ESTADO_SALTO.SALTANDO) {
+				estadoSalto = ESTADO_SALTO.CAYENDO;
+			}
 
 
 
-            if (isColisionTerreno)
-            {
-                rigidbody2d.AddForce(new Vector2(horizontal * velocidadMovimiento, 0));
-            }
-            else
-            {
-                rigidbody2d.AddForce(new Vector2(horizontal * velocidadEnAire, 0));
-            }
+			if (isColisionTerreno) {
+				rigidbody2d.AddForce (new Vector2 (horizontal * velocidadMovimiento, 0));
+			} else {
+				rigidbody2d.AddForce (new Vector2 (horizontal * velocidadEnAire, 0));
+			}
 
 
-            // Control de la desaceleración del jugador.
-            // Comprobamos que esté colisionando con el terreno antes de desacelerar
-            if (isColisionTerreno && Mathf.Approximately(horizontal, 0))
-            {
-                rigidbody2d.AddForce(new Vector2(rigidbody2d.velocity.x * -velocidadDesaceleracion, 0));
-            }
+			// Control de la desaceleración del jugador.
+			// Comprobamos que esté colisionando con el terreno antes de desacelerar
+			if (isColisionTerreno && Mathf.Approximately (horizontal, 0)) {
+				rigidbody2d.AddForce (new Vector2 (rigidbody2d.velocity.x * -velocidadDesaceleracion, 0));
+			}
 
 
-            if (isPulsadoSalto)
-            {
-                if ((estadoSalto == ESTADO_SALTO.EN_TIERRA || estadoSalto == ESTADO_SALTO.SALTANDO) && tiempoSaltoActual < tiempoSaltoMaximo)
-                {
-                    estadoSalto = ESTADO_SALTO.SALTANDO;
-                    rigidbody2d.AddForce(new Vector2(0, fuerzaSalto));
-                    tiempoSaltoActual += Time.deltaTime;
-                }
-            }
-            else if (estadoSalto == ESTADO_SALTO.EN_TIERRA)
-            {
-                tiempoSaltoActual = 0;
-            }
+			if (isPulsadoSalto) {
+				if ((estadoSalto == ESTADO_SALTO.EN_TIERRA || estadoSalto == ESTADO_SALTO.SALTANDO) && tiempoSaltoActual < tiempoSaltoMaximo) {
+					estadoSalto = ESTADO_SALTO.SALTANDO;
+					rigidbody2d.AddForce (new Vector2 (0, fuerzaSalto));
+					tiempoSaltoActual += Time.deltaTime;
+				}
+			} else if (estadoSalto == ESTADO_SALTO.EN_TIERRA) {
+				tiempoSaltoActual = 0;
+			}
 
 
-            if (estadoSalto == ESTADO_SALTO.SALTANDO && (tiempoSaltoActual >= tiempoSaltoMaximo || !isPulsadoSalto))
-            {
-                estadoSalto = ESTADO_SALTO.CAYENDO;
-            }
+			if (estadoSalto == ESTADO_SALTO.SALTANDO && (tiempoSaltoActual >= tiempoSaltoMaximo || !isPulsadoSalto)) {
+				estadoSalto = ESTADO_SALTO.CAYENDO;
+			}
 
-        }
+		} else {
+			pressedKey = false;
+		}
         if(transform.parent.tag != "MovingPlatform")
         {
             distanciaRecorrida += System.Math.Abs(transform.position.x - posicionAnterior.x);
