@@ -17,12 +17,15 @@ namespace Assets.Scripts.Weapons
 
         public GameObject explosion;
 
+        public ParticleSystem particle;
+
         void Start () {
 			this.destructionCircle = GetComponent<CircleCollider2D> ();
         }
 	
         void Update ()
         {
+            this.particle.transform.position = this.transform.position;
         }
 
         void OnCollisionEnter2D(Collision2D collision)

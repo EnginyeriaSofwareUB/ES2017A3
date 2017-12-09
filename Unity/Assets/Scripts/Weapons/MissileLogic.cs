@@ -17,6 +17,8 @@ namespace Assets.Scripts.Weapons
 
         public GameObject explosion;
 
+        public ParticleSystem particle;
+
         void Start()
         {
             this.destructionCircle = GetComponent<CircleCollider2D>();
