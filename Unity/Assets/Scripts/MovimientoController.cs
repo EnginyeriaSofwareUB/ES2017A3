@@ -109,7 +109,7 @@ public class MovimientoController : MonoBehaviour
 		} else {
 			pressedKey = false;
 		}
-        if(transform.parent.tag != "MovingPlatform")
+		if(estadoSalto != ESTADO_SALTO.CAYENDO && transform.parent.tag != "MovingPlatform")
         {
             distanciaRecorrida += System.Math.Abs(transform.position.x - posicionAnterior.x);
         }
