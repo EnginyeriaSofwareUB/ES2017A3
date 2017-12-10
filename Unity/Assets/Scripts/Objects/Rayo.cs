@@ -10,8 +10,8 @@ public class Rayo : MonoBehaviour
 	// Use this for initialization
 	void Start()
 	{
-		efectoRayo = Instantiate(Resources.Load("Spark"), this.transform.position, Quaternion.identity) as GameObject;
-		efectoRayo.transform.parent = this.transform;
+		//efectoRayo = Instantiate(Resources.Load("Spark"), this.transform.position, Quaternion.identity) as GameObject;
+		//efectoRayo.transform.parent = this.transform;
 		gameManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
 		totem = GetComponentInParent<Totem>();
 		activarEfecto ();

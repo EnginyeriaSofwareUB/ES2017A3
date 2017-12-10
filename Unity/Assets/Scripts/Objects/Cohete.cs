@@ -10,15 +10,21 @@ public class Cohete : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        efectoCohete = Instantiate(Resources.Load("Fx_OilTrailHIGH_Root"), this.transform.position, Quaternion.identity) as GameObject;
-        efectoCohete.transform.parent = this.transform;
+
+        //GameObject efectoCohete = Instantiate(Resources.Load("Fx_OilTrailHIGH_Root"), this.transform.position, Quaternion.identity) as GameObject;
+
+        //efectoCohete.transform.parent = this.transform;
+
 		gameManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
+
 		totem = GetComponentInParent<Totem>();
 		activarEfecto ();
+
     }
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
+
         string tag = collision.collider.tag;
         if (tag == "TerrainObject")
         {
@@ -40,10 +46,12 @@ public class Cohete : MonoBehaviour
 
 	private bool EfectoHaTerminado()
 	{
+
 		return (gameManager.getActualTotem() != totem);
 	}
 
 	private void activarEfecto(){
+
 		totem.GetComponent<MovimientoController>().setTiempoSaltoMax (0.75f);
 		totem.GetComponent<MovimientoController>().setFuerzaSalto (25f);
 	}
