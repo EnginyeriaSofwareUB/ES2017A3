@@ -11,12 +11,13 @@ public class CustomizeTotem : MonoBehaviour {
 	public GameObject currentTotem;
 	private bool isPlayerRed;
 	public DineroController dinero;
+	public GameObject dineros;
 
 
 	void Start() {
 		initModules ();
 		totemCanvas.gameObject.SetActive (false);
-		dinero = dinero.GetComponent<DineroController>();
+		dinero = dineros.GetComponent<DineroController>();
 	}
 		
 	void Update(){
