@@ -46,6 +46,8 @@ public class MovimientoController : MonoBehaviour
 
     [SerializeField]  private bool puedeMoverse=false;
 
+    [SerializeField] private bool shoot = true;
+
 
     void Awake()
     {
@@ -137,6 +139,16 @@ public class MovimientoController : MonoBehaviour
         return distanciaRecorrida > distanciaLimite;
     }
 
+    public bool isShoot()
+    {
+        return this.shoot;
+    }
+
+    public void setShoot(bool shoot)
+    {
+        this.shoot = shoot;
+    }
+
     public void saltar(float cantidad)
     {
         rigidbody2d.AddForce(new Vector2(0, cantidad));
@@ -161,6 +173,7 @@ public class MovimientoController : MonoBehaviour
         set
         {
             this.distanciaRecorrida = 0;
+            this.shoot = !value;
             puedeMoverse = value;
         }
     }
