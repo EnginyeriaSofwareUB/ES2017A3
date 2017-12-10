@@ -239,6 +239,7 @@ GameObject:
   m_Component:
   - component: {fileID: 53297078}
   - component: {fileID: 53297079}
+  - component: {fileID: 53297080}
   m_Layer: 0
   m_Name: Dinero
   m_TagString: Untagged
@@ -268,6 +269,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2b29f5fbaefa845d29d650d012433b0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &53297080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 53297077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69c84765d40eea3408e261ae1c4eb9cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   redTxt: {fileID: 1825369495}
@@ -1614,6 +1626,7 @@ MonoBehaviour:
   totem5P2: {fileID: 2049190451}
   currentTotem: {fileID: 0}
   dinero: {fileID: 53297079}
+  dineros: {fileID: 53297077}
 --- !u!4 &716767544
 Transform:
   m_ObjectHideFlags: 0
