@@ -20,10 +20,13 @@ namespace Assets.Scripts.Weapon
         private Vector3 ShootingVelocity;
         private Vector3 ShotStartingPoint;
 
+        private MovimientoController mov;
+
         void Start()
         {
             this.Player = GetComponent<PlayerBehaviour>();
             this.totem = GetComponent<Totem>();
+            this.mov = GetComponent<MovimientoController>();
             CalculateVelocity();
         }
 
@@ -37,10 +40,12 @@ namespace Assets.Scripts.Weapon
         {
 			ShotStartingPoint = CalculateFirePoint(ShootingVelocity);
 
-            //var weapon = CreateWeapon("Weapons/" + weaponType, ShotStartingPoint);
-            var weapon = CreateWeapon("Weapons/Missile", ShotStartingPoint);
+            var weapon = CreateWeapon("Weapons/" + weaponType, ShotStartingPoint);
+            //var weapon = CreateWeapon("Weapons/Missile", ShotStartingPoint);
 
             SetWeaponVelocity(weapon, ShootingVelocity);
+
+            this.mov.setShoot(true);
         }
 
         public void ChangeDirection(float angle)

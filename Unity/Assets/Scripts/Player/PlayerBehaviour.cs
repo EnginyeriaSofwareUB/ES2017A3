@@ -30,7 +30,7 @@ namespace Assets.Scripts.Player
 
         private void Update()
         {
-            if (this.mov.PuedeMoverse)
+            if (this.mov.PuedeMoverse || !this.mov.isShoot())
             {
                 //WeaponDirection();
                 //WeaponForce();

@@ -4,7 +4,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using YounGenTech.HealthScript;
-using Assets.Scripts.Environment;
 
 public class Totem : MonoBehaviour
 {
@@ -289,7 +288,10 @@ public class Totem : MonoBehaviour
     }
     public bool excedeLimiteDistancia()
     {
-        return this.movimiento.isLimitePasos();
+        bool t = this.movimiento.isLimitePasos();
+        if (t)
+            desabilitarControlMovimiento();
+        return this.movimiento.isShoot();
     }
 
     public string distanciaRestante()
