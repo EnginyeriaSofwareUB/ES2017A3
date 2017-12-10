@@ -1361,7 +1361,7 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 0
   modulos: []
-  totemItems: []
+  totemItems: 
   angelGuarda: 0
   deathExplosion: {fileID: 1779881074926358, guid: 7fdda3c6252719d43af5893ff316daa6,
     type: 2}
@@ -3483,7 +3483,7 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 0
   modulos: []
-  totemItems: []
+  totemItems: 
   angelGuarda: 0
   deathExplosion: {fileID: 1779881074926358, guid: 7fdda3c6252719d43af5893ff316daa6,
     type: 2}
@@ -3752,7 +3752,7 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 0
   modulos: []
-  totemItems: []
+  totemItems: 
   angelGuarda: 0
   deathExplosion: {fileID: 1779881074926358, guid: 7fdda3c6252719d43af5893ff316daa6,
     type: 2}
@@ -8933,7 +8933,7 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 0
   modulos: []
-  totemItems: []
+  totemItems: 
   angelGuarda: 0
   deathExplosion: {fileID: 1779881074926358, guid: 7fdda3c6252719d43af5893ff316daa6,
     type: 2}
@@ -9535,7 +9535,7 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 0
   modulos: []
-  totemItems: []
+  totemItems: 
   angelGuarda: 0
   deathExplosion: {fileID: 1779881074926358, guid: 7fdda3c6252719d43af5893ff316daa6,
     type: 2}
@@ -9845,7 +9845,7 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 0
   modulos: []
-  totemItems: []
+  totemItems: 
   angelGuarda: 0
   deathExplosion: {fileID: 1779881074926358, guid: 7fdda3c6252719d43af5893ff316daa6,
     type: 2}
@@ -10907,33 +10907,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 05a167fc140064621bb3af25e6ef4788, type: 2}
   m_IsPrefabParent: 0
---- !u!84 &1029959149
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_Width: 820
-  m_Height: 458
-  m_AntiAliasing: 1
-  m_DepthFormat: 1
-  m_ColorFormat: 0
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 0
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!1 &1063922645
 GameObject:
   m_ObjectHideFlags: 0
@@ -11372,7 +11345,7 @@ Camera:
     serializedVersion: 2
     m_Bits: 0
   m_RenderingPath: 1
-  m_TargetTexture: {fileID: 1029959149}
+  m_TargetTexture: {fileID: 1845291742}
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 0
@@ -14276,8 +14249,8 @@ MonoBehaviour:
   autoEnableOutlines: 1
   outlineCamera: {fileID: 1083674408}
   outlineShaderMaterial: {fileID: 0}
-  renderTexture: {fileID: 1029959149}
-  extraRenderTexture: {fileID: 1987288242}
+  renderTexture: {fileID: 1845291742}
+  extraRenderTexture: {fileID: 1593849310}
 --- !u!1 &1406570935
 GameObject:
   m_ObjectHideFlags: 0
@@ -15850,7 +15823,7 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 0
   modulos: []
-  totemItems: []
+  totemItems: 
   angelGuarda: 0
   deathExplosion: {fileID: 1779881074926358, guid: 7fdda3c6252719d43af5893ff316daa6,
     type: 2}
@@ -16244,6 +16217,33 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -4, y: -10}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!84 &1593849310
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_Width: 1120
+  m_Height: 607
+  m_AntiAliasing: 1
+  m_DepthFormat: 1
+  m_ColorFormat: 0
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!1001 &1595147851
 Prefab:
   m_ObjectHideFlags: 0
@@ -19338,6 +19338,33 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 93f006b3a607c4f75b6b429bffdd26dc, type: 2}
   m_IsPrefabParent: 0
+--- !u!84 &1845291742
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_Width: 1120
+  m_Height: 607
+  m_AntiAliasing: 1
+  m_DepthFormat: 1
+  m_ColorFormat: 0
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 0
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!1 &1847209838
 GameObject:
   m_ObjectHideFlags: 0
@@ -20083,33 +20110,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1960959021}
---- !u!84 &1987288242
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_Width: 820
-  m_Height: 458
-  m_AntiAliasing: 1
-  m_DepthFormat: 1
-  m_ColorFormat: 0
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!1 &2004511888
 GameObject:
   m_ObjectHideFlags: 0
@@ -21004,7 +21004,7 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 0
   modulos: []
-  totemItems: []
+  totemItems: 
   angelGuarda: 0
   deathExplosion: {fileID: 1779881074926358, guid: 7fdda3c6252719d43af5893ff316daa6,
     type: 2}

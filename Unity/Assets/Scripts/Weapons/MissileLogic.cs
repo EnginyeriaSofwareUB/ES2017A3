@@ -17,12 +17,10 @@ namespace Assets.Scripts.Weapons
 
         public GameObject explosion;
 
-        public ParticleSystem particle;
-
         void Start()
         {
             this.destructionCircle = GetComponent<CircleCollider2D>();
-            this.GetComponent<Rigidbody2D>().gravityScale = 0;
+            //this.GetComponent<Rigidbody2D>().gravityScale = 0;
         }
 
         void Update()
@@ -61,6 +59,7 @@ namespace Assets.Scripts.Weapons
                     }
                 }
             }
+
             GameObject executeDeathExplosion = Instantiate(this.explosion, this.gameObject.transform.position, this.explosion.transform.rotation);
             Destroy(executeDeathExplosion, executeDeathExplosion.GetComponent<AudioSource>().clip.length);
 

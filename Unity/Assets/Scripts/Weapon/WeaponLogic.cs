@@ -38,7 +38,7 @@ namespace Assets.Scripts.Weapon
 			ShotStartingPoint = CalculateFirePoint(ShootingVelocity);
 
             //var weapon = CreateWeapon("Weapons/" + weaponType, ShotStartingPoint);
-            var weapon = CreateWeapon("Weapons/Bomb", ShotStartingPoint);
+            var weapon = CreateWeapon("Weapons/Missile", ShotStartingPoint);
 
             SetWeaponVelocity(weapon, ShootingVelocity);
         }
@@ -71,7 +71,8 @@ namespace Assets.Scripts.Weapon
 
         private GameObject CreateWeapon(string weaponID, Vector3 position)
         {
-            var weapon = Instantiate(Util.LoadWeapon(weaponID), position, Quaternion.Euler(ShootingAngle, 180, 0)) as GameObject;
+            GameObject tmp = Util.LoadWeapon(weaponID) as GameObject;
+            var weapon = Instantiate(tmp, position, Quaternion.Euler(ShootingAngle, tmp.transform.rotation.y, tmp.transform.rotation.z)) as GameObject;
             // Asignamos el tag de Arma a la bala
             weapon.tag = "Weapon";
             weapon.AddComponent<CheckIsVisible>();
