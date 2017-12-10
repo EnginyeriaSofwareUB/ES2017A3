@@ -34,7 +34,7 @@ public class GestionInventario : MonoBehaviour
 
     void AssignItem(Item item)
     {
-        GameManager.Instance.AddItemToHotbar(item.itemID);
+        GameManager.Instance.AsignarItemTotem(item.itemID);
     }
 
     void Start()

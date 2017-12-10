@@ -34,7 +34,6 @@ public class Totem : MonoBehaviour
         this.defensaTotal = defensa;
 		this.movimientoTotal = movimiento;
 		this.vidaTotal = vida;
-        this.totemItems = new List<int>();
     }
 
 
@@ -152,6 +151,7 @@ public class Totem : MonoBehaviour
             lastModuleAdded.transform.position = this.transform.position;
             // Subimos la posición del totem para apilarlo
             lastModuleAdded.transform.parent = this.transform;
+
         }
         else
         {
@@ -162,8 +162,7 @@ public class Totem : MonoBehaviour
             lastModuleAdded.transform.position = lastModuleAdded.transform.position + moduloAnterior.transform.up * 0.7f;
             lastModuleAdded.transform.parent = this.transform;
         }
-
-		this.movimiento.DistanciaLimite += movimientoTotal;
+        this.movimiento.DistanciaLimite += movimientoTotal;
 		aumentarVida(vidaTotal);
 
 
@@ -193,19 +192,16 @@ public class Totem : MonoBehaviour
     }
 
     // Use this for initialization
-    void Start()
+    void Awake()
     {
 		this.movimiento = GetComponent<MovimientoController>();
-        AddModule(TotemType.TOTEM_BASE);
         this.gameManager = GameObject.FindGameObjectWithTag("GameController");
         this.currentHealth = this.maxHealth;
         this.angelGuarda = false;
-        if(this.name == "Totem3P1")
-        {
-            AddItem(Global.TIPO_OBJETOS.objetoAngel);
-            AddItem(Global.TIPO_OBJETOS.objetoEscudoDoble);
-            AddItem(Global.TIPO_OBJETOS.objetoEscudoSimple);
-        }
+        this.totemItems = new List<int>();
+        /*AddItem(Global.TIPO_OBJETOS.objetoAngel);
+        AddItem(Global.TIPO_OBJETOS.objetoEscudoSimple);
+        AddItem(Global.TIPO_OBJETOS.objetoEscudoSimple);*/
 
     }
 
@@ -296,6 +292,11 @@ public class Totem : MonoBehaviour
         return this.movimiento.isLimitePasos();
     }
 
+    public string distanciaRestante()
+    {
+        return System.Math.Round(this.movimiento.GetDistanciaRecorrida(),1).ToString() + "/" + this.movimiento.DistanciaLimite.ToString();
+    }
+
     public List<GameObject> Modulos
     {
         get
@@ -359,6 +360,11 @@ public class Totem : MonoBehaviour
         angelGuarda = true;
     }
 
+    public void DesactivarAngelGuarda()
+    {
+        angelGuarda = false;
+    }
+
    public bool AngelGuardaActivado()
    {
         return angelGuarda;
@@ -374,7 +380,6 @@ public class Totem : MonoBehaviour
         this.transform.position = angel.GetPosicionValidaTotem();
         angel.ActivarAnimacion();
         angel.IncNumeroUsos();
-        angelGuarda = false;
         Debug.Log(Time.time);
     }
 
@@ -399,4 +404,27 @@ public class Totem : MonoBehaviour
         this.getItemList().Remove(itemId);
     }
 
+    public bool TieneItemActivo(int itemId)
+    {
+        UnityEngine.Object itemActivo = null;
+        switch (itemId)
+        {
+            case Global.TIPO_OBJETOS.objetoAngel:
+                itemActivo = gameObject.GetComponentInChildren<Angel>();
+                break;
+            case Global.TIPO_OBJETOS.objetoEscudoSimple:
+                itemActivo = gameObject.GetComponentInChildren<Escut>();
+                break;
+            case Global.TIPO_OBJETOS.objetoEscudoDoble:
+                itemActivo = gameObject.GetComponentInChildren<EscutDoble>();
+                break;
+            case Global.TIPO_OBJETOS.objetoIglu:
+                itemActivo = gameObject.GetComponentInChildren<Iglu>();
+                break;
+            default:
+                itemActivo = null;
+                break;
+        }
+        return itemActivo != null ? true : false;
+    }
 }

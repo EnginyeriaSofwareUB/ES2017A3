@@ -17,6 +17,7 @@ public class ModuloTotem : MonoBehaviour {
     protected int defensa;
 	protected int movimiento; 
 	protected int vida;
+	protected int precio;
     protected TotemType getTipoTotem;
     //private Transform meshTotem;
     public TotemType getTypeOfTotem()
@@ -72,6 +73,11 @@ public class ModuloTotem : MonoBehaviour {
 	public int getVida()
 	{
 		return vida;
+	}
+
+	public int getPrecio()
+	{
+		return precio;
 	}
 
 }

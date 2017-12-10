@@ -11,7 +11,7 @@ public class ModuloTotemBase : ModuloTotem
 		this.vida = 5;
 		this.movimiento = 5;
         this.getTipoTotem = TotemType.TOTEM_BASE;
-
+		this.precio = 0;
     }
    
 

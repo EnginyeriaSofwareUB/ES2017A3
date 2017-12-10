@@ -9,11 +9,14 @@ public class CustomizeTotem : MonoBehaviour {
 	public GameObject totem1P1, totem2P1, totem3P1, totem4P1, totem5P1;
 	public GameObject totem1P2, totem2P2, totem3P2, totem4P2, totem5P2;
 	public GameObject currentTotem;
+	private bool isPlayerRed;
+	public DineroController dinero;
 
 
 	void Start() {
 		initModules ();
 		totemCanvas.gameObject.SetActive (false);
+		dinero = dinero.GetComponent<DineroController>();
 	}
 		
 	void Update(){
@@ -39,74 +42,96 @@ public class CustomizeTotem : MonoBehaviour {
 		case 1: //player1 totem1
 			totem1P1.SetActive (activated);
 			currentTotem = totem1P1;
+			isPlayerRed = true;
 			break;
 		case 2: //p1t2
 			totem2P1.SetActive(activated);
 			currentTotem = totem2P1;
+			isPlayerRed = true;
 			break;
 		case 3: //p1t3
 			totem3P1.SetActive(activated);
 			currentTotem = totem3P1;
+			isPlayerRed = true;
 			break;
 		case 4: //p1t4
 			totem4P1.SetActive(activated);
 			currentTotem = totem4P1;
+			isPlayerRed = true;
 			break;
 		case 5: //p2t1
 			totem1P2.SetActive(activated);
 			currentTotem = totem1P2;
+			isPlayerRed = false;
 			break;
 		case 6: //p2t2
 			totem2P2.SetActive(activated);
 			currentTotem = totem2P2;
+			isPlayerRed = false;
 			break;
 		case 7: //p2t3
 			totem3P2.SetActive(activated);
 			currentTotem = totem3P2;
+			isPlayerRed = false;
 			break;
 		case 8: //p2t4
 			totem4P2.SetActive(activated);
 			currentTotem = totem4P2;
+			isPlayerRed = false;
 			break;
 		case 9: //p1t5
 			totem5P1.SetActive(activated);
 			currentTotem = totem5P1;
+			isPlayerRed = true;
 			break;
 		case 10: //p2t5
 			totem5P2.SetActive(activated);
 			currentTotem = totem5P2;
+			isPlayerRed = false;
 			break;
 		}
 	}
 
 	public void buttonAguilaOnClick()
 	{
-		if(!currentTotem.GetComponent<ContModules>().hasMaxModules())
+		if(!currentTotem.GetComponent<ContModules>().hasMaxModules() )
 		{
-			currentTotem.GetComponent<SimpleTotem> ().AddAguilaTotem ();
-			currentTotem.GetComponent<ContModules> ().incrementContModules ();
-
-			/*int[] moduls = currentTotem.GetComponent<ContModules> ().getModules ();
-			int cont = currentTotem.GetComponent<ContModules> ().getContModules ();
-			moduls [cont] = 1;
-			currentTotem.GetComponent<ContModules> ().setModules (moduls);*/
-			saveModuleToData (1);
+			if (enoughMoney ()) {
+				currentTotem.GetComponent<SimpleTotem> ().AddAguilaTotem ();
+				currentTotem.GetComponent<ContModules> ().incrementContModules ();
+				saveModuleToData (1);
+				pay ();
+			} else {
+				string p;
+				if (isPlayerRed) {
+					p = "Red";
+				} else {
+					p = "Blue";
+				}
+				dinero.showWarning (p, "Alligator module");
+			}
 		}
 
 	}
 
 	public void buttonGorilaOnClick()
 	{
-		if(!currentTotem.GetComponent<ContModules>().hasMaxModules())
+		if(!currentTotem.GetComponent<ContModules>().hasMaxModules() )
 		{
-			currentTotem.GetComponent<SimpleTotem> ().AddGorilaTotem ();
-			currentTotem.GetComponent<ContModules> ().incrementContModules ();
-
-			/*int[] moduls = currentTotem.GetComponent<ContModules> ().getModules ();
-			int cont = currentTotem.GetComponent<ContModules> ().getContModules ();
-			moduls [cont] = 2;
-			currentTotem.GetComponent<ContModules> ().setModules (moduls);*/
-			saveModuleToData (2);
+			if (enoughMoney ()) {
+				currentTotem.GetComponent<SimpleTotem> ().AddGorilaTotem ();
+				currentTotem.GetComponent<ContModules> ().incrementContModules ();
+				saveModuleToData (2);
+				pay ();
+			} else {
+				string p;
+				if (isPlayerRed) {
+					p = "Red";
+				} else {
+					p = "Blue";
+				}
+				dinero.showWarning (p, "Gorilla module");
+			}
 
 		}
 
@@ -116,38 +141,62 @@ public class CustomizeTotem : MonoBehaviour {
 	{
 		if (!currentTotem.GetComponent<ContModules> ().hasMaxModules ()) 
 		{
-			currentTotem.GetComponent<SimpleTotem> ().AddElefanteTotem ();
-			currentTotem.GetComponent<ContModules> ().incrementContModules ();
-
-			/*int[] moduls = currentTotem.GetComponent<ContModules> ().getModules ();
-			int cont = currentTotem.GetComponent<ContModules> ().getContModules ();
-			moduls [cont] = 3;
-			currentTotem.GetComponent<ContModules> ().setModules (moduls);*/
-			saveModuleToData (3);
-
-		}
-		for(int i = 0; i<4; i++){
-			Debug.Log (TeamsData.ModulesTotem1P1[i]+"susususuus");
+			if (enoughMoney ()) {
+				currentTotem.GetComponent<SimpleTotem> ().AddElefanteTotem ();
+				currentTotem.GetComponent<ContModules> ().incrementContModules ();
+				saveModuleToData (3);
+				pay ();
+			} else {
+				string p;
+				if (isPlayerRed) {
+					p = "Red";
+				} else {
+					p = "Blue";
+				}
+				dinero.showWarning (p, "Elephant module");
+			}
+				
 		}
 	}
 
 	public void buttonTortugaOnClick()
 	{
-		if (!currentTotem.GetComponent<ContModules> ().hasMaxModules ()) 
+		if (!currentTotem.GetComponent<ContModules> ().hasMaxModules () ) 
 		{
-			currentTotem.GetComponent<SimpleTotem> ().AddTortugaTotem ();
-			currentTotem.GetComponent<ContModules> ().incrementContModules ();
-
-			/*
-			int[] moduls = currentTotem.GetComponent<ContModules> ().getModules ();
-			int cont = currentTotem.GetComponent<ContModules> ().getContModules ();
-			moduls [cont] = 4;
-			currentTotem.GetComponent<ContModules> ().setModules (moduls);
-			*/
-			saveModuleToData (4);
-
-
+			if (enoughMoney ()) {
+				currentTotem.GetComponent<SimpleTotem> ().AddTortugaTotem ();
+				currentTotem.GetComponent<ContModules> ().incrementContModules ();
+				saveModuleToData (4);
+				pay ();
+			} else {
+				string p;
+				if (isPlayerRed) {
+					p = "Red";
+				} else {
+					p = "Blue";
+				}
+				dinero.showWarning (p, "Turtle module");
+			}
 		}
+	}
+
+	private bool enoughMoney(){
+		if (isPlayerRed) {
+			return dinero.redHasEnoughMoneyForModule ();
+		} else {
+			return dinero.blueHasEnoughMoneyForModule ();
+		}
+	}
+
+	private void pay(){
+		if (isPlayerRed) {
+			dinero.redBuysModule ();
+			Debug.Log ("Red"+dinero.getRedMoney());
+		} else {
+			dinero.blueBuysModule ();
+			Debug.Log ("Blue"+dinero.getBlueMoney());
+		}
+		dinero.updateTexts ();
 	}
 
 

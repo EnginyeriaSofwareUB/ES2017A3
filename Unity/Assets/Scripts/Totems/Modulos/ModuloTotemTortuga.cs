@@ -11,6 +11,7 @@ public class ModuloTotemTortuga : ModuloTotem
 		this.vida = 00;
 		this.movimiento = 00;
 		this.getTipoTotem = TotemType.TOTEM_TORTUGA;
+		this.precio = 40;
 
 	}
 

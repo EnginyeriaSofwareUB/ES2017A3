@@ -8,12 +8,16 @@ public class Iglu : MonoBehaviour
     private int rondaInicial;
     private int numeroUsos;
     private GameManager gameManager;
+    private Totem totem;
+    private int capaBala;
     // Use this for initialization
     void Start()
     {
         gameManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
         rondaInicial = gameManager.GetRondaActual();
         numeroUsos = 0;
+        totem = GetComponentInParent<Totem>();
+        capaBala = totem.gameObject.layer == Global.Capas.totemsPrimerJugador ? Global.Capas.balaPrimerJugador : Global.Capas.balaSegundoJugador;
     }
 
     // Update is called once per frame
@@ -30,13 +34,12 @@ public class Iglu : MonoBehaviour
         return (gameManager.GetRondaActual() - rondaInicial == Global.MAX_RONDA_ITEM.IGLU) || (numeroUsos == Global.MAX_USO_ITEM.IGLU);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == Global.WEAPON)
+        if (collision.gameObject.tag == Global.WEAPON && (capaBala != collision.gameObject.layer))
         {
             numeroUsos += 1;
             Destroy(collision.gameObject);
         }
-
     }
 }

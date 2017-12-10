@@ -11,7 +11,7 @@ public class ModuloTotemElefante : ModuloTotem
 		this.vida = 5;
 		this.movimiento = 0;
 		this.getTipoTotem = TotemType.TOTEM_ELEFANTE;
-
+		this.precio = 40;
 	}
 
 
