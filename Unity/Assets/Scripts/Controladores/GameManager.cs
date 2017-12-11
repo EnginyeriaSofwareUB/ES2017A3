@@ -122,12 +122,12 @@ public class GameManager : MonoBehaviour
     {
         if (turnoJugador== TURNO_JUGADOR.PRIMER_JUGADOR)
         {
-            txtTurnoJugador.text = "EQUIPO AZUL";
+            txtTurnoJugador.text = "BLUE TEAM";
             txtTurnoJugador.color = new Color(0f, 0f, 1f);
         }
         else
         {
-            txtTurnoJugador.text = "EQUIPO ROJO";
+            txtTurnoJugador.text = "RED TEAM";
             txtTurnoJugador.color = new Color(1f, 0f, 0f);
 
         }
@@ -166,7 +166,7 @@ public class GameManager : MonoBehaviour
         this.estadoPartida = PARTIDA_STATE.TURNO_RONDA;
         this.turnoJugador = TURNO_JUGADOR.PRIMER_JUGADOR;
         ronda += 1;
-        txtNumeroRonda.text = "Ronda: " + ronda;
+        txtNumeroRonda.text = "Round: " + ronda;
         StartCoroutine(intercambiarInventario());
         // InitInventory();
 
@@ -265,7 +265,7 @@ public class GameManager : MonoBehaviour
     {
         //Si han pasado X turnos (box turn) y no ha sucedido la condición de final, lanzamos la caja a la escena
 
-        txtNumeroRonda.text = "Ronda: " + ronda;
+        txtNumeroRonda.text = "Round: " + ronda;
 
         estadoPartida = PARTIDA_STATE.INICIO_RONDA;
         Debug.Log("Fin de la ronda");
