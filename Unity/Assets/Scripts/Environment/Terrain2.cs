@@ -51,12 +51,14 @@ public class Terrain2 : MonoBehaviour {
 				py = c.y + y;
 				ny = c.y - y;
 
-				//if (px < widthPixel && py < heightPixel && px > 0 && py > 0) {
+				if (px < widthPixel && px > 0 && py < heightPixel && py > 0)
 					sr.sprite.texture.SetPixel (px, py, transp);
+				if (nx < widthPixel && nx > 0 && py < heightPixel && py > 0)
 					sr.sprite.texture.SetPixel (nx, py, transp);
+				if (px < widthPixel && px > 0 && ny < heightPixel && ny > 0)
 					sr.sprite.texture.SetPixel (px, ny, transp);
+				if (nx < widthPixel && nx > 0 && ny < heightPixel && ny > 0)
 					sr.sprite.texture.SetPixel (nx, ny, transp);
-				//}
 			}
 		}
 		sr.sprite.texture.Apply();
