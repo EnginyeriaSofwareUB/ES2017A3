@@ -7,7 +7,7 @@ namespace Assets.Scripts.Weapon
 {
     public class WeaponLogic : MonoBehaviour
     {
-        public String weaponType = "Grenade";
+        public String weaponType = "Semtex";
 
         private PlayerBehaviour Player { get; set; }
 
@@ -77,8 +77,9 @@ namespace Assets.Scripts.Weapon
         private GameObject CreateWeapon(string weaponID, Vector3 position)
         {
             GameObject tmp = Util.LoadWeapon(weaponID) as GameObject;
-            //
-            Quaternion t = new Quaternion(tmp.transform.rotation.x, tmp.transform.rotation.y, tmp.transform.rotation.z, tmp.transform.rotation.w);
+            Quaternion t = tmp.transform.rotation;
+            if (weaponType.Equals("Missile"))
+                 t = new Quaternion(0.7f, 0, ShootingAngle > 1.0f ? 0.7f : -0.7f, 0);
             var weapon = Instantiate(tmp, position, t) as GameObject;
             //var weapon = Instantiate(tmp, position, tmp.transform.rotation) as GameObject;
             // Asignamos el tag de Arma a la bala
