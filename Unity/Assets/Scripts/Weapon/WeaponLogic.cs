@@ -7,7 +7,7 @@ namespace Assets.Scripts.Weapon
 {
     public class WeaponLogic : MonoBehaviour
     {
-        public String weaponType = "Grenade";
+        public String weaponType = "Semtex";
 
         private PlayerBehaviour Player { get; set; }
 
@@ -41,7 +41,7 @@ namespace Assets.Scripts.Weapon
 			ShotStartingPoint = CalculateFirePoint(ShootingVelocity);
 
             var weapon = CreateWeapon("Weapons/" + weaponType, ShotStartingPoint);
-            //var weapon = CreateWeapon("Weapons/Bomb", ShotStartingPoint);
+            //var weapon = CreateWeapon("Weapons/Missile", ShotStartingPoint);
 
             SetWeaponVelocity(weapon, ShootingVelocity);
 
@@ -77,7 +77,11 @@ namespace Assets.Scripts.Weapon
         private GameObject CreateWeapon(string weaponID, Vector3 position)
         {
             GameObject tmp = Util.LoadWeapon(weaponID) as GameObject;
-            var weapon = Instantiate(tmp, position, Quaternion.Euler(ShootingAngle, tmp.transform.rotation.y, tmp.transform.rotation.z)) as GameObject;
+            Quaternion t = tmp.transform.rotation;
+            if (weaponType.Equals("Missile"))
+                 t = new Quaternion(0.7f, 0, ShootingAngle > 1.0f ? 0.7f : -0.7f, 0);
+            var weapon = Instantiate(tmp, position, t) as GameObject;
+            //var weapon = Instantiate(tmp, position, tmp.transform.rotation) as GameObject;
             // Asignamos el tag de Arma a la bala
             weapon.tag = "Weapon";
             weapon.AddComponent<CheckIsVisible>();
