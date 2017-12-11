@@ -17,10 +17,13 @@ namespace Assets.Scripts.Weapons
 
         public GameObject explosion;
 
+		public ParticleSystem particle;
+
         void Start()
         {
             this.destructionCircle = GetComponent<CircleCollider2D>();
-            //this.GetComponent<Rigidbody2D>().gravityScale = 0;
+			ParticleSystem fire = Instantiate(this.particle, this.gameObject.transform.position, this.particle.transform.rotation);
+			fire.transform.parent = this.transform;
         }
 
         void Update()

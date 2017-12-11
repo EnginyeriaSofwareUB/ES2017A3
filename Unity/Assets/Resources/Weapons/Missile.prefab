@@ -276,3 +276,4 @@ MonoBehaviour:
   power: 10
   damage: 5
   explosion: {fileID: 1779881074926358, guid: 1c8388cbfc941244f983c045bc0ed875, type: 2}
+  particle: {fileID: 19817552, guid: eeb10f3a038431240a6690043924ec2e, type: 2}
