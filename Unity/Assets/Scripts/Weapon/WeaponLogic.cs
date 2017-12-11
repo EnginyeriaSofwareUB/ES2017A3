@@ -40,8 +40,8 @@ namespace Assets.Scripts.Weapon
         {
 			ShotStartingPoint = CalculateFirePoint(ShootingVelocity);
 
-            //var weapon = CreateWeapon("Weapons/" + weaponType, ShotStartingPoint);
-            var weapon = CreateWeapon("Weapons/Bomb", ShotStartingPoint);
+            var weapon = CreateWeapon("Weapons/" + weaponType, ShotStartingPoint);
+            //var weapon = CreateWeapon("Weapons/Bomb", ShotStartingPoint);
 
             SetWeaponVelocity(weapon, ShootingVelocity);
 
