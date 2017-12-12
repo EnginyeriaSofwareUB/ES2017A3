@@ -35,12 +35,13 @@ public class CogerObjeto : MonoBehaviour
 
         if (condicionFinal)
         {
-            GestionInventario playerInventario = collision.transform.parent.GetComponent<GestionInventario>();
+			
+            /*GestionInventario playerInventario = collision.transform.parent.GetComponent<GestionInventario>();
             inventario = playerInventario.inventory.GetComponent<Inventory>();
             inventario.addItemToInventory(item.itemID, item.itemValue);
             inventario.updateItemList();
-            inventario.stackableSettings();
-            GameManager.Instance.guardarItem(item.itemID);
+            inventario.stackableSettings();*/
+			GameManager.Instance.guardarItem(collision.gameObject.GetComponent<Totem>(),item.itemID);
             Destroy(this.gameObject);
                     
             }

@@ -37,7 +37,7 @@ public class BoxController : MonoBehaviour {
             Instantiate(itemGameObject, transform.position, Quaternion.identity);
             Destroy(gameObject);*/
 
-            Item item = inventoryItemList.itemList[Global.TIPO_OBJETOS.objetoEscudoDoble];
+			Item item = inventoryItemList.itemList[numeroAleatorio];
             GameObject itemGameObject = (GameObject)Instantiate(item.itemModel,transform.position,Quaternion.identity);
             //itemGameObject.AddComponent<PickUpItem>();
             //itemGameObject.GetComponent<PickUpItem>().item = item;

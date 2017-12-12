@@ -369,6 +369,8 @@ public class GameManager : MonoBehaviour
 
 	private void initPlayers()
 	{
+        this.stateHolder.setPlaying();
+        Time.timeScale = 1;
 		listaTotemsJugador = new PriorityQueue<Totem>();
 		listaTotemsContrincante = new PriorityQueue<Totem>();
 		listaNombreTotemsJugador = new Dictionary<string, int>();
@@ -571,9 +573,13 @@ public class GameManager : MonoBehaviour
     }
 
 
-    public void guardarItem(int itemID)
+    public void guardarItem(Totem totem,int itemID)
     {
-        if (turnoJugador == TURNO_JUGADOR.PRIMER_JUGADOR)
+		if (totem.tag == totemActual.tag) {
+			this.inventario.addItemToInventory (itemID);
+		} 
+			
+		if (totem.tag == Global.TOTEM_FIRST_PLAYER)
             this.listaItemsPrimerJugador.Add(itemID);
         else
             this.listaItemsSegundoJugador.Add(itemID);

@@ -160,15 +160,3 @@ MonoBehaviour:
     itemAttributes:
     - attributeName: EscutDoble
       attributeValue: 0
-  - itemName: New Item
-    itemID: 10
-    itemDesc: 
-    itemIcon: {fileID: 0}
-    itemModel: {fileID: 0}
-    itemValue: 1
-    itemType: 0
-    itemWeight: 0
-    maxStack: 1
-    indexItemInList: 999
-    rarity: 0
-    itemAttributes: []
