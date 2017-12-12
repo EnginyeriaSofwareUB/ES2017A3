@@ -1,34 +1,41 @@
-﻿using System;
+﻿using Assets.Scripts.Environment;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using YounGenTech.HealthScript;
 
 public class Totem : MonoBehaviour
 {
 
     [SerializeField] private int ataqueTotal { get; set; }
     [SerializeField] private int defensaTotal { get; set; }
-    [SerializeField] private float maxHealth=10f;
-    [SerializeField] private float currentHealth;
+	[SerializeField] private int movimientoTotal { get; set; }
+	[SerializeField] private int vidaTotal { get; set; }
+    [SerializeField] private float maxHealth=100f;
+    [SerializeField] public float currentHealth;
 
     [SerializeField] private List<GameObject> modulos;
 
-    [SerializeField] public Hotbar totemHotbar;
-    [SerializeField] public List<Item> totemItems;
+    [SerializeField] public List<int> totemItems;
 
     //Manejador del movimiento del jugador
     private MovimientoController movimiento;
 
     private GameObject gameManager;
+    public bool angelGuarda;
 
-    public Totem(int ataque, int defensa)
+    public GameObject deathExplosion, fallExplosion, onHitEffect;
+
+	public Totem(int ataque, int defensa, int movimiento, int vida)
     {
         this.ataqueTotal = ataque;
         this.defensaTotal = defensa;
-        this.totemItems = new List<Item>();
+		this.movimientoTotal = movimiento;
+		this.vidaTotal = vida;
     }
 
- 
+
 
     public Totem()
     {
@@ -132,6 +139,10 @@ public class Totem : MonoBehaviour
         // Sumamos los parámetros de los módulos al totem
         this.ataqueTotal += lastModuleAdded.GetComponent<ModuloTotem>().getAtaque();
         this.defensaTotal += lastModuleAdded.GetComponent<ModuloTotem>().getDefensa();
+		this.movimientoTotal += lastModuleAdded.GetComponent<ModuloTotem>().getMovimiento();
+		this.vidaTotal += lastModuleAdded.GetComponent<ModuloTotem>().getVida();
+
+
 
         // En caso que sea el primer módulo que se añade
         if (modulos.Count < 2)
@@ -139,6 +150,7 @@ public class Totem : MonoBehaviour
             lastModuleAdded.transform.position = this.transform.position;
             // Subimos la posición del totem para apilarlo
             lastModuleAdded.transform.parent = this.transform;
+
         }
         else
         {
@@ -149,6 +161,9 @@ public class Totem : MonoBehaviour
             lastModuleAdded.transform.position = lastModuleAdded.transform.position + moduloAnterior.transform.up * 0.7f;
             lastModuleAdded.transform.parent = this.transform;
         }
+        this.movimiento.DistanciaLimite += movimientoTotal;
+		aumentarVida(vidaTotal);
+
 
     }
 
@@ -176,17 +191,16 @@ public class Totem : MonoBehaviour
     }
 
     // Use this for initialization
-    void Start()
+    void Awake()
     {
-        AddModule(TotemType.TOTEM_BASE);
-        //AddModule(TotemType.TOTEM_AGUILA);
-        //AddModule(TotemType.TOTEM_GORILA);
-        // Hotbar on ficar els items del totem, per no complicarnos serà compartida per tant s'ha de buidar i emplenar amb els items de cada totem al
-        // canviar de torn.
-        //this.totemHotbar = GameObject.FindGameObjectWithTag("Hotbar").GetComponent<Hotbar>();
-        this.movimiento = GetComponent<MovimientoController>();
+		this.movimiento = GetComponent<MovimientoController>();
         this.gameManager = GameObject.FindGameObjectWithTag("GameController");
         this.currentHealth = this.maxHealth;
+        this.angelGuarda = false;
+        this.totemItems = new List<int>();
+        /*AddItem(Global.TIPO_OBJETOS.objetoAngel);
+        AddItem(Global.TIPO_OBJETOS.objetoEscudoSimple);
+        AddItem(Global.TIPO_OBJETOS.objetoEscudoSimple);*/
 
     }
 
@@ -209,17 +223,58 @@ public class Totem : MonoBehaviour
 	private void kill(){
 		if (this.currentHealth < 1)
 		{
-            gameManager.SendMessage("RemoveTotem", this);
-            this.currentHealth = 0;
-            deleteLineRenderer();
+            if (AngelGuardaActivado())
+            {
+                StartCoroutine(RevivirTotem());
+            }
+            else
+            {
+                this.eliminarTotem();
+            }
+            
         }
 	}
 
-	public void suicide(){
-		this.movimiento.endMovement();
-        this.currentHealth = 0;
-        deleteLineRenderer();
-	}
+
+
+    public void eliminarTotem()
+    {
+            if (this.currentHealth > 0){
+                Vector3 updatedPosition = this.gameObject.transform.position;
+                if (updatedPosition.x < -20) updatedPosition.x = -20;
+                else if (updatedPosition.x > 37) updatedPosition.x = 37;
+                updatedPosition.y = -20;
+                GameObject executeFallExplosion = Instantiate(this.fallExplosion,updatedPosition,this.gameObject.transform.rotation);
+                Destroy(executeFallExplosion,executeFallExplosion.GetComponent<AudioSource>().clip.length);
+            }else{
+                GameObject executeDeathExplosion = Instantiate(this.deathExplosion,this.gameObject.transform.position,this.deathExplosion.transform.rotation);
+                Destroy(executeDeathExplosion, executeDeathExplosion.GetComponent<AudioSource>().clip.length);
+            }
+            if (AngelGuardaActivado())
+            {
+                StartCoroutine(RevivirTotem());
+            }
+            else
+            {
+                gameManager.SendMessage("RemoveTotem", this);
+                this.movimiento.endMovement();
+                this.currentHealth = 0;
+                deleteLineRenderer();
+            }
+    }
+
+    public void suicide()
+    {
+        if (!AngelGuardaActivado())
+        {
+            this.eliminarTotem();
+        }
+        else
+        {
+            StartCoroutine(RevivirTotem());
+        }
+
+    }
 
     public void desabilitarControlMovimiento()
     {
@@ -233,7 +288,15 @@ public class Totem : MonoBehaviour
     }
     public bool excedeLimiteDistancia()
     {
-        return this.movimiento.isLimitePasos();
+        bool t = this.movimiento.isLimitePasos();
+        if (t)
+            desabilitarControlMovimiento();
+        return this.movimiento.isShoot();
+    }
+
+    public string distanciaRestante()
+    {
+        return System.Math.Round(this.movimiento.GetDistanciaRecorrida(),1).ToString() + "/" + this.movimiento.DistanciaLimite.ToString();
     }
 
     public List<GameObject> Modulos
@@ -249,16 +312,20 @@ public class Totem : MonoBehaviour
         }
     }
 
-    public void DecreaseVida(float decrease)
+    public void DecreaseVida()
     {
-        this.currentHealth -= decrease;
-        kill();
+        Vector3 updatedPosition = this.gameObject.transform.position;
+        updatedPosition.z = 0.5f;
+        GameObject executeOnHitEffect = Instantiate(this.onHitEffect,updatedPosition,this.onHitEffect.transform.rotation);
+        executeOnHitEffect.GetComponent<AudioSource>().Play();
+        Destroy(executeOnHitEffect, executeOnHitEffect.GetComponent<AudioSource>().clip.length);
     }
 
 	public void aumentarVida(float cantidad)
 	{
 		this.currentHealth += cantidad;
-		Debug.Log("Aumento la vida en " + cantidad);
+        SendMessage("Heal", new HealthEvent(gameObject, cantidad));
+        Debug.Log("Aumento la vida en " + cantidad);
 	}
 
 
@@ -280,26 +347,86 @@ public class Totem : MonoBehaviour
 		return this.maxHealth;
 	}
 
-    /*private void OnCollisionEnter2D(Collision2D collision)
+    public void AddItem(int itemID)
     {
-        if (collision.gameObject.tag == "Item")
-        {
-            Item item = this.gameManager.GetComponent<GameManager>().getDataBaseList().getItemByName(gameObject.name);
-            totemItems.Add(item);
-            this.storage.storageItems.Add(item);
-            Destroy(collision.gameObject);
-
-        }
-    }*/
-
-    public void AddItem(Item item)
-    {
-        totemItems.Add(item);
+        totemItems.Add(itemID);
     }
 
-    public List<Item> getItemList()
+    public List<int> getItemList()
     {
         return totemItems;
     }
 
+    public void ActivarAngelGuarda()
+    {
+        angelGuarda = true;
+    }
+
+    public void DesactivarAngelGuarda()
+    {
+        angelGuarda = false;
+    }
+
+   public bool AngelGuardaActivado()
+   {
+        return angelGuarda;
+   }
+
+    IEnumerator RevivirTotem()
+    {
+        Debug.Log("Revivir totem");
+        Debug.Log(Time.time);
+        yield return new WaitForSeconds(2);
+        Angel angel = gameObject.GetComponentInChildren<Angel>();
+        ResetHealth();
+        this.transform.position = angel.GetPosicionValidaTotem();
+        angel.ActivarAnimacion();
+        angel.IncNumeroUsos();
+        Debug.Log(Time.time);
+    }
+
+    public bool ColisionaConTerreno()
+    {
+        return movimiento.ColisionaConTerreno();
+    }
+
+    public void ResetHealth()
+    {
+        this.currentHealth = this.getMaxHealth();
+        SendMessage("Heal", new HealthEvent(gameObject, this.getMaxHealth()));
+    }
+
+    public bool HotbarLleno()
+    {
+        return this.getItemList().Count == 3;
+    }
+
+    public void EliminarItem(int itemId)
+    {
+        this.getItemList().Remove(itemId);
+    }
+
+    public bool TieneItemActivo(int itemId)
+    {
+        UnityEngine.Object itemActivo = null;
+        switch (itemId)
+        {
+            case Global.TIPO_OBJETOS.objetoAngel:
+                itemActivo = gameObject.GetComponentInChildren<Angel>();
+                break;
+            case Global.TIPO_OBJETOS.objetoEscudoSimple:
+                itemActivo = gameObject.GetComponentInChildren<Escut>();
+                break;
+            case Global.TIPO_OBJETOS.objetoEscudoDoble:
+                itemActivo = gameObject.GetComponentInChildren<EscutDoble>();
+                break;
+            case Global.TIPO_OBJETOS.objetoIglu:
+                itemActivo = gameObject.GetComponentInChildren<Iglu>();
+                break;
+            default:
+                itemActivo = null;
+                break;
+        }
+        return itemActivo != null ? true : false;
+    }
 }

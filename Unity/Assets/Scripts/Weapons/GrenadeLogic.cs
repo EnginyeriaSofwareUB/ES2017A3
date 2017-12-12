@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.Environment;
 using UnityEngine;
+using YounGenTech.HealthScript;
 
 namespace Assets.Scripts.Weapons
 {
@@ -16,6 +17,8 @@ namespace Assets.Scripts.Weapons
 		private Collision2D collision;
 
 		private bool ignore = false;
+
+        public GameObject explosion;
 
 
         void Start () {
@@ -37,7 +40,7 @@ namespace Assets.Scripts.Weapons
             if (tag == "TerrainObject")
             {
 				if (!ignore)
-					Invoke("DoSomething", 2);
+					Invoke("Explosion", 2);
 				ignore = true;
             }
             else if (tag.Contains("Player"))
@@ -50,16 +53,18 @@ namespace Assets.Scripts.Weapons
                     foreach (GameObject mod in totem.Modulos)
                     {
                         if (mod.GetInstanceID() == id)
-                            totem.DecreaseVida(damage);
+                        {
+                            // totem.DecreaseVida(damage);
+                            totem.SendMessage("Damage", new HealthEvent(gameObject, damage));
+                            totem.DecreaseVida();
+                        }
                     }
                 }
             }
 
             this.collision = collision;
-
-            //Destroy(this.gameObject);
         }
-        void DoSomething()
+        void Explosion()
         {
             /*Vector3 explosionPos = this.transform.position;
             Collider[] colliders = Physics.OverlapSphere(explosionPos, radius);
@@ -71,7 +76,12 @@ namespace Assets.Scripts.Weapons
             }*/
             Terrain2 t = this.collision.gameObject.GetComponent<Terrain2>();
             if (t != null)
+            {
+                destructionCircle.radius = radius;
                 t.DestroyGround(destructionCircle);
+            }
+            GameObject executeDeathExplosion = Instantiate(this.explosion, this.gameObject.transform.position, this.explosion.transform.rotation);
+            Destroy(executeDeathExplosion, executeDeathExplosion.GetComponent<AudioSource>().clip.length);
             Destroy(this.gameObject);
         }
     }

@@ -190,7 +190,11 @@ public class Inventory : MonoBehaviour
     public void ConsumeItem(Item item)
     {
         if (ItemConsumed != null)
-            ItemConsumed(item);
+            if(GetComponent<Hotbar>()!=null)
+                ItemConsumed(item);
+            else
+                ItemEquip(item);
+        
     }
 
     public void EquiptItem(Item item)
@@ -711,7 +715,8 @@ public class Inventory : MonoBehaviour
         {
             if (SlotContainer.transform.GetChild(i).childCount != 0)
             {
-                Destroy(SlotContainer.transform.GetChild(i).GetChild(0).gameObject);
+                //DestroyImmediate(SlotContainer.transform.GetChild(i).GetChild(0).gameObject);
+               Destroy(SlotContainer.transform.GetChild(i).GetChild(0).gameObject);
             }
         }
     }

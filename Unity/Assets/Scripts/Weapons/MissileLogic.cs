@@ -1,20 +1,29 @@
 ﻿using Assets.Scripts.Environment;
 using UnityEngine;
+using YounGenTech.HealthScript;
 
 namespace Assets.Scripts.Weapons
 {
     public class MissileLogic : MonoBehaviour
     {
 
+        public float radius = 7.0F;
+        public float power = 10.0F;
+
         private CircleCollider2D destructionCircle;
         public float damage = 1;
 
         public GameObject Player { get; set; }
 
+        public GameObject explosion;
+
+		public ParticleSystem particle;
+
         void Start()
         {
             this.destructionCircle = GetComponent<CircleCollider2D>();
-            this.GetComponent<Rigidbody2D>().gravityScale = 0;
+			ParticleSystem fire = Instantiate(this.particle, this.gameObject.transform.position, this.particle.transform.rotation);
+			fire.transform.parent = this.transform;
         }
 
         void Update()
@@ -33,7 +42,10 @@ namespace Assets.Scripts.Weapons
             {
                 Physics2D.IgnoreCollision(GetComponent<BoxCollider2D>(), collision.collider);
                 Terrain2 t = collision.gameObject.GetComponent<Terrain2>();
+                float tmp = destructionCircle.radius;
+                destructionCircle.radius = radius;
                 t.DestroyGround(destructionCircle);
+                destructionCircle.radius = tmp;
             }
             else if (tag.Contains("Player"))
             {
@@ -45,13 +57,16 @@ namespace Assets.Scripts.Weapons
                     foreach (GameObject mod in totem.Modulos)
                     {
                         if (mod.GetInstanceID() == id)
-                            totem.DecreaseVida(damage);
+                            totem.SendMessage("Damage", new HealthEvent(gameObject, damage));
+                            totem.DecreaseVida();
                     }
                 }
             }
 
-            //Destroy(this.gameObject);
+            GameObject executeDeathExplosion = Instantiate(this.explosion, this.gameObject.transform.position, this.explosion.transform.rotation);
+            Destroy(executeDeathExplosion, executeDeathExplosion.GetComponent<AudioSource>().clip.length);
+
+            Destroy(this.gameObject);
         }
     }
 }
-

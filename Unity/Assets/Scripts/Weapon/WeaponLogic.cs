@@ -7,7 +7,7 @@ namespace Assets.Scripts.Weapon
 {
     public class WeaponLogic : MonoBehaviour
     {
-        public String weaponType = "Grenade";
+        public String weaponType = "Semtex";
 
         private PlayerBehaviour Player { get; set; }
 
@@ -20,10 +20,13 @@ namespace Assets.Scripts.Weapon
         private Vector3 ShootingVelocity;
         private Vector3 ShotStartingPoint;
 
+        private MovimientoController mov;
+
         void Start()
         {
             this.Player = GetComponent<PlayerBehaviour>();
             this.totem = GetComponent<Totem>();
+            this.mov = GetComponent<MovimientoController>();
             CalculateVelocity();
         }
 
@@ -38,8 +41,11 @@ namespace Assets.Scripts.Weapon
 			ShotStartingPoint = CalculateFirePoint(ShootingVelocity);
 
             var weapon = CreateWeapon("Weapons/" + weaponType, ShotStartingPoint);
+            //var weapon = CreateWeapon("Weapons/Missile", ShotStartingPoint);
 
             SetWeaponVelocity(weapon, ShootingVelocity);
+
+            this.mov.setShoot(true);
         }
 
         public void ChangeDirection(float angle)
@@ -70,9 +76,15 @@ namespace Assets.Scripts.Weapon
 
         private GameObject CreateWeapon(string weaponID, Vector3 position)
         {
-            var weapon = Instantiate(Util.LoadWeapon(weaponID), position, Quaternion.identity) as GameObject;
+            GameObject tmp = Util.LoadWeapon(weaponID) as GameObject;
+            Quaternion t = tmp.transform.rotation;
+            if (weaponType.Equals("Missile"))
+                 t = new Quaternion(0.7f, 0, ShootingAngle > 1.0f ? 0.7f : -0.7f, 0);
+            var weapon = Instantiate(tmp, position, t) as GameObject;
+            //var weapon = Instantiate(tmp, position, tmp.transform.rotation) as GameObject;
             // Asignamos el tag de Arma a la bala
             weapon.tag = "Weapon";
+            weapon.AddComponent<CheckIsVisible>();
             // Añadimos una capa que será la misma que el totem. 
             // Utilizando las capas de colisión evitaremos que una bala disparada por el propio jugador le afecten
 
