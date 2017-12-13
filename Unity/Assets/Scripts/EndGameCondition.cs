@@ -26,6 +26,12 @@ public class EndGameCondition : MonoBehaviour
     {
         if (this.stateHolder.isPlaying() && this.IsWinCondition())
         {
+            GameObject[] audios = GameObject.FindGameObjectsWithTag("KillMe");
+            if (audios.Length != 0) {
+                foreach (GameObject audio in audios){
+                    audio.GetComponent<AudioSource>().Stop();
+                }
+            }
             this.stateHolder.setMenu();
 			showEndGameScreen ();
 

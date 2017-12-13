@@ -36,6 +36,7 @@ TagManager:
   - Friendly
   - Totem_prefab
   - MovingPlatform
+  - KillMe
   layers:
   - Default
   - TransparentFX

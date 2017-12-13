@@ -245,9 +245,11 @@ public class Totem : MonoBehaviour
                 else if (updatedPosition.x > 37) updatedPosition.x = 37;
                 updatedPosition.y = -20;
                 GameObject executeFallExplosion = Instantiate(this.fallExplosion,updatedPosition,this.gameObject.transform.rotation);
+                executeFallExplosion.tag = "KillMe";
                 Destroy(executeFallExplosion,executeFallExplosion.GetComponent<AudioSource>().clip.length);
             }else{
                 GameObject executeDeathExplosion = Instantiate(this.deathExplosion,this.gameObject.transform.position,this.deathExplosion.transform.rotation);
+                executeDeathExplosion.tag = "KillMe";
                 Destroy(executeDeathExplosion, executeDeathExplosion.GetComponent<AudioSource>().clip.length);
             }
             if (AngelGuardaActivado())
