@@ -39,7 +39,6 @@ public class StateHolder : MonoBehaviour
     {
         switch (this.state)
         {
-            case (ESTADO_JUEGO.PLAYING):
             case (ESTADO_JUEGO.MENU):
             case (ESTADO_JUEGO.PAUSE):
                 this.state = ESTADO_JUEGO.PLAYING;
@@ -53,8 +52,8 @@ public class StateHolder : MonoBehaviour
     {
         switch (this.state)
         {
-            case (ESTADO_JUEGO.MENU):
             case (ESTADO_JUEGO.PAUSE):
+            case (ESTADO_JUEGO.PLAYING):
                 this.state = ESTADO_JUEGO.MENU;
                 return true;
             default:
@@ -66,7 +65,6 @@ public class StateHolder : MonoBehaviour
     {
         switch (this.state)
         {
-            case (ESTADO_JUEGO.PAUSE):
             case ESTADO_JUEGO.PLAYING:
                 this.state = ESTADO_JUEGO.PAUSE;
                 return true;

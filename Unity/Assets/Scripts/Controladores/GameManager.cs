@@ -468,7 +468,7 @@ public class GameManager : MonoBehaviour
 	}
 
     public bool isEmptyList(LISTA_TOTEMS lista){
-        PriorityQueue<Totem> listToCheck;
+        PriorityQueue<Totem> listToCheck = null;
         switch(lista){
             case(LISTA_TOTEMS.LISTA_JUGADOR):
                 listToCheck = listaTotemsJugador;
@@ -479,7 +479,10 @@ public class GameManager : MonoBehaviour
             default:
                 return false;
         }
-        return listToCheck.isEmpty();
+        if (listToCheck != null)
+            return listToCheck.isEmpty();
+        else
+            return true;
     }
 
     public void RemoveTotem(Totem totem)
