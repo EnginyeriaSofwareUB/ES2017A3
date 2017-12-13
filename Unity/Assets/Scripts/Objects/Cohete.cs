@@ -28,7 +28,7 @@ public class Cohete : MonoBehaviour
         string tag = collision.collider.tag;
         if (tag == "TerrainObject")
         {
-            Destroy(gameObject);
+            Destroy(gameObject.transform.parent.gameObject);
             Debug.Log("Colision cohete");
             Destroy(efectoCohete);
         }

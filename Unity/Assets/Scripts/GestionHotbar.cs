@@ -172,13 +172,13 @@ public class GestionHotbar : MonoBehaviour
                 
                 break;
 
-		case Global.TIPO_OBJETOS.objetoCohete:
+		/*case Global.TIPO_OBJETOS.objetoCohete:
 			GameObject cohete = Instantiate (item.itemModel, totemActual.transform.position, Quaternion.identity) as GameObject;
 			cohete.transform.GetChild (0).gameObject.AddComponent<Cohete> ();
 			cohete.transform.GetChild (0).gameObject.AddComponent<CircleCollider2D> ();
 			cohete.transform.parent = totemActual.transform;
 
-			break;
+			break;*/
 
 		case Global.TIPO_OBJETOS.objetoRayo:
 			GameObject rayo = Instantiate(item.itemModel, totemActual.transform.position, Quaternion.identity) as GameObject;
