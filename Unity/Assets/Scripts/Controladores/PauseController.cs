@@ -6,9 +6,11 @@ using UnityEngine.SceneManagement;
 public class PauseController : MonoBehaviour {
 
 	public Transform pauseCanvas;
-	public Transform endGameCanvas; 
-	private StateHolder stateHolder;
+	public Transform endGameCanvas;
+	public Canvas canvas;
 
+	private StateHolder stateHolder;
+	
 
 	void Start() {
 		this.stateHolder = GetComponent<StateHolder>();
@@ -29,12 +31,14 @@ public class PauseController : MonoBehaviour {
 	}
 
 	private void openPopup(){
+		canvas.gameObject.SetActive (false);
 		pauseCanvas.gameObject.SetActive (true);
 		stateHolder.setPause ();
 		Time.timeScale = 0;
 	}
 
 	private void closePopup(){
+		canvas.gameObject.SetActive (true);
 		pauseCanvas.gameObject.SetActive (false);
 		stateHolder.setPlaying ();
 		Time.timeScale = 1;

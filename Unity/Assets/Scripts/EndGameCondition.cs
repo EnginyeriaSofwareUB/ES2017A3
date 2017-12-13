@@ -9,6 +9,8 @@ public class EndGameCondition : MonoBehaviour
 
 	public Canvas canvasEndGame; 
 
+    public Canvas canvas;
+
 	public EndGameScreenController egsc;
 
 
@@ -57,6 +59,7 @@ public class EndGameCondition : MonoBehaviour
 	// Funció que mostra la pantalla de fi de joc quan aquest finalitza
 	private void showEndGameScreen()
 	{
+        canvas.gameObject.SetActive (false);
 		canvasEndGame.gameObject.SetActive (true);
 		egsc.fillWinnerText();
 		egsc.fillTotemsText ();
