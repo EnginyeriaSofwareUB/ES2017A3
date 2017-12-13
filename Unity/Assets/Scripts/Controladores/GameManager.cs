@@ -285,8 +285,8 @@ public class GameManager : MonoBehaviour
         // Intercambio el turno del jugador
         turnoJugador = turnoJugador == TURNO_JUGADOR.PRIMER_JUGADOR ? TURNO_JUGADOR.SEGUNDO_JUGADOR : TURNO_JUGADOR.PRIMER_JUGADOR;
 
-        ModuloTotem modulo = this.totemActual.GetComponentInChildren<ModuloTotem>();
-        modulo.resetColorContorno();
+        /*ModuloTotem modulo = this.totemActual.GetComponentInChildren<ModuloTotem>();
+        modulo.resetColorContorno();*/
 
         switch (turnoJugador)
         {
