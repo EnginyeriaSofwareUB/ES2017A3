@@ -35,13 +35,30 @@ public class StateHolder : MonoBehaviour
         return this.state == ESTADO_JUEGO.MENU;
     }
 
+    public bool isInventary(){
+        return this.state == ESTADO_JUEGO.INVENTARY;
+    }
+
     public bool setPlaying()
     {
         switch (this.state)
         {
             case (ESTADO_JUEGO.MENU):
             case (ESTADO_JUEGO.PAUSE):
+            case (ESTADO_JUEGO.INVENTARY):
                 this.state = ESTADO_JUEGO.PLAYING;
+                return true;
+            default:
+                return false;
+        }
+    }
+
+    public bool setInventary(){
+        switch (this.state)
+        {
+            case (ESTADO_JUEGO.PLAYING):
+            case (ESTADO_JUEGO.PAUSE):
+                this.state = ESTADO_JUEGO.INVENTARY;
                 return true;
             default:
                 return false;
@@ -65,6 +82,7 @@ public class StateHolder : MonoBehaviour
     {
         switch (this.state)
         {
+            case (ESTADO_JUEGO.INVENTARY):
             case ESTADO_JUEGO.PLAYING:
                 this.state = ESTADO_JUEGO.PAUSE;
                 return true;

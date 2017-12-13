@@ -40,7 +40,10 @@ public class PauseController : MonoBehaviour {
 	private void closePopup(){
 		canvas.gameObject.SetActive (true);
 		pauseCanvas.gameObject.SetActive (false);
-		stateHolder.setPlaying ();
+		if(GetComponent<GestionInventario>().isInventoryOpen())
+			stateHolder.setInventary();
+		else
+			stateHolder.setPlaying ();
 		Time.timeScale = 1;
 	}
 
