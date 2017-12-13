@@ -26,21 +26,10 @@ public class BoxController : MonoBehaviour {
     {
         if (collision.gameObject.tag == "Weapon")
         {
-            /*GameObject itemGameObject = (GameObject)Instantiate(inventoryItemList.itemList[numeroAleatorio].itemModel);
-            PickUpItem item = itemGameObject.AddComponent<PickUpItem>();
-            item.item = inventoryItemList.itemList[numeroAleatorio];
-            itemGameObject.gameObject.transform.GetChild(0).gameObject.AddComponent<CircleCollider2D>();
-            PickUpItem eliinar = itemGameObject.GetComponent<PickUpItem>();
-            itemGameObject.AddComponent<CogerObjeto>();
-            itemGameObject.AddComponent<Rigidbody2D>();
-            itemGameObject.GetComponent<CogerObjeto>().item = item.item;
-            Instantiate(itemGameObject, transform.position, Quaternion.identity);
-            Destroy(gameObject);*/
 
 			Item item = inventoryItemList.itemList[Global.TIPO_OBJETOS.objetoCohete];
             GameObject itemGameObject = (GameObject)Instantiate(item.itemModel,transform.position,Quaternion.identity);
-            //itemGameObject.AddComponent<PickUpItem>();
-            //itemGameObject.GetComponent<PickUpItem>().item = item;
+
             itemGameObject.AddComponent<CogerObjeto>();
             itemGameObject.AddComponent<Rigidbody2D>();
             itemGameObject.AddComponent<CircleCollider2D>();
@@ -69,6 +58,8 @@ public class BoxController : MonoBehaviour {
 
 			/*case Global.TIPO_OBJETOS.objetoCohete:
 				GameObject efectoCohete = Instantiate (Resources.Load ("Fx_TrailFire"), objeto.transform.position, Quaternion.identity) as GameObject;
+				
+				
 				efectoCohete.transform.parent = objeto.transform;
                 break;*/
 
