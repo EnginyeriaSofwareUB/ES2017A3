@@ -109,12 +109,14 @@ public class GameManager : MonoBehaviour
         listaItemsPrimerJugador.Add(Global.TIPO_OBJETOS.objetoEscudoDoble);
         listaItemsPrimerJugador.Add(Global.TIPO_OBJETOS.objetoEscudoSimple);
         listaItemsPrimerJugador.Add(Global.TIPO_OBJETOS.objetoIglu);
+        listaItemsPrimerJugador.Add(Global.TIPO_OBJETOS.objetoBomb);
         this.listaItemsSegundoJugador = new List<int>();
 
         listaItemsSegundoJugador.Add(Global.TIPO_OBJETOS.objetoAngel);
         listaItemsSegundoJugador.Add(Global.TIPO_OBJETOS.objetoEscudoDoble);
         listaItemsSegundoJugador.Add(Global.TIPO_OBJETOS.objetoEscudoSimple);
         listaItemsSegundoJugador.Add(Global.TIPO_OBJETOS.objetoIglu);
+        listaItemsPrimerJugador.Add(Global.TIPO_OBJETOS.objetoBomb);
 
     }
 

@@ -1,5 +1,4 @@
 ﻿using System;
-using Assets.Scripts.Weapon;
 using UnityEngine;
 using Assets.Scripts.Environment;
 
@@ -157,15 +156,6 @@ namespace Assets.Scripts.Player
                 var direction = Input.GetAxis("Vertical") > 0 ? Direction.Up : Direction.Down;
                // WeaponLogic.ChangeDirection(shootingAngle);
                 //WeaponLogic.ChangeDirection(direction);
-            }
-        }
-
-        private void WeaponForce()
-        {
-            if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.R))
-            {
-                var direction = Input.GetKeyDown(KeyCode.R) ? Direction.Up : Direction.Down;
-                WeaponLogic.ChangePower(direction);
             }
         }
 

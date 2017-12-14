@@ -187,6 +187,11 @@ public class GestionHotbar : MonoBehaviour
 			//rayo.transform.GetChild(0).gameObject.AddComponent<CircleCollider2D>();
 			break;
 
+        case Global.TIPO_OBJETOS.objetoBomb:
+            WeaponLogic bomb = totemActual.GetComponent<WeaponLogic>();
+            bomb.weaponType = "Bomb";
+            break;
+
         }
         GameManager.Instance.eliminarItemHotbar(item.itemID);
 
