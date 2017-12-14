@@ -39,12 +39,12 @@ public class Iglu : MonoBehaviour
         numeroUsos += 1;
     }
 
-    /*private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == Global.WEAPON && (capaBala != collision.gameObject.layer))
+        /*if (collision.gameObject.tag == Global.WEAPON && (capaBala != collision.gameObject.layer))
         {
             numeroUsos += 1;
             Destroy(collision.gameObject);
-        }
-    }*/
+        }*/
+    }
 }

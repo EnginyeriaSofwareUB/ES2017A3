@@ -195,7 +195,6 @@ public class Totem : MonoBehaviour
 		this.movimiento = GetComponent<MovimientoController>();
         this.gameManager = GameObject.FindGameObjectWithTag("GameController");
         this.currentHealth = this.maxHealth;
-        this.angelGuarda = false;
         this.totemItems = new List<int>();
         /*AddItem(Global.TIPO_OBJETOS.objetoAngel);
         AddItem(Global.TIPO_OBJETOS.objetoEscudoSimple);
