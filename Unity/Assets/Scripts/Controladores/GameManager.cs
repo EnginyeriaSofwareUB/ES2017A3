@@ -110,8 +110,7 @@ public class GameManager : MonoBehaviour
         listaItemsPrimerJugador.Add(Global.TIPO_OBJETOS.objetoEscudoSimple);
         listaItemsPrimerJugador.Add(Global.TIPO_OBJETOS.objetoIglu);
         this.listaItemsSegundoJugador = new List<int>();
-        /*listaItemsSegundoJugador.Add(Global.TIPO_OBJETOS.objetoIglu);
-        listaItemsSegundoJugador.Add(Global.TIPO_OBJETOS.objetoEscudoSimple);*/
+
         listaItemsSegundoJugador.Add(Global.TIPO_OBJETOS.objetoAngel);
         listaItemsSegundoJugador.Add(Global.TIPO_OBJETOS.objetoEscudoDoble);
         listaItemsSegundoJugador.Add(Global.TIPO_OBJETOS.objetoEscudoSimple);
@@ -281,13 +280,16 @@ public class GameManager : MonoBehaviour
     public void intercambiarTurno()
     {
         // Desactivo el movimiento del totem del jugador
-        this.totemActual.desabilitarControlMovimiento();
+        if(totemActual != null)
+        {
+            this.totemActual.desabilitarControlMovimiento();
+            ModuloTotem modulo = this.totemActual.GetComponentInChildren<ModuloTotem>();
+            modulo.resetColorContorno();
+
+        }
 
         // Intercambio el turno del jugador
         turnoJugador = turnoJugador == TURNO_JUGADOR.PRIMER_JUGADOR ? TURNO_JUGADOR.SEGUNDO_JUGADOR : TURNO_JUGADOR.PRIMER_JUGADOR;
-
-        ModuloTotem modulo = this.totemActual.GetComponentInChildren<ModuloTotem>();
-        modulo.resetColorContorno();
 
         switch (turnoJugador)
         {
