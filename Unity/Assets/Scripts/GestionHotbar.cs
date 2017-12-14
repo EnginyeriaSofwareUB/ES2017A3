@@ -125,13 +125,13 @@ public class GestionHotbar : MonoBehaviour
                 //angel.SetActive(false);
                 angel.gameObject.AddComponent<Angel>();
                 angel.transform.parent = totemActual.transform;
-                totemActual.ActivarAngelGuarda();
+                //totemActual.ActivarAngelGuarda();
                 break;
 
 
             case Global.TIPO_OBJETOS.objetoIglu:
 
-                GameObject iglu = Instantiate(item.itemModel, totemActual.transform.position, Quaternion.identity) as GameObject;
+                GameObject iglu = Instantiate(item.itemModel, totemActual.PosicioPrimerModul(), Quaternion.identity) as GameObject;
 
                 iglu.transform.GetChild(0).gameObject.AddComponent<Iglu>();
                 CircleCollider2D circle = iglu.transform.GetChild(0).gameObject.AddComponent<CircleCollider2D>();

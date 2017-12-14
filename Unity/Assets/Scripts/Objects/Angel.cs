@@ -25,7 +25,7 @@ public class Angel : MonoBehaviour
         if(EfectoHaTerminado())
         {
             Destroy(gameObject,2f);
-            totem.DesactivarAngelGuarda();
+            //totem.DesactivarAngelGuarda();
         }
         /*if (totem.ColisionaConTerreno())
         {

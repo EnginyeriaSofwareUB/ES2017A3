@@ -54,9 +54,17 @@ namespace Assets.Scripts.Weapons
                     {
                         if (mod.GetInstanceID() == id)
                         {
-                            // totem.DecreaseVida(damage);
-                            totem.SendMessage("Damage", new HealthEvent(gameObject, damage));
-                            totem.DecreaseVida();
+                            if (totem.IgluActivado() && (mod.GetInstanceID() == totem.GetIDModuloProtegidoIglu()))
+                            {
+                                Iglu ig = totem.GetComponentInChildren<Iglu>();
+                                ig.IncNumeroUsos();
+                                Destroy(this.gameObject);
+                            }
+                            else
+                            {
+                                totem.SendMessage("Damage", new HealthEvent(gameObject, damage));
+                                totem.DecreaseVida();
+                            }
                         }
                     }
                 }
