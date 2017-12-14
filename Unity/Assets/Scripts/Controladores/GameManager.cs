@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
     private GestionHotbar gestorHotbar;
 
     private int turnCounter;
+    private int numCajasLanzadas;
 
     public Text txtNumeroRonda;
     public Text txtTurnoJugador;
@@ -101,6 +102,7 @@ public class GameManager : MonoBehaviour
         ronda = 0;
 
         turnCounter = 1;
+        numCajasLanzadas = 2;
 
         this.listaItemsPrimerJugador = new List<int>();
         listaItemsPrimerJugador.Add(Global.TIPO_OBJETOS.objetoAngel);
@@ -257,7 +259,7 @@ public class GameManager : MonoBehaviour
             intercambiarTurno();
 
         turnCounter += 1;
-        //if (BoxTurn() && !condicionFinJuego.IsWinCondition()) ThrowBox();
+        if (BoxTurn() && !condicionFinJuego.IsWinCondition()) ThrowBox();
     }
 
   
@@ -364,7 +366,11 @@ public class GameManager : MonoBehaviour
     private void ThrowBox()
     {
         Debug.Log("ThrowBox");
-        boxGenerator.GetComponent<BoxGeneratorController>().SendMessage("AddBox");
+        for(int i=0; i < this.numCajasLanzadas; i++)
+        {
+            boxGenerator.GetComponent<BoxGeneratorController>().SendMessage("AddBox");
+        }
+       
     }
 
 	private void initPlayers()

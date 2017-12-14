@@ -27,7 +27,7 @@ public class BoxController : MonoBehaviour {
         if (collision.gameObject.tag == "Weapon")
         {
 
-			Item item = inventoryItemList.itemList[Global.TIPO_OBJETOS.objetoIglu];
+			Item item = inventoryItemList.itemList[this.numeroAleatorio];
             GameObject itemGameObject = (GameObject)Instantiate(item.itemModel,transform.position,Quaternion.identity);
 
             itemGameObject.AddComponent<CogerObjeto>();
