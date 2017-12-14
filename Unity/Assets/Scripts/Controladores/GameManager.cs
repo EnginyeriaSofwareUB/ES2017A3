@@ -170,10 +170,10 @@ public class GameManager : MonoBehaviour
         ronda += 1;
         txtNumeroRonda.text = "Round: " + ronda;
         StartCoroutine(intercambiarInventario());
-        // InitInventory();
 
         // Actualiza el contorno del módulo
         actualizarContornoTotemActual();
+        if (BoxTurn()) ThrowBox();
     }
 
     /// <summary>
@@ -259,7 +259,7 @@ public class GameManager : MonoBehaviour
             intercambiarTurno();
 
         turnCounter += 1;
-        if (BoxTurn() && !condicionFinJuego.IsWinCondition()) ThrowBox();
+        //if (BoxTurn() && !condicionFinJuego.IsWinCondition()) ThrowBox();
     }
 
   
@@ -282,13 +282,12 @@ public class GameManager : MonoBehaviour
     {
         // Desactivo el movimiento del totem del jugador
         this.totemActual.desabilitarControlMovimiento();
-        //this.condicionFinJuego.IncreaseTurnCounter();
 
         // Intercambio el turno del jugador
         turnoJugador = turnoJugador == TURNO_JUGADOR.PRIMER_JUGADOR ? TURNO_JUGADOR.SEGUNDO_JUGADOR : TURNO_JUGADOR.PRIMER_JUGADOR;
 
-        /*ModuloTotem modulo = this.totemActual.GetComponentInChildren<ModuloTotem>();
-        modulo.resetColorContorno();*/
+        ModuloTotem modulo = this.totemActual.GetComponentInChildren<ModuloTotem>();
+        modulo.resetColorContorno();
 
         switch (turnoJugador)
         {
@@ -303,10 +302,7 @@ public class GameManager : MonoBehaviour
         }
         actualizarContornoTotemActual();
         StartCoroutine(intercambiarInventario());
-        // InitInventory();
-        // Muestro el turno del jugador
-        //txtTurnoJugador.text = "Turno: " + turnoJugador.ToString();
-
+        if(BoxTurn()) ThrowBox();
 
     }
 
@@ -360,7 +356,8 @@ public class GameManager : MonoBehaviour
 
     private bool BoxTurn()
     {
-        return (turnCounter-1) % GetNumBoxTurn() == 0;
+        //return turnCounter % GetNumBoxTurn() == 0;
+        return !condicionFinJuego.IsWinCondition();
     }
 
     private void ThrowBox()
