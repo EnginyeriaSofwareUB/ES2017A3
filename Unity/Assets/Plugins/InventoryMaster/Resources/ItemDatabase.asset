@@ -160,3 +160,16 @@ MonoBehaviour:
     itemAttributes:
     - attributeName: EscutDoble
       attributeValue: 0
+  - itemName: Bomb
+    itemID: 10
+    itemDesc: 
+    itemIcon: {fileID: 21300000, guid: ea57ca5fab0beeb40bac1d3b97957234, type: 3}
+    itemModel: {fileID: 1709465905319060, guid: 81962b8f14c0f42328f05de40c0ce365,
+      type: 2}
+    itemValue: 1
+    itemType: 1
+    itemWeight: 0
+    maxStack: 1
+    indexItemInList: 999
+    rarity: 0
+    itemAttributes: []
