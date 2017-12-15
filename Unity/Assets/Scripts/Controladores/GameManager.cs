@@ -102,7 +102,7 @@ public class GameManager : MonoBehaviour
         ronda = 0;
 
         turnCounter = 1;
-        numCajasLanzadas = 2;
+        numCajasLanzadas = 1;
 
         this.listaItemsPrimerJugador = new List<int>();
         listaItemsPrimerJugador.Add(Global.TIPO_OBJETOS.objetoAngel);
@@ -116,7 +116,7 @@ public class GameManager : MonoBehaviour
         listaItemsSegundoJugador.Add(Global.TIPO_OBJETOS.objetoEscudoDoble);
         listaItemsSegundoJugador.Add(Global.TIPO_OBJETOS.objetoEscudoSimple);
         listaItemsSegundoJugador.Add(Global.TIPO_OBJETOS.objetoIglu);
-        listaItemsPrimerJugador.Add(Global.TIPO_OBJETOS.objetoBomb);
+        listaItemsSegundoJugador.Add(Global.TIPO_OBJETOS.objetoBomb);
 
     }
 
@@ -260,7 +260,6 @@ public class GameManager : MonoBehaviour
             intercambiarTurno();
 
         turnCounter += 1;
-        //if (BoxTurn() && !condicionFinJuego.IsWinCondition()) ThrowBox();
     }
 
   
@@ -306,7 +305,8 @@ public class GameManager : MonoBehaviour
         }
         actualizarContornoTotemActual();
         StartCoroutine(intercambiarInventario());
-        if(BoxTurn()) ThrowBox();
+        if (!BoxTurn()) ThrowBox();
+        SwitchBoxTurn();
 
     }
 
@@ -353,15 +353,15 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private int GetNumBoxTurn()
-    {
-        return boxGenerator.GetComponent<BoxGeneratorController>().boxTurn;
-    }
-
     private bool BoxTurn()
     {
         //return turnCounter % GetNumBoxTurn() == 0;
-        return !condicionFinJuego.IsWinCondition();
+        return !condicionFinJuego.IsWinCondition() && boxGenerator.GetComponent<BoxGeneratorController>().boxTurn;
+    }
+
+    private void SwitchBoxTurn()
+    {
+        boxGenerator.GetComponent<BoxGeneratorController>().boxTurn = !boxGenerator.GetComponent<BoxGeneratorController>().boxTurn;
     }
 
     private void ThrowBox()

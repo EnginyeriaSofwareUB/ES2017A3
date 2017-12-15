@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class BoxGeneratorController : MonoBehaviour {
     public GameObject box;
-    public int boxTurn = 2;
+    public bool boxTurn;
     public PlatformController platform;
 
     // Use this for initialization
     void Start () {
+        boxTurn = Random.Range(0, 2) == 1;
+        //boxTurn = true;
     }
 	
 	// Update is called once per frame
