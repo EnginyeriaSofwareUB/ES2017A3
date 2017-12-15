@@ -118,7 +118,7 @@ public class ButtonsListeners : MonoBehaviour {
 			if (contBlue < MAXPLAYERS)
 				contBlue++;
 		} else {
-			dineroController.showWarning ("Blue", "Totem");
+			dineroController.showWarning ("BLUE", "TOTEM");
 		}
 
 	}
@@ -128,13 +128,13 @@ public class ButtonsListeners : MonoBehaviour {
 
 	public void buttonCustomizeTotem1P1(){
 		TeamsData.CurrentTotem = 1;
-		totem1Red.GetComponent<Image>().sprite = totem1RedSprite;
+		totem1Red.GetComponent<Image>().sprite = totem2RedSprite;
 
 	}
 
 	public void buttonCustomizeTotem2P1(){
 		TeamsData.CurrentTotem = 2;
-		totem2Red.GetComponent<Image>().sprite = totem2RedSprite;
+		totem2Red.GetComponent<Image>().sprite = totem1RedSprite;
 	}
 
 	public void buttonCustomizeTotem3P1(){

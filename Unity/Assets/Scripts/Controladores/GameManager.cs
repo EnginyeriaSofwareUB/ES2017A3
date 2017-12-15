@@ -169,7 +169,7 @@ public class GameManager : MonoBehaviour
         this.estadoPartida = PARTIDA_STATE.TURNO_RONDA;
         this.turnoJugador = TURNO_JUGADOR.PRIMER_JUGADOR;
         ronda += 1;
-        txtNumeroRonda.text = "Round: " + ronda;
+        txtNumeroRonda.text = "ROUND: " + ronda;
         StartCoroutine(intercambiarInventario());
 
         // Actualiza el contorno del módulo
@@ -267,7 +267,7 @@ public class GameManager : MonoBehaviour
     {
         //Si han pasado X turnos (box turn) y no ha sucedido la condición de final, lanzamos la caja a la escena
 
-        txtNumeroRonda.text = "Round: " + ronda;
+        txtNumeroRonda.text = "ROUND: " + ronda;
 
         estadoPartida = PARTIDA_STATE.INICIO_RONDA;
         Debug.Log("Fin de la ronda");

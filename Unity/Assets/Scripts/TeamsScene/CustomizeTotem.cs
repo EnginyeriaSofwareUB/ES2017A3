@@ -105,11 +105,11 @@ public class CustomizeTotem : MonoBehaviour {
 			} else {
 				string p;
 				if (isPlayerRed) {
-					p = "Red";
+					p = "RED";
 				} else {
-					p = "Blue";
+					p = "BLUE";
 				}
-				dinero.showWarning (p, "Alligator module");
+				dinero.showWarning (p, "ALLIGATOR MODULE");
 			}
 		}
 
@@ -127,11 +127,11 @@ public class CustomizeTotem : MonoBehaviour {
 			} else {
 				string p;
 				if (isPlayerRed) {
-					p = "Red";
+					p = "RED";
 				} else {
-					p = "Blue";
+					p = "BLUE";
 				}
-				dinero.showWarning (p, "Gorilla module");
+				dinero.showWarning (p, "GORILLA MODULE");
 			}
 
 		}
@@ -150,11 +150,11 @@ public class CustomizeTotem : MonoBehaviour {
 			} else {
 				string p;
 				if (isPlayerRed) {
-					p = "Red";
+					p = "RED";
 				} else {
-					p = "Blue";
+					p = "BLUE";
 				}
-				dinero.showWarning (p, "Elephant module");
+				dinero.showWarning (p, "ELEPHANT MODULE");
 			}
 				
 		}
@@ -172,11 +172,11 @@ public class CustomizeTotem : MonoBehaviour {
 			} else {
 				string p;
 				if (isPlayerRed) {
-					p = "Red";
+					p = "RED";
 				} else {
-					p = "Blue";
+					p = "BLUE";
 				}
-				dinero.showWarning (p, "Turtle module");
+				dinero.showWarning (p, "TURTLE MODULE");
 			}
 		}
 	}
@@ -192,10 +192,10 @@ public class CustomizeTotem : MonoBehaviour {
 	private void pay(){
 		if (isPlayerRed) {
 			dinero.redBuysModule ();
-			Debug.Log ("Red"+dinero.getRedMoney());
+			Debug.Log ("RED"+dinero.getRedMoney());
 		} else {
 			dinero.blueBuysModule ();
-			Debug.Log ("Blue"+dinero.getBlueMoney());
+			Debug.Log ("BLUE"+dinero.getBlueMoney());
 		}
 		dinero.updateTexts ();
 	}

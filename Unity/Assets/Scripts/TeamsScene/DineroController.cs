@@ -68,13 +68,13 @@ public class DineroController : MonoBehaviour {
 
 
 	public void updateTexts(){
-		redTxt.text = "Money left:" + moneyRed;
-		blueTxt.text = "Money left:" + moneyBlue;
+		redTxt.text = "MONEY LEFT:" + moneyRed;
+		blueTxt.text = "MONEY LEFT:" + moneyBlue;
 	}
 
 	public void showWarning(string team, string product){
 		warningTxt.SetActive (true);
-		warniningTxt.text = team + " team does not have enough money to buy a new " + product;
+		warniningTxt.text = team + " TEAM DOES NOT HAVE ENOUGH MONEY TO BUY " + product;
 	}
 
 	public void hideWarning(){
