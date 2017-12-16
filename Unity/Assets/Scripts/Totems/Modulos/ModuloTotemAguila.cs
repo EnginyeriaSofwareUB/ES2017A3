@@ -11,16 +11,11 @@ public class ModuloTotemAguila : ModuloTotem
 		this.vida = 0;
 		this.movimiento = 10;
         this.getTipoTotem = TotemType.TOTEM_AGUILA;
-
-
-
+		this.precio = 40;
 
     }
 
-    // Use this for initialization
-    void Start () {
-        this.gameObject.AddComponent<CircleCollider2D>();
-    }
+   
 	
 	// Update is called once per frame
 	void Update () {

@@ -11,12 +11,7 @@ public class ModuloTotemGorila : ModuloTotem
 		this.vida = 0;
 		this.movimiento = 0;
         this.getTipoTotem = TotemType.TOTEM_GORILA;
-
-    }
-
-    // Use this for initialization
-    void Start () {
-        this.gameObject.AddComponent<CircleCollider2D>();
+		this.precio = 40;
 
     }
 

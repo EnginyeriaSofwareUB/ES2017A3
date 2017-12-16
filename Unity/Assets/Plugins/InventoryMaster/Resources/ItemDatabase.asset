@@ -91,7 +91,8 @@ MonoBehaviour:
     itemID: 5
     itemDesc: 
     itemIcon: {fileID: 21300000, guid: c291f37e310eecf4895f1229b891e404, type: 3}
-    itemModel: {fileID: 0}
+    itemModel: {fileID: 1333966988823626, guid: 38856c7a49a4247fd8f035c729172bd1,
+      type: 2}
     itemValue: 1
     itemType: 0
     itemWeight: 0
@@ -159,13 +160,14 @@ MonoBehaviour:
     itemAttributes:
     - attributeName: EscutDoble
       attributeValue: 0
-  - itemName: New Item
+  - itemName: Bomb
     itemID: 10
     itemDesc: 
-    itemIcon: {fileID: 0}
-    itemModel: {fileID: 0}
+    itemIcon: {fileID: 21300000, guid: ea57ca5fab0beeb40bac1d3b97957234, type: 3}
+    itemModel: {fileID: 1709465905319060, guid: 81962b8f14c0f42328f05de40c0ce365,
+      type: 2}
     itemValue: 1
-    itemType: 0
+    itemType: 1
     itemWeight: 0
     maxStack: 1
     indexItemInList: 999

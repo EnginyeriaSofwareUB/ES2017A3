@@ -26,9 +26,9 @@ public class EndGameScreenController : MonoBehaviour {
 		//Debug.Log("EndGameScreenController :: lista jugador empty = "+gameManager.isEmptyList (GameManager.LISTA_TOTEMS.LISTA_JUGADOR));
 		//Debug.Log("EndGameScreenController :: lista contrinc empty = "+gameManager.isEmptyList (GameManager.LISTA_TOTEMS.LISTA_CONTRICANTE));
 		if (gameManager.isEmptyList (GameManager.LISTA_TOTEMS.LISTA_JUGADOR)) {
-			winnerTxt.text = "Player 2 wins!";
+			winnerTxt.text = "BLUE PLAYER WINS!";
 		} else {
-			winnerTxt.text = "Player 1 wins!";
+			winnerTxt.text = "RED PLAYER WINS!";
 		}
 	}
 
@@ -36,14 +36,14 @@ public class EndGameScreenController : MonoBehaviour {
 		Dictionary<string, int> totemsP1 = gameManager.getListNombreTotems (GameManager.LISTA_TOTEMS.LISTA_JUGADOR);
 		Dictionary<string, int> totemsP2 = gameManager.getListNombreTotems (GameManager.LISTA_TOTEMS.LISTA_CONTRICANTE);
 
-		totemsP1Txt.text = "Player 1:\n";
-		totemsP2Txt.text = "Player 2:\n";
+		totemsP1Txt.text = "RED PLAYER:\n";
+		totemsP2Txt.text = "RED PLAYER:\n";
 
 		foreach (KeyValuePair<string, int> entry in totemsP1) {
 			if (entry.Value == 0) { //Muerto: pinta rojo
-				totemsP1Txt.text += "<color=#fcb5ab>"+entry.Key+"</color>\n"; 
+				totemsP1Txt.text += "<color=#fcb5ab>"+entry.Key.ToUpper()+"</color>\n"; 
 			} else { // Vivo: pinta verde
-				totemsP1Txt.text += "<color=#adffb8>"+entry.Key+"</color>\n"; 
+				totemsP1Txt.text += "<color=#adffb8>"+entry.Key.ToUpper()+"</color>\n"; 
 			}
 
 
@@ -51,9 +51,9 @@ public class EndGameScreenController : MonoBehaviour {
 
 		foreach (KeyValuePair<string, int> entry in totemsP2) {
 			if (entry.Value == 0) { //Muerto: pinta rojo
-				totemsP2Txt.text += "<color=#fcb5ab>"+entry.Key+"</color>\n"; 
+				totemsP2Txt.text += "<color=#fcb5ab>"+entry.Key.ToUpper()+"</color>\n"; 
 			} else { // Vivo: pinta verde
-				totemsP2Txt.text += "<color=#adffb8>"+entry.Key+"</color>\n"; 
+				totemsP2Txt.text += "<color=#adffb8>"+entry.Key.ToUpper()+"</color>\n"; 
 			}		}
 
 	}
@@ -62,7 +62,6 @@ public class EndGameScreenController : MonoBehaviour {
 
 	// BUTTON LISTENERS
 	public void PlayAgain(){
-		GetComponent<StateHolder>().setPlaying();
 		SceneManager.LoadScene ("TeamsScene");
 
 	}

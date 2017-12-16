@@ -1,5 +1,4 @@
 ﻿using System;
-using Assets.Scripts.Weapon;
 using UnityEngine;
 using Assets.Scripts.Environment;
 
@@ -28,9 +27,9 @@ namespace Assets.Scripts.Player
             this.stateHolder = GameObject.FindGameObjectWithTag("GameController").GetComponent<StateHolder>();
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
-            if (this.mov.PuedeMoverse)
+            if (this.mov.PuedeMoverse || !this.mov.isShoot())
             {
                 //WeaponDirection();
                 //WeaponForce();
@@ -120,33 +119,33 @@ namespace Assets.Scripts.Player
 
         private void Shoot()
         {
-
-            if (Input.GetMouseButtonDown(0) && stateHolder.isPlaying())
-
-            {
-                startMousePosition = Input.mousePosition;
-
-            }
-
-            if (Input.GetMouseButton(0))
-            {
-                Vector3 mouseDelta = Input.mousePosition - startMousePosition;
-                if (mouseDelta.sqrMagnitude < 0.1f)
+            if (stateHolder.isPlaying()){
+                if (Input.GetMouseButtonDown(0))
                 {
-                    shootingAngle = getAngle(startMousePosition);// don't do tiny rotations.
-                }
-                else
-                {
-                    shootingAngle = getAngle(mouseDelta);
+                    startMousePosition = Input.mousePosition;
+
                 }
 
-                WeaponLogic.ChangeDirection(shootingAngle);
-            }
+                if (Input.GetMouseButton(0))
+                {
+                    Vector3 mouseDelta = Input.mousePosition - startMousePosition;
+                    if (mouseDelta.sqrMagnitude < 0.1f)
+                    {
+                        shootingAngle = getAngle(startMousePosition);// don't do tiny rotations.
+                    }
+                    else
+                    {
+                        shootingAngle = getAngle(mouseDelta);
+                    }
 
-            if (Input.GetMouseButtonUp(0))
-            {
-                WeaponLogic.ChangeDirection(shootingAngle);
-                WeaponLogic.Shoot();
+                    WeaponLogic.ChangeDirection(shootingAngle);
+                }
+
+                if (Input.GetMouseButtonUp(0))
+                {
+                    WeaponLogic.ChangeDirection(shootingAngle);
+                    WeaponLogic.Shoot();
+                }
             }
         }
 
@@ -157,15 +156,6 @@ namespace Assets.Scripts.Player
                 var direction = Input.GetAxis("Vertical") > 0 ? Direction.Up : Direction.Down;
                // WeaponLogic.ChangeDirection(shootingAngle);
                 //WeaponLogic.ChangeDirection(direction);
-            }
-        }
-
-        private void WeaponForce()
-        {
-            if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.R))
-            {
-                var direction = Input.GetKeyDown(KeyCode.R) ? Direction.Up : Direction.Down;
-                WeaponLogic.ChangePower(direction);
             }
         }
 

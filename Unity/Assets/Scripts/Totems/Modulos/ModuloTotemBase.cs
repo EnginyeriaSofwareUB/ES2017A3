@@ -11,20 +11,9 @@ public class ModuloTotemBase : ModuloTotem
 		this.vida = 5;
 		this.movimiento = 5;
         this.getTipoTotem = TotemType.TOTEM_BASE;
-
+		this.precio = 0;
     }
-
-    public void Awake()
-    {
-    
-    }
-
-    // Use this for initialization
-    void Start()
-    {
-        this.gameObject.AddComponent<CircleCollider2D>();
-
-    }
+   
 
     // Update is called once per frame
     void Update()

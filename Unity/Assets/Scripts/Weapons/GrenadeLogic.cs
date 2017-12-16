@@ -18,6 +18,8 @@ namespace Assets.Scripts.Weapons
 
 		private bool ignore = false;
 
+        public GameObject explosion;
+
 
         void Start () {
 			this.destructionCircle = GetComponent<CircleCollider2D> ();
@@ -38,7 +40,7 @@ namespace Assets.Scripts.Weapons
             if (tag == "TerrainObject")
             {
 				if (!ignore)
-					Invoke("DoSomething", 2);
+					Invoke("Explosion", 2);
 				ignore = true;
             }
             else if (tag.Contains("Player"))
@@ -52,19 +54,25 @@ namespace Assets.Scripts.Weapons
                     {
                         if (mod.GetInstanceID() == id)
                         {
-                            // totem.DecreaseVida(damage);
-                            totem.SendMessage("Damage", new HealthEvent(gameObject, damage));
-                            totem.DecreaseVida();
+                            if (totem.IgluActivado() && (mod.GetInstanceID() == totem.GetIDModuloProtegidoIglu()))
+                            {
+                                Iglu ig = totem.GetComponentInChildren<Iglu>();
+                                ig.IncNumeroUsos();
+                                Destroy(this.gameObject);
+                            }
+                            else
+                            {
+                                totem.SendMessage("Damage", new HealthEvent(gameObject, damage));
+                                totem.DecreaseVida();
+                            }
                         }
                     }
                 }
             }
 
             this.collision = collision;
-
-            //Destroy(this.gameObject);
         }
-        void DoSomething()
+        void Explosion()
         {
             /*Vector3 explosionPos = this.transform.position;
             Collider[] colliders = Physics.OverlapSphere(explosionPos, radius);
@@ -76,7 +84,12 @@ namespace Assets.Scripts.Weapons
             }*/
             Terrain2 t = this.collision.gameObject.GetComponent<Terrain2>();
             if (t != null)
+            {
+                destructionCircle.radius = radius;
                 t.DestroyGround(destructionCircle);
+            }
+            GameObject executeDeathExplosion = Instantiate(this.explosion, this.gameObject.transform.position, this.explosion.transform.rotation);
+            Destroy(executeDeathExplosion, executeDeathExplosion.GetComponent<AudioSource>().clip.length);
             Destroy(this.gameObject);
         }
     }

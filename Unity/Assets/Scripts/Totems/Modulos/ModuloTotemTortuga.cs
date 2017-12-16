@@ -11,17 +11,12 @@ public class ModuloTotemTortuga : ModuloTotem
 		this.vida = 00;
 		this.movimiento = 00;
 		this.getTipoTotem = TotemType.TOTEM_TORTUGA;
+		this.precio = 40;
 
 	}
 
-	// Use this for initialization
-	void Start () {
-		this.gameObject.AddComponent<CircleCollider2D>();
-
-	}
-
-	// Update is called once per frame
-	void Update () {
+    // Update is called once per frame
+    void Update () {
 
 	}
 }

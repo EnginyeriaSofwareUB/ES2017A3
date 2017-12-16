@@ -11,17 +11,12 @@ public class ModuloTotemElefante : ModuloTotem
 		this.vida = 5;
 		this.movimiento = 0;
 		this.getTipoTotem = TotemType.TOTEM_ELEFANTE;
-
+		this.precio = 40;
 	}
 
-	// Use this for initialization
-	void Start () {
-		this.gameObject.AddComponent<CircleCollider2D>();
 
-	}
-
-	// Update is called once per frame
-	void Update () {
+    // Update is called once per frame
+    void Update () {
 
 	}
 }

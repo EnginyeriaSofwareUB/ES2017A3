@@ -22,6 +22,8 @@ public class GestionInventario : MonoBehaviour
     int normalSize = 3;
     private GameManager gestorJuego;
 
+    private StateHolder stateHolder;
+
     public void OnEnable()
     {
         Inventory.ItemEquip += AssignItem;
@@ -34,12 +36,12 @@ public class GestionInventario : MonoBehaviour
 
     void AssignItem(Item item)
     {
-        Totem totemActual = GameManager.Instance.totemActual;
-        totemActual.getItemList().Add(item);
+        GameManager.Instance.AsignarItemTotem(item.itemID);
     }
 
     void Start()
     {
+        this.stateHolder = GetComponent<StateHolder>();
         if (inputManagerDatabase == null)
             inputManagerDatabase = (InputManager)Resources.Load("InputManager");
 
@@ -53,6 +55,10 @@ public class GestionInventario : MonoBehaviour
 
     }
 
+    public bool isInventoryOpen(){
+        return inventory.activeSelf;
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -62,12 +68,14 @@ public class GestionInventario : MonoBehaviour
         {
             if (!inventory.activeSelf)
             {
+                this.stateHolder.setInventary();   
                 mainInventory.openInventory();
             }
             else
             {
                 if (toolTip != null)
                     toolTip.deactivateTooltip();
+                this.stateHolder.setPlaying();
                 mainInventory.closeInventory();
             }
         }

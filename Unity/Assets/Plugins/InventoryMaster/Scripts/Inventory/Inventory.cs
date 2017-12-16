@@ -715,7 +715,8 @@ public class Inventory : MonoBehaviour
         {
             if (SlotContainer.transform.GetChild(i).childCount != 0)
             {
-                Destroy(SlotContainer.transform.GetChild(i).GetChild(0).gameObject);
+                //DestroyImmediate(SlotContainer.transform.GetChild(i).GetChild(0).gameObject);
+               Destroy(SlotContainer.transform.GetChild(i).GetChild(0).gameObject);
             }
         }
     }

@@ -17,6 +17,7 @@ public class ModuloTotem : MonoBehaviour {
     protected int defensa;
 	protected int movimiento; 
 	protected int vida;
+	protected int precio;
     protected TotemType getTipoTotem;
     //private Transform meshTotem;
     public TotemType getTypeOfTotem()
@@ -28,13 +29,31 @@ public class ModuloTotem : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-		
+        this.gameObject.AddComponent<CircleCollider2D>();
+
+        inicializarContorno();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		
 	}
+    protected void inicializarContorno()
+    {
+        transform.GetChild(0).gameObject.AddComponent<cakeslice.Outline>();
+        resetColorContorno();
+    }
+    /// <summary>
+    /// Permite inicializar el contorno del módulo dependiendo si el totem es del primer jugador o del segundo jugador.
+    /// </summary>
+    public void resetColorContorno()
+    {
+        if (this.gameObject.layer == Assets.Scripts.Environment.Global.Capas.totemsPrimerJugador)
+            transform.GetChild(0).GetComponent<cakeslice.Outline>().color = 0;
+        else
+            transform.GetChild(0).GetComponent<cakeslice.Outline>().color = 1;
+    }
+
 
     public int getAtaque()
     {
@@ -54,6 +73,11 @@ public class ModuloTotem : MonoBehaviour {
 	public int getVida()
 	{
 		return vida;
+	}
+
+	public int getPrecio()
+	{
+		return precio;
 	}
 
 }

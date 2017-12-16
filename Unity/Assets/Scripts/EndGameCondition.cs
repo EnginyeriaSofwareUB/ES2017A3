@@ -9,6 +9,8 @@ public class EndGameCondition : MonoBehaviour
 
 	public Canvas canvasEndGame; 
 
+    public Canvas canvas;
+
 	public EndGameScreenController egsc;
 
 
@@ -26,6 +28,12 @@ public class EndGameCondition : MonoBehaviour
     {
         if (this.stateHolder.isPlaying() && this.IsWinCondition())
         {
+            GameObject[] audios = GameObject.FindGameObjectsWithTag("KillMe");
+            if (audios.Length != 0) {
+                foreach (GameObject audio in audios){
+                    audio.GetComponent<AudioSource>().Stop();
+                }
+            }
             this.stateHolder.setMenu();
 			showEndGameScreen ();
 
@@ -51,6 +59,7 @@ public class EndGameCondition : MonoBehaviour
 	// Funció que mostra la pantalla de fi de joc quan aquest finalitza
 	private void showEndGameScreen()
 	{
+        canvas.gameObject.SetActive (false);
 		canvasEndGame.gameObject.SetActive (true);
 		egsc.fillWinnerText();
 		egsc.fillTotemsText ();
