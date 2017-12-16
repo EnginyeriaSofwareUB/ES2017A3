@@ -192,6 +192,21 @@ public class GestionHotbar : MonoBehaviour
             bomb.weaponType = "Bomb";
             break;
 
+        case Global.TIPO_OBJETOS.objetoMissile:
+            WeaponLogic missile = totemActual.GetComponent<WeaponLogic>();
+            missile.weaponType = "Missile";
+            break;
+
+        case Global.TIPO_OBJETOS.objetoSemtex:
+            WeaponLogic semtex = totemActual.GetComponent<WeaponLogic>();
+            semtex.weaponType = "Semtex";
+            break;
+
+        case Global.TIPO_OBJETOS.objetoGrenade:
+            WeaponLogic grenade = totemActual.GetComponent<WeaponLogic>();
+            grenade.weaponType = "Grenade";
+            break;
+
         }
         GameManager.Instance.eliminarItemHotbar(item.itemID);
 

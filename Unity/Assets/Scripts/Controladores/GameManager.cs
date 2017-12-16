@@ -110,13 +110,27 @@ public class GameManager : MonoBehaviour
         listaItemsPrimerJugador.Add(Global.TIPO_OBJETOS.objetoEscudoSimple);
         listaItemsPrimerJugador.Add(Global.TIPO_OBJETOS.objetoIglu);
         listaItemsPrimerJugador.Add(Global.TIPO_OBJETOS.objetoBomb);
-        this.listaItemsSegundoJugador = new List<int>();
+        listaItemsPrimerJugador.Add(Global.TIPO_OBJETOS.objetoGrenade);
+        listaItemsPrimerJugador.Add(Global.TIPO_OBJETOS.objetoSemtex);
+        listaItemsPrimerJugador.Add(Global.TIPO_OBJETOS.objetoMissile);
+        listaItemsPrimerJugador.Add(Global.TIPO_OBJETOS.objetoBomb);
+        listaItemsPrimerJugador.Add(Global.TIPO_OBJETOS.objetoGrenade);
+        listaItemsPrimerJugador.Add(Global.TIPO_OBJETOS.objetoSemtex);
+        listaItemsPrimerJugador.Add(Global.TIPO_OBJETOS.objetoMissile);
 
+        this.listaItemsSegundoJugador = new List<int>();
         listaItemsSegundoJugador.Add(Global.TIPO_OBJETOS.objetoAngel);
         listaItemsSegundoJugador.Add(Global.TIPO_OBJETOS.objetoEscudoDoble);
         listaItemsSegundoJugador.Add(Global.TIPO_OBJETOS.objetoEscudoSimple);
         listaItemsSegundoJugador.Add(Global.TIPO_OBJETOS.objetoIglu);
         listaItemsSegundoJugador.Add(Global.TIPO_OBJETOS.objetoBomb);
+        listaItemsSegundoJugador.Add(Global.TIPO_OBJETOS.objetoGrenade);
+        listaItemsSegundoJugador.Add(Global.TIPO_OBJETOS.objetoSemtex);
+        listaItemsSegundoJugador.Add(Global.TIPO_OBJETOS.objetoMissile);
+        listaItemsSegundoJugador.Add(Global.TIPO_OBJETOS.objetoBomb);
+        listaItemsSegundoJugador.Add(Global.TIPO_OBJETOS.objetoGrenade);
+        listaItemsSegundoJugador.Add(Global.TIPO_OBJETOS.objetoSemtex);
+        listaItemsSegundoJugador.Add(Global.TIPO_OBJETOS.objetoMissile);
 
     }
 
