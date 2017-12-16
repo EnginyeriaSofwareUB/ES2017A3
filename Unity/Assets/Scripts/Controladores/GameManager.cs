@@ -298,9 +298,7 @@ public class GameManager : MonoBehaviour
         if(totemActual != null)
         {
             this.totemActual.desabilitarControlMovimiento();
-            ModuloTotem modulo = this.totemActual.GetComponentInChildren<ModuloTotem>();
-            modulo.resetColorContorno();
-
+            this.totemActual.resetColorContorno();
         }
 
         // Intercambio el turno del jugador

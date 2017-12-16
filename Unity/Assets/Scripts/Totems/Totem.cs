@@ -460,4 +460,12 @@ public class Totem : MonoBehaviour
         }
         return id;
     }
+
+    public void resetColorContorno()
+    {
+        foreach(GameObject modulo in modulos)
+        {
+            modulo.SendMessage("resetColorContorno");
+        }
+    }
 }
