@@ -12,15 +12,18 @@
     <link href="css/estilo.css" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css"/>
     <link href="css/animate.css" rel="stylesheet" type="text/css"/>
+    <link href="css/fakeLoader.css" rel="stylesheet" type="text/css"/>
+
 
 </head>
 
 <body>
-
+<div id="fakeLoader"></div>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-        <a class="navbar-brand" href="#" style="font-weight: 800; font-family: Montserrat, sans-serif; color:white;">Totem Wars</a>
+        <a class="navbar-brand" href="#" style="font-weight: 800; font-family: Montserrat, sans-serif; color:white;">Totem
+            Wars</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
                 aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -59,7 +62,7 @@
                     <a class="nav-link" style=" font-weight: 700; font-family: Montserrat, sans-serif; color:white;"
                        href="#descarregar">Descarrga't el joc</a>
                 </li>
-                 <li class="nav-item">
+                <li class="nav-item">
                     <a class="nav-link" style=" font-weight: 700; font-family: Montserrat, sans-serif; color:white;"
                        href="#annex">Annex</a>
                 </li>
@@ -81,7 +84,7 @@
     </div>
 </header>
 
-<section id="aspectesBasics" >
+<section id="aspectesBasics">
 
     <div class="container g-padding-y-80--xs g-padding-y-125--sm">
         <div class="row">
@@ -120,12 +123,11 @@
 </section>
 
 
-
-<section id="video" >
+<section id="video">
 
     <div class="container g-padding-y-80--xs g-padding-y-125--sm">
         <div class="row">
-            <div class="col-md-4 g-margin-t-15--xs g-margin-b-60--xs g-margin-b-0--lg">
+            <div class="col-md-5 g-margin-t-15--xs g-margin-b-60--xs g-margin-b-0--lg">
                 <div class="wow fadeInLeft animated" data-wow-duration=".3" data-wow-delay=".1s"
                      style="visibility: visible; animation-delay: 0.1s; animation-name: fadeInLeft;">
                     <h3 class="aspectes-basics ">Video del funcionament del joc</h3>
@@ -134,16 +136,17 @@
                      style="visibility: visible; animation-delay: 0.3s; animation-name: fadeInLeft;">
                 </div>
             </div>
-            <div class="col-lg-5 col-md-offset-1 " style="font-size:18px;">
-
+            <div class="col-lg-7 " >
+                <div class="embed-responsive embed-responsive-16by9">
+                  <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/PONER_LINK_VIDEO?rel=0" allowfullscreen></iframe>
+                </div>
             </div>
         </div>
     </div>
 </section>
 
 
-
-<section id="moduls" >
+<section id="moduls">
     <div class="container">
         <div class="row">
             <div class="heading text-center col-12   wow fadeInUp animated" data-wow-duration="1200ms"
@@ -158,7 +161,7 @@
                 <div class="wow flipInY animated " data-wow-duration="1000ms"
                      data-wow-delay="300ms"
                      style="padding:60px 0; visibility: visible; animation-duration: 1000ms; animation-delay: 300ms; animation-name: flipInY;">
-                    <div >
+                    <div>
                         <a data-fancybox="gallery" href="img/base.png"><img class="img-fluid"
                                                                             src="img/base.png"
                                                                             alt="Modul base"></a>
@@ -177,7 +180,7 @@
 
                 <div class="wow flipInY animated " data-wow-duration="1000ms" data-wow-delay="300ms"
                      style=" padding:30px 0; visibility: visible; animation-duration: 1000ms; animation-delay: 300ms; animation-name: flipInY;">
-                    <div >
+                    <div>
                         <a data-fancybox="gallery" href="img/movement.png">
                             <img class="img-fluid"
                                  src="img/movement.png"
@@ -211,7 +214,7 @@
             <div class="col-lg-3 text-center">
                 <div class="wow flipInY animated" data-wow-duration="1000ms" data-wow-delay="300ms"
                      style="padding:30px 0; visibility: visible; animation-duration: 1000ms; animation-delay: 300ms; animation-name: flipInY;">
-                    <div >
+                    <div>
                         <a data-fancybox="gallery" href="img/attack.png">
                             <img class="img-fluid"
                                  src="img/attack.png"
@@ -244,7 +247,7 @@
             </div>
         </div>
         <div class="row justify-content-center">
-             <div class="col-lg-3 text-center">
+            <div class="col-lg-3 text-center">
                 <div class="wow flipInY animated" data-wow-duration="1000ms" data-wow-delay="300ms"
                      style=" padding:30px 0; visibility: visible; animation-duration: 1000ms; animation-delay: 300ms; animation-name: flipInY;">
                     <div>
@@ -267,7 +270,7 @@
 </section>
 
 
-<section id="armes" >
+<section id="armes">
     <div class="container">
         <div class="row">
             <div class="heading text-center col-12   wow fadeInUp animated" data-wow-duration="1200ms"
@@ -283,11 +286,10 @@
                 <div class="wow flipInY animated " data-wow-duration="1000ms"
                      data-wow-delay="300ms"
                      style="padding:60px 0; visibility: visible; animation-duration: 1000ms; animation-delay: 300ms; animation-name: fadeInUp;">
-                    <div >
-                        <a data-fancybox="gallery" href="img/bomb.png"><img class="img-fluid"
-                                                                            src="img/bomb.png"
-                                                                            alt="Bomba"></a>
-                    </div>
+
+                    <a data-fancybox="gallery" href="img/bomb.png"><img class="img-fluid"
+                                                                        src="img/bomb.png"
+                                                                        alt="Bomba"></a>
                     <div class="margin-top-20">
                         <h4>Bomba</h4>
                         <h5>Explota al moment d'impactar</h5>
@@ -301,12 +303,10 @@
 
                 <div class="wow flipInY animated " data-wow-duration="1000ms" data-wow-delay="300ms"
                      style="padding:60px 0; visibility: visible; animation-duration: 1000ms; animation-delay: 300ms; animation-name: fadeInUp;">
-                    <div >
-                        <a data-fancybox="gallery" href="img/grenade.png">
-                            <img class="img-fluid"
-                                 src="img/grenade.png"
-                                 alt="Granada"></a>
-                    </div>
+                    <a data-fancybox="gallery" href="img/grenade.png">
+                        <img class="img-fluid"
+                             src="img/grenade.png"
+                             alt="Granada"></a>
                     <div class="margin-top-20">
                         <h4>Granada</h4>
                         <h5>Explota uns instants després d'impactar</h5>
@@ -319,13 +319,10 @@
             <div class="col-lg-6 text-center">
                 <div class="wow flipInY animated" data-wow-duration="1000ms" data-wow-delay="300ms"
                      style="padding:30px 0; visibility: visible; animation-duration: 1000ms; animation-delay: 300ms; animation-name: fadeInUp;">
-                    <div >
-                        <a data-fancybox="gallery" href="img/semtex.png">
-                            <img class="img-fluid"
-                                 src="img/semtex.png"
-                                 alt="Semtex"></a>
-                    </div>
-
+                    <a data-fancybox="gallery" href="img/semtex.png">
+                        <img class="img-fluid"
+                             src="img/semtex.png"
+                             alt="Semtex"></a>
                     <div class="margin-top-20">
                         <h4>Bomba adhesiva</h4>
                         <h5>S'enganxa a una superfície i explota en ser trepitjada</h5>
@@ -337,12 +334,10 @@
             <div class="col-lg-6 text-center">
                 <div class="wow flipInY animated" data-wow-duration="1000ms" data-wow-delay="300ms"
                      style="padding:30px 0; visibility: visible; animation-duration: 1000ms; animation-delay: 300ms; animation-name: fadeInUp;">
-                    <div >
-                        <a data-fancybox="gallery" href="img/missil.png">
-                            <img class="img-fluid"
-                                 src="img/missil.png"
-                                 alt="Perfil de Marc Valdivia"></a>
-                    </div>
+                    <a data-fancybox="gallery" href="img/missil.png">
+                        <img class="img-fluid"
+                             src="img/missil.png"
+                             alt="Perfil de Marc Valdivia"></a>
                     <div class="margin-top-20">
                         <h4>Míssil</h4>
                         <h5>Segueix una trajectòria recta fins que impacta</h5>
@@ -352,9 +347,6 @@
         </div>
     </div>
 </section>
-
-
-
 
 
 <section id="defensa">
@@ -373,11 +365,9 @@
                 <div class="wow flipInY animated " data-wow-duration="1000ms"
                      data-wow-delay="300ms"
                      style="padding:60px 0; visibility: visible; animation-duration: 1000ms; animation-delay: 300ms; animation-name: fadeInUp;">
-                    <div >
-                        <a data-fancybox="gallery" href="img/shield.png"><img class="img-fluid"
-                                                                                        src="img/shield.png"
-                                                                                        alt="Escut"></a>
-                    </div>
+                    <a data-fancybox="gallery" href="img/shield.png"><img class="img-fluid"
+                                                                          src="img/shield.png"
+                                                                          alt="Escut"></a>
                     <div class="margin-top-20">
                         <h4>Escut </h4>
                         <h5>Fa de barrera física que protegeix d'impactes de projectils</h5>
@@ -388,12 +378,10 @@
                 <div class="wow flipInY animated " data-wow-duration="1000ms"
                      data-wow-delay="300ms"
                      style="padding:60px 0; visibility: visible; animation-duration: 1000ms; animation-delay: 300ms; animation-name: fadeInUp;">
-                    <div >
-                        <a data-fancybox="gallery" href="img/double_shield.png">
-                            <img class="img-fluid"
-                                                                                        src="img/double_shield.png"
-                                                                                        alt="Escut dbole"></a>
-                    </div>
+                    <a data-fancybox="gallery" href="img/double_shield.png">
+                        <img class="img-fluid"
+                             src="img/double_shield.png"
+                             alt="Escut dbole"></a>
                     <div class="margin-top-20">
                         <h4>Escut doble </h4>
                         <h5> Protegeix d'impactes de projectils per esquerra i dreta</h5>
@@ -403,18 +391,16 @@
         </div>
 
 
-         <div class="row">
+        <div class="row">
 
 
             <div class="col-lg-6 text-center ">
                 <div class="wow flipInY animated " data-wow-duration="1000ms"
                      data-wow-delay="300ms"
                      style="padding:60px 0; visibility: visible; animation-duration: 1000ms; animation-delay: 300ms; animation-name: fadeInUp;">
-                    <div >
-                        <a data-fancybox="gallery" href="img/igloo.png"><img class="img-fluid"
-                                                                                        src="img/igloo.png"
-                                                                                        alt="Iglu"></a>
-                    </div>
+                    <a data-fancybox="gallery" href="img/igloo.png"><img class="img-fluid"
+                                                                         src="img/igloo.png"
+                                                                         alt="Iglu"></a>
                     <div class="margin-top-20">
                         <h4>Iglú </h4>
                         <h5>Protegeix completament el mòdul superior d'un tòtem</h5>
@@ -425,12 +411,10 @@
                 <div class="wow flipInY animated " data-wow-duration="1000ms"
                      data-wow-delay="300ms"
                      style="padding:60px 0; visibility: visible; animation-duration: 1000ms; animation-delay: 300ms; animation-name: fadeInUp;">
-                    <div >
-                        <a data-fancybox="gallery" href="img/angel.png">
-                            <img class="img-fluid"
-                                                                                        src="img/angel.png"
-                                                                                        alt="Àngel"></a>
-                    </div>
+                    <a data-fancybox="gallery" href="img/angel.png">
+                        <img class="img-fluid"
+                             src="img/angel.png"
+                             alt="Àngel"></a>
                     <div class="margin-top-20">
                         <h4>Àngel </h4>
                         <h5> Dura 5 torns i permet reviure si es mor mentre es porta</h5>
@@ -440,11 +424,6 @@
         </div>
     </div>
 </section>
-
-
-
-
-
 
 
 <section id="moviment">
@@ -463,10 +442,10 @@
                 <div class="wow flipInY animated " data-wow-duration="1000ms"
                      data-wow-delay="300ms"
                      style="padding:60px 0; visibility: visible; animation-duration: 1000ms; animation-delay: 300ms; animation-name: fadeInUp;">
-                    <div >
+                    <div>
                         <a data-fancybox="gallery" href="img/jetpack.png"><img class="img-fluid"
-                                                                                        src="img/jetpack.png"
-                                                                                        alt="JetPack"></a>
+                                                                               src="img/jetpack.png"
+                                                                               alt="JetPack"></a>
                     </div>
                     <div class="margin-top-20">
                         <h4>Coet </h4>
@@ -476,14 +455,14 @@
             </div>
 
 
-             <div class="col-lg-6 text-center ">
+            <div class="col-lg-6 text-center ">
                 <div class="wow flipInY animated " data-wow-duration="1000ms"
                      data-wow-delay="300ms"
                      style="padding:60px 0; visibility: visible; animation-duration: 1000ms; animation-delay: 300ms; animation-name: fadeInUp;">
-                    <div >
+                    <div>
                         <a data-fancybox="gallery" href="img/teleport_ball.png"><img class="img-fluid"
-                                                                                        src="img/teleport_ball.png"
-                                                                                        alt="Bola teletransportadora"></a>
+                                                                                     src="img/teleport_ball.png"
+                                                                                     alt="Bola teletransportadora"></a>
                     </div>
                     <div class="margin-top-20">
                         <h4>Bola teletransportadora </h4>
@@ -493,22 +472,20 @@
             </div>
 
 
-
         </div>
 
 
+        <div class="row">
 
-         <div class="row">
-
-<div class="col-lg-6 text-center offset-md-3">
+            <div class="col-lg-6 text-center offset-md-3">
                 <div class="wow flipInY animated " data-wow-duration="1000ms"
                      data-wow-delay="300ms"
                      style="padding:60px 0; visibility: visible; animation-duration: 1000ms; animation-delay: 300ms; animation-name: fadeInUp;">
-                    <div >
+                    <div>
                         <a data-fancybox="gallery" href="img/thunder.png">
                             <img class="img-fluid"
-                                                                                        src="img/thunder.png"
-                                                                                        alt="Escut dbole"></a>
+                                 src="img/thunder.png"
+                                 alt="Escut dbole"></a>
                     </div>
                     <div class="margin-top-20">
                         <h4>Raig </h4>
@@ -518,15 +495,9 @@
             </div>
 
 
-
         </div>
     </div>
 </section>
-
-
-
-
-
 
 
 <section id="curacio">
@@ -545,11 +516,9 @@
                 <div class="wow flipInY animated " data-wow-duration="1000ms"
                      data-wow-delay="300ms"
                      style="padding:60px 0; visibility: visible; animation-duration: 1000ms; animation-delay: 300ms; animation-name: fadeInUp;">
-                    <div >
-                        <a data-fancybox="gallery" href="img/objectes_curacio.png"><img class="img-fluid"
-                                                                                        src="img/objectes_curacio.png"
-                                                                                        alt="Bomba"></a>
-                    </div>
+                    <a data-fancybox="gallery" href="img/objectes_curacio.png"><img class="img-fluid"
+                                                                                    src="img/objectes_curacio.png"
+                                                                                    alt="Bomba"></a>
                     <div class="margin-top-20">
                         <h4>Vitamina i Botiquín</h4>
                         <h5>Restauren part de la vida del personatge</h5>
@@ -560,18 +529,6 @@
         </div>
     </div>
 </section>
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 <section id="equip" style="border-bottom:2px solid rgba(201,202,205,0.6); ">
@@ -585,16 +542,14 @@
         </div>
 
         <div class="row justify-content-center">
-              <div class="col-lg-3 text-center">
+            <div class="col-lg-3 text-center">
                 <div class="wow flipInY animated " data-wow-duration="1000ms"
                      data-wow-delay="300ms"
                      style="padding:60px 0; visibility: visible; animation-duration: 1000ms; animation-delay: 300ms; animation-name: flipInY;">
-                    <div >
                         <a href="https://github.com/carolBonnin">
                             <img class="img-fluid"
-                                                                 src="https://avatars3.githubusercontent.com/u/6674491?s=400&v=4"
-                                                                 alt=""></a>
-                    </div>
+                                 src="https://avatars3.githubusercontent.com/u/6674491?s=400&v=4"
+                                 alt=""></a>
                     <div class="membre-equip">
                         <h4>Carol Bonnin</h4>
                         <h5>Supervisora del projecte</h5>
@@ -610,11 +565,9 @@
                 <div class="wow flipInY animated " data-wow-duration="1000ms"
                      data-wow-delay="300ms"
                      style="padding:60px 0; visibility: visible; animation-duration: 1000ms; animation-delay: 300ms; animation-name: flipInY;">
-                    <div >
                         <a href="https://github.com/Alesan"><img class="img-fluid"
                                                                  src="https://avatars1.githubusercontent.com/u/420748?s=460&v=4"
                                                                  alt=""></a>
-                    </div>
                     <div class="membre-equip">
                         <h4>Alejandro Espinosa</h4>
                         <h5>Programador</h5>
@@ -625,11 +578,9 @@
             <div class="col-lg-3 text-center">
                 <div class="wow flipInY animated" data-wow-duration="1000ms" data-wow-delay="300ms"
                      style="padding:60px 0; visibility: visible; animation-duration: 1000ms; animation-delay: 300ms; animation-name: flipInY;">
-                    <div >
                         <a href="https://github.com/Zehalla"><img class="img-fluid"
                                                                   src="https://avatars1.githubusercontent.com/u/16131900?s=400&v=4"
                                                                   alt="Perfil de Aleix Marques"></a>
-                    </div>
                     <div class="membre-equip">
                         <h4>Aleix Marques</h4>
                         <h5>Programador</h5>
@@ -640,12 +591,10 @@
             <div class="col-lg-3 text-center">
                 <div class="wow flipInY animated" data-wow-duration="1000ms" data-wow-delay="300ms"
                      style="padding:60px 0; visibility: visible; animation-duration: 1000ms; animation-delay: 300ms; animation-name: flipInY;">
-                    <div >
                         <a href="https://github.com/marcvaldivia">
                             <img class="img-fluid"
                                  src="https://avatars0.githubusercontent.com/u/8324491?s=400&v=4"
                                  alt="Perfil de Marc Valdivia"></a>
-                    </div>
                     <div class="membre-equip">
                         <h4>Marc Valdivia</h4>
                         <h5>Programador</h5>
@@ -658,12 +607,10 @@
             <div class="col-lg-3 text-center">
                 <div class="wow flipInY animated" data-wow-duration="1000ms" data-wow-delay="300ms"
                      style=" padding:60px 0; visibility: visible; animation-duration: 1000ms; animation-delay: 300ms; animation-name: flipInY;">
-                    <div >
                         <a href="https://github.com/ainaheca">
                             <img class="img-fluid"
                                  src="https://avatars0.githubusercontent.com/u/17381078?s=460&v=4"
                                  alt="Perfil de Aina Hernàndez"></a>
-                    </div>
                     <div class="membre-equip">
                         <h4>Aina Hernàndez</h4>
                         <h5>Programadora</h5>
@@ -678,12 +625,10 @@
             <div class="col-lg-3 text-center ">
                 <div class="team-member wow flipInY animated" data-wow-duration="1000ms" data-wow-delay="300ms"
                      style="padding:60px 0; visibility: visible; animation-duration: 1000ms; animation-delay: 300ms; animation-name: flipInY;">
-                    <div >
                         <a href="https://github.com/kurimin">
                             <img class="img-fluid"
                                  src="https://avatars1.githubusercontent.com/u/14963641?s=400&v=4"
                                  alt="Perfil de Miriam Bermúdez"></a>
-                    </div>
                     <div class="membre-equip">
                         <h4>Miriam Bermúdez</h4>
                         <h5>Programadora</h5>
@@ -694,12 +639,10 @@
             <div class="col-lg-3  text-center">
                 <div class=" wow flipInY animated" data-wow-duration="1000ms" data-wow-delay="300ms"
                      style="padding:60px 0; visibility: visible; animation-duration: 1000ms; animation-delay: 300ms; animation-name: flipInY;">
-                    <div >
                         <a href="https://github.com/fwilliams96">
                             <img class="img-fluid"
                                  src="https://avatars3.githubusercontent.com/u/17413666?s=460&v=4"
                                  alt="Perfil de Francisco Williams "></a>
-                    </div>
                     <div class="membre-equip">
                         <h4>Francisco Williams</h4>
                         <h5>Programador</h5>
@@ -710,12 +653,10 @@
             <div class="col-lg-3 text-center">
                 <div class=" wow flipInY animated" data-wow-duration="1000ms" data-wow-delay="300ms"
                      style="padding:60px 0; visibility: visible; animation-duration: 1000ms; animation-delay: 300ms; animation-name: flipInY;">
-                    <div >
                         <a href="https://github.com/ae11112">
                             <img class="img-fluid"
                                  src="https://avatars1.githubusercontent.com/u/17698746?s=400&v=4"
                                  alt="Perfil de Albert Espín"></a>
-                    </div>
                     <div class="membre-equip">
                         <h4>Albert Espín</h4>
                         <h5>Dissenyador</h5>
@@ -727,12 +668,10 @@
                 <div class=" wow flipInY animated" data-wow-duration="1000ms" data-wow-delay="300ms"
                      style="padding:60px 0; visibility: visible; animation-duration: 1000ms; animation-delay: 300ms; animation-name: flipInY;">
 
-                    <div >
                         <a href="https://github.com/gcasasbe7">
                             <img class="img-fluid"
                                  src="https://avatars0.githubusercontent.com/u/17698761?s=460&v=4"
                                  alt="Perfil de Guillem Casassas"></a>
-                    </div>
                     <div class="membre-equip">
                         <h4>Guillem Casassas</h4>
                         <h5>Dissenyador</h5>
@@ -761,13 +700,13 @@
                 <div class="wow flipInY animated " data-wow-duration="1000ms"
                      data-wow-delay="300ms"
                      style="padding:60px 0; visibility: visible; animation-duration: 1000ms; animation-delay: 300ms; animation-name: flipInY;">
-                    <div >
+                    <div>
                         <a href="" class="descargar windows">
 
                             <i class="fab fa-windows fa-10x"></i>
                         </a>
                     </div>
-                        <h2>Windows</h2>
+                    <h2>Windows</h2>
                 </div>
 
             </div>
@@ -793,7 +732,7 @@
                 <div class="wow flipInY animated " data-wow-duration="1000ms"
                      data-wow-delay="300ms"
                      style="padding:60px 0; visibility: visible; animation-duration: 1000ms; animation-delay: 300ms; animation-name: fadeInUp;">
-                    <div >
+                    <div>
                         <a data-fancybox="gallery" href="img/totem_modules.png">
                             <img class="img-fluid"
                                  src="img/totem_modules.png" alt="Mòduls totem"></a>
@@ -806,7 +745,7 @@
                 <div class="wow flipInY animated " data-wow-duration="1000ms"
                      data-wow-delay="300ms"
                      style="padding:60px 0; visibility: visible; animation-duration: 1000ms; animation-delay: 300ms; animation-name: fadeInUp;">
-                    <div >
+                    <div>
                         <a data-fancybox="gallery" href="img/totem_showcase.png">
                             <img class="img-fluid"
                                  src="img/totem_showcase.png" alt="Totem showcase"></a>
@@ -825,7 +764,7 @@
                 <div class="wow flipInY animated " data-wow-duration="1000ms"
                      data-wow-delay="300ms"
                      style="padding:60px 0; visibility: visible; animation-duration: 1000ms; animation-delay: 300ms; animation-name: fadeInUp;">
-                    <div >
+                    <div>
                         <a data-fancybox="gallery" href="img/skull.png">
                             <img class="img-fluid"
                                  src="img/skull.png" alt="Mòduls totem"></a>
@@ -838,7 +777,7 @@
                 <div class="wow flipInY animated " data-wow-duration="1000ms"
                      data-wow-delay="300ms"
                      style="padding:60px 0; visibility: visible; animation-duration: 1000ms; animation-delay: 300ms; animation-name: fadeInUp;">
-                    <div >
+                    <div>
                         <a data-fancybox="gallery" href="img/magmaRocks.png">
                             <img class="img-fluid"
                                  src="img/magmaRocks.png" alt="Totem showcase"></a>
@@ -856,7 +795,7 @@
                 <div class="wow flipInY animated " data-wow-duration="1000ms"
                      data-wow-delay="300ms"
                      style="padding:60px 0; visibility: visible; animation-duration: 1000ms; animation-delay: 300ms; animation-name: fadeInUp;">
-                    <div >
+                    <div>
                         <a data-fancybox="gallery" href="img/snowman.png">
                             <img class="img-fluid"
                                  src="img/snowman.png" alt="Mòduls totem"></a>
@@ -869,7 +808,7 @@
                 <div class="wow flipInY animated " data-wow-duration="1000ms"
                      data-wow-delay="300ms"
                      style="padding:60px 0; visibility: visible; animation-duration: 1000ms; animation-delay: 300ms; animation-name: fadeInUp;">
-                    <div >
+                    <div>
                         <a data-fancybox="gallery" href="img/trunk.png">
                             <img class="img-fluid"
                                  src="img/trunk.png" alt="Totem showcase"></a>
@@ -887,7 +826,7 @@
                 <div class="wow flipInY animated " data-wow-duration="1000ms"
                      data-wow-delay="300ms"
                      style="padding:60px 0; visibility: visible; animation-duration: 1000ms; animation-delay: 300ms; animation-name: fadeInUp;">
-                    <div >
+                    <div>
                         <a data-fancybox="gallery" href="img/weightStone.png">
                             <img class="img-fluid"
                                  src="img/weightStone.png" alt="Mòduls totem"></a>
@@ -920,7 +859,7 @@
                 <div class="wow flipInY animated " data-wow-duration="1000ms"
                      data-wow-delay="300ms"
                      style="padding:60px 0; visibility: visible; animation-duration: 1000ms; animation-delay: 300ms; animation-name: fadeInUp;">
-                    <div >
+                    <div>
                         <a data-fancybox="gallery" href="img/2.png">
                             <img class="img-fluid"
                                  src="img/2.png" alt="Mòduls totem"></a>
@@ -949,8 +888,6 @@
 </section>
 
 
-
-
 <footer style="background: black;">
 
     <div class="container " style="padding:25px;">
@@ -964,13 +901,11 @@
 </footer>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" ></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/wow.min.js"></script>
-<script type="text/javascript" src="js/counterup.min.js"></script>
 <script type="text/javascript" src="js/jquery.wow.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js"></script>
-
 
 </body>
 
