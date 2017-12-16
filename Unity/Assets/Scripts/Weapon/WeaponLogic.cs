@@ -69,7 +69,7 @@ public class WeaponLogic : MonoBehaviour
         GameObject tmp = Util.LoadWeapon(weaponID) as GameObject;
         Quaternion t = tmp.transform.rotation;
         if (weaponType.Equals("Missile"))
-                t = new Quaternion(0.7f, 0, ShootingAngle > 1.0f ? 0.7f : -0.7f, 0);
+                t = new Quaternion(0.7f, 0, (ShootingAngle > 1.0f && ShootingAngle > 0) || (ShootingAngle < 0 && ShootingAngle < -1.0f) ? 0.7f : -0.7f, 0);
         var weapon = Instantiate(tmp, position, t) as GameObject;
         //var weapon = Instantiate(tmp, position, tmp.transform.rotation) as GameObject;
         // Asignamos el tag de Arma a la bala

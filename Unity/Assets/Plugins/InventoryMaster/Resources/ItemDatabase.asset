@@ -173,3 +173,42 @@ MonoBehaviour:
     indexItemInList: 999
     rarity: 0
     itemAttributes: []
+  - itemName: Semtex
+    itemID: 11
+    itemDesc: 
+    itemIcon: {fileID: 21300000, guid: 26cb4c780e2d19147aff0ae992442330, type: 3}
+    itemModel: {fileID: 1412795882170356, guid: f931ef75cff4f438bb83abb70b14dfe2,
+      type: 2}
+    itemValue: 1
+    itemType: 0
+    itemWeight: 0
+    maxStack: 1
+    indexItemInList: 999
+    rarity: 0
+    itemAttributes: []
+  - itemName: Missile
+    itemID: 12
+    itemDesc: 
+    itemIcon: {fileID: 21300000, guid: ee3618f447dc5c14cade2d9408c58278, type: 3}
+    itemModel: {fileID: 1542998702696622, guid: 44711fb04b1e140b0ba0049047de9f28,
+      type: 2}
+    itemValue: 1
+    itemType: 0
+    itemWeight: 0
+    maxStack: 1
+    indexItemInList: 999
+    rarity: 0
+    itemAttributes: []
+  - itemName: Grenade
+    itemID: 13
+    itemDesc: 
+    itemIcon: {fileID: 21300000, guid: d1fed81c8effd3d4780f4e843de79db9, type: 3}
+    itemModel: {fileID: 1645971520566788, guid: 05a167fc140064621bb3af25e6ef4788,
+      type: 2}
+    itemValue: 1
+    itemType: 0
+    itemWeight: 0
+    maxStack: 1
+    indexItemInList: 999
+    rarity: 0
+    itemAttributes: []
