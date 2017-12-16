@@ -87,7 +87,7 @@ public class ButtonsListeners : MonoBehaviour {
 			if (contRed < MAXPLAYERS)
 				contRed++;
 		} else {
-			dineroController.showWarning ("Red", "Totem");
+			dineroController.showWarning ("RED", "TOTEM");
 		}
 			
 	}
