@@ -295,11 +295,8 @@ public class GameManager : MonoBehaviour
     public void intercambiarTurno()
     {
         // Desactivo el movimiento del totem del jugador
-        if(totemActual != null)
-        {
-            this.totemActual.desabilitarControlMovimiento();
-            this.totemActual.resetColorContorno();
-        }
+        if(totemActual != null) this.totemActual.desabilitarControlMovimiento();
+        resetContornoTotemActual();
 
         // Intercambio el turno del jugador
         turnoJugador = turnoJugador == TURNO_JUGADOR.PRIMER_JUGADOR ? TURNO_JUGADOR.SEGUNDO_JUGADOR : TURNO_JUGADOR.PRIMER_JUGADOR;
