@@ -131,7 +131,6 @@ section{
 
 .dropdown-item:hover {
     text-decoration: none;
-    cursor: default;
-    background-color: gray;
+    background-color: #54595fbf;
     background-image: none; 
 }
