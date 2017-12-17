@@ -129,8 +129,9 @@ section{
     color: indianred;
 }
 
-.dropdown-item:hover {
+.dropdown-item:hover, .nav-link:hover{
     text-decoration: none;
+    color: blue;
     background-color: #54595fbf;
     background-image: none; 
 }
