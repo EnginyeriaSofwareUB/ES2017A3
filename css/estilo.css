@@ -128,3 +128,8 @@ section{
 .apple:hover {
     color: indianred;
 }
+
+.dropdown:hover .dropdowm-menu {
+    display: block;
+    margin-top: 0;
+}
