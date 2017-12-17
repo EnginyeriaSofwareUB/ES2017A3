@@ -129,7 +129,9 @@ section{
     color: indianred;
 }
 
-.dropdown:hover .dropdowm-menu {
-    display: block;
-    margin-top: 0;
+.dropdown-menu > a:hover {
+    text-decoration: none;
+    cursor: default;
+    background-color: gray;
+    background-image: none; 
 }
