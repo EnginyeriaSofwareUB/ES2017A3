@@ -131,7 +131,7 @@ section{
 
 .dropdown-item:hover, .nav-link:hover{
     text-decoration: none;
-    color: blue !important;
+    color: #70a9e9 !important;
     background-color: #54595fbf;
     background-image: none; 
 }
