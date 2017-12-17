@@ -7,7 +7,8 @@ using UnityEngine.SceneManagement;
 
 public class EndGameScreenController : MonoBehaviour {
 
-	public Transform endGameCanvas; 
+	public Transform endGameCanvasRed;
+	public Transform endGameCanvasBlue;
 	//private StateHolder stateHolder;
 	private GameManager gameManager;
 	public Text winnerTxt;
@@ -18,7 +19,9 @@ public class EndGameScreenController : MonoBehaviour {
 	void Start() {
 		//this.stateHolder = GetComponent<StateHolder>();
 		this.gameManager = GetComponent<GameManager>();
-		endGameCanvas.gameObject.SetActive (false);
+		endGameCanvasRed.gameObject.SetActive (false);
+		endGameCanvasBlue.gameObject.SetActive (false);
+
 	}
 
 
@@ -31,6 +34,8 @@ public class EndGameScreenController : MonoBehaviour {
 			winnerTxt.text = "RED PLAYER WINS!";
 		}
 	}
+
+
 
 	public void fillTotemsText(){
 		Dictionary<string, int> totemsP1 = gameManager.getListNombreTotems (GameManager.LISTA_TOTEMS.LISTA_JUGADOR);

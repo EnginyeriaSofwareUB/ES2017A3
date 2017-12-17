@@ -7,7 +7,9 @@ public class EndGameCondition : MonoBehaviour
 
     private GameManager gameManager;
 
-	public Canvas canvasEndGame; 
+	public Canvas canvasEndGameRed; 
+
+	public Canvas canvasEndGameBlue; 
 
     public Canvas canvas;
 
@@ -60,9 +62,13 @@ public class EndGameCondition : MonoBehaviour
 	private void showEndGameScreen()
 	{
         canvas.gameObject.SetActive (false);
-		canvasEndGame.gameObject.SetActive (true);
-		egsc.fillWinnerText();
-		egsc.fillTotemsText ();
+		if (!gameManager.isEmptyList (GameManager.LISTA_TOTEMS.LISTA_JUGADOR)) {
+			canvasEndGameBlue.gameObject.SetActive (true);
+		} else {
+			canvasEndGameRed.gameObject.SetActive (true);
+		}
+		//egsc.fillWinnerText();
+		//egsc.fillTotemsText ();
 	}
 
 }
