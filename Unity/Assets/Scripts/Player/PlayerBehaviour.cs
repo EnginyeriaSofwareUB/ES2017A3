@@ -9,6 +9,7 @@ namespace Assets.Scripts.Player
         public float MovementSpeed;
         public float JumpForce;
 
+		private float MAX_MOUSE_DISTANCE = 7;
         private Vector3 startMousePosition;
         private float shootingAngle;
         private LineRenderer lineaRenderizar;
@@ -89,6 +90,7 @@ namespace Assets.Scripts.Player
         }
         private void drawLine()
         {
+
             lineaRenderizar.gameObject.SetActive(true);
             lineaRenderizar.positionCount = 2;
            // lineaRenderizar.SetPosition(0, transform.position);
@@ -96,18 +98,22 @@ namespace Assets.Scripts.Player
             startMousePosition.z = (transform.position.z - Camera.main.transform.position.z);
             startMousePosition = Camera.main.ScreenToWorldPoint(startMousePosition);
             //lineaRenderizar.SetPosition(1, startMousePosition);
+			Vector3 dir = startMousePosition - transform.position;
+			float dist = Mathf.Clamp(Vector3.Distance(transform.position, startMousePosition), 0, MAX_MOUSE_DISTANCE);
+			startMousePosition = transform.position + (dir.normalized * dist);
 
-			lineaRenderizar.SetPositions(new Vector3[] {
+			lineaRenderizar.SetPositions (new Vector3[] {
 				transform.position
-				, Vector3.Lerp(transform.position, startMousePosition, 0.9f)
-				, Vector3.Lerp(transform.position, startMousePosition, 0.91f)
-				, startMousePosition });
+				, Vector3.Lerp (transform.position, startMousePosition, 0.9f)
+				, Vector3.Lerp (transform.position, startMousePosition, 0.91f)
+				, startMousePosition
+			});
 
 			float distanceX = Mathf.Abs (lineaRenderizar.GetPosition (1).x - lineaRenderizar.GetPosition (0).x);
 			float distanceY = Mathf.Abs (lineaRenderizar.GetPosition (1).y - lineaRenderizar.GetPosition (0).y);
 
 
-			float potenceDistance = Mathf.Sqrt(Mathf.Pow(distanceX, 2)  +Mathf.Pow(distanceY, 2));
+			float potenceDistance = Mathf.Sqrt (Mathf.Pow (distanceX, 2) + Mathf.Pow (distanceY, 2));
 
 			WeaponLogic.setPower (potenceDistance * 10 + 1);
         }
