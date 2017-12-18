@@ -37,6 +37,10 @@ namespace Assets.Scripts.Environment
             public const int objetoEscudoSimple = 7;
             public const int objetoAngel = 8;
             public const int objetoEscudoDoble = 9;
+            public const int objetoBomb = 10;
+            public const int objetoSemtex = 11;
+            public const int objetoMissile = 12;
+            public const int objetoGrenade = 13;
 
         }
 

@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
     private GestionHotbar gestorHotbar;
 
     private int turnCounter;
+    private int numCajasLanzadas;
 
     public Text txtNumeroRonda;
     public Text txtTurnoJugador;
@@ -101,19 +102,35 @@ public class GameManager : MonoBehaviour
         ronda = 0;
 
         turnCounter = 1;
+        numCajasLanzadas = 1;
 
         this.listaItemsPrimerJugador = new List<int>();
         listaItemsPrimerJugador.Add(Global.TIPO_OBJETOS.objetoAngel);
         listaItemsPrimerJugador.Add(Global.TIPO_OBJETOS.objetoEscudoDoble);
         listaItemsPrimerJugador.Add(Global.TIPO_OBJETOS.objetoEscudoSimple);
         listaItemsPrimerJugador.Add(Global.TIPO_OBJETOS.objetoIglu);
+        listaItemsPrimerJugador.Add(Global.TIPO_OBJETOS.objetoBomb);
+        listaItemsPrimerJugador.Add(Global.TIPO_OBJETOS.objetoGrenade);
+        listaItemsPrimerJugador.Add(Global.TIPO_OBJETOS.objetoSemtex);
+        listaItemsPrimerJugador.Add(Global.TIPO_OBJETOS.objetoMissile);
+        listaItemsPrimerJugador.Add(Global.TIPO_OBJETOS.objetoBomb);
+        listaItemsPrimerJugador.Add(Global.TIPO_OBJETOS.objetoGrenade);
+        listaItemsPrimerJugador.Add(Global.TIPO_OBJETOS.objetoSemtex);
+        listaItemsPrimerJugador.Add(Global.TIPO_OBJETOS.objetoMissile);
+
         this.listaItemsSegundoJugador = new List<int>();
-        /*listaItemsSegundoJugador.Add(Global.TIPO_OBJETOS.objetoIglu);
-        listaItemsSegundoJugador.Add(Global.TIPO_OBJETOS.objetoEscudoSimple);*/
         listaItemsSegundoJugador.Add(Global.TIPO_OBJETOS.objetoAngel);
         listaItemsSegundoJugador.Add(Global.TIPO_OBJETOS.objetoEscudoDoble);
         listaItemsSegundoJugador.Add(Global.TIPO_OBJETOS.objetoEscudoSimple);
         listaItemsSegundoJugador.Add(Global.TIPO_OBJETOS.objetoIglu);
+        listaItemsSegundoJugador.Add(Global.TIPO_OBJETOS.objetoBomb);
+        listaItemsSegundoJugador.Add(Global.TIPO_OBJETOS.objetoGrenade);
+        listaItemsSegundoJugador.Add(Global.TIPO_OBJETOS.objetoSemtex);
+        listaItemsSegundoJugador.Add(Global.TIPO_OBJETOS.objetoMissile);
+        listaItemsSegundoJugador.Add(Global.TIPO_OBJETOS.objetoBomb);
+        listaItemsSegundoJugador.Add(Global.TIPO_OBJETOS.objetoGrenade);
+        listaItemsSegundoJugador.Add(Global.TIPO_OBJETOS.objetoSemtex);
+        listaItemsSegundoJugador.Add(Global.TIPO_OBJETOS.objetoMissile);
 
     }
 
@@ -166,12 +183,12 @@ public class GameManager : MonoBehaviour
         this.estadoPartida = PARTIDA_STATE.TURNO_RONDA;
         this.turnoJugador = TURNO_JUGADOR.PRIMER_JUGADOR;
         ronda += 1;
-        txtNumeroRonda.text = "Round: " + ronda;
+        txtNumeroRonda.text = "ROUND: " + ronda;
         StartCoroutine(intercambiarInventario());
-        // InitInventory();
 
         // Actualiza el contorno del módulo
         actualizarContornoTotemActual();
+        if (BoxTurn()) ThrowBox();
     }
 
     /// <summary>
@@ -257,7 +274,6 @@ public class GameManager : MonoBehaviour
             intercambiarTurno();
 
         turnCounter += 1;
-        //if (BoxTurn() && !condicionFinJuego.IsWinCondition()) ThrowBox();
     }
 
   
@@ -265,7 +281,7 @@ public class GameManager : MonoBehaviour
     {
         //Si han pasado X turnos (box turn) y no ha sucedido la condición de final, lanzamos la caja a la escena
 
-        txtNumeroRonda.text = "Round: " + ronda;
+        txtNumeroRonda.text = "ROUND: " + ronda;
 
         estadoPartida = PARTIDA_STATE.INICIO_RONDA;
         Debug.Log("Fin de la ronda");
@@ -279,14 +295,11 @@ public class GameManager : MonoBehaviour
     public void intercambiarTurno()
     {
         // Desactivo el movimiento del totem del jugador
-        this.totemActual.desabilitarControlMovimiento();
-        //this.condicionFinJuego.IncreaseTurnCounter();
+        if(totemActual != null) this.totemActual.desabilitarControlMovimiento();
+        resetContornoTotemActual();
 
         // Intercambio el turno del jugador
         turnoJugador = turnoJugador == TURNO_JUGADOR.PRIMER_JUGADOR ? TURNO_JUGADOR.SEGUNDO_JUGADOR : TURNO_JUGADOR.PRIMER_JUGADOR;
-
-        ModuloTotem modulo = this.totemActual.GetComponentInChildren<ModuloTotem>();
-        modulo.resetColorContorno();
 
         switch (turnoJugador)
         {
@@ -301,10 +314,8 @@ public class GameManager : MonoBehaviour
         }
         actualizarContornoTotemActual();
         StartCoroutine(intercambiarInventario());
-        // InitInventory();
-        // Muestro el turno del jugador
-        //txtTurnoJugador.text = "Turno: " + turnoJugador.ToString();
-
+        if (!BoxTurn()) ThrowBox();
+        SwitchBoxTurn();
 
     }
 
@@ -351,20 +362,25 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private int GetNumBoxTurn()
-    {
-        return boxGenerator.GetComponent<BoxGeneratorController>().boxTurn;
-    }
-
     private bool BoxTurn()
     {
-        return (turnCounter-1) % GetNumBoxTurn() == 0;
+        //return turnCounter % GetNumBoxTurn() == 0;
+        return !condicionFinJuego.IsWinCondition() && boxGenerator.GetComponent<BoxGeneratorController>().boxTurn;
+    }
+
+    private void SwitchBoxTurn()
+    {
+        boxGenerator.GetComponent<BoxGeneratorController>().boxTurn = !boxGenerator.GetComponent<BoxGeneratorController>().boxTurn;
     }
 
     private void ThrowBox()
     {
         Debug.Log("ThrowBox");
-        boxGenerator.GetComponent<BoxGeneratorController>().SendMessage("AddBox");
+        for(int i=0; i < this.numCajasLanzadas; i++)
+        {
+            boxGenerator.GetComponent<BoxGeneratorController>().SendMessage("AddBox");
+        }
+       
     }
 
 	private void initPlayers()
@@ -468,7 +484,7 @@ public class GameManager : MonoBehaviour
 	}
 
     public bool isEmptyList(LISTA_TOTEMS lista){
-        PriorityQueue<Totem> listToCheck;
+        PriorityQueue<Totem> listToCheck = null;
         switch(lista){
             case(LISTA_TOTEMS.LISTA_JUGADOR):
                 listToCheck = listaTotemsJugador;
@@ -479,7 +495,10 @@ public class GameManager : MonoBehaviour
             default:
                 return false;
         }
-        return listToCheck.isEmpty();
+        if (listToCheck != null)
+            return listToCheck.isEmpty();
+        else
+            return true;
     }
 
     public void RemoveTotem(Totem totem)

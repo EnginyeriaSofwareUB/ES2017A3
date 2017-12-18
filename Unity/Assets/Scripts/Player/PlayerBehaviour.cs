@@ -1,5 +1,4 @@
 ﻿using System;
-using Assets.Scripts.Weapon;
 using UnityEngine;
 using Assets.Scripts.Environment;
 
@@ -10,6 +9,7 @@ namespace Assets.Scripts.Player
         public float MovementSpeed;
         public float JumpForce;
 
+		private float MAX_MOUSE_DISTANCE = 7;
         private Vector3 startMousePosition;
         private float shootingAngle;
         private LineRenderer lineaRenderizar;
@@ -28,7 +28,7 @@ namespace Assets.Scripts.Player
             this.stateHolder = GameObject.FindGameObjectWithTag("GameController").GetComponent<StateHolder>();
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
             if (this.mov.PuedeMoverse || !this.mov.isShoot())
             {
@@ -90,6 +90,7 @@ namespace Assets.Scripts.Player
         }
         private void drawLine()
         {
+
             lineaRenderizar.gameObject.SetActive(true);
             lineaRenderizar.positionCount = 2;
            // lineaRenderizar.SetPosition(0, transform.position);
@@ -97,18 +98,22 @@ namespace Assets.Scripts.Player
             startMousePosition.z = (transform.position.z - Camera.main.transform.position.z);
             startMousePosition = Camera.main.ScreenToWorldPoint(startMousePosition);
             //lineaRenderizar.SetPosition(1, startMousePosition);
+			Vector3 dir = startMousePosition - transform.position;
+			float dist = Mathf.Clamp(Vector3.Distance(transform.position, startMousePosition), 0, MAX_MOUSE_DISTANCE);
+			startMousePosition = transform.position + (dir.normalized * dist);
 
-			lineaRenderizar.SetPositions(new Vector3[] {
+			lineaRenderizar.SetPositions (new Vector3[] {
 				transform.position
-				, Vector3.Lerp(transform.position, startMousePosition, 0.9f)
-				, Vector3.Lerp(transform.position, startMousePosition, 0.91f)
-				, startMousePosition });
+				, Vector3.Lerp (transform.position, startMousePosition, 0.9f)
+				, Vector3.Lerp (transform.position, startMousePosition, 0.91f)
+				, startMousePosition
+			});
 
 			float distanceX = Mathf.Abs (lineaRenderizar.GetPosition (1).x - lineaRenderizar.GetPosition (0).x);
 			float distanceY = Mathf.Abs (lineaRenderizar.GetPosition (1).y - lineaRenderizar.GetPosition (0).y);
 
 
-			float potenceDistance = Mathf.Sqrt(Mathf.Pow(distanceX, 2)  +Mathf.Pow(distanceY, 2));
+			float potenceDistance = Mathf.Sqrt (Mathf.Pow (distanceX, 2) + Mathf.Pow (distanceY, 2));
 
 			WeaponLogic.setPower (potenceDistance * 10 + 1);
         }
@@ -120,33 +125,33 @@ namespace Assets.Scripts.Player
 
         private void Shoot()
         {
-
-            if (Input.GetMouseButtonDown(0) && stateHolder.isPlaying())
-
-            {
-                startMousePosition = Input.mousePosition;
-
-            }
-
-            if (Input.GetMouseButton(0))
-            {
-                Vector3 mouseDelta = Input.mousePosition - startMousePosition;
-                if (mouseDelta.sqrMagnitude < 0.1f)
+            if (stateHolder.isPlaying()){
+                if (Input.GetMouseButtonDown(0))
                 {
-                    shootingAngle = getAngle(startMousePosition);// don't do tiny rotations.
-                }
-                else
-                {
-                    shootingAngle = getAngle(mouseDelta);
+                    startMousePosition = Input.mousePosition;
+
                 }
 
-                WeaponLogic.ChangeDirection(shootingAngle);
-            }
+                if (Input.GetMouseButton(0))
+                {
+                    Vector3 mouseDelta = Input.mousePosition - startMousePosition;
+                    if (mouseDelta.sqrMagnitude < 0.1f)
+                    {
+                        shootingAngle = getAngle(startMousePosition);// don't do tiny rotations.
+                    }
+                    else
+                    {
+                        shootingAngle = getAngle(mouseDelta);
+                    }
 
-            if (Input.GetMouseButtonUp(0))
-            {
-                WeaponLogic.ChangeDirection(shootingAngle);
-                WeaponLogic.Shoot();
+                    WeaponLogic.ChangeDirection(shootingAngle);
+                }
+
+                if (Input.GetMouseButtonUp(0))
+                {
+                    WeaponLogic.ChangeDirection(shootingAngle);
+                    WeaponLogic.Shoot();
+                }
             }
         }
 
@@ -157,15 +162,6 @@ namespace Assets.Scripts.Player
                 var direction = Input.GetAxis("Vertical") > 0 ? Direction.Up : Direction.Down;
                // WeaponLogic.ChangeDirection(shootingAngle);
                 //WeaponLogic.ChangeDirection(direction);
-            }
-        }
-
-        private void WeaponForce()
-        {
-            if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.R))
-            {
-                var direction = Input.GetKeyDown(KeyCode.R) ? Direction.Up : Direction.Down;
-                WeaponLogic.ChangePower(direction);
             }
         }
 

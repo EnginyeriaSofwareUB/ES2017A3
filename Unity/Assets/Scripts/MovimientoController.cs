@@ -59,7 +59,7 @@ public class MovimientoController : MonoBehaviour
     {
         bool isPulsadoSalto = Input.GetKey(KeyCode.Space) == true;
 
-		if (puedeMoverse && (Input.GetKeyDown (KeyCode.LeftArrow) || Input.GetKeyDown (KeyCode.RightArrow))) {
+		if (puedeMoverse && (Input.GetKeyDown (KeyCode.LeftArrow) || Input.GetKeyDown (KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D))) {
 			pressedKey = true;
 		}
            

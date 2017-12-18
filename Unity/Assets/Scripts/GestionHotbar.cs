@@ -125,13 +125,13 @@ public class GestionHotbar : MonoBehaviour
                 //angel.SetActive(false);
                 angel.gameObject.AddComponent<Angel>();
                 angel.transform.parent = totemActual.transform;
-                totemActual.ActivarAngelGuarda();
+                //totemActual.ActivarAngelGuarda();
                 break;
 
 
             case Global.TIPO_OBJETOS.objetoIglu:
 
-                GameObject iglu = Instantiate(item.itemModel, totemActual.transform.position, Quaternion.identity) as GameObject;
+                GameObject iglu = Instantiate(item.itemModel, totemActual.PosicioPrimerModul(), Quaternion.identity) as GameObject;
 
                 iglu.transform.GetChild(0).gameObject.AddComponent<Iglu>();
                 CircleCollider2D circle = iglu.transform.GetChild(0).gameObject.AddComponent<CircleCollider2D>();
@@ -172,13 +172,13 @@ public class GestionHotbar : MonoBehaviour
                 
                 break;
 
-		case Global.TIPO_OBJETOS.objetoCohete:
+		/*case Global.TIPO_OBJETOS.objetoCohete:
 			GameObject cohete = Instantiate (item.itemModel, totemActual.transform.position, Quaternion.identity) as GameObject;
 			cohete.transform.GetChild (0).gameObject.AddComponent<Cohete> ();
 			cohete.transform.GetChild (0).gameObject.AddComponent<CircleCollider2D> ();
 			cohete.transform.parent = totemActual.transform;
 
-			break;
+			break;*/
 
 		case Global.TIPO_OBJETOS.objetoRayo:
 			GameObject rayo = Instantiate(item.itemModel, totemActual.transform.position, Quaternion.identity) as GameObject;
@@ -186,6 +186,26 @@ public class GestionHotbar : MonoBehaviour
 			rayo.transform.parent = totemActual.transform;
 			//rayo.transform.GetChild(0).gameObject.AddComponent<CircleCollider2D>();
 			break;
+
+        case Global.TIPO_OBJETOS.objetoBomb:
+            WeaponLogic bomb = totemActual.GetComponent<WeaponLogic>();
+            bomb.weaponType = "Bomb";
+            break;
+
+        case Global.TIPO_OBJETOS.objetoMissile:
+            WeaponLogic missile = totemActual.GetComponent<WeaponLogic>();
+            missile.weaponType = "Missile";
+            break;
+
+        case Global.TIPO_OBJETOS.objetoSemtex:
+            WeaponLogic semtex = totemActual.GetComponent<WeaponLogic>();
+            semtex.weaponType = "Semtex";
+            break;
+
+        case Global.TIPO_OBJETOS.objetoGrenade:
+            WeaponLogic grenade = totemActual.GetComponent<WeaponLogic>();
+            grenade.weaponType = "Grenade";
+            break;
 
         }
         GameManager.Instance.eliminarItemHotbar(item.itemID);

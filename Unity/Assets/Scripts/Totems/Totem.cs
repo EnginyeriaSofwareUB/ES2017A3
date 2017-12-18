@@ -23,7 +23,6 @@ public class Totem : MonoBehaviour
     private MovimientoController movimiento;
 
     private GameObject gameManager;
-    public bool angelGuarda;
 
     public GameObject deathExplosion, fallExplosion, onHitEffect;
 
@@ -196,7 +195,6 @@ public class Totem : MonoBehaviour
 		this.movimiento = GetComponent<MovimientoController>();
         this.gameManager = GameObject.FindGameObjectWithTag("GameController");
         this.currentHealth = this.maxHealth;
-        this.angelGuarda = false;
         this.totemItems = new List<int>();
         /*AddItem(Global.TIPO_OBJETOS.objetoAngel);
         AddItem(Global.TIPO_OBJETOS.objetoEscudoSimple);
@@ -245,9 +243,11 @@ public class Totem : MonoBehaviour
                 else if (updatedPosition.x > 37) updatedPosition.x = 37;
                 updatedPosition.y = -20;
                 GameObject executeFallExplosion = Instantiate(this.fallExplosion,updatedPosition,this.gameObject.transform.rotation);
+                executeFallExplosion.tag = "KillMe";
                 Destroy(executeFallExplosion,executeFallExplosion.GetComponent<AudioSource>().clip.length);
             }else{
                 GameObject executeDeathExplosion = Instantiate(this.deathExplosion,this.gameObject.transform.position,this.deathExplosion.transform.rotation);
+                executeDeathExplosion.tag = "KillMe";
                 Destroy(executeDeathExplosion, executeDeathExplosion.GetComponent<AudioSource>().clip.length);
             }
             if (AngelGuardaActivado())
@@ -357,20 +357,15 @@ public class Totem : MonoBehaviour
         return totemItems;
     }
 
-    public void ActivarAngelGuarda()
-    {
-        angelGuarda = true;
-    }
-
-    public void DesactivarAngelGuarda()
-    {
-        angelGuarda = false;
-    }
-
    public bool AngelGuardaActivado()
    {
-        return angelGuarda;
-   }
+        return this.GetComponentInChildren<Angel>() != null;
+    }
+
+    public bool IgluActivado()
+    {
+        return this.GetComponentInChildren<Iglu>() != null;
+    }
 
     IEnumerator RevivirTotem()
     {
@@ -429,4 +424,41 @@ public class Totem : MonoBehaviour
         }
         return itemActivo != null ? true : false;
     }
+
+    public Vector3 PosicioPrimerModul()
+    {
+        float yMax = float.MinValue;
+        float value = 0;
+        foreach(GameObject modul in modulos)
+        {
+            value = modul.transform.position.y;
+            if(yMax < value)
+            {
+                yMax = value;
+            }
+
+        }
+        //return this.transform.position+(Vector3.up * yMax);
+        //Vector3 pos = new Vector3(this.transform.position.x, yMax, this.transform.position.z);
+        return new Vector3(this.transform.position.x, yMax, this.transform.position.z);
+    }
+
+    public int GetIDModuloProtegidoIglu()
+    {
+        float yMax = float.MinValue;
+        float value = 0;
+        int id = 0;
+        foreach (GameObject modul in modulos)
+        {
+            value = modul.transform.position.y;
+            if (yMax < value)
+            {
+                yMax = value;
+                id = modul.GetInstanceID();
+            }
+
+        }
+        return id;
+    }
+
 }
