@@ -101,7 +101,7 @@ section{
 }
 
 .bg-image-full {
-    background: url(../img/01.jpg) no-repeat center fixed;
+    background: url(../img/01.png) no-repeat center fixed;
     background-size: cover;
 }
 
